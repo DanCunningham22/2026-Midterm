@@ -1,0 +1,54 @@
+name: Update data and publish
+
+on:
+  schedule:
+    - cron: '0 10,22 * * *'   # 6 AM and 6 PM Eastern (EDT)
+  workflow_dispatch:           # "Run workflow" button for an on-demand refresh
+  push:
+    branches: [main]
+    paths: ['site/**', 'pipeline/**', '.github/workflows/**']
+
+permissions:
+  contents: write   # commit the refreshed data.json
+  pages: write      # publish to GitHub Pages
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rebuild data from the live feeds
+        run: python3 pipeline/build.py --out site/data.json
+
+      - name: Save the new data to the repository
+        run: |
+          git config user.name "midterm-map-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/data.json
+          if git diff --cached --quiet; then
+            echo "No change in data."
+          else
+            git commit -m "Data update $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
