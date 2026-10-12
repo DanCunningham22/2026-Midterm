@@ -1011,7 +1011,7 @@
     $('early-vote').innerHTML =
       '<div class="ev-head"><div><h2>What the early vote says so far</h2>' +
       '<p class="sub">About ' + (us.cast / 1e6).toFixed(1) + ' million ballots are in, roughly ' + Math.round(pct2022 * 100) + '% of what a 2022-sized midterm would bring. ' + esc(st.headline || '') + '</p></div>' +
-      '<div class="callout"><h3>How the map uses it</h3><p class="small" style="margin:0">The comparisons below were measured when about ' + (auto * 100).toFixed(1) + '% of the expected vote was in, so the default gives them that much weight. They imply about ' + fm(D.evproj.median) + ', vs. ' + fm(D.G0) + ' in the polls, which moves the national vote by ' + (M.evShift(M.defaults)).toFixed(2) + ' pts. Raise the weight in the controls to take them at face value. Ballot counts below refresh twice a day; the comparisons and the story are updated by hand (last on ' + sinceStory + ').</p></div></div>' +
+      '<div class="callout"><h3>How the map uses it</h3><p class="small" style="margin:0">The comparisons below were measured when about ' + (auto * 100).toFixed(1) + '% of the expected vote was in, so the default gives them that much weight. They imply about ' + fm(D.evproj.median) + ', vs. ' + fm(D.G0) + ' in the polls, which moves the national vote by ' + (M.evShift(M.defaults)).toFixed(2) + ' pts. Raise the weight in the controls to take them at face value. Ballot counts and the North Carolina comparison refresh twice a day; the other comparisons, the signals and the story are refreshed daily (last on ' + sinceStory + ').</p></div></div>' +
       '<div class="stats">' +
       '<div class="stat"><div class="stat-v num">' + (us.cast / 1e6).toFixed(2) + 'M</div><div class="stat-k">ballots counted in ' + us.reporting + ' states (UF Election Lab' + (us.asof_min ? ', state data as of ' + fmtDay(us.asof_min) + (us.asof_max !== us.asof_min ? '–' + fmtDay(us.asof_max) : '') : '') + ')</div></div>' +
       '<div class="stat"><div class="stat-v num">' + (pct2022 * 100).toFixed(1) + '%</div><div class="stat-k">of 2022\'s 112.0M total ballots</div></div>' +
@@ -1028,6 +1028,7 @@
       '<p class="small">The math starts from 2024\'s R+1.5 and adds the shift in the gap between Democratic and Republican early voters times 0.85, about how loyal partisans are. A 1-point rise in the Democratic share of requests counts as a 2-point rise in the gap. The measures range from ' + fm(measSorted[0].implied) + ' to ' + fm(measSorted[measSorted.length - 1].implied) + '.</p>' +
       '<p class="small"><b>Read it as an illustration.</b> It assumes the early vote\'s tilt carries to the whole electorate and that nobody changes sides. Iowa and Ohio look extreme because both were very Republican early electorates in 2024. And the comparison with 2022 points the other way.</p></div>' +
       '</div>' +
+      ((ncPanel() || dailyPanel()) ? '<div class="ev-grid">' + ncPanel() + dailyPanel() + '</div>' : '') +
       '<h3 style="margin-top:18px">Party registration of ballots so far</h3>' +
       '<div class="table-scroll"><table><thead><tr><th>State</th><th class="n">Ballots</th><th class="n">% of 2022</th><th>D / R / other</th><th class="n">Share D / R / other</th><th class="n">2022 final early vote D / R</th><th class="n">In-person starts</th></tr></thead><tbody>' + trows + '</tbody></table></div>' +
       '<p class="chart-cap">Registered party of voters whose ballots were accepted (UF Election Lab). The 2022 column is the final early vote, not the same point, so it is context only: early returns run more Democratic than the final early vote. Party registration is not vote choice.</p>' +
@@ -1036,9 +1037,69 @@
     drawEvCharts();
   }
 
+  // ---- North Carolina, computed every run from the State Board of Elections' files
+  const pctOf = (c, f) => (c && c.all ? c[f] / c.all * 100 : null);
+  const gapOf = (c) => (c && c.all ? (c.DEM - c.REP) / c.all * 100 : null);
+  function ncSignals() {
+    const nc = D.nc;
+    if (!nc || !nc.y26 || !nc.y26.all) return [];
+    const g26 = gapOf(nc.y26), inPerson = pctOf(nc.y26, 'onestop');
+    const strong = nc.y26.all >= 250000;
+    const out = [];
+    [['y22', '2022'], ['y24', '2024']].forEach(([k, yr]) => {
+      const c = nc[k]; if (!c || !c.all) return;
+      const g = gapOf(c), dlt = g26 - g;
+      out.push({ dir: dlt >= 0 ? 'D' : 'R', st: 'NC · automatic', strength: strong ? 3 : 2,
+        title: 'North Carolina\'s ballots vs. the same point in ' + yr,
+        value: 'Registered Democrats minus Republicans among accepted ballots: ' + (g26 >= 0 ? 'D+' : 'R+') + Math.abs(g26).toFixed(1) + ' now, vs. ' + (g >= 0 ? 'D+' : 'R+') + Math.abs(g).toFixed(1) + ' in ' + yr + ' (' + Math.round(nc.y26.all).toLocaleString() + ' ballots vs. ' + Math.round(c.all).toLocaleString() + ').',
+        catch: inPerson < 10 ? 'Mail ballots only so far, and Democrats have moved from mail to in person; in-person voting from Oct 15 will reshape this.'
+          : 'Party registration isn\'t vote choice, and unaffiliated voters (' + pctOf(nc.y26, 'UNA').toFixed(0) + '% of ballots) decide North Carolina.',
+        src: 'NC State Board of Elections files, through ' + fmtDay(nc.asof), url: 'https://www.ncsbe.gov/results-data/absentee-data', aff: 'Official data, computed here' });
+    });
+    return out;
+  }
+  function ncPanel() {
+    const nc = D.nc;
+    if (!nc || !nc.y26 || !nc.y26.all) return '';
+    const cols = [['2026', nc.y26], ['2022', nc.y22], ['2024', nc.y24]].filter((c) => c[1] && c[1].all);
+    const pc = (c, f) => pctOf(c, f).toFixed(1) + '%';
+    const gap = (c) => { const g = gapOf(c); return '<span class="' + (g >= 0 ? 'd' : 'r') + '">' + (g >= 0 ? 'D+' : 'R+') + Math.abs(g).toFixed(1) + '</span>'; };
+    const row = (lab, fn) => '<tr><td>' + lab + '</td>' + cols.map((c) => '<td class="n">' + fn(c[1]) + '</td>').join('') + '</tr>';
+    return '<div><h3>North Carolina vs. the same point <span class="auto-tag">updates itself</span></h3>' +
+      '<div class="table-scroll"><table class="nc-table"><thead><tr><th>' + nc.days_before + ' days out</th>' + cols.map((c) => '<th class="n">' + c[0] + '</th>').join('') + '</tr></thead><tbody>' +
+      row('Ballots accepted', (c) => Math.round(c.all).toLocaleString()) + row('Registered Democrats', (c) => pc(c, 'DEM')) + row('Registered Republicans', (c) => pc(c, 'REP')) +
+      row('Unaffiliated', (c) => pc(c, 'UNA')) + row('D minus R', gap) + row('Black voters', (c) => pc(c, 'black')) + row('Voted in person', (c) => pc(c, 'onestop')) +
+      '</tbody></table></div><p class="chart-cap">Accepted mail and early in-person ballots through ' + fmtDay(nc.asof) + ', against the same number of days before Election Day in 2022 and 2024, from the State Board of Elections\' own files. Recomputed twice a day.</p></div>';
+  }
+  // ---- daily record kept by the update job
+  function dailyPanel() {
+    const h = D.ev_hist || [];
+    if (!h.length) return '';
+    const last = h[h.length - 1], prev = h.length > 1 ? h[h.length - 2] : null;
+    let txt;
+    if (!prev) txt = 'The daily record started ' + fmtDay(last.date) + '. From tomorrow this shows what changed since the day before: ballots added and how each state\'s party mix moved.';
+    else {
+      const add = last.us - prev.us;
+      const movers = Object.keys(last.st).filter((k) => prev.st[k] && last.st[k][1] != null && prev.st[k][1] != null)
+        .map((k) => ({ k, add: last.st[k][0] - prev.st[k][0], dd: (last.st[k][1] - last.st[k][2]) - (prev.st[k][1] - prev.st[k][2]) }))
+        .filter((x) => x.add > 0).sort((a, b) => b.add - a.add).slice(0, 6);
+      txt = (add >= 0 ? '+' : '−') + Math.abs(add).toLocaleString() + ' ballots since ' + fmtDay(prev.date) + '. ' +
+        (movers.length ? 'Biggest gains: ' + movers.map((x) => x.k + ' +' + x.add.toLocaleString() + ' (D−R gap ' + (x.dd >= 0 ? '+' : '−') + Math.abs(x.dd).toFixed(1) + ')').join(', ') + '.' : '');
+    }
+    const W = 300, H = 70, n = h.length;
+    let svg = '';
+    if (n > 1) {
+      const max = Math.max(...h.map((x) => x.us));
+      const bw = W / n;
+      h.forEach((x, i) => { const bh = x.us / max * (H - 14); svg += '<rect class="ev-bar-d" x="' + (i * bw + 1).toFixed(1) + '" y="' + (H - bh).toFixed(1) + '" width="' + Math.max(1, bw - 2).toFixed(1) + '" height="' + bh.toFixed(1) + '"><title>' + fmtDay(x.date) + ': ' + x.us.toLocaleString() + '</title></rect>'; });
+      svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="display:block;width:100%;max-width:420px;height:auto" role="img" aria-label="Ballots counted by day">' + svg + '</svg>';
+    }
+    return '<div><h3>Day by day <span class="auto-tag">updates itself</span></h3>' + svg + '<p class="small" style="margin:6px 0 0">' + txt + '</p><p class="chart-cap">Saved by the update job every day from UF Election Lab\'s counts.</p></div>';
+  }
+
   // early vote vs. the polls: each sourced signal, which way it points, how much weight it deserves, and its catch
   function signalsHtml() {
-    const st = D.story || {}, sig = st.signals || [];
+    const st = D.story || {}, sig = (st.signals || []).concat(ncSignals());
     if (!sig.length) return '';
     const gap = D.evproj.median - D.G0;
     const verdict = Math.abs(gap) < 1.5 ? 'The early vote and the polls agree.'
@@ -1244,7 +1305,7 @@
     const shortStamp = meta.generated ? new Date(meta.generated).toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit', timeZone: ET }) + ' ET' : 'recently';
     document.getElementById('eyebrow').innerHTML = '<span class="xl">2026 midterms · </span>updated <span class="xl">' + (meta.generated ? fmtStamp(meta.generated) : 'recently') + '</span><span class="xs">' + shortStamp + '</span> · <span class="xl">' + dayText + '</span><span class="xs">' + shortDays + '</span>';
     const chip = document.getElementById('staleChip');
-    const labels = { early_vote: 'Early-vote counts', electindex: 'Polls and candidates', generic_ballot: 'National polling average' };
+    const labels = { early_vote: 'Early-vote counts', electindex: 'Polls and candidates', generic_ballot: 'National polling average', nc_sbe: 'North Carolina early-vote comparison' };
     const stale = Object.keys(meta.sources || {}).filter((k) => !meta.sources[k].ok);
     const ageH = meta.generated ? (Date.now() - new Date(meta.generated).getTime()) / 3600000 : 0;
     if (ageH > 36) { chip.textContent = 'Not updated since ' + fmtStamp(meta.generated); chip.hidden = false; }

@@ -1,0 +1,29 @@
+name: Build NC early-vote baseline
+
+# One-off: tallies North Carolina's 2022 and 2024 absentee/one-stop files by days before Election Day,
+# so the twice-daily job can compare 2026 with the same point in those years. Run it from the Actions tab.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  baseline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Tally the 2022 and 2024 files
+        run: python3 pipeline/nc_absentee.py baseline --out pipeline/static/nc_baseline.json
+
+      - name: Save the baseline to the repository
+        run: |
+          git config user.name "midterm-map-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pipeline/static/nc_baseline.json
+          if git diff --cached --quiet; then echo "No change."; exit 0; fi
+          git commit -m "North Carolina early-vote baseline (2022, 2024) from NCSBE files"
+          git pull --rebase origin main
+          git push

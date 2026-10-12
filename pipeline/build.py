@@ -438,6 +438,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--out', default=os.path.join(ROOT, 'site', 'data.json'))
     ap.add_argument('--feed-dir', help='read the ElectIndex files from this directory instead of fetching')
+    ap.add_argument('--no-nc', action='store_true', help='skip the North Carolina file download (local runs)')
     ap.add_argument('--uf-csv', help='read the UF early-vote file from this path instead of fetching')
     ap.add_argument('--today', help='override the build date (YYYY-MM-DD)')
     a = ap.parse_args()
@@ -529,11 +530,35 @@ def main():
             raise ValueError(f"ballot total fell from {pc:,.0f} to {ev['us']['cast']:,.0f}; keeping the old file")
         out['ev'] = ev
         ok('early_vote', f"{ev['us']['reporting']} states reporting")
+        # daily record, carried forward in data.json: one snapshot per day (the day's last run wins)
+        hist = [h for h in (prev.get('ev_hist') or []) if h.get('date') != today.isoformat()]
+        hist.append(dict(date=today.isoformat(), us=round(ev['us']['cast']),
+                         st={x['st']: [round(x['cast']), x.get('d'), x.get('r'), x.get('asof')]
+                             for x in ev['states'] if x.get('cast')}))
+        out['ev_hist'] = hist[-45:]
     except Exception as e:
         stale('early_vote', e)
         if not prev.get('ev'):
             raise SystemExit('early-vote data unavailable and no previous data to fall back on')
         out['ev'] = prev['ev']
+        out['ev_hist'] = prev.get('ev_hist', [])
+
+    # North Carolina: same-point comparison with 2022 and 2024 from the State Board of Elections' files
+    bl_path = os.path.join(ROOT, 'pipeline', 'static', 'nc_baseline.json')
+    if os.path.exists(bl_path) and not a.no_nc:
+        try:
+            import nc_absentee
+            nc = nc_absentee.current(load_json(bl_path), today)
+            old = (prev.get('nc') or {}).get('y26', {}).get('all')
+            if old and nc['y26']['all'] < 0.85 * old:
+                raise ValueError(f"NC ballots fell from {old:,} to {nc['y26']['all']:,}; keeping the old numbers")
+            out['nc'] = nc
+            ok('nc_sbe', f"{nc['y26']['all']:,} accepted ballots through {nc['asof']}")
+        except Exception as e:
+            stale('nc_sbe', e)
+            out['nc'] = prev.get('nc')
+    else:
+        out['nc'] = prev.get('nc')
 
     out['evproj'] = ev_projection(story, base['N24'])
     out['story'] = story
