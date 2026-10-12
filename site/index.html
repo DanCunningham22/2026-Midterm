@@ -56,7 +56,7 @@
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.5; margin: 0; }
-.wrap { max-width: 1320px; margin: 0 auto; padding-inline: 16px; padding-block: 20px 48px; }
+.wrap { max-width: 1320px; margin: 0 auto; padding-inline: 16px; padding-block: 20px 48px; overflow-x: clip; }
 a { color: var(--dem); text-underline-offset: 2px; }
 button, input, select { font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid var(--mark); outline-offset: 2px; }
@@ -136,16 +136,18 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; border-radius
 .seg button { border: 1px solid var(--rule); background: var(--card); padding: 3px 9px; border-radius: 999px; cursor: pointer; font-size: 13px; color: var(--ink-2); }
 .seg button[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); font-weight: 600; }
 .search { flex: 1 1 180px; max-width: 260px; min-width: 0; padding: 6px 10px; border: 1px solid var(--rule); border-radius: 6px; background: var(--card); font-size: 14px; }
-.seatbar { margin: 4px 0 10px; }
-.seatbar svg { display: block; width: 100%; height: 34px; }
+.seatbar { position: relative; margin: 4px 0 10px; padding-bottom: 17px; }
+.seatbar svg { display: block; width: 100%; height: 24px; overflow: visible; }
+.seatbar .maj-line { vector-effect: non-scaling-stroke; stroke-dasharray: none; stroke-width: 2; }
+.seat-need { position: absolute; top: 25px; transform: translateX(-50%); font-size: 12px; font-weight: 600; color: var(--ink-2); white-space: nowrap; line-height: 1.2; }
 .map-scroll { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; border-radius: 6px; }
 .map-scroll svg { display: block; width: 100%; height: auto; touch-action: manipulation; }
-.map-scroll.zoomed svg { width: 220%; }
-.hex { stroke: var(--card); stroke-width: 1.4; cursor: pointer; }
-.hex.sel { stroke: var(--ink); stroke-width: 3; }
+.hex { stroke: var(--card); stroke-width: calc(1.4px * var(--lz, 1)); cursor: pointer; }
+.hex.sel { stroke: var(--ink); stroke-width: calc(3px * var(--lz, 1)); }
 .hex.dim { opacity: 0.25; }
-.stline { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-linejoin: round; opacity: 0.55; pointer-events: none; }
-.stlab { font-family: var(--font-display); font-weight: 700; font-size: 13px; fill: var(--ink); paint-order: stroke; stroke: var(--card); stroke-width: 3px; pointer-events: none; text-anchor: middle; dominant-baseline: central; }
+.stline { fill: none; stroke: var(--ink); stroke-width: calc(1.4px * var(--lz, 1)); stroke-linejoin: round; opacity: 0.55; pointer-events: none; }
+.stlab { font-family: var(--font-display); font-weight: 700; font-size: calc(13px * var(--lz, 1)); fill: var(--ink); paint-order: stroke; stroke: var(--card); stroke-width: calc(3px * var(--lz, 1)); pointer-events: none; text-anchor: middle; dominant-baseline: central; }
+.stlab.sm { font-size: calc(11px * var(--lz, 1)); }
 .tile { stroke: var(--card); stroke-width: 2; cursor: pointer; }
 .tile.off { fill: var(--none); cursor: default; }
 .tile.sel { stroke: var(--ink); stroke-width: 3.5; }
@@ -297,8 +299,47 @@ footer { margin-top: 20px; font-size: 12px; color: var(--ink-3); }
   .search { max-width: none; }
   .col-side { top: auto; }
 }
-@media (max-width: 480px) { .col24 { display: none; } }
+@media (max-width: 480px) { .col24, .colflip { display: none; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+
+/* phone app layout: one screen at a time, scenario slider and tab bar docked at the bottom */
+.dock, .races-search { display: none; }
+body.tabbed [data-screen]:not(.on) { display: none !important; }
+body.tabbed .masthead h1, body.tabbed .masthead .lede { display: none; }
+body.tabbed .masthead { margin-bottom: 8px; }
+body.tabbed .wrap { padding-top: 12px; padding-bottom: calc(var(--dock-h, 150px) + 18px); }
+body.tabbed .grid { margin-top: 12px; }
+body.tabbed #early-vote, body.tabbed #method { margin-top: 12px !important; }
+body.tabbed .bar { padding-block: 6px; }
+body.tabbed .bar-inner { gap: 0; }
+body.tabbed .dock { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 35; background: var(--bar-bg);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-top: 1px solid var(--rule); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body.tabbed.kbd .dock { display: none; }
+.dock-env .env { padding: 6px 16px 0; gap: 0 12px; }
+.dock-env .env-label { display: none; }
+.dock-env .env-value { font-size: 27px; min-width: 3.5ch; }
+.dock-env .presets { margin-top: 0; padding-bottom: 4px; }
+.tabbar { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--rule-2); }
+.tabbar button { display: grid; justify-items: center; gap: 1px; border: 0; background: none; padding: 6px 0 4px; color: var(--ink-3);
+  font-size: 11px; font-weight: 600; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.tabbar svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.tabbar button[aria-current="page"] { color: var(--ink); }
+.tabbar button[aria-current="page"] svg { stroke-width: 2.3; }
+body.tabbed .races-search { display: block; flex: 1 1 100%; max-width: none; }
+.xs { display: none; }
+body.tabbed .xl, body.tabbed .seg-lab { display: none; }
+body.tabbed .xs { display: inline; }
+body.tabbed .area-map { display: flex; flex-direction: column; }
+body.tabbed .area-map > .legend { order: 1; }
+body.tabbed .card { padding: 14px; }
+.dock-env .presets { -webkit-mask-image: linear-gradient(90deg, #000 86%, transparent); mask-image: linear-gradient(90deg, #000 86%, transparent); padding-right: 24px; }
+body.tabbed .map-head { gap: 8px 10px; margin-bottom: 8px; }
+body.tabbed .map-head .tabs button { padding: 5px 11px; font-size: 13px; }
+body.tabbed .seatbar { scroll-margin-top: calc(var(--bar-h, 60px) + env(safe-area-inset-top, 0px) + 8px); }
+body.tabbed #map.house { touch-action: pan-y; }
+body.tabbed #map.house.zoomed-in { touch-action: none; }
+.map-hint { display: none; font-size: 12px; color: var(--ink-3); margin: 6px 0 0; }
+body.tabbed .map-hint.show { display: block; }
 
 /* standalone app additions */
 :root { color-scheme: light; }
@@ -312,12 +353,13 @@ body::before { content: ""; position: fixed; inset: 0 0 auto 0; height: env(safe
 .banner { position: fixed; z-index: 60; left: 50%; transform: translateX(-50%); bottom: calc(16px + env(safe-area-inset-bottom, 0px));
   background: var(--ink); color: var(--card); border-radius: 10px; padding: 10px 12px 10px 16px; display: flex; gap: 12px; align-items: center;
   box-shadow: 0 8px 24px rgba(0,0,0,.22); font-size: 14px; max-width: calc(100% - 32px); }
+body.tabbed .banner { bottom: calc(var(--dock-h, 150px) + 10px); }
 .banner button { border: 0; border-radius: 6px; padding: 6px 12px; font-weight: 700; background: var(--mark); color: #14181d; cursor: pointer; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header class="masthead">
+  <header class="masthead on" data-screen="map">
     <div class="status-row"><p class="eyebrow" id="eyebrow">2026 midterms · loading the latest numbers</p><span id="staleChip" class="chip-warn" hidden></span></div>
     <h1>2026 Midterm Scenario Map</h1>
     <p class="lede" id="lede">Set the national House vote, each group's margin and turnout, and the House, Senate and governor maps redraw. The numbers update themselves twice a day.</p>
@@ -346,28 +388,29 @@ body::before { content: ""; position: fixed; inset: 0 0 auto 0; height: env(safe
   </section>
 
   <main class="grid">
-      <section class="card area-map" aria-label="Map">
+      <section class="card area-map on" data-screen="map" aria-label="Map">
         <div class="map-head">
           <div class="tabs" role="tablist" aria-label="Chamber">
             <button role="tab" id="tabHouse" data-tab="house" aria-selected="true">House</button>
             <button role="tab" id="tabSenate" data-tab="senate" aria-selected="false">Senate</button>
-            <button role="tab" id="tabGov" data-tab="gov" aria-selected="false">Governors</button>
+            <button role="tab" id="tabGov" data-tab="gov" aria-selected="false" aria-label="Governors">Gov<span class="xl">ernors</span></button>
           </div>
           <div class="seg" role="group" aria-label="Color by">
-            <span>Color by</span>
+            <span class="seg-lab">Color by</span>
             <button id="cmChance" aria-pressed="true">Chance</button>
             <button id="cmMargin" aria-pressed="false">Margin</button>
           </div>
           <input class="search" id="search" type="search" placeholder="Find a district, state or candidate" aria-label="Find a race">
-          <button class="zoom-btn" id="zoomBtn" aria-pressed="false">Zoom map</button>
+          <button class="zoom-btn" id="zoomBtn" aria-pressed="false">Zoom in</button>
         </div>
         <div class="seatbar" id="seatbar"></div>
         <div class="map-scroll" id="mapScroll"><div class="loading" id="loading"><b>Loading the latest numbers</b>Polls, early vote and candidates are refreshed twice a day.</div><svg id="map" role="img" aria-label="Map of projected results"></svg></div>
+        <p class="map-hint" id="mapHint">Pinch or double-tap to zoom; drag to move around.</p>
         <div class="legend" id="legend"></div>
         <div class="detail" id="detail" aria-live="polite"></div>
       </section>
 
-    <aside class="col-side area-ctl" aria-label="Controls">
+    <aside class="col-side area-ctl" data-screen="adjust" aria-label="Controls">
       <section class="card">
         <div class="ctl">
           <div class="ctl-head"><h3>Crosstabs</h3><span class="key-legend"><span><i></i>2024 result</span><span><i class="poll"></i>2026 polls</span></span></div>
@@ -417,7 +460,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto 0; height: env(safe
         </div>
       </section>
     </aside>
-      <section class="card area-res" aria-label="Results">
+      <section class="card area-res" data-screen="outlook" aria-label="Results">
         <div class="res-grid">
           <div>
             <h2 id="resTitle">House outlook</h2>
@@ -431,22 +474,37 @@ body::before { content: ""; position: fixed; inset: 0 0 auto 0; height: env(safe
         </div>
       </section>
 
-      <section class="card area-races" aria-label="Races">
+      <section class="card area-races" data-screen="races" aria-label="Races">
         <div class="map-head" style="margin-bottom:6px">
           <div><h2 id="raceTitle">Closest House races</h2><p class="sub" id="raceSub" style="margin:0">Sorted by projected margin. Select a row to see it on the map.</p></div>
+          <input class="search races-search" id="search2" type="search" placeholder="Find a race or candidate" aria-label="Find a race">
         </div>
         <div class="table-scroll"><table id="raceTable"><thead></thead><tbody></tbody></table></div>
         <button class="more" id="moreBtn">Show all</button>
       </section>
   </main>
 
-  <section class="card" id="early-vote" aria-label="Early vote" style="margin-top:16px"></section>
-  <section class="card" id="method" aria-label="Method and sources" style="margin-top:16px"></section>
-  <footer>Probabilities describe this model under the settings shown, not a forecast of record. District data on the 2026 lines derived from ElectIndex's public forecast data; group baselines from Pew Research Center; early vote from UF Election Lab.</footer>
+  <section class="card" id="early-vote" data-screen="early" aria-label="Early vote" style="margin-top:16px"></section>
+  <section class="card" id="method" data-screen="adjust" aria-label="Method and sources" style="margin-top:16px"></section>
+  <footer data-screen="adjust">Probabilities describe this model under the settings shown, not a forecast of record. District data on the 2026 lines derived from ElectIndex's public forecast data; group baselines from Pew Research Center; early vote from UF Election Lab.</footer>
 </div>
 <div class="tip" id="tip" hidden></div>
 
+<div class="dock" id="dock">
+  <div class="dock-env" id="dockEnv"></div>
+  <nav class="tabbar" aria-label="Sections">
+    <button data-go="map" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.2l7.6 4.4v8.8L12 20.8l-7.6-4.4V7.6z"/><path d="M12 8.6l2.9 1.7v3.4L12 15.4l-2.9-1.7v-3.4z"/></svg><span>Map</span></button>
+    <button data-go="outlook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M6.5 20v-5M10.5 20V8M14.5 20v-9M18.5 20v-4"/></svg><span>Outlook</span></button>
+    <button data-go="races"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.5h11M9 12h11M9 17.5h11"/><circle cx="4.8" cy="6.5" r="1.3"/><circle cx="4.8" cy="12" r="1.3"/><circle cx="4.8" cy="17.5" r="1.3"/></svg><span>Races</span></button>
+    <button data-go="adjust"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2.2"/><circle cx="9" cy="17" r="2.2"/></svg><span>Adjust</span></button>
+    <button data-go="early"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5h16V20H4z"/><path d="M8 11.5V4h8v7.5"/><path d="M10 7.5l1.6 1.6L14.4 6"/><path d="M9 15h6"/></svg><span>Early vote</span></button>
+  </nav>
+</div>
+
 <div class="banner" id="banner" hidden><span id="bannerText">New numbers are in.</span><button id="bannerBtn">Load them</button></div>
+<script>
+if (window.matchMedia && window.matchMedia('(max-width: 760px)').matches) document.body.classList.add('tabbed');
+</script>
 <script src="model.js"></script>
 <script src="app.js"></script>
 <script>

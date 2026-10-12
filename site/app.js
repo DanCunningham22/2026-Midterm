@@ -8,12 +8,13 @@
   // ---------------------------------------------------------------- state
   let sc = M.clone(M.defaults);
   let R = null;              // last simulation
-  const ui = { tab: 'house', cmode: 'chance', sel: null, dim: 'race', query: '', showAll: false, pattern: 'blend', side: 'D' };
+  const ui = { tab: 'house', cmode: 'chance', sel: null, dim: 'race', query: '', showAll: false, pattern: 'blend', side: 'D', screen: 'map' };
+  const SCREENS = ['map', 'outlook', 'races', 'adjust', 'early'];
   try {
     const saved = JSON.parse(localStorage.getItem('msm-ui') || 'null');
-    if (saved && saved.tab) { ui.tab = saved.tab; ui.cmode = saved.cmode || 'chance'; ui.dim = saved.dim || 'race'; ui.side = saved.side === 'R' ? 'R' : 'D'; }
+    if (saved && saved.tab) { ui.tab = saved.tab; ui.cmode = saved.cmode || 'chance'; ui.dim = saved.dim || 'race'; ui.side = saved.side === 'R' ? 'R' : 'D'; if (SCREENS.indexOf(saved.screen) >= 0) ui.screen = saved.screen; }
   } catch (e) { /* storage unavailable */ }
-  function saveUi() { try { localStorage.setItem('msm-ui', JSON.stringify({ tab: ui.tab, cmode: ui.cmode, dim: ui.dim, side: ui.side })); } catch (e) { /* ignore */ } }
+  function saveUi() { try { localStorage.setItem('msm-ui', JSON.stringify({ tab: ui.tab, cmode: ui.cmode, dim: ui.dim, side: ui.side, screen: ui.screen })); } catch (e) { /* ignore */ } }
   // Seat counts can be read from either side: 'D' counts Democratic seats, 'R' Republican ones.
   // Independents (Osborn in Nebraska, Kiley in CA-06) count for neither.
   const rView = () => ui.side === 'R';
@@ -216,6 +217,7 @@
     if (!houseGeom) buildHouseGeom();
     const g = houseGeom;
     svg.setAttribute('viewBox', [g.minx, g.miny, g.w, g.h].map((v) => v.toFixed(1)).join(' '));
+    svg.classList.add('house');
     let html = '<g id="hexes">';
     D.districts.forEach((d, i) => { html += '<path class="hex" data-i="' + i + '" d="' + hexPath(d.x, d.y, HR) + '"/>'; });
     html += '</g><g>';
@@ -223,11 +225,12 @@
     html += '</g><g>';
     Object.keys(g.cent).forEach((s) => {
       const c = g.cent[s];
-      html += '<text class="stlab" x="' + (c[0] / c[2]).toFixed(1) + '" y="' + (c[1] / c[2]).toFixed(1) + '"' + (c[2] < 3 ? ' style="font-size:11px"' : '') + '>' + s + '</text>';
+      html += '<text class="stlab' + (c[2] < 3 ? ' sm' : '') + '" x="' + (c[0] / c[2]).toFixed(1) + '" y="' + (c[1] / c[2]).toFixed(1) + '">' + s + '</text>';
     });
     html += '</g>';
     svg.innerHTML = html;
     hexEls = Array.from(svg.querySelectorAll('.hex'));
+    resetZoom();
   }
 
   // ---------------------------------------------------------------- state tile map
@@ -246,6 +249,8 @@
   function drawTiles(svg, tab) {
     const W = 11 * TW + TW / 2 + 8, H = 7 * 1.5 * TR + 2 * TR + 8;
     svg.setAttribute('viewBox', '0 0 ' + W.toFixed(1) + ' ' + H.toFixed(1));
+    svg.classList.remove('house', 'zoomed-in');
+    svg.style.removeProperty('--lz');
     const list = races(tab);
     const idx = {}; list.forEach((r, i) => { idx[r.st] = i; });
     let html = '';
@@ -312,9 +317,9 @@
     let fixedD = 0, fixedR = 0, total = 435, need = 218, needLab = '218 for a majority';
     if (t === 'senate') {
       fixedD = 34; fixedR = 31; total = 100;
-      need = rv ? 50 : 51; needLab = rv ? '50 for control (VP Vance breaks ties)' : '51 for control (VP Vance breaks ties)';
+      need = rv ? 50 : 51; needLab = rv ? '50 for control, with VP Vance' : '51 for control';
     }
-    if (t === 'gov') { fixedD = 6; fixedR = 8; total = 50; need = 26; needLab = '26 for a majority of governors'; }
+    if (t === 'gov') { fixedD = 6; fixedR = 8; total = 50; need = 26; needLab = '26 for a majority'; }
     const W = 1000, H = 34;
     // in the Republican view the bar fills from the Republican end, so the line still marks what that side needs
     const segs = [['dfix', fixedD], ['sd', counts.sd], ['ld', counts.ld], ['nd', counts.nd], ['tu', counts.tu], ['nr', counts.nr], ['lr', counts.lr], ['sr', counts.sr], ['rfix', fixedR]];
@@ -325,14 +330,14 @@
       const w = n / total * W;
       const cls = k === 'dfix' ? 'f-sd' : k === 'rfix' ? 'f-sr' : 'f-' + k;
       const op = (k === 'dfix' || k === 'rfix') ? ' style="opacity:.55"' : '';
-      h += '<rect class="' + cls + '"' + op + ' x="' + x.toFixed(1) + '" y="8" width="' + Math.max(0, w - 1).toFixed(1) + '" height="14"><title>' +
+      h += '<rect class="' + cls + '"' + op + ' x="' + x.toFixed(1) + '" y="5" width="' + Math.max(0, w - 1).toFixed(1) + '" height="14"><title>' +
         (k === 'dfix' ? fixedD + ' Democratic seats not up' : k === 'rfix' ? fixedR + ' Republican seats not up' : n + ' ' + rating(k === 'sd' ? 1 : k === 'ld' ? 0.9 : k === 'nd' ? 0.7 : k === 'tu' ? 0.5 : k === 'nr' ? 0.3 : k === 'lr' ? 0.1 : 0).t) + '</title></rect>';
       x += w;
     });
     const mx = need / total * W;
-    h += '<line x1="' + mx.toFixed(1) + '" x2="' + mx.toFixed(1) + '" y1="2" y2="28" class="maj-line" style="stroke-dasharray:none;stroke-width:2"/>';
-    h += '<text class="maj-text" x="' + (mx + 6).toFixed(1) + '" y="33" style="font-size:12px">' + needLab + '</text>';
-    $('seatbar').innerHTML = '<svg viewBox="0 0 1000 36" preserveAspectRatio="none" aria-hidden="true">' + h + '</svg>';
+    h += '<line x1="' + mx.toFixed(1) + '" x2="' + mx.toFixed(1) + '" y1="0" y2="24" class="maj-line"/>';
+    $('seatbar').innerHTML = '<svg viewBox="0 0 1000 24" preserveAspectRatio="none" aria-hidden="true">' + h + '</svg>' +
+      '<div class="seat-need" style="left:' + (need / total * 100).toFixed(2) + '%">' + needLab + '</div>';
   }
 
   // ---------------------------------------------------------------- detail panel
@@ -423,6 +428,22 @@
     ui.sel = i;
     renderMap(); renderDetail(); renderTable();
   }
+  // select a race from a list and bring the map to it
+  function openRace(i, scroll) {
+    if (isTabbed()) {
+      if (ui.screen !== 'map') showScreen('map', true);
+      select(i);
+      if (ui.tab === 'house') {
+        // zoom to the district so it's easy to see and its neighbours are tappable
+        if (zoom.on) centerOn(i);
+        else { const b = baseView(), d = D.districts[i]; setView({ x: d.x - b.w / 6, y: d.y - b.h / 6, w: b.w / 3, h: b.h / 3 }); }
+      }
+      $('seatbar').scrollIntoView({ block: 'start' });
+      return;
+    }
+    select(i);
+    if (scroll) $('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 
   // ---------------------------------------------------------------- tooltip + pointer
   const tip = $('tip');
@@ -459,14 +480,105 @@
     });
     svg.addEventListener('pointerleave', () => { tip.hidden = true; });
     svg.addEventListener('click', (e) => {
+      if (gesture.suppressClick) { gesture.suppressClick = false; return; }
       const i = nearestIndex(e);
       if (i >= 0) select(i);
     });
     $('zoomBtn').addEventListener('click', () => {
-      const z = $('mapScroll').classList.toggle('zoomed');
-      $('zoomBtn').setAttribute('aria-pressed', z ? 'true' : 'false');
-      $('zoomBtn').textContent = z ? 'Fit map' : 'Zoom map';
+      if (zoom.on) { resetZoom(); return; }
+      const b = baseView();
+      const d = ui.sel !== null ? D.districts[ui.sel] : null;
+      const cx = d ? d.x : b.x + b.w / 2, cy = d ? d.y : b.y + b.h / 2;
+      const w = b.w / 3, h = b.h / 3;
+      setView({ x: cx - w / 2, y: cy - h / 2, w, h });
     });
+    wireGestures();
+  }
+
+  // ---------------------------------------------------------------- zoom (House map on phones)
+  // The map zooms by narrowing its viewBox, so taps keep working through getScreenCTM.
+  const zoom = { on: false, v: null };
+  const gesture = { suppressClick: false };
+  function baseView() { if (!houseGeom) buildHouseGeom(); const g = houseGeom; return { x: g.minx, y: g.miny, w: g.w, h: g.h }; }
+  function setView(v) {
+    const b = baseView();
+    const w = Math.max(b.w / 8, Math.min(b.w, v.w)), h = w * b.h / b.w;
+    const x = Math.max(b.x, Math.min(b.x + b.w - w, v.x)), y = Math.max(b.y, Math.min(b.y + b.h - h, v.y));
+    const z = b.w / w;
+    zoom.on = z > 1.02;
+    zoom.v = zoom.on ? { x, y, w, h } : null;
+    const svg = $('map');
+    svg.setAttribute('viewBox', [x, y, w, h].map((n) => n.toFixed(2)).join(' '));
+    svg.style.setProperty('--lz', (1 / Math.sqrt(z)).toFixed(4));   // labels and outlines grow more slowly than the hexes
+    svg.classList.toggle('zoomed-in', zoom.on);
+    $('zoomBtn').textContent = zoom.on ? 'Fit map' : 'Zoom in';
+    $('zoomBtn').setAttribute('aria-pressed', zoom.on ? 'true' : 'false');
+    $('mapHint').textContent = zoom.on ? 'Drag to move around. Fit map shows everything again.' : 'Pinch or double-tap the map to zoom.';
+  }
+  function resetZoom() { if (ui.tab === 'house' && houseGeom) setView(baseView()); else { zoom.on = false; zoom.v = null; } }
+  function zoomAt(cx, cy, factor) {   // keep the svg point (cx, cy) fixed on screen
+    const v = zoom.v || baseView();
+    setView({ x: cx - (cx - v.x) / factor, y: cy - (cy - v.y) / factor, w: v.w / factor, h: v.h / factor });
+  }
+  function centerOn(i) {
+    if (!zoom.on || ui.tab !== 'house') return;
+    const d = D.districts[i], v = zoom.v;
+    setView({ x: d.x - v.w / 2, y: d.y - v.h / 2, w: v.w, h: v.h });
+  }
+  function wireGestures() {
+    const svg = $('map');
+    const pts = new Map();
+    let g0 = null, moved = false, lastTap = null;
+    const toSvg = (cx, cy, v) => { const r = svg.getBoundingClientRect(); return { x: v.x + (cx - r.left) / r.width * v.w, y: v.y + (cy - r.top) / r.height * v.h }; };
+    const begin = () => {
+      const v = zoom.v || baseView();
+      const a = Array.from(pts.values());
+      if (a.length >= 2) {
+        g0 = { pinch: true, v, d: Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y) || 1, m: toSvg((a[0].x + a[1].x) / 2, (a[0].y + a[1].y) / 2, v) };
+      } else if (a.length === 1) g0 = { pinch: false, v, x: a[0].x, y: a[0].y };
+      else g0 = null;
+    };
+    svg.addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'touch' || ui.tab !== 'house' || !isTabbed()) return;
+      pts.set(e.pointerId, { x: e.clientX, y: e.clientY, x0: e.clientX, y0: e.clientY });
+      if (pts.size === 1) moved = false;
+      if (pts.size === 2) moved = true;
+      begin();
+    });
+    svg.addEventListener('pointermove', (e) => {
+      const p = pts.get(e.pointerId); if (!p || !g0) return;
+      p.x = e.clientX; p.y = e.clientY;
+      if (Math.hypot(p.x - p.x0, p.y - p.y0) > 8) moved = true;
+      const r = svg.getBoundingClientRect();
+      if (g0.pinch && pts.size >= 2) {
+        const a = Array.from(pts.values());
+        const d = Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y) || 1;
+        const w = g0.v.w * g0.d / d, h = w * g0.v.h / g0.v.w;
+        const mx = (a[0].x + a[1].x) / 2, my = (a[0].y + a[1].y) / 2;
+        setView({ x: g0.m.x - (mx - r.left) / r.width * w, y: g0.m.y - (my - r.top) / r.height * h, w, h });
+      } else if (!g0.pinch && zoom.on && moved) {
+        const v = g0.v;
+        setView({ x: v.x - (p.x - g0.x) / r.width * v.w, y: v.y - (p.y - g0.y) / r.height * v.h, w: v.w, h: v.h });
+      }
+    });
+    const end = (e) => {
+      const p = pts.get(e.pointerId); if (!p) return;
+      pts.delete(e.pointerId);
+      if (moved) gesture.suppressClick = true;
+      if (!moved && e.type === 'pointerup' && pts.size === 0) {
+        const now = Date.now();
+        if (lastTap && now - lastTap.t < 330 && Math.hypot(p.x - lastTap.x, p.y - lastTap.y) < 30) {
+          const v = zoom.v || baseView();
+          const c = toSvg(p.x, p.y, v);
+          if (baseView().w / v.w >= 5) resetZoom(); else zoomAt(c.x, c.y, 2.5);
+          lastTap = null;
+        } else lastTap = { t: now, x: p.x, y: p.y };
+      }
+      if (pts.size === 0) setTimeout(() => { gesture.suppressClick = false; }, 400);
+      begin();   // a remaining finger carries on as a drag
+    };
+    svg.addEventListener('pointerup', end);
+    svg.addEventListener('pointercancel', end);
   }
 
   // ---------------------------------------------------------------- results panel
@@ -604,7 +716,10 @@
       h += '<circle class="cur-dot" cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="5"/>';
       const lbl = (key.indexOf('house') === 0 ? Math.round(cur[key]) : cur[key].toFixed(1)) + ' at ' + fm(nat);
       const anchorEnd = cx > W * 0.62;
-      h += '<text class="cur-text" x="' + (cx + (anchorEnd ? -8 : 8)).toFixed(1) + '" y="' + (cy + (cy < T + 24 ? 16 : -8)).toFixed(1) + '" text-anchor="' + (anchorEnd ? 'end' : 'start') + '">' + lbl + '</text>';
+      // label above the dot unless that would sit on the majority line or the top edge
+      let ly = cy - 8;
+      if (ly < T + 16 || Math.abs(ly - 4 - gy(need)) < 11) ly = cy + 17;
+      h += '<text class="cur-text" x="' + (cx + (anchorEnd ? -8 : 8)).toFixed(1) + '" y="' + ly.toFixed(1) + '" text-anchor="' + (anchorEnd ? 'end' : 'start') + '">' + lbl + '</text>';
       $(id).innerHTML = h;
     };
     if (rView()) {
@@ -627,11 +742,11 @@
     const limit = ui.showAll || q ? idx.length : (t === 'house' ? 30 : 15);
     $('raceTitle').textContent = q ? 'Matching races' : t === 'house' ? 'Closest House races' : t === 'senate' ? 'Senate races' : 'Governor races';
     $('raceSub').textContent = 'Sorted by projected margin. Select a row to see it on the map. * = incumbent running.';
-    $('raceTable').querySelector('thead').innerHTML = '<tr><th>Race</th><th>Matchup</th><th class="n col24">2024 pres.</th><th class="n">Projected</th><th class="n">Chance</th><th class="n">Flips at</th></tr>';
+    $('raceTable').querySelector('thead').innerHTML = '<tr><th>Race</th><th>Matchup</th><th class="n col24">2024 pres.</th><th class="n">Projected</th><th class="n">Chance</th><th class="n colflip">Flips at</th></tr>';
     const rows = idx.slice(0, limit).map((i) => {
       const r = list[i], m = raceMargin(t, i), p = raceP(t, i), f = flipPoint(t, i), rt = rating(p);
       return '<tr data-i="' + i + '"' + (ui.sel === i ? ' class="sel"' : '') + '><td class="code">' + esc(r.id) + '</td><td><span class="full">' + matchup(t, r, true) + '</span><span class="short">' + shortMatchup(t, r) + '</span></td><td class="n col24">' + fm(r.m24) +
-        '</td><td class="n ' + (m > 0 ? 'd' : 'r') + '">' + fm(m) + '</td><td class="n"><span class="pill ' + rt.k + '">' + chanceText(p, r) + '</span></td><td class="n">' + (f === null ? '—' : fm(f)) + '</td></tr>';
+        '</td><td class="n ' + (m > 0 ? 'd' : 'r') + '">' + fm(m) + '</td><td class="n"><span class="pill ' + rt.k + '">' + chanceText(p, r) + '</span></td><td class="n colflip">' + (f === null ? '—' : fm(f)) + '</td></tr>';
     });
     $('raceTable').querySelector('tbody').innerHTML = rows.join('') || '<tr><td colspan="6" class="muted">No races match.</td></tr>';
     $('moreBtn').hidden = !!q || idx.length <= limit && !ui.showAll;
@@ -764,23 +879,34 @@
     };
     document.querySelectorAll('[data-tab]').forEach((b) => b.addEventListener('click', () => {
       setTab(b.dataset.tab);
-      if (b.classList.contains('tally-item')) $('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (!b.classList.contains('tally-item')) return;
+      if (isTabbed()) { if (ui.screen === 'adjust' || ui.screen === 'early') showScreen('map', true); }
+      else $('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }));
     $('cmChance').addEventListener('click', () => { ui.cmode = 'chance'; saveUi(); render(); });
     const setSide = (sd) => { if (ui.side === sd) return; ui.side = sd; saveUi(); render(); };
     $('sideD').addEventListener('click', () => setSide('D'));
     $('sideR').addEventListener('click', () => setSide('R'));
     $('cmMargin').addEventListener('click', () => { ui.cmode = 'margin'; saveUi(); render(); });
-    $('search').addEventListener('input', () => { ui.query = $('search').value; renderMap(); renderTable(); });
-    $('search').addEventListener('keydown', (e) => {
-      if (e.key !== 'Enter') return;
-      const first = $('raceTable').querySelector('tbody tr[data-i]');
-      if (first) select(+first.dataset.i);
+    // two search boxes (map card, and the races screen on phones) share one query
+    const onSearch = (el) => {
+      ui.query = el.value;
+      ['search', 'search2'].forEach((id) => { if ($(id) !== el) $(id).value = el.value; });
+      renderMap(); renderTable();
+    };
+    ['search', 'search2'].forEach((id) => {
+      $(id).addEventListener('input', () => onSearch($(id)));
+      $(id).addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter') return;
+        const first = $('raceTable').querySelector('tbody tr[data-i]');
+        if (!first) return;
+        $(id).blur();
+        openRace(+first.dataset.i);
+      });
     });
     $('raceTable').addEventListener('click', (e) => {
       const tr = e.target.closest('tr[data-i]'); if (!tr) return;
-      select(+tr.dataset.i);
-      $('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      openRace(+tr.dataset.i, true);
     });
     $('moreBtn').addEventListener('click', () => { ui.showAll = !ui.showAll; renderTable(); });
   }
@@ -913,7 +1039,7 @@
     $('cmMargin').setAttribute('aria-pressed', ui.cmode === 'margin' ? 'true' : 'false');
     $('search').placeholder = ui.tab === 'house' ? 'Find a district or candidate' : 'Find a state or candidate';
     $('zoomBtn').hidden = ui.tab !== 'house';
-    if (ui.tab !== 'house') { $('mapScroll').classList.remove('zoomed'); $('zoomBtn').setAttribute('aria-pressed', 'false'); $('zoomBtn').textContent = 'Zoom map'; }
+    $('mapHint').classList.toggle('show', ui.tab === 'house');
     renderBar();
     renderSeatbar();
     renderMap();
@@ -921,6 +1047,59 @@
     renderResults();
     renderTable();
     renderControls();
+  }
+
+  // ---------------------------------------------------------------- phone layout: one screen at a time, bottom tab bar
+  const phoneMQ = window.matchMedia('(max-width: 760px)');
+  const isTabbed = () => document.body.classList.contains('tabbed');
+  const scrollPos = {};
+  const envEl = document.querySelector('.env'), barInner = document.querySelector('.bar-inner');
+  function showScreen(s, push) {
+    if (SCREENS.indexOf(s) < 0) s = 'map';
+    const tabbed = isTabbed(), changed = ui.screen !== s;
+    if (tabbed && changed) scrollPos[ui.screen] = window.scrollY;
+    ui.screen = s; saveUi();
+    document.querySelectorAll('[data-screen]').forEach((el) => el.classList.toggle('on', el.dataset.screen === s));
+    document.querySelectorAll('[data-go]').forEach((b) => { if (b.dataset.go === s) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+    if (!tabbed) return;
+    if (push && changed) { try { history.pushState({ screen: s }, '', '#/' + s); } catch (e) { /* ignore */ } }
+    tip.hidden = true;
+    window.scrollTo(0, scrollPos[s] || 0);
+    // charts size themselves to their container, which has no width while its screen is hidden
+    if (s === 'outlook' && R) renderResults();
+    if (s === 'early') drawEvCharts();
+  }
+  function applyLayout() {
+    const tabbed = phoneMQ.matches;
+    document.body.classList.toggle('tabbed', tabbed);
+    if (tabbed) { if (envEl.parentNode !== $('dockEnv')) $('dockEnv').appendChild(envEl); }
+    else if (envEl.parentNode !== barInner) barInner.insertBefore(envEl, barInner.firstChild);
+    if (tabbed) showScreen(ui.screen, false); else resetZoom();
+    setBarH();
+    if (R) { renderResults(); drawEvCharts(); }
+  }
+  function wireScreens() {
+    document.querySelectorAll('[data-go]').forEach((b) => b.addEventListener('click', () => {
+      if (ui.screen === b.dataset.go) window.scrollTo({ top: 0, behavior: 'smooth' });
+      else showScreen(b.dataset.go, true);
+    }));
+    window.addEventListener('popstate', () => {
+      if (!isTabbed()) return;
+      const h = location.hash.replace(/^#\/?/, '');
+      showScreen(SCREENS.indexOf(h) >= 0 ? h : 'map', false);
+    });
+    const evLink = document.querySelector('a[href="#early-vote"]');
+    if (evLink) evLink.addEventListener('click', (e) => { if (isTabbed()) { e.preventDefault(); showScreen('early', true); } });
+    // hide the dock while the on-screen keyboard is up
+    document.addEventListener('focusin', (e) => { if (e.target.matches && e.target.matches('input[type="search"]')) document.body.classList.add('kbd'); });
+    document.addEventListener('focusout', () => document.body.classList.remove('kbd'));
+    const dock = $('dock');
+    const setDockH = () => document.documentElement.style.setProperty('--dock-h', Math.round(dock.getBoundingClientRect().height) + 'px');
+    if (window.ResizeObserver) new ResizeObserver(setDockH).observe(dock);
+    setDockH();
+    if (phoneMQ.addEventListener) phoneMQ.addEventListener('change', applyLayout); else if (phoneMQ.addListener) phoneMQ.addListener(applyLayout);
+    const h0 = location.hash.replace(/^#\/?/, '');
+    if (SCREENS.indexOf(h0) >= 0) ui.screen = h0;
   }
 
   // ---------------------------------------------------------------- boot
@@ -935,9 +1114,11 @@
   buildXtabs();
   wireControls();
   wireMap();
+  wireScreens();
   buildMethod();
   R = M.simulate(sc);
   buildEarlyVote();
+  applyLayout();
   render();
   showFreshness(D);
   }
@@ -960,7 +1141,9 @@
     const meta = D.meta || {};
     const days = daysToElection();
     const dayText = days > 1 ? days + ' days to Election Day' : days === 1 ? 'Election Day is tomorrow' : days === 0 ? 'Election Day' : 'after Election Day';
-    document.getElementById('eyebrow').textContent = '2026 midterms · updated ' + (meta.generated ? fmtStamp(meta.generated) : 'recently') + ' · ' + dayText;
+    const shortDays = days > 1 ? days + ' days to go' : dayText;
+    const shortStamp = meta.generated ? new Date(meta.generated).toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit', timeZone: ET }) + ' ET' : 'recently';
+    document.getElementById('eyebrow').innerHTML = '<span class="xl">2026 midterms · </span>updated <span class="xl">' + (meta.generated ? fmtStamp(meta.generated) : 'recently') + '</span><span class="xs">' + shortStamp + '</span> · <span class="xl">' + dayText + '</span><span class="xs">' + shortDays + '</span>';
     const chip = document.getElementById('staleChip');
     const labels = { early_vote: 'Early-vote counts', electindex: 'Polls and candidates', generic_ballot: 'National polling average' };
     const stale = Object.keys(meta.sources || {}).filter((k) => !meta.sources[k].ok);
