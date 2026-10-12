@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04   # pinned so the runner image does not change before Election Day
     steps:
       - uses: actions/checkout@v4
 
@@ -45,7 +45,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04   # pinned so the runner image does not change before Election Day
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
