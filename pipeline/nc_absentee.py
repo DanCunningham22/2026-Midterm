@@ -69,7 +69,7 @@ def tally(zip_path, election):
             rows = 0
             for row in csv.reader(text, delimiter=delim):
                 rows += 1
-                if len(row) <= width or row[i_st].strip().upper() != 'ACCEPTED':
+                if len(row) <= width or not row[i_st].strip().upper().startswith('ACCEPTED'):   # incl. "ACCEPTED - CURED"
                     continue
                 d = parse_date(row[i_dt])
                 if d is None:
@@ -119,7 +119,8 @@ def current(baseline, today):
     by26 = fetch_tally(2026)
     if not by26:
         raise ValueError('no accepted 2026 ballots in the file yet')
-    days = [int(x) for x in by26 if not x.startswith('_')]
+    to_go = (ELECTIONS[2026] - today).days
+    days = [int(x) for x in by26 if not x.startswith('_') and int(x) >= to_go]   # ignore stray future dates
     if not days:
         raise ValueError('no accepted 2026 ballots in the file yet')
     k = min(days)                           # latest return date in the file
