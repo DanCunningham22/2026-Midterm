@@ -49,7 +49,7 @@ def parse_date(s):
 
 def tally(zip_path, election):
     """Accepted ballots by days before the election, split by party, Black voters, and mail vs one-stop."""
-    by_day = {}
+    by_day, types = {}, {}
     with zipfile.ZipFile(zip_path) as z:
         names = [n for n in z.namelist() if n.lower().endswith(('.csv', '.txt'))]
         if not names:
@@ -83,15 +83,23 @@ def tally(zip_path, election):
                 c[p if p in ('DEM', 'REP', 'UNA') else 'OTH'] += 1
                 if row[i_race].strip().upper().startswith('B'):
                     c['black'] += 1
-                c['onestop' if 'ONE' in row[i_type].upper() else 'mail'] += 1
-    print(f'  {zip_path}: {rows:,} rows, {sum(c["all"] for c in by_day.values()):,} accepted ballots', file=sys.stderr)
-    return {str(k): by_day[k] for k in sorted(by_day)}
+                t = row[i_type].strip().upper()
+                types[t] = types.get(t, 0) + 1
+                # mail ballots say MAIL; early in-person has been labelled ONE-STOP and other ways over the years
+                c['mail' if 'MAIL' in t else 'onestop'] += 1
+    print(f'  {zip_path}: {rows:,} rows, {sum(c["all"] for c in by_day.values()):,} accepted ballots; '
+          f'ballot types {sorted(types.items(), key=lambda x: -x[1])[:6]}', file=sys.stderr)
+    out = {str(k): by_day[k] for k in sorted(by_day)}
+    out['_types'] = dict(sorted(types.items(), key=lambda x: -x[1])[:8])
+    return out
 
 
 def cumulative(by_day, days_before):
     """Ballots accepted on or before the given number of days before the election."""
     tot = dict.fromkeys(FIELDS, 0)
     for k, c in by_day.items():
+        if k.startswith('_'):
+            continue
         if int(k) >= days_before:
             for f in FIELDS:
                 tot[f] += c.get(f, 0)
@@ -111,12 +119,15 @@ def current(baseline, today):
     by26 = fetch_tally(2026)
     if not by26:
         raise ValueError('no accepted 2026 ballots in the file yet')
-    k = min(int(x) for x in by26)          # latest return date in the file
+    days = [int(x) for x in by26 if not x.startswith('_')]
+    if not days:
+        raise ValueError('no accepted 2026 ballots in the file yet')
+    k = min(days)                           # latest return date in the file
     if ELECTIONS[2026] - dt.timedelta(days=k) >= today:
         k += 1                              # today's count is partial: compare through yesterday
     k = max(k, (ELECTIONS[2026] - today).days)
     out = dict(days_before=k, asof=(ELECTIONS[2026] - dt.timedelta(days=k)).isoformat(), y26=cumulative(by26, k),
-               daily26={x: by26[x]['all'] for x in by26})
+               daily26={x: by26[x]['all'] for x in by26 if not x.startswith('_')}, types26=by26.get('_types'))
     for y in (2022, 2024):
         if str(y) in baseline:
             out[f'y{y % 100}'] = cumulative(baseline[str(y)], k)

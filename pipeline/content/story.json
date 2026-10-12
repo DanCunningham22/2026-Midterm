@@ -57,9 +57,9 @@
    "label": "Ohio: early-voter margin by primary history, shift vs same point in 2024",
    "shift": 27,
    "kind": "shift",
-   "src": "CNN reporting, Oct 8",
-   "url": "https://www.cnn.com/2026/10/01/politics/cnn-early-voting-takeaways-democratic-advantage",
-   "aff": "Nonpartisan outlet; Catalist data"
+   "src": "CNN, Oct 11 (Ohio Secretary of State data)",
+   "url": "https://edition.cnn.com/2026/10/11/politics/early-voting-midterms-ohio-democratic-shift-vis",
+   "aff": "Nonpartisan outlet; state data"
   }
  ],
  "compare_note": "Democratic share of mail-ballot requests (CNN/Catalist, Oct 1). Gray dot is the same point in 2024. Virginia's early voters with only Democratic primary history lead those with only GOP history by 18 points, vs. 8 in 2024; Ohio's early electorate is about 27 points more Democratic than at this point in 2024 (CNN, Oct 8). CNN also found that the 2022 request pools were more Democratic than 2026's in every listed state except Iowa.",

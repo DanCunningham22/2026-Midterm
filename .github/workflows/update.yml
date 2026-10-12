@@ -22,6 +22,8 @@ jobs:
     runs-on: ubuntu-24.04   # pinned so the runner image does not change before Election Day
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main   # always build the newest commit, even if this run was queued behind others
 
       - name: Rebuild data from the live feeds
         run: python3 pipeline/build.py --out site/data.json
@@ -35,7 +37,7 @@ jobs:
             echo "No change in data."
           else
             git commit -m "Data update $(date -u +'%Y-%m-%d %H:%M UTC')"
-            git push
+            git push || (git pull --rebase -X theirs origin main && git push)
           fi
 
       - uses: actions/configure-pages@v5

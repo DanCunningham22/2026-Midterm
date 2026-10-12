@@ -418,10 +418,24 @@ def build_early_vote(uf, bench):
     return dict(states=sorted(states, key=lambda s: s['st']), us=us)
 
 
-def ev_projection(story, N24):
+def nc_measure(nc):
+    """North Carolina's registered D-minus-R gap among accepted ballots, 2026 vs the same point in 2024,
+    computed from the State Board of Elections' files (replaces the hand-entered NC measure when available)."""
+    if not nc or not (nc.get('y26') or {}).get('all') or not (nc.get('y24') or {}).get('all'):
+        return None
+    g = lambda c: 100.0 * (c['DEM'] - c['REP']) / c['all']
+    return dict(st='NC', label='North Carolina: registered Democrats minus Republicans among ballots cast, vs the same point in 2024 (automatic)',
+                v26=round(g(nc['y26']), 1), v24=round(g(nc['y24']), 1), kind='margin', auto=True,
+                src=f"NC State Board of Elections files, through {nc['asof']}", url='https://www.ncsbe.gov/results-data/absentee-data',
+                aff='Official data, computed by the update job')
+
+
+def ev_projection(story, N24, nc=None):
     LOYAL = 0.85
     ms = []
-    for m in story['measures']:
+    auto = nc_measure(nc)
+    src = [m for m in story['measures'] if not (auto and m['st'] == 'NC')] + ([auto] if auto else [])
+    for m in src:
         m = dict(m)
         gap = 2 * (m['v26'] - m['v24']) if m['kind'] == 'share' else (m['v26'] - m['v24']) if m['kind'] == 'margin' else m['shift']
         m['gap'] = gap
@@ -560,7 +574,7 @@ def main():
     else:
         out['nc'] = prev.get('nc')
 
-    out['evproj'] = ev_projection(story, base['N24'])
+    out['evproj'] = ev_projection(story, base['N24'], out.get('nc'))
     out['story'] = story
     out['meta'] = dict(generated=now.isoformat(timespec='minutes'), build_date=today.isoformat(), sources=status,
                        senate_asof=senate_cfg['asof'])
