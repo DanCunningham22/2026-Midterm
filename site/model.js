@@ -214,23 +214,27 @@
     const govSt = D.gov.map((r) => this.stIndex[r.st]);
     const hWin = new Float64Array(nd), sWin = new Float64Array(nsen), gWin = new Float64Array(ngov);
     const hHist = new Int32Array(436), sHist = new Int32Array(101), gHist = new Int32Array(51);
-    let hControl = 0, sControl = 0, sRControl = 0, sOsborn = 0, gMaj = 0;
-    let hSum = 0, sSum = 0, gSum = 0;
+    const hrHist = new Int32Array(436), srHist = new Int32Array(101), grHist = new Int32Array(51);
+    let hControl = 0, sControl = 0, sRControl = 0, sOsborn = 0, gMaj = 0, hRControl = 0, gRMaj = 0;
+    let hSum = 0, sSum = 0, gSum = 0, hrSum = 0, srSum = 0, grSum = 0;
+    // an independent in the Republican slot (Kiley, CA-06) is not a Republican seat
+    const rSideIsR = D.districts.map((d) => d.rp !== 'I');
     const osbornIdx = D.senate.findIndex((r) => r.st === 'NE');
     const SEN_FIXED_D = 34, GOV_FIXED_D = 6;
     for (let k = 0; k < n; k++) {
       const eN = this.zN[k] * sN;
       const zS = this.zS.subarray(k * ns, (k + 1) * ns);
-      let hd = 0;
+      let hd = 0, hr = 0;
       const zD = this.zD.subarray(k * nd, (k + 1) * nd);
       for (let i = 0; i < nd; i++) {
         const base = m.house[i];
         let v;
         if (base > 90 || base < -90) v = base;
         else v = base + eN + zS[dSt[i]] * sS + zD[i] * SIG.house;
-        if (v > 0) { hd++; hWin[i]++; }
+        if (v > 0) { hd++; hWin[i]++; } else if (rSideIsR[i]) hr++;
       }
       hHist[hd]++; hSum += hd; if (hd >= 218) hControl++;
+      hrHist[hr]++; hrSum += hr; if (hr >= 218) hRControl++;
       let sd = 0, osb = false;
       const zSen = this.zSen.subarray(k * nsen, (k + 1) * nsen);
       for (let i = 0; i < nsen; i++) {
@@ -243,6 +247,7 @@
       const dSeats = SEN_FIXED_D + sd;
       const rSeats = 100 - dSeats - (osb ? 1 : 0);
       sHist[dSeats]++; sSum += dSeats;
+      srHist[rSeats]++; srSum += rSeats;
       if (dSeats >= 51) sControl++;
       else if (rSeats >= 50) sRControl++;
       else sOsborn++;
@@ -254,18 +259,21 @@
       }
       const gTot = GOV_FIXED_D + gd;
       gHist[gTot]++; gSum += gTot; if (gTot >= 26) gMaj++;
+      const gR = 50 - gTot;
+      grHist[gR]++; grSum += gR; if (gR >= 26) gRMaj++;
     }
     const pct = (hist, q) => {
       let c = 0; for (let i = 0; i < hist.length; i++) { c += hist[i]; if (c >= q * n) return i; } return hist.length - 1;
     };
+    const side = (hist, sum, ctl) => ({ mean: sum / n, control: ctl / n, hist, lo: pct(hist, 0.1), med: pct(hist, 0.5), hi: pct(hist, 0.9) });
     return {
       n, m,
       house: { p: Array.from(hWin, (x) => x / n), mean: hSum / n, control: hControl / n, hist: hHist,
-        lo: pct(hHist, 0.1), med: pct(hHist, 0.5), hi: pct(hHist, 0.9) },
+        lo: pct(hHist, 0.1), med: pct(hHist, 0.5), hi: pct(hHist, 0.9), r: side(hrHist, hrSum, hRControl) },
       senate: { p: Array.from(sWin, (x) => x / n), mean: sSum / n, control: sControl / n, rcontrol: sRControl / n,
-        osborn: sOsborn / n, hist: sHist, lo: pct(sHist, 0.1), med: pct(sHist, 0.5), hi: pct(sHist, 0.9) },
+        osborn: sOsborn / n, hist: sHist, lo: pct(sHist, 0.1), med: pct(sHist, 0.5), hi: pct(sHist, 0.9), r: side(srHist, srSum, sRControl) },
       gov: { p: Array.from(gWin, (x) => x / n), mean: gSum / n, maj: gMaj / n, hist: gHist,
-        lo: pct(gHist, 0.1), med: pct(gHist, 0.5), hi: pct(gHist, 0.9) },
+        lo: pct(gHist, 0.1), med: pct(gHist, 0.5), hi: pct(gHist, 0.9), r: side(grHist, grSum, gRMaj) },
     };
   };
 
@@ -285,11 +293,19 @@
     const m = this.margins(sc);
     return gs.map((g) => {
       const shift = g - cur;
-      let h = 0;
-      m.house.forEach((v) => { h += (v > 90 ? 1 : v < -90 ? 0 : Phi((v + shift) / sH)); });
-      let s = 34;
-      m.senate.forEach((v, i) => { if (this.d.senate[i].st !== 'NE') s += Phi((v + shift) / sSen); });
-      return { g, house: h, senate: s };
+      let h = 0, hr = 0;
+      m.house.forEach((v, i) => {
+        const pd = v > 90 ? 1 : v < -90 ? 0 : Phi((v + shift) / sH);
+        h += pd;
+        if (this.d.districts[i].rp !== 'I') hr += 1 - pd;
+      });
+      let s = 34, sr = 31;
+      m.senate.forEach((v, i) => {
+        const pd = Phi((v + shift) / sSen);
+        if (this.d.senate[i].st !== 'NE') s += pd;
+        sr += 1 - pd;
+      });
+      return { g, house: h, senate: s, houseR: hr, senateR: sr };
     });
   };
 

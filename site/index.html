@@ -91,6 +91,12 @@ h1 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: c
 .tally-k { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); font-weight: 600; }
 .tally-v { font-family: var(--font-display); font-weight: 700; font-size: 26px; line-height: 1.05; }
 .tally-s { font-size: 12px; color: var(--ink-2); }
+.tally-wrap { display: flex; gap: 8px; align-items: stretch; min-width: 0; }
+.side-toggle { display: grid; grid-template-rows: 1fr 1fr; flex: none; border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; background: var(--card); }
+.side-toggle button { border: 0; background: none; min-width: 34px; padding: 0 8px; cursor: pointer; font-family: var(--font-display); font-weight: 700; font-size: 17px; line-height: 1; color: var(--ink-3); }
+.side-toggle button + button { border-top: 1px solid var(--rule); }
+.side-toggle button[data-side="D"][aria-pressed="true"] { background: var(--dem); color: var(--card); }
+.side-toggle button[data-side="R"][aria-pressed="true"] { background: var(--rep); color: var(--card); }
 
 /* sliders */
 input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 28px; background: transparent; margin: 0; cursor: pointer; }
@@ -272,7 +278,8 @@ footer { margin-top: 20px; font-size: 12px; color: var(--ink-3); }
 @media (max-width: 760px) {
   .bar { padding-block: 8px; }
   .bar-inner { grid-template-columns: minmax(0, 1fr); gap: 6px; }
-  .tally { width: 100%; gap: 6px; }
+  .tally-wrap { width: 100%; gap: 6px; }
+  .tally { flex: 1 1 auto; min-width: 0; gap: 6px; }
   .tally-item { flex: 1 1 0; min-width: 0; padding: 3px 8px 4px; }
   .tally-k { font-size: 10px; }
   .tally-v { font-size: 20px; }
@@ -324,10 +331,16 @@ body::before { content: ""; position: fixed; inset: 0 0 auto 0; height: env(safe
         <div class="env-slider"><div class="slider-wrap" id="envWrap"><input type="range" id="env" min="-6" max="16" step="0.1" aria-labelledby="envLabel"></div></div>
         <div class="presets" role="radiogroup" aria-label="Preset environments" id="presets"></div>
       </div>
+      <div class="tally-wrap">
+      <div class="side-toggle" role="group" aria-label="Count seats for">
+        <button id="sideD" data-side="D" aria-pressed="true" aria-label="Count Democratic seats" title="Count Democratic seats">D</button>
+        <button id="sideR" data-side="R" aria-pressed="false" aria-label="Count Republican seats" title="Count Republican seats">R</button>
+      </div>
       <div class="tally" role="group" aria-label="Show chamber">
         <button class="tally-item" data-tab="house" id="tHouse" aria-pressed="true"><span class="tally-k">House</span><span class="tally-v num" id="tHouseV">–</span><span class="tally-s num" id="tHouseS">–</span></button>
         <button class="tally-item" data-tab="senate" id="tSenate" aria-pressed="false"><span class="tally-k">Senate</span><span class="tally-v num" id="tSenateV">–</span><span class="tally-s num" id="tSenateS">–</span></button>
         <button class="tally-item" data-tab="gov" id="tGov" aria-pressed="false"><span class="tally-k">Governors</span><span class="tally-v num" id="tGovV">–</span><span class="tally-s num" id="tGovS">–</span></button>
+      </div>
       </div>
     </div>
   </section>

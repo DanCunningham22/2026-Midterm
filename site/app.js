@@ -8,12 +8,15 @@
   // ---------------------------------------------------------------- state
   let sc = M.clone(M.defaults);
   let R = null;              // last simulation
-  const ui = { tab: 'house', cmode: 'chance', sel: null, dim: 'race', query: '', showAll: false, pattern: 'blend' };
+  const ui = { tab: 'house', cmode: 'chance', sel: null, dim: 'race', query: '', showAll: false, pattern: 'blend', side: 'D' };
   try {
     const saved = JSON.parse(localStorage.getItem('msm-ui') || 'null');
-    if (saved && saved.tab) { ui.tab = saved.tab; ui.cmode = saved.cmode || 'chance'; ui.dim = saved.dim || 'race'; }
+    if (saved && saved.tab) { ui.tab = saved.tab; ui.cmode = saved.cmode || 'chance'; ui.dim = saved.dim || 'race'; ui.side = saved.side === 'R' ? 'R' : 'D'; }
   } catch (e) { /* storage unavailable */ }
-  function saveUi() { try { localStorage.setItem('msm-ui', JSON.stringify({ tab: ui.tab, cmode: ui.cmode, dim: ui.dim })); } catch (e) { /* ignore */ } }
+  function saveUi() { try { localStorage.setItem('msm-ui', JSON.stringify({ tab: ui.tab, cmode: ui.cmode, dim: ui.dim, side: ui.side })); } catch (e) { /* ignore */ } }
+  // Seat counts can be read from either side: 'D' counts Democratic seats, 'R' Republican ones.
+  // Independents (Osborn in Nebraska, Kiley in CA-06) count for neither.
+  const rView = () => ui.side === 'R';
 
   // ---------------------------------------------------------------- labels
   const STATE_NAMES = { AL: 'Alabama', AK: 'Alaska', AZ: 'Arizona', AR: 'Arkansas', CA: 'California', CO: 'Colorado', CT: 'Connecticut', DE: 'Delaware', FL: 'Florida', GA: 'Georgia', HI: 'Hawaii', ID: 'Idaho', IL: 'Illinois', IN: 'Indiana', IA: 'Iowa', KS: 'Kansas', KY: 'Kentucky', LA: 'Louisiana', ME: 'Maine', MD: 'Maryland', MA: 'Massachusetts', MI: 'Michigan', MN: 'Minnesota', MS: 'Mississippi', MO: 'Missouri', MT: 'Montana', NE: 'Nebraska', NV: 'Nevada', NH: 'New Hampshire', NJ: 'New Jersey', NM: 'New Mexico', NY: 'New York', NC: 'North Carolina', ND: 'North Dakota', OH: 'Ohio', OK: 'Oklahoma', OR: 'Oregon', PA: 'Pennsylvania', RI: 'Rhode Island', SC: 'South Carolina', SD: 'South Dakota', TN: 'Tennessee', TX: 'Texas', UT: 'Utah', VT: 'Vermont', VA: 'Virginia', WA: 'Washington', WV: 'West Virginia', WI: 'Wisconsin', WY: 'Wyoming' };
@@ -158,12 +161,16 @@
       b.setAttribute('aria-checked', Math.abs(nat - p.v) < 0.05 ? 'true' : 'false');
     });
     const h = R.house, s = R.senate, g = R.gov;
-    $('tHouseV').innerHTML = '<span class="d">' + Math.round(h.mean) + '</span><span class="muted" style="font-size:.6em"> /435</span>';
-    $('tHouseS').textContent = 'D majority ' + fp(h.control);
-    $('tSenateV').innerHTML = '<span class="d">' + Math.round(s.mean) + '</span><span class="muted" style="font-size:.6em"> /100</span>';
-    $('tSenateS').textContent = 'D control ' + fp(s.control);
-    $('tGovV').innerHTML = '<span class="d">' + Math.round(g.mean) + '</span><span class="muted" style="font-size:.6em"> /50</span>';
-    $('tGovS').textContent = 'D 26+ ' + fp(g.maj);
+    const rv = rView(), P = rv ? 'R' : 'D', cls = rv ? 'r' : 'd';
+    const tv = (v, of) => '<span class="' + cls + '">' + Math.round(v) + '</span><span class="muted" style="font-size:.6em"> /' + of + '</span>';
+    $('tHouseV').innerHTML = tv(rv ? h.r.mean : h.mean, 435);
+    $('tHouseS').textContent = P + ' majority ' + fp(rv ? h.r.control : h.control);
+    $('tSenateV').innerHTML = tv(rv ? s.r.mean : s.mean, 100);
+    $('tSenateS').textContent = P + ' control ' + fp(rv ? s.rcontrol : s.control);
+    $('tGovV').innerHTML = tv(rv ? g.r.mean : g.mean, 50);
+    $('tGovS').textContent = P + ' 26+ ' + fp(rv ? g.r.control : g.maj);
+    $('sideD').setAttribute('aria-pressed', rv ? 'false' : 'true');
+    $('sideR').setAttribute('aria-pressed', rv ? 'true' : 'false');
     ['house', 'senate', 'gov'].forEach((t) => {
       $('t' + (t === 'house' ? 'House' : t === 'senate' ? 'Senate' : 'Gov')).setAttribute('aria-pressed', ui.tab === t ? 'true' : 'false');
     });
@@ -301,11 +308,17 @@
     const list = races(t);
     const counts = { sd: 0, ld: 0, nd: 0, tu: 0, nr: 0, lr: 0, sr: 0 };
     list.forEach((r, i) => { counts[rating(raceP(t, i)).k]++; });
+    const rv = rView();
     let fixedD = 0, fixedR = 0, total = 435, need = 218, needLab = '218 for a majority';
-    if (t === 'senate') { fixedD = 34; fixedR = 31; total = 100; need = 51; needLab = '51 for control (VP Vance breaks ties)'; }
+    if (t === 'senate') {
+      fixedD = 34; fixedR = 31; total = 100;
+      need = rv ? 50 : 51; needLab = rv ? '50 for control (VP Vance breaks ties)' : '51 for control (VP Vance breaks ties)';
+    }
     if (t === 'gov') { fixedD = 6; fixedR = 8; total = 50; need = 26; needLab = '26 for a majority of governors'; }
     const W = 1000, H = 34;
+    // in the Republican view the bar fills from the Republican end, so the line still marks what that side needs
     const segs = [['dfix', fixedD], ['sd', counts.sd], ['ld', counts.ld], ['nd', counts.nd], ['tu', counts.tu], ['nr', counts.nr], ['lr', counts.lr], ['sr', counts.sr], ['rfix', fixedR]];
+    if (rv) segs.reverse();
     let x = 0, h = '';
     segs.forEach(([k, n]) => {
       if (!n) return;
@@ -389,8 +402,17 @@
   function tippingSeat() {
     const t = ui.tab;
     const list = races(t);
-    const order = list.map((r, i) => i).sort((a, b) => raceMargin(t, b) - raceMargin(t, a));
     let k;
+    if (rView()) {
+      // the seat that gives Republicans their 218th House seat, 50th senator or 26th governor
+      const order = list.map((r, i) => i).filter((i) => list[i].rp !== 'I').sort((a, b) => raceMargin(t, a) - raceMargin(t, b));
+      if (t === 'house') k = 217;
+      else if (t === 'senate') k = 50 - 31 - 1;
+      else k = 26 - 8 - 1;
+      const i = order[k];
+      return i === undefined ? null : { i, r: list[i] };
+    }
+    const order = list.map((r, i) => i).sort((a, b) => raceMargin(t, b) - raceMargin(t, a));
     if (t === 'house') k = 217;
     else if (t === 'senate') k = 51 - 34 - 1;
     else k = 26 - 6 - 1;
@@ -448,10 +470,46 @@
   }
 
   // ---------------------------------------------------------------- results panel
+  // where a side becomes favored, phrased from that side
+  function tipTextR(tip, what) {
+    if (tip === null) return '';
+    return 'With these settings Republicans are favored to keep the ' + what + ' if the national vote is better for them than <b>' + fm(tip) + '</b>.';
+  }
+  function renderResultsR(curve) {
+    const t = ui.tab;
+    let head = '';
+    const tipH = crossing(curve, 'houseR', 217.5), tipS = crossing(curve, 'senateR', 49.5);
+    if (t === 'house') {
+      const h = R.house.r;
+      $('resTitle').textContent = 'House outlook';
+      head = 'Republicans win <b class="r">' + Math.round(h.mean) + '</b> seats on average (80% of simulations: ' + h.lo + '–' + h.hi + '). ' +
+        'Chance of a Republican majority: <b>' + fp(h.control) + '</b>. ' + tipTextR(tipH, 'House');
+      drawHist(h.hist, 135, 260, 218, 'Republican seats', 'R');
+      $('histCap').textContent = R.n.toLocaleString() + ' simulations. Red bars are Republican majorities.';
+    } else if (t === 'senate') {
+      const s = R.senate;
+      $('resTitle').textContent = 'Senate outlook';
+      head = 'Republicans hold <b class="r">' + s.r.mean.toFixed(1) + '</b> seats on average, including 31 not up (80%: ' + s.r.lo + '–' + s.r.hi + '). ' +
+        'Republican control <b>' + fp(s.rcontrol) + '</b>, Democratic control <b>' + fp(s.control) + '</b>, Osborn decides <b>' + fp(s.osborn) + '</b>. ' + tipTextR(tipS, 'Senate');
+      drawHist(s.r.hist, 40, 58, 50, 'Republican seats', 'R');
+      $('histCap').textContent = 'Republicans need 50 seats, since VP Vance breaks ties. Osborn (NE) counts for neither party. Red bars are Republican control.';
+    } else {
+      const g = R.gov.r;
+      $('resTitle').textContent = 'Governors outlook';
+      head = 'Republicans hold <b class="r">' + g.mean.toFixed(1) + '</b> governorships on average after Nov 3, including 8 not up (80%: ' + g.lo + '–' + g.hi + '). ' +
+        'Chance of 26 or more: <b>' + fp(g.control) + '</b>.';
+      drawHist(g.hist, 14, 34, 26, 'Republican governors', 'R');
+      $('histCap').textContent = 'Governor races move 0.8 points for every point of national change, since state candidates matter more.';
+    }
+    $('resHeadline').innerHTML = head;
+    $('histTitle').textContent = 'Simulated outcomes';
+    drawCurves(curve, tipH, tipS);
+  }
   function renderResults() {
     const t = ui.tab;
     let head = '';
     const curve = M.curve(sc, gridG);
+    if (rView()) { renderResultsR(curve); return; }
     const tipH = crossing(curve, 'house', 217.5), tipS = crossing(curve, 'senate', 50.5);
     if (t === 'house') {
       const h = R.house;
@@ -490,7 +548,8 @@
     return null;
   }
   const chartW = (id, lo, hi) => Math.round(Math.max(lo || 300, Math.min(hi || 560, $(id).parentNode.clientWidth || 520)));
-  function drawHist(hist, lo, hi, need, label) {
+  function drawHist(hist, lo, hi, need, label, side) {
+    const win = side === 'R' ? 'bar-r' : 'bar-d', lose = side === 'R' ? 'bar-d' : 'bar-r';
     const W = chartW('hist'), H = 170, L = 34, B = 26, T = 10;
     $('hist').setAttribute('viewBox', '0 0 ' + W + ' ' + H);
     let max = 0; for (let k = lo; k <= hi; k++) max = Math.max(max, hist[k] || 0);
@@ -499,7 +558,7 @@
     for (let k = lo; k <= hi; k++) {
       const v = hist[k] || 0; if (!v) continue;
       const bh = v / max * (H - B - T);
-      h += '<rect class="' + (k >= need ? 'bar-d' : 'bar-r') + '" x="' + (L + (k - lo) * bw + 0.5).toFixed(1) + '" y="' + (H - B - bh).toFixed(1) + '" width="' + Math.max(0.5, bw - 1).toFixed(1) + '" height="' + bh.toFixed(1) + '"/>';
+      h += '<rect class="' + (k >= need ? win : lose) + '" x="' + (L + (k - lo) * bw + 0.5).toFixed(1) + '" y="' + (H - B - bh).toFixed(1) + '" width="' + Math.max(0.5, bw - 1).toFixed(1) + '" height="' + bh.toFixed(1) + '"/>';
     }
     const mx = L + (need - lo) * bw;
     h += '<line class="maj-line" x1="' + mx.toFixed(1) + '" x2="' + mx.toFixed(1) + '" y1="' + T + '" y2="' + (H - B) + '"/>';
@@ -515,7 +574,7 @@
   }
   function drawCurves(curve, tipH, tipS) {
     const nat = R.m.national;
-    const mk = (id, key, ylo, yhi, need, ylab, H, tipv) => {
+    const mk = (id, key, ylo, yhi, need, ylab, H, tipv, needLab) => {
       const W = chartW(id, 300, 520), L = 40, Rr = 10, T = 14, B = 28;
       $(id).setAttribute('viewBox', '0 0 ' + W + ' ' + H);
       const gx = (g) => L + (g - gridG[0]) / (gridG[gridG.length - 1] - gridG[0]) * (W - L - Rr);
@@ -530,7 +589,7 @@
       });
       h += '<text x="' + L + '" y="' + (T - 2) + '" style="font-weight:700;fill:var(--ink)">' + ylab + '</text></g>';
       h += '<line class="maj-line" x1="' + L + '" x2="' + (W - Rr) + '" y1="' + gy(need).toFixed(1) + '" y2="' + gy(need).toFixed(1) + '"/>';
-      h += '<text class="maj-text" x="' + (W - Rr) + '" y="' + (gy(need) - 4).toFixed(1) + '" text-anchor="end">' + (key === 'house' ? '218 majority' : '51 control') + '</text>';
+      h += '<text class="maj-text" x="' + (W - Rr) + '" y="' + (gy(need) - 4).toFixed(1) + '" text-anchor="end">' + needLab + '</text>';
       let d = '';
       curve.forEach((c, k) => { const v = Math.max(ylo, Math.min(yhi, c[key])); d += (k ? 'L' : 'M') + gx(c.g).toFixed(1) + ' ' + gy(v).toFixed(1); });
       h += '<path class="curve-line" d="' + d + '"/>';
@@ -543,13 +602,18 @@
       const cy = gy(Math.max(ylo, Math.min(yhi, cur[key])));
       h += '<line class="cur-line" x1="' + cx.toFixed(1) + '" x2="' + cx.toFixed(1) + '" y1="' + T + '" y2="' + (H - B) + '"/>';
       h += '<circle class="cur-dot" cx="' + cx.toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="5"/>';
-      const lbl = (key === 'house' ? Math.round(cur[key]) : cur[key].toFixed(1)) + ' at ' + fm(nat);
+      const lbl = (key.indexOf('house') === 0 ? Math.round(cur[key]) : cur[key].toFixed(1)) + ' at ' + fm(nat);
       const anchorEnd = cx > W * 0.62;
       h += '<text class="cur-text" x="' + (cx + (anchorEnd ? -8 : 8)).toFixed(1) + '" y="' + (cy + (cy < T + 24 ? 16 : -8)).toFixed(1) + '" text-anchor="' + (anchorEnd ? 'end' : 'start') + '">' + lbl + '</text>';
       $(id).innerHTML = h;
     };
-    mk('curveH', 'house', 160, 320, 218, 'Expected House seats (D)', 190, tipH);
-    mk('curveS', 'senate', 40, 60, 51, 'Expected Senate seats (D caucus)', 150, tipS);
+    if (rView()) {
+      mk('curveH', 'houseR', 115, 275, 218, 'Expected House seats (R)', 190, tipH, '218 majority');
+      mk('curveS', 'senateR', 40, 60, 50, 'Expected Senate seats (R)', 150, tipS, '50 control (with VP)');
+    } else {
+      mk('curveH', 'house', 160, 320, 218, 'Expected House seats (D)', 190, tipH, '218 majority');
+      mk('curveS', 'senate', 40, 60, 51, 'Expected Senate seats (D caucus)', 150, tipS, '51 control');
+    }
   }
 
   // ---------------------------------------------------------------- race table
@@ -703,6 +767,9 @@
       if (b.classList.contains('tally-item')) $('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }));
     $('cmChance').addEventListener('click', () => { ui.cmode = 'chance'; saveUi(); render(); });
+    const setSide = (sd) => { if (ui.side === sd) return; ui.side = sd; saveUi(); render(); };
+    $('sideD').addEventListener('click', () => setSide('D'));
+    $('sideR').addEventListener('click', () => setSide('R'));
     $('cmMargin').addEventListener('click', () => { ui.cmode = 'margin'; saveUi(); render(); });
     $('search').addEventListener('input', () => { ui.query = $('search').value; renderMap(); renderTable(); });
     $('search').addEventListener('keydown', (e) => {
