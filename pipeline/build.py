@@ -423,6 +423,10 @@ def nc_measure(nc):
     computed from the State Board of Elections' files (replaces the hand-entered NC measure when available)."""
     if not nc or not (nc.get('y26') or {}).get('all') or not (nc.get('y24') or {}).get('all'):
         return None
+    # While only mail ballots are in, the comparison mostly measures who switched away from mail (vs 2022 it points
+    # strongly Republican, vs 2024 strongly Democratic), so it joins the projection once most ballots are in person.
+    if nc['y26'].get('onestop', 0) < 0.5 * nc['y26']['all']:
+        return None
     g = lambda c: 100.0 * (c['DEM'] - c['REP']) / c['all']
     return dict(st='NC', label='North Carolina: registered Democrats minus Republicans among ballots cast, vs the same point in 2024 (automatic)',
                 v26=round(g(nc['y26']), 1), v24=round(g(nc['y24']), 1), kind='margin', auto=True,
