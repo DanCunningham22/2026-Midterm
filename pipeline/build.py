@@ -141,6 +141,22 @@ GROUP_MAP = {
     ('gender', 'Men'): ('gender', 'M'), ('gender', 'Women'): ('gender', 'F'),
 }
 KEYS = {'race': ['WC', 'WN', 'B', 'H', 'AO'], 'age': ['18-29', '30-44', '45-64', '65+'], 'gender': ['M', 'F']}
+# Emerson publishes ten-year age groups and no race-by-education split, so it feeds the pollster picker
+# (with the approximations listed below) but not the default crosstab average.
+DEFAULT_EXCLUDE = {'Emerson College'}
+XTAB_EXTRA = {
+    ('gender', 'Male'): ('gender', 'M'), ('gender', 'Female'): ('gender', 'F'),
+    ('race', 'Black or African American'): ('race', 'B'), ('race', 'Hispanic or Latino of any race'): ('race', 'H'),
+    ('age', '18-29 years'): ('age', '18-29'), ('age', '30-39 years'): ('age', '30-44'),
+    ('age', '50-59 years'): ('age', '45-64'), ('age', '70 or more years'): ('age', '65+'),
+}
+WHITE_LABELS = {('race', 'White'), ('race', 'White or Caucasian')}
+RATING_ALIAS = {'CBS News/YouGov': 'YouGov', 'Economist/YouGov': 'YouGov', 'NPR/PBS News/Marist': 'Marist',
+                'Fox News (Beacon Research/Shaw & Co.)': 'Beacon Research/Shaw & Company Research'}
+SHORT_NAME = {'Pew Research Center': 'Pew', 'CBS News/YouGov': 'CBS/YouGov', 'Economist/YouGov': 'Economist/YouGov',
+              'NPR/PBS News/Marist': 'Marist', 'Fox News (Beacon Research/Shaw & Co.)': 'Fox News',
+              'Marquette Law School': 'Marquette', 'Emerson College': 'Emerson',
+              'New York Times/Siena': 'NYT/Siena', 'Quinnipiac University': 'Quinnipiac'}
 
 
 def poll_deviations(path, base24):
@@ -150,6 +166,8 @@ def poll_deviations(path, base24):
         by_poll.setdefault((r['pollster'], r['end_date'], r['population'], r['n']), []).append(r)
     best = {}
     for key, rs in by_poll.items():
+        if key[0] in DEFAULT_EXCLUDE:
+            continue
         if not key[3] or not any(GROUP_MAP.get((r['group_dim'], r['group'])) for r in rs):
             continue
         if key[0] not in best or float(key[3]) > float(best[key[0]][3]):
@@ -179,6 +197,58 @@ def poll_deviations(path, base24):
             else:
                 out[dim].append(dict(dev=base24[dim]['dev'][i], n=0, who=[]))
     return out, used
+
+
+def pollster_xtabs(path, base24, ratings):
+    """Each pollster's latest crosstabs as deviations from its own two-party topline, for the one-tap picker.
+    Groups a pollster doesn't publish are None (the app keeps the default there). When only all white voters
+    are published, the 2024 education split among white voters is kept and shifted to match."""
+    polls = list(csv.DictReader(open(path, encoding='utf-8')))
+    by_poll = {}
+    for r in polls:
+        by_poll.setdefault((r['pollster'], r['end_date'], r['population'], r['n']), []).append(r)
+    sh, d24 = base24['race']['shares'], base24['race']['dev']
+    white24 = (sh[0] * d24[0] + sh[1] * d24[1]) / (sh[0] + sh[1])
+    found = {}
+    for (pollster, end, pop, n), rs in by_poll.items():
+        if not n:
+            continue
+        top = [r for r in rs if r['group_dim'] == 'total' and r['dem_pct'] not in ('', '-')]
+        if not top:
+            continue
+        topm = two_party(top[0]['dem_pct'], top[0]['rep_pct'])
+        dev = {dim: [None] * len(k) for dim, k in KEYS.items()}
+        approx, white = [], None
+        for r in rs:
+            if r['dem_pct'] in ('', '-') or r['rep_pct'] in ('', '-'):
+                continue
+            k = (r['group_dim'], r['group'])
+            m = two_party(r['dem_pct'], r['rep_pct']) - topm
+            if k in WHITE_LABELS:
+                white = m
+                continue
+            g = GROUP_MAP.get(k) or XTAB_EXTRA.get(k)
+            if not g or g == ('race', 'AO'):      # Asian & other stays at 2024: samples are tiny
+                continue
+            i = KEYS[g[0]].index(g[1])
+            if dev[g[0]][i] is None:
+                dev[g[0]][i] = round(m, 2)
+                if k in XTAB_EXTRA and g[0] == 'age' and k[1] != '18-29 years':
+                    approx.append(g[1])
+        if white is not None and dev['race'][0] is None and dev['race'][1] is None:
+            shift = white - white24
+            dev['race'][0], dev['race'][1] = round(d24[0] + shift, 2), round(d24[1] + shift, 2)
+            approx += ['WC', 'WN']
+        if sum(v is not None for vs in dev.values() for v in vs) < 4:
+            continue
+        rt = num(ratings.get(RATING_ALIAS.get(pollster, pollster), {}).get('rating'))
+        key = (pollster, pop)
+        entry = dict(k=(SHORT_NAME.get(pollster, pollster) + '-' + pop).lower().replace('/', '-').replace(' ', '-'),
+                     name=pollster, short=SHORT_NAME.get(pollster, pollster), pop=pop, end=end, n=int(float(n)),
+                     top=round(topm, 1), rating=rt, dev=dev, approx=approx, url=rs[0]['source_url'])
+        if key not in found or end > found[key]['end']:
+            found[key] = entry
+    return sorted(found.values(), key=lambda x: (-(x['rating'] or 0), x['short'], x['pop'] != 'LV'))
 
 
 # ---------------------------------------------------------------- races
@@ -220,7 +290,7 @@ def build_races(feed, base, G0, today, senate_cfg):
                  sd=round(strength(r['dem_id']) if dparty == 'D' else 0.0, 2), sr=round(strength(r['rep_id']), 2))
         districts.append(x)
 
-    # Senate: your Oct 9 corrected averages, moved by the change in a simple poll average since Oct 9
+    # Senate: the Oct 9 corrected averages, moved by the change in a simple poll average since Oct 9
     senate = []
     oct9 = senate_cfg['averages']
     for code, r in races.items():
@@ -405,6 +475,18 @@ def main():
     except Exception as e:
         stale('electindex', e)
         feed = None
+
+    try:
+        rmap = {r['pollster']: r for r in feed['pollster_ratings.csv']} if feed else {}
+        out['pollsters'] = pollster_xtabs(os.path.join(ROOT, 'pipeline', 'static', 'polls_2026.csv'), base['base']['2024'], rmap)
+        if not rmap and prev.get('pollsters'):
+            # keep last known ratings when the feed is down
+            old = {p['k']: p.get('rating') for p in prev['pollsters']}
+            for p in out['pollsters']:
+                p['rating'] = old.get(p['k'])
+    except Exception as e:
+        print(f'WARNING pollster picker: {e}', file=sys.stderr)
+        out['pollsters'] = prev.get('pollsters', [])
 
     G0 = prev.get('G0')
     if feed:

@@ -218,5 +218,130 @@
  ],
  "calendar_note": "Iowa and Kansas mail ballots go out Oct 14. Pennsylvania and New Hampshire have no early in-person voting.",
  "cast_at": 3128834,
- "cast_at_note": "Ballots counted (UF Election Lab, 34 states + DC, state data as of Oct 5-12) when these comparisons were compiled; sets the automatic early-vote weight."
+ "cast_at_note": "Ballots counted (UF Election Lab, 34 states + DC, state data as of Oct 5-12) when these comparisons were compiled; sets the automatic early-vote weight.",
+ "signals_asof": "2026-10-12",
+ "signals_verdict": "Against 2024 the early vote looks more Democratic; against 2022 it looks less so. Both comparisons are bent by Democrats switching from mail to in-person voting, so the fair read is that the early vote is consistent with the polls. The first clean test is in-person voting in Georgia (from Oct 13) and North Carolina (from Oct 15).",
+ "signals": [
+  {
+   "dir": "D",
+   "st": "OH",
+   "strength": 2,
+   "title": "Ohio's early electorate is far more Democratic than in 2024",
+   "value": "About 27 points more Democratic than at this point in 2024, by primary history. Counties Trump won by 20+ are R+5, vs. R+30 then.",
+   "catch": "2024 was a presidential year, and Ohio Republicans are shifting from mail to in person: mail is at 25% of its 2024 pace, in-person at 72%.",
+   "src": "CNN, using Ohio Secretary of State data, Oct 11",
+   "url": "https://edition.cnn.com/2026/10/11/politics/early-voting-midterms-ohio-democratic-shift-vis",
+   "aff": "Nonpartisan"
+  },
+  {
+   "dir": "D",
+   "st": "VA",
+   "strength": 2,
+   "title": "Virginia's early voters lean further Democratic than in 2024",
+   "value": "Voters with only Democratic primary history lead those with only GOP history by 18 points, vs. 8 at this point in 2024. In VA-1: D+15, vs. about R+3.",
+   "catch": "Primary history isn't a vote, and 2024 had a presidential-year electorate.",
+   "src": "CNN/Catalist, Oct 1",
+   "url": "https://www.cnn.com/2026/10/01/politics/cnn-early-voting-takeaways-democratic-advantage",
+   "aff": "Catalist is a Democratic-aligned vendor"
+  },
+  {
+   "dir": "D",
+   "st": "NC · PA",
+   "strength": 2,
+   "title": "Democrats are returning their ballots faster than in 2022",
+   "value": "North Carolina: 22% of Democrats' requested ballots are back, vs. 17% at this point in 2022. Pennsylvania: 20% vs. 15%.",
+   "catch": "It could be enthusiasm, or worry that the mail will be slow; NBC/Penn say the data can't tell yet.",
+   "src": "NBC News/UPenn, Oct 9",
+   "url": "https://www.nbcnews.com/politics/2026-election/early-vote-analysis-mail-ballot-concerns-are-changing-democrats-vote-rcna602489",
+   "aff": "Nonpartisan academics"
+  },
+  {
+   "dir": "D",
+   "st": "IA · NC · PA · ME",
+   "strength": 2,
+   "title": "Democrats' share of mail requests is up from 2024",
+   "value": "Iowa 67% vs. 54% at the same point in 2024; North Carolina 42% vs. 36%; Pennsylvania 66% vs. 62%; Maine 57% vs. 53%.",
+   "catch": "Against 2022 the same shares are lower everywhere except Iowa (see the other column).",
+   "src": "CNN/Catalist, Oct 1",
+   "url": "https://www.cnn.com/2026/10/01/politics/cnn-early-voting-takeaways-democratic-advantage",
+   "aff": "Catalist is a Democratic-aligned vendor"
+  },
+  {
+   "dir": "D",
+   "st": "NJ",
+   "strength": 1,
+   "title": "Trump country in New Jersey is voting less Republican",
+   "value": "In counties Trump won by 20+, the pre-election vote has shifted nearly 11 points toward Democrats vs. this point in 2024.",
+   "catch": "Small counties and a presidential-year baseline.",
+   "src": "CNN/Catalist, Oct 11",
+   "url": "https://edition.cnn.com/2026/10/11/politics/early-voting-midterms-ohio-democratic-shift-vis",
+   "aff": "Catalist is a Democratic-aligned vendor"
+  },
+  {
+   "dir": "D",
+   "st": "MI",
+   "strength": 1,
+   "title": "Michigan's mail returns are up 30% on 2022",
+   "value": "201,909 ballots returned by Oct 6, vs. 155,142 at the same point in 2022; requests are up 27%.",
+   "catch": "Michigan has no party registration, so this measures turnout, not direction. Most requests come from the permanent mail list.",
+   "src": "Michigan Secretary of State, Oct 6",
+   "url": "https://www.michigan.gov/sos/resources/news/2026/10/06/four-weeks-before-election-day-mail-ballot-returns-are-up-30-over-same-point-in-2022",
+   "aff": "Official data"
+  },
+  {
+   "dir": "R",
+   "st": "IA · NC · PA · ME",
+   "strength": 2,
+   "title": "Against 2022, Democrats' share of mail requests is down",
+   "value": "Lower now than at this point in 2022 in every state CNN checked except Iowa.",
+   "catch": "Democrats are moving from mail to early in-person voting: 23% plan to vote by mail, down from 34% in 2024 (NBC poll).",
+   "src": "CNN/Catalist, Oct 1",
+   "url": "https://www.cnn.com/2026/10/01/politics/cnn-early-voting-takeaways-democratic-advantage",
+   "aff": "Catalist is a Democratic-aligned vendor"
+  },
+  {
+   "dir": "R",
+   "st": "NC",
+   "strength": 2,
+   "title": "North Carolina Democrats requested far fewer mail ballots",
+   "value": "Requests vs. the same point in 2022: Democrats down 42%, Republicans down 19%.",
+   "catch": "Same mode shift. North Carolina's in-person early voting, where most of its vote is cast, starts Oct 15.",
+   "src": "Charles Stewart III (MIT), Oct 5",
+   "url": "https://playingwithelectiondata.substack.com/p/mail-ballot-requests-in-five-states",
+   "aff": "Nonpartisan"
+  },
+  {
+   "dir": "R",
+   "st": "PA",
+   "strength": 2,
+   "title": "Pennsylvania Republicans are requesting more mail ballots",
+   "value": "Requests vs. the same point in 2022: Republicans up 18%, Democrats down 14%.",
+   "catch": "Republicans have been urged to vote by mail this year, so more requests may be a change of method rather than more voters.",
+   "src": "Charles Stewart III (MIT), Oct 5",
+   "url": "https://playingwithelectiondata.substack.com/p/mail-ballot-requests-in-five-states",
+   "aff": "Nonpartisan"
+  },
+  {
+   "dir": "R",
+   "st": "GA",
+   "strength": 1,
+   "title": "Georgia's mail requests fell more in Democratic areas",
+   "value": "Down 52% in heavily Harris precincts vs. 39% in heavily Trump precincts.",
+   "catch": "Mail is a small slice of Georgia's vote; in-person early voting starts Oct 13.",
+   "src": "NBC News/UPenn, Oct 9",
+   "url": "https://www.nbcnews.com/politics/2026-election/early-vote-analysis-mail-ballot-concerns-are-changing-democrats-vote-rcna602489",
+   "aff": "Nonpartisan academics"
+  },
+  {
+   "dir": "R",
+   "st": "Most states",
+   "strength": 1,
+   "title": "An older early electorate",
+   "value": "Voters 65+ are a bigger share of mail requests than at this point in 2022 or 2024 in nearly every state.",
+   "catch": "Polls have seniors about even this year, so older doesn't mean Republican the way it used to; fewer young voters is the real cost to Democrats.",
+   "src": "CNN, Oct 1",
+   "url": "https://www.cnn.com/2026/10/01/politics/cnn-early-voting-takeaways-democratic-advantage",
+   "aff": "Nonpartisan"
+  }
+ ]
 }

@@ -389,10 +389,10 @@
       facts += '<div><dt>2024 president</dt><dd>' + fm(r.m24) + '</dd></div>';
       const parts = [];
       if (t === 'senate') {
-        if (r.src === 'oct9') parts.push('Starts from your Oct 9 corrected polling average, ' + fm(r.base - (r.drift || 0)) + ' (model chance then ' + r.p9 + '%)' +
+        if (r.src === 'oct9') parts.push('Starts from the Oct 9 Senate model\'s corrected polling average, ' + fm(r.base - (r.drift || 0)) + ' (model chance then ' + r.p9 + '%)' +
           (Math.abs(r.drift || 0) >= 0.05 ? ', moved ' + (r.drift > 0 ? '+' : '−') + Math.abs(r.drift).toFixed(1) + ' by polls released since then, to ' + fm(r.base) + '.' : '. New polls since then haven\'t moved it.'));
         else if (r.src === 'polls-3way') parts.push('Starts from its three-way polls, ' + fm(r.base) + '.');
-        else parts.push('No competitive polling in your Oct 9 model; starts from fundamentals, ' + fm(r.base) + '.');
+        else parts.push('Not in the Oct 9 Senate model\'s competitive set; starts from fundamentals, ' + fm(r.base) + '.');
         if (r.recent && r.recent.length) parts.push('Polls since Oct 9 (some may already be in the Oct 9 average): ' + r.recent.map((x) => esc(x[0]) + ', ' + x[1] + ': ' + esc(x[2])).join('; ') + '.');
       } else {
         if (r.src === 'polls') parts.push('Starts from a weighted average of ' + r.npolls + ' public poll' + (r.npolls === 1 ? '' : 's') + ' since late July, ' + fm(r.base) + '. Latest: ' + r.latest.slice(0, 3).map((x) => esc(x.p) + ' ' + x.d + '–' + x.r + ' (' + x.end.slice(5) + (x.lean ? ', ' + x.lean + '-leaning' : '') + ')').join('; ') + '.');
@@ -815,11 +815,55 @@
     box.innerHTML = PATTERNS.map((p) => '<button class="chip" data-k="' + p.k + '" aria-pressed="false">' + p.label + '</button>').join('');
     box.addEventListener('click', (e) => { const b = e.target.closest('.chip'); if (b) applyPattern(b.dataset.k); });
   }
+  // ---------------------------------------------------------------- pollster picker
+  // Each pollster's group margins are stored as gaps from its own topline; groups it doesn't publish keep the default.
+  function buildPollsters() {
+    const list = D.pollsters || [];
+    if (!list.length) { $('pollPick').hidden = true; return; }
+    $('pollsterChips').innerHTML = list.map((p) => '<button class="chip pchip" data-k="' + esc(p.k) + '" aria-pressed="false" title="' +
+      esc(p.name + ', ' + p.pop + ', n=' + p.n.toLocaleString() + ', fieldwork ended ' + fmtDay(p.end) + '. Their national margin: ' + fm(p.top)) + '"><b>' + esc(p.short) + '</b> ' + esc(p.pop) +
+      ' <span class="pmeta">' + (p.rating != null ? p.rating.toFixed(1) + '/3 · ' : '') + fmtDay(p.end) + '</span></button>').join('');
+    $('pollsterChips').addEventListener('click', (e) => { const b = e.target.closest('.pchip'); if (b) applyPollster(b.dataset.k); });
+    $('pollTop').addEventListener('change', () => {
+      if (ui.pattern.indexOf('poll:') !== 0) return;
+      const p = (D.pollsters || []).find((x) => 'poll:' + x.k === ui.pattern);
+      sc.C = M.solveC(sc, $('pollTop').checked ? p.top : (ui.natBefore != null ? ui.natBefore : M.national(sc)));
+      update();
+    });
+  }
+  function applyPollster(k) {
+    const p = (D.pollsters || []).find((x) => x.k === k); if (!p) return;
+    const nat = M.national(sc);
+    if (ui.pattern.indexOf('poll:') !== 0) ui.natBefore = nat;
+    ['race', 'age', 'gender'].forEach((dim) => {
+      const def = M.blendDev(dim);
+      sc.dev[dim] = def.map((v, i) => (p.dev[dim][i] === null || p.dev[dim][i] === undefined) ? v : p.dev[dim][i]);
+    });
+    sc.C = M.solveC(sc, $('pollTop').checked ? p.top : nat);
+    ui.pattern = 'poll:' + k;
+    update();
+  }
+  function pollNoteText() {
+    const p = (D.pollsters || []).find((x) => 'poll:' + x.k === ui.pattern);
+    if (!p) return 'Each pollster\'s latest national poll: its group margins, measured against its own topline. Ratings are ElectIndex\'s pollster ratings (higher is better, out of 3); D/R-leaning pollsters aren\'t listed.';
+    const miss = [];
+    ['race', 'age', 'gender'].forEach((dim) => p.dev[dim].forEach((v, i) => { if ((v === null || v === undefined) && !(dim === 'race' && i === 4)) miss.push(GROUP_LABELS[dim][i]); }));
+    let t = 'Loaded ' + esc(p.name) + ' (' + p.pop + ', n=' + p.n.toLocaleString() + ', ended ' + fmtDay(p.end) + '; their national margin ' + fm(p.top) + ').';
+    if (miss.length) t += ' Not published, kept at the default: ' + miss.join(', ') + '.';
+    if (p.approx.indexOf('WC') >= 0) t += ' They report white voters as one group, so the college/non-college gap stays at its 2024 size.';
+    if (p.approx.some((a) => /\d/.test(a))) t += ' Their ten-year age groups stand in for ours (30–39 for 30–44, 50–59 for 45–64, 70+ for 65+).';
+    t += ' Asian & other stays at 2024 for every pollster: the samples are too small.';
+    t += ' The sliders keep their gaps between groups but use this model\'s electorate, so they can sit a few points from the poll\'s printed numbers (gold ticks).';
+    return t + ' <a href="' + esc(p.url) + '" target="_blank" rel="noopener">Source</a>';
+  }
+
   function renderControls() {
     const dim = ui.dim;
     const gm = M.groupMargins(sc, dim);
     const ns = M.natShares(sc, dim);
     const nat = M.national(sc);
+    const pl = (D.pollsters || []).find((x) => 'poll:' + x.k === ui.pattern);
+    $('pollKey').textContent = pl ? pl.short + '\'s own numbers' : '2026 polls';
     gm.forEach((v, i) => {
       const inp = $('xm-' + dim + '-' + i); if (!inp) return;
       if (document.activeElement !== inp) inp.value = v.toFixed(1);
@@ -831,10 +875,17 @@
       const mu = sc.mult[dim][i];
       $('xto' + i).textContent = Math.abs(mu - 1) < 0.005 ? 'Default' : (mu > 1 ? '+' : '−') + Math.round(Math.abs(mu - 1) * 100) + '%';
       const t24 = nat + D.base['2024'][dim].dev[i];
-      const tp = nat + D.polldev[dim][i].dev;
-      sliderTicks($('xmw' + i), inp, [[t24, '', '2024 pattern at this national margin'], [tp, 'poll', '2026 polls at this national margin']]);
+      let ticks = [[t24, '', '2024 pattern at this national margin'], [nat + D.polldev[dim][i].dev, 'poll', '2026 polls at this national margin']];
+      if (pl) {   // the pollster's printed number for this group, where it published one
+        const v = pl.dev[dim][i], key = D.groups[dim][i];
+        ticks = ticks.slice(0, 1);
+        if (v !== null && v !== undefined && pl.approx.indexOf(key) < 0) ticks.push([pl.top + v, 'poll', pl.short + '\'s own number: ' + fm(pl.top + v)]);
+      }
+      sliderTicks($('xmw' + i), inp, ticks);
     });
     document.querySelectorAll('#patternChips .chip').forEach((b) => b.setAttribute('aria-pressed', b.dataset.k === ui.pattern ? 'true' : 'false'));
+    document.querySelectorAll('#pollsterChips .pchip').forEach((b) => b.setAttribute('aria-pressed', 'poll:' + b.dataset.k === ui.pattern ? 'true' : 'false'));
+    if ($('pollNote').dataset.p !== ui.pattern) { $('pollNote').innerHTML = pollNoteText(); $('pollNote').dataset.p = ui.pattern; }
     // turnout
     if (document.activeElement !== $('turnout')) $('turnout').value = sc.T;
     const ballots = sc.T / 100 * 244.7e6;
@@ -856,7 +907,7 @@
     // uncertainty
     if (document.activeElement !== $('sig')) $('sig').value = sc.sigN;
     $('sigOut').textContent = sc.sigN < 0.05 ? 'None (exact)' : '±' + sc.sigN.toFixed(1) + ' pts';
-    sliderTicks($('sigWrap'), $('sig'), [[3.9, '', 'Your Oct 9 Senate model']]);
+    sliderTicks($('sigWrap'), $('sig'), [[3.9, '', 'Oct 9 Senate model']]);
     $('cand').checked = sc.cand;
   }
   function wireControls() {
@@ -940,7 +991,7 @@
       '<div class="stat"><div class="stat-v num">' + (us.cast / 1e6).toFixed(2) + 'M</div><div class="stat-k">ballots counted in ' + us.reporting + ' states (UF Election Lab' + (us.asof_min ? ', state data as of ' + fmtDay(us.asof_min) + (us.asof_max !== us.asof_min ? '–' + fmtDay(us.asof_max) : '') : '') + ')</div></div>' +
       '<div class="stat"><div class="stat-v num">' + (pct2022 * 100).toFixed(1) + '%</div><div class="stat-k">of 2022\'s 112.0M total ballots</div></div>' +
       '<div class="stat"><div class="stat-v num">45.9M</div><div class="stat-k">people voted before Election Day in 2022, 41% of all ballots</div></div>' +
-      '</div>' +
+      '</div>' + signalsHtml() +
       '<div class="ev-grid">' +
       '<div><h3>How much of the vote is in</h3><div class="chart" id="evVol"></div><p class="chart-cap">Ballots counted so far as a share of each state\'s 2022 total (UF Election Lab).' + (keyMissing.length ? ' No 2026 data yet for ' + keyMissing.join(', ') + '.' : '') + '</p></div>' +
       '<div><h3>Against the same point in 2024</h3><div class="chart" id="evCmp"></div><p class="chart-cap">' + esc(st.compare_note || '') + '</p></div>' +
@@ -958,6 +1009,29 @@
       '<h3 style="margin-top:14px">When in-person early voting opens</h3><div class="cal">' + (st.calendar || []).map((c) => '<span><b>' + c[0] + '</b> ' + c[1] + '</span>').join('') + '</div>' +
       '<p class="chart-cap">' + esc(st.calendar_note || '') + '</p>';
     drawEvCharts();
+  }
+
+  // early vote vs. the polls: each sourced signal, which way it points, how much weight it deserves, and its catch
+  function signalsHtml() {
+    const st = D.story || {}, sig = st.signals || [];
+    if (!sig.length) return '';
+    const gap = D.evproj.median - D.G0;
+    const verdict = Math.abs(gap) < 1.5 ? 'The early vote and the polls agree.'
+      : 'The early vote runs ' + Math.abs(gap).toFixed(1) + ' points ' + (gap > 0 ? 'more Democratic' : 'more Republican') + ' than the polls.';
+    const tot = { D: 0, R: 0 };
+    sig.forEach((x) => { tot[x.dir] = (tot[x.dir] || 0) + (x.strength || 1); });
+    const all = (tot.D + tot.R) || 1;
+    const dots = (n) => '<span class="sig-dots" aria-label="strength ' + n + ' of 3">' + '●●●'.slice(0, n) + '<span class="off">' + '●●●'.slice(0, 3 - n) + '</span></span>';
+    const card = (x) => '<div class="sig sig-' + x.dir.toLowerCase() + '"><div class="sig-top"><span class="sig-st">' + esc(x.st) + '</span>' + dots(Math.max(1, Math.min(3, x.strength || 1))) + '</div>' +
+      '<b class="sig-title">' + esc(x.title) + '</b><p class="sig-val">' + esc(x.value) + '</p>' +
+      '<p class="sig-catch"><span>The catch:</span> ' + esc(x.catch) + '</p>' +
+      '<p class="sig-src">' + (x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.src) + '</a>' : esc(x.src)) + ' <span class="aff' + (/democratic-aligned/i.test(x.aff) ? ' dem' : /republican|conservative/i.test(x.aff) ? ' rep' : '') + '">' + esc(x.aff) + '</span></p></div>';
+    const col = (dir, lab) => '<div class="sig-col"><h4 class="mini-h ' + dir.toLowerCase() + '">' + lab + '</h4>' + sig.filter((x) => x.dir === dir).sort((a, b) => (b.strength || 1) - (a.strength || 1)).map(card).join('') + '</div>';
+    return '<div class="ev-vs"><h3>Early vote vs. the polls</h3>' +
+      '<p class="ev-verdict"><b>' + verdict + '</b> The same-point comparisons imply about ' + fm(D.evproj.median) + '; the polls say ' + fm(D.G0) + '. ' + esc(st.signals_verdict || '') + '</p>' +
+      '<div class="sig-balance" role="img" aria-label="Signals: ' + tot.D + ' points toward Democrats, ' + tot.R + ' toward Republicans"><span class="bd" style="width:' + (tot.D / all * 100).toFixed(1) + '%">Toward D · ' + tot.D + '</span><span class="br" style="width:' + (tot.R / all * 100).toFixed(1) + '%">' + tot.R + ' · Toward R</span></div>' +
+      '<div class="sig-grid">' + col('D', 'Points toward Democrats') + col('R', 'Points toward Republicans') + '</div>' +
+      '<p class="chart-cap">Bar: signals weighted by strength. ●●● official same-point data at scale; ●● a credible same-point comparison; ● indirect, small or vendor data. Signals as of ' + (st.signals_asof ? fmtDay(st.signals_asof) : '—') + '; party registration is not vote choice.</p></div>';
   }
 
   function drawEvCharts() {
@@ -1013,22 +1087,21 @@
     const pu = D.polls_used.map((p) => p.pollster + ' (' + p.end.slice(5).replace('-', '/') + ', ' + p.pop + ')').join('; ');
     $('method').innerHTML = '<h2>How it works</h2><div class="method-grid"><div>' +
       '<p><b>House.</b> Each district starts from its 2024 presidential margin on the lines in force for 2026, including the Texas, California, North Carolina, Ohio, Utah, Florida, Tennessee, Louisiana and Alabama redraws. It then moves with the national House vote, measured against 2024\'s R+1.5. A district moves more or less than the nation depending on who lives there: each group\'s swing and turnout change apply in proportion to that group\'s share of the district\'s voters. Candidate effects add 2 points for an incumbent and half of each candidate\'s past over- or under-performance of the presidential vote. At D+6 with only uniform swing, the lines give 223 Democratic seats; Decision Desk HQ reported 222 on the same test.</p>' +
-      '<p><b>Groups.</b> The electorate is split three independent ways: race and education, age, and gender. Each split covers every voter, and a change in one shows up in the others (Hispanic voters are in every age group). The 2024 baseline is Pew Research Center\'s validated voters. Lowering turnout toward a midterm moves the electorate toward Pew\'s 2022 validated-voter mix: older, whiter and more college-educated. The default 2026 pattern sits halfway between 2024 and the average crosstabs of recent national polls (' + esc(pu) + '). Polls and validated-voter studies measure groups differently, which is why the default only goes halfway. Asian and other voters stay at their 2024 pattern, because their poll samples are tiny and Native American voters, who matter in several districts, are barely measured.</p>' +
+      '<p><b>Groups.</b> The electorate is split three independent ways: race and education, age, and gender. Each split covers every voter, and a change in one shows up in the others (Hispanic voters are in every age group). The 2024 baseline is Pew Research Center\'s validated voters. Lowering turnout toward a midterm moves the electorate toward Pew\'s 2022 validated-voter mix: older, whiter and more college-educated. The default 2026 pattern sits halfway between 2024 and the average crosstabs of recent national polls (' + esc(pu) + '). Polls and validated-voter studies measure groups differently, which is why the default only goes halfway. The pollster picker loads one top-rated pollster\'s latest crosstabs instead: its gaps between groups, and optionally its national margin. Asian and other voters stay at their 2024 pattern, because their poll samples are tiny and Native American voters, who matter in several districts, are barely measured.</p>' +
       '<p><b>District electorates are estimates.</b> They come from each district\'s voting-age population by race, age and education, weighted by turnout factors fitted so the national total matches Pew\'s 2024 voters. The white college share is approximated from the district\'s overall college rate, and gender is assumed to be the same everywhere.</p>' +
       '</div><div>' +
-      '<p><b>Senate.</b> The 14 competitive races start from your Oct 9 corrected polling averages. The other 21 start from 2024 presidential lean plus the national environment and 3 points for an incumbent; Montana uses its three-way polls (Alme vs. Bodnar). Every control then moves each state by how its electorate responds, relative to the default. With the defaults the Senate reproduces your Oct 9 model: 67% Democratic control vs. 65%.</p>' +
+      '<p><b>Senate.</b> The 14 competitive races start from the corrected polling averages of a companion Senate model run on Oct 9, which used every public poll since Aug 1 (from RealClearPolling, 270toWin, Wikipedia and pollsters\' releases, excluding campaign internals) and adjusted each pollster for its lean and likely-voter screen. The other 21 start from 2024 presidential lean plus the national environment and 3 points for an incumbent; Montana uses its three-way polls (Alme vs. Bodnar). Every control then moves each state by how its electorate responds, relative to the default. With the defaults the Senate reproduces that model: 67% Democratic control vs. 65%.</p>' +
       '<p><b>Governors.</b> A recency- and quality-weighted average of public polls since late July, with R- or D-leaning pollsters at half weight; fundamentals where there are no polls (CO, HI, OK, SD, WY). They move 0.8 points per point of national change.</p>' +
       '<p><b>Uncertainty.</b> ' + M.NSIM.toLocaleString() + ' simulations with the same random draws each time, so results don\'t flicker as you drag. Each draws a shared national error (Student t with 5 degrees of freedom, SD from the slider), a state error (SD 2) shared by every race in the state, and a race error (House 5, Senate 3.8, governors 4.5).</p>' +
-      '<p><b>Updates.</b> Twice a day the app rebuilds itself from fresh data: candidates and race polls from ElectIndex\'s public feed, ballot counts from UF Election Lab, and a new national default. The national default (' + fm(D.G0) + ' now) is a weighted average of public generic-ballot polls from the last four weeks: one poll per pollster (' + (D.G0_polls || '30') + ' pollsters), weighted by recency, sample size and pollster rating, with partisan-leaning pollsters at half weight. The competitive Senate races start from your Oct 9 corrected averages and move by the change in a simple poll average since then. The early-vote story, its same-point comparisons and the 2026 crosstab polls are updated by hand. If a source fails, the app keeps its last good numbers and says so at the top.</p>' +
+      '<p><b>Updates.</b> Twice a day the app rebuilds itself from fresh data: candidates and race polls from ElectIndex\'s public feed, ballot counts from UF Election Lab, and a new national default. The national default (' + fm(D.G0) + ' now) is a weighted average of public generic-ballot polls from the last four weeks: one poll per pollster (' + (D.G0_polls || '30') + ' pollsters), weighted by recency, sample size and pollster rating, with partisan-leaning pollsters at half weight. The competitive Senate races start from the Oct 9 corrected averages and move by the change in a simple poll average since then. The early-vote signals, story and same-point comparisons are refreshed daily from published analyses; the 2026 crosstab polls are added as pollsters release them. If a source fails, the app keeps its last good numbers and says so at the top.</p>' +
       '<p><b>What it doesn\'t know.</b> District polls (shown, not used), expert ratings, money and late scandals such as NV-2\'s.</p>' +
       '</div></div>' +
       '<h3 style="margin-top:12px">Sources</h3><ul class="sources">' +
       '<li><a href="https://github.com/ElectIndex/26_us_forecast_data">ElectIndex 2026 forecast data</a>: 2020 and 2024 presidential results on the 2026 district lines, district voting-age population, candidates and incumbency, and raw race polls (repository as of Oct 12, 11:40 ET).</li>' +
       '<li>Pew Research Center validated voters: <a href="https://www.pewresearch.org/politics/2025/06/26/voting-patterns-in-the-2024-election/">2024</a>, 2022 and 2018 (<a href="https://docs.google.com/spreadsheets/d/1JczVvbrlxkLiYYiNPSv0TRlWsbvYEihkZrnH1kQXIH8/edit?usp=sharing">detailed tables</a>).</li>' +
-      '<li>2026 poll crosstabs: <a href="https://www.pewresearch.org/politics/2026/10/08/midterm-vote-preferences-by-race-and-ethnicity-age-and-other-demographics/">Pew (Oct 8)</a>, <a href="https://assets1.cbsnewsstatic.com/hub/cms/prod_cms_alt/file/2026/10/04/0957ee32-a848-4872-b659-14303d3d3734/cbsnews_20261004_sun.pdf">CBS News/YouGov</a>, <a href="https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_703uvs1.pdf">Economist/YouGov</a>, <a href="https://maristpoll.marist.edu/wp-content/uploads/2026/09/NPR_PBS-News_Marist-Poll_USA-NOS-and-Tables_202609171435.pdf">NPR/PBS/Marist</a>, <a href="https://static.foxnews.com/foxnews.com/content/uploads/2026/09/fox_september-11-14-2026_national_cross-tabs_september-16-release.pdf">Fox News</a>, <a href="https://law.marquette.edu/assets/community/poll/MLSPSC35/MLSPSC35CrosstabsRV.html">Marquette</a>.</li>' +
+      '<li>2026 poll crosstabs: <a href="https://www.pewresearch.org/politics/2026/10/08/midterm-vote-preferences-by-race-and-ethnicity-age-and-other-demographics/">Pew (Oct 8)</a>, <a href="https://assets1.cbsnewsstatic.com/hub/cms/prod_cms_alt/file/2026/10/04/0957ee32-a848-4872-b659-14303d3d3734/cbsnews_20261004_sun.pdf">CBS News/YouGov</a>, <a href="https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_703uvs1.pdf">Economist/YouGov</a>, <a href="https://maristpoll.marist.edu/wp-content/uploads/2026/09/NPR_PBS-News_Marist-Poll_USA-NOS-and-Tables_202609171435.pdf">NPR/PBS/Marist</a>, <a href="https://static.foxnews.com/foxnews.com/content/uploads/2026/09/fox_september-11-14-2026_national_cross-tabs_september-16-release.pdf">Fox News</a>, <a href="https://law.marquette.edu/assets/community/poll/MLSPSC35/MLSPSC35CrosstabsRV.html">Marquette</a>, <a href="https://emersoncollegepolling.com/september-2026-national-poll-democrats/">Emerson</a> (pollster picker only). Pollster ratings: ElectIndex.</li>' +
       '<li>Generic-ballot polls: ElectIndex\'s poll file (compiled from public polls). For comparison: <a href="https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls">Silver Bulletin</a>, <a href="https://www.realclearpolling.com/polls/state-of-the-union/generic-congressional-vote">RealClearPolling</a>, <a href="https://fiftyplusone.news/polls/generic-ballot/generic-ballot">FiftyPlusOne</a>.</li>' +
       '<li>Turnout and early vote: <a href="https://election.lab.ufl.edu/early-vote/2026-early-voting/">UF Election Lab</a> (2026 early vote; 2018, 2022, 2024 turnout); <a href="https://www.cnn.com/2026/10/01/politics/cnn-early-voting-takeaways-democratic-advantage">CNN/Catalist</a>; <a href="https://www.nbcnews.com/politics/2026-election/early-vote-analysis-mail-ballot-concerns-are-changing-democrats-vote-rcna602489">NBC News/UPenn</a>; state election offices.</li>' +
-      '<li>The <a href="https://claude.ai/artifact/Ufk6JJSqNJdLXQPaBJQeXu">Oct 9 Senate polling model</a> (private link).</li>' +
       '</ul>';
   }
 
@@ -1111,6 +1184,7 @@
   window.addEventListener('resize', () => { clearTimeout(rsz); rsz = setTimeout(() => { drawEvCharts(); if (R) renderResults(); }, 150); });
   buildPresets();
   buildPatterns();
+  buildPollsters();
   buildXtabs();
   wireControls();
   wireMap();

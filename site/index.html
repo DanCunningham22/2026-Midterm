@@ -239,6 +239,14 @@ th.n { text-align: right; }
 .switch { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; cursor: pointer; }
 .switch input { width: 18px; height: 18px; accent-color: var(--ink); }
 .reset { border: 1px solid var(--ink); background: var(--card); color: var(--ink); border-radius: 6px; padding: 8px 14px; font-weight: 600; cursor: pointer; }
+.pollpick { display: grid; gap: 8px; border-top: 1px dashed var(--rule); padding-top: 10px; }
+.mini-h { margin: 0; font-size: 12px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-2); font-weight: 700; }
+.pchip b { font-weight: 700; color: var(--ink); }
+.pchip .pmeta { color: var(--ink-3); font-size: 11px; margin-left: 2px; }
+.pchip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--card); }
+.pchip[aria-pressed="true"] b, .pchip[aria-pressed="true"] .pmeta { color: var(--card); }
+.switch-sm { font-size: 13px; font-weight: 600; }
+.switch-sm input { width: 16px; height: 16px; }
 .key-legend { font-size: 12px; color: var(--ink-3); display: flex; gap: 12px; flex-wrap: wrap; }
 .key-legend i { display: inline-block; width: 2px; height: 9px; vertical-align: -1px; margin-right: 4px; background: var(--ink-3); }
 .key-legend i.poll { background: var(--mark); }
@@ -261,6 +269,25 @@ th.n { text-align: right; }
 .ev-bar-d { fill: var(--ld); } .ev-bar-r { fill: var(--lr); } .ev-bar-o { fill: var(--none); }
 .ev-label { font-size: 12px; fill: var(--ink); }
 .ev-val { font-size: 11px; fill: var(--ink-2); font-variant-numeric: tabular-nums; }
+.ev-vs { margin-top: 18px; border-top: 1px solid var(--rule); padding-top: 14px; }
+.ev-verdict { font-size: 15px; max-width: 80ch; margin: 6px 0 10px; }
+.ev-verdict b { font-weight: 700; }
+.sig-balance { display: flex; height: 22px; border-radius: 5px; overflow: hidden; font-size: 11px; font-weight: 700; line-height: 22px; color: #fff; margin-bottom: 12px; }
+.sig-balance .bd { background: var(--ld); padding-left: 8px; white-space: nowrap; }
+.sig-balance .br { background: var(--lr); text-align: right; padding-right: 8px; white-space: nowrap; }
+.sig-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+.sig-col { display: grid; gap: 10px; align-content: start; }
+.mini-h.d { color: var(--dem); } .mini-h.r { color: var(--rep); }
+.sig { border: 1px solid var(--rule); border-left: 4px solid var(--ld); border-radius: 6px; padding: 9px 11px; background: var(--card); }
+.sig.sig-r { border-left-color: var(--lr); }
+.sig-top { display: flex; justify-content: space-between; align-items: center; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; }
+.sig-dots { letter-spacing: 1px; color: var(--ink-2); font-size: 12px; }
+.sig-dots .off { color: var(--rule); }
+.sig-title { display: block; font-size: 14px; margin-top: 3px; line-height: 1.3; }
+.sig-val { font-size: 13px; margin: 4px 0 0; color: var(--ink); }
+.sig-catch { font-size: 12px; margin: 5px 0 0; color: var(--ink-2); }
+.sig-catch span { font-weight: 700; }
+.sig-src { font-size: 12px; margin: 5px 0 0; color: var(--ink-3); }
 .cal { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
 .cal span { font-size: 12px; border: 1px solid var(--rule); border-radius: 4px; padding: 2px 8px; white-space: nowrap; }
 .cal b { font-family: var(--font-mono); font-weight: 500; }
@@ -291,7 +318,7 @@ footer { margin-top: 20px; font-size: 12px; color: var(--ink-3); }
   .presets { flex-wrap: nowrap; overflow-x: auto; gap: 0 12px; scrollbar-width: none; -webkit-overflow-scrolling: touch; margin-top: 2px; }
   .presets::-webkit-scrollbar { display: none; }
   .oval { font-size: 12px; }
-  .res-grid, .ev-head, .ev-grid, .method-grid { grid-template-columns: minmax(0, 1fr); }
+  .res-grid, .ev-head, .ev-grid, .method-grid, .sig-grid { grid-template-columns: minmax(0, 1fr); }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .zoom-btn { display: inline-block; }
   .full { display: none; } .short { display: inline; }
@@ -413,7 +440,7 @@ body.tabbed .banner { bottom: calc(var(--dock-h, 150px) + 10px); }
     <aside class="col-side area-ctl" data-screen="adjust" aria-label="Controls">
       <section class="card">
         <div class="ctl">
-          <div class="ctl-head"><h3>Crosstabs</h3><span class="key-legend"><span><i></i>2024 result</span><span><i class="poll"></i>2026 polls</span></span></div>
+          <div class="ctl-head"><h3>Crosstabs</h3><span class="key-legend"><span><i></i>2024 result</span><span><i class="poll"></i><span id="pollKey">2026 polls</span></span></span></div>
           <p class="help">Each group's two-party margin. Moving one group moves the national vote by its share of the electorate, and redraws districts by how many of those voters live there.</p>
           <div class="tabs" role="tablist" aria-label="Crosstab dimension" id="dimTabs">
             <button role="tab" data-dim="race" aria-selected="true">Race &amp; education</button>
@@ -422,6 +449,12 @@ body.tabbed .banner { bottom: calc(var(--dock-h, 150px) + 10px); }
           </div>
           <div id="xtabs"></div>
           <div class="chips" id="patternChips" aria-label="Group patterns"></div>
+          <div class="pollpick" id="pollPick">
+            <h4 class="mini-h">Load a top pollster's crosstabs</h4>
+            <div class="chips" id="pollsterChips" aria-label="Pollster crosstabs"></div>
+            <label class="switch switch-sm"><input type="checkbox" id="pollTop" checked> Also use their national margin</label>
+            <p class="help" id="pollNote"></p>
+          </div>
         </div>
         <div class="ctl">
           <h3>Turnout</h3>
@@ -452,7 +485,7 @@ body.tabbed .banner { bottom: calc(var(--dock-h, 150px) + 10px); }
           <div class="row-line">
             <label for="sig">National polling error</label><output id="sigOut" class="num"></output>
             <div class="slider-wrap" id="sigWrap"><input type="range" id="sig" min="0" max="6" step="0.1"></div>
-            <span class="hint">Standard deviation of a shared miss across every race. 3.9 matches your Oct 9 Senate model. Set 0 to treat your scenario as exact.</span>
+            <span class="hint">Standard deviation of a shared miss across every race. 3.9 matches the Oct 9 Senate model. Set 0 to treat your scenario as exact.</span>
           </div>
           <label class="switch"><input type="checkbox" id="cand" checked> Candidate effects in House races</label>
           <p class="help">Incumbency (2 pts) and each candidate's past over- or under-performance of the presidential vote, counted at half weight.</p>

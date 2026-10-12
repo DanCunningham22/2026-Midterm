@@ -4,8 +4,8 @@ An installable web app for gaming out the 2026 midterms: set the national House 
 and turnout, and the House (all 435 districts on the 2026 lines), Senate and governor maps redraw. It also
 tracks what the early vote says.
 
-**App:** https://dancunningham22.github.io/2026-Midterm/ — on a phone, open it in Safari (iPhone) or
-Chrome (Android) and choose **Add to Home Screen**.
+**App:** this repository's GitHub Pages site. On a phone, open it in Safari (iPhone) or Chrome (Android) and
+choose **Add to Home Screen**.
 
 ## How it stays current
 
@@ -18,8 +18,8 @@ A GitHub Actions job (`.github/workflows/update.yml`) runs at 6 AM and 6 PM East
 | Early-vote ballot counts and party splits | [UF Election Lab](https://election.lab.ufl.edu/early-vote/2026-early-voting/) | automatic |
 | National default (generic-ballot average) | computed from the poll list | automatic |
 | Senate: competitive races | Oct 9 corrected averages + change in a simple poll average since | automatic drift; base by hand |
-| Early-vote story and same-point comparisons | `pipeline/content/story.json` | by hand |
-| 2026 national crosstab polls | `pipeline/static/polls_2026.csv` | by hand |
+| Early-vote signals, story and same-point comparisons | `pipeline/content/story.json` | daily scheduled refresh |
+| 2026 national crosstab polls (and the pollster picker) | `pipeline/static/polls_2026.csv` | as pollsters release them |
 
 If a feed fails or returns something implausible, the build keeps the previous numbers for that section and
 the app shows which source didn't refresh. The app loads the newest `site/data.json` every time it opens
