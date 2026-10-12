@@ -384,6 +384,8 @@
       const hp = D.housepolls[r.id];
       if (hp) parts.push('Public district polls (shown, not used): ' + hp.latest.map((x) => esc(x.p) + ' ' + x.d + '–' + x.r + ' (' + x.end.slice(5) + (x.lean ? ', ' + x.lean + '-leaning' : '') + ')').join('; ') + '.');
       if (r.id === 'CA-06') parts.push('Kevin Kiley is running as an independent after Prop 50 redrew his seat.');
+      const mw = sc.demo !== false ? movesWith(i) : [];
+      if (mw.length) parts.push('Moves most with: ' + mw.map((x) => '<a href="#" data-sel="' + x.j + '">' + x.id + '</a>').join(', ') + ' (shared state and voter mix).');
       extra = '<p class="note">' + parts.join(' ') + '</p><div><span class="tally-k">Estimated electorate (race and education)</span>' + compBar(r.race) + '</div>';
     } else {
       facts += '<div><dt>2024 president</dt><dd>' + fm(r.m24) + '</dd></div>';
@@ -403,6 +405,27 @@
     }
     box.innerHTML = '<div class="detail-top"><span class="detail-title">' + esc(r.id) + ' · ' + esc(raceName(t, r)) + '</span><span class="pill ' + rt.k + '">' + rt.t + '</span></div>' +
       '<div class="matchup">' + matchup(t, r, true) + '</div><dl class="facts">' + facts + '</dl>' + extra;
+    box.querySelectorAll('a[data-sel]').forEach((a) => a.addEventListener('click', (e) => { e.preventDefault(); select(+a.dataset.sel); if (isTabbed()) centerOn(+a.dataset.sel); }));
+  }
+  // Contested districts whose simulated results correlate most with district i: national error is shared by all,
+  // so the ranking comes from sharing a state and from similar electorates (the demographic errors).
+  function movesWith(i) {
+    const d = D.districts[i];
+    if (d.unc) return [];
+    const S = M.SIG, demo = sc.demo !== false, sS = demo ? 1.9 : S.state, sN2 = sc.sigN * sc.sigN;
+    const coef = (x) => demo ? M.demoCoef(sc, x.race, x.age) : null;
+    const ci = coef(d);
+    const vi = sN2 + sS * sS + S.house * S.house + (ci ? M.demoSD(ci) ** 2 : 0);
+    const out = [];
+    D.districts.forEach((x, j) => {
+      if (j === i || x.unc || Math.abs(R.m.house[j]) > 12) return;
+      const cj = coef(x);
+      let cov = sN2 + (x.st === d.st ? sS * sS : 0);
+      if (ci) for (let g = 0; g < 9; g++) cov += ci[g] * cj[g];
+      const vj = sN2 + sS * sS + S.house * S.house + (cj ? M.demoSD(cj) ** 2 : 0);
+      out.push({ j, id: x.id, c: cov / Math.sqrt(vi * vj) });
+    });
+    return out.sort((a, b) => b.c - a.c).slice(0, 5);
   }
   function tippingSeat() {
     const t = ui.tab;
@@ -909,6 +932,7 @@
     $('sigOut').textContent = sc.sigN < 0.05 ? 'None (exact)' : '±' + sc.sigN.toFixed(1) + ' pts';
     sliderTicks($('sigWrap'), $('sig'), [[3.9, '', 'Oct 9 Senate model']]);
     $('cand').checked = sc.cand;
+    $('demo').checked = sc.demo !== false;
   }
   function wireControls() {
     $('env').addEventListener('input', () => { sc.C = M.solveC(sc, +$('env').value); update(true); });
@@ -920,6 +944,7 @@
     $('evOff').addEventListener('click', () => { sc.evw = 0; update(); });
     $('sig').addEventListener('input', () => { sc.sigN = +$('sig').value; update(true); });
     $('cand').addEventListener('change', () => { sc.cand = $('cand').checked; update(); });
+    $('demo').addEventListener('change', () => { sc.demo = $('demo').checked; update(); });
     $('resetBtn').addEventListener('click', () => { sc = M.clone(M.defaults); ui.pattern = 'blend'; buildXtabs(); update(); });
     document.querySelectorAll('#dimTabs button').forEach((b) => b.addEventListener('click', () => { ui.dim = b.dataset.dim; saveUi(); buildXtabs(); renderControls(); }));
     const setTab = (t) => {
@@ -1092,7 +1117,7 @@
       '</div><div>' +
       '<p><b>Senate.</b> The 14 competitive races start from the corrected polling averages of a companion Senate model run on Oct 9, which used every public poll since Aug 1 (from RealClearPolling, 270toWin, Wikipedia and pollsters\' releases, excluding campaign internals) and adjusted each pollster for its lean and likely-voter screen. The other 21 start from 2024 presidential lean plus the national environment and 3 points for an incumbent; Montana uses its three-way polls (Alme vs. Bodnar). Every control then moves each state by how its electorate responds, relative to the default. With the defaults the Senate reproduces that model: 67% Democratic control vs. 65%.</p>' +
       '<p><b>Governors.</b> A recency- and quality-weighted average of public polls since late July, with R- or D-leaning pollsters at half weight; fundamentals where there are no polls (CO, HI, OK, SD, WY). They move 0.8 points per point of national change.</p>' +
-      '<p><b>Uncertainty.</b> ' + M.NSIM.toLocaleString() + ' simulations with the same random draws each time, so results don\'t flicker as you drag. Each draws a shared national error (Student t with 5 degrees of freedom, SD from the slider), a state error (SD 2) shared by every race in the state, and a race error (House 5, Senate 3.8, governors 4.5).</p>' +
+      '<p><b>Uncertainty.</b> ' + M.NSIM.toLocaleString() + ' simulations with the same random draws each time, so results don\'t flicker as you drag. Each draws a shared national error (Student t with 5 degrees of freedom, SD from the slider), a state error (SD 1.9) shared by every race in the state, a race error (House 5, Senate 3.8, governors 4.5), and a demographic error: each group can land off the scenario (SD in points of margin: white college 4, white non-college 4, Black 5, Hispanic 7, Asian &amp; other 6, ages 18–29 5, older groups 3), moving each district and state by how far its electorate differs from the nation\'s. That makes places with similar voters miss together, the way polls missed white non-college voters in 2016 and 2020 and Hispanic voters in 2020 and 2024. It barely changes the chamber odds, because the misses cancel across the country, but it makes heavily Hispanic districts like TX-28 and FL-27 less certain and ties them together.</p>' +
       '<p><b>Updates.</b> Twice a day the app rebuilds itself from fresh data: candidates and race polls from ElectIndex\'s public feed, ballot counts from UF Election Lab, and a new national default. The national default (' + fm(D.G0) + ' now) is a weighted average of public generic-ballot polls from the last four weeks: one poll per pollster (' + (D.G0_polls || '30') + ' pollsters), weighted by recency, sample size and pollster rating, with partisan-leaning pollsters at half weight. The competitive Senate races start from the Oct 9 corrected averages and move by the change in a simple poll average since then. The early-vote signals, story and same-point comparisons are refreshed daily from published analyses; the 2026 crosstab polls are added as pollsters release them. If a source fails, the app keeps its last good numbers and says so at the top.</p>' +
       '<p><b>What it doesn\'t know.</b> District polls (shown, not used), expert ratings, money and late scandals such as NV-2\'s.</p>' +
       '</div></div>' +

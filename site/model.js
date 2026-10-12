@@ -6,6 +6,11 @@
   const DIMS = ['race', 'age', 'gender'];
   const SIG = { nat: 3.9, state: 2.0, house: 5.0, sen: 3.8, gov: 4.5 };
   const NSIM = 4000;
+  // Demographic errors: in each simulation every group can land a few points off the scenario (SD, pts of margin),
+  // moving each district and state by how far its electorate differs from the nation's. Places with similar voters
+  // therefore miss together, as polls did with white non-college voters in 2016 and 2020 and Hispanic voters in 2020 and 2024.
+  const DEMO_SD = { race: [4, 4, 5, 7, 6], age: [5, 3, 3, 3] };
+  const STATE_SD_DEMO = 1.9;   // state error is trimmed so a typical state's total uncertainty stays the same
 
   // ---------- random numbers (seeded, so results do not jitter as sliders move)
   function rng(seed) {
@@ -59,6 +64,7 @@
     this.zD = normals(NSIM * nd, rand);
     this.zSen = normals(NSIM * nsen, rand);
     this.zGov = normals(NSIM * ngov, rand);
+    this.zDemo = normals(NSIM * 9, rand);   // drawn last so the other streams are unchanged
   };
 
   // ---------- scenario
@@ -81,6 +87,7 @@
       evw: null,           // null = automatic (share of expected vote already cast)
       sigN: SIG.nat,
       cand: true,
+      demo: true,          // correlated demographic errors
       C: 0,
     };
     sc.C = this.solveC(sc, D.G0);
@@ -202,13 +209,27 @@
     return { house, senate, gov, national: this.national(sc) + this._ev };
   };
 
+  // How far each electorate's mix differs from the nation's, for the demographic errors (race 5 + age 4 groups)
+  Model.prototype.demoCoef = function (sc, race, age) {
+    const nr = this.natShares(sc, 'race'), na = this.natShares(sc, 'age');
+    const pr = this.phi(sc, 'race'), pa = this.phi(sc, 'age');
+    const cr = race.map((v, i) => v * pr[i]), ca = age.map((v, i) => v * pa[i]);
+    const zr = cr.reduce((a, b) => a + b, 0), za = ca.reduce((a, b) => a + b, 0);
+    return cr.map((v, i) => (v / zr - nr[i]) * DEMO_SD.race[i]).concat(ca.map((v, i) => (v / za - na[i]) * DEMO_SD.age[i]));
+  };
+  Model.prototype.demoSD = function (coef) { return Math.sqrt(coef.reduce((a, c) => a + c * c, 0)); };
+
   // ---------- simulation
   Model.prototype.simulate = function (sc, nsim) {
     const n = Math.min(nsim || NSIM, NSIM);
     const m = this.margins(sc);
     const D = this.d, ns = this.states.length;
     const nd = D.districts.length, nsen = D.senate.length, ngov = D.gov.length;
-    const sN = sc.sigN, sS = SIG.state;
+    const sN = sc.sigN, demo = sc.demo !== false, sS = demo ? STATE_SD_DEMO : SIG.state;
+    // demographic error coefficients (already scaled by each group's SD)
+    const dCoef = demo ? D.districts.map((d) => this.demoCoef(sc, d.race, d.age)) : null;
+    const stCoef = demo ? this.states.map((s) => this.demoCoef(sc, D.statecomp[s].race, D.statecomp[s].age)) : null;
+    const dDemo = new Float64Array(nd), stDemo = new Float64Array(ns);
     const dSt = D.districts.map((d) => this.stIndex[d.st]);
     const senSt = D.senate.map((r) => this.stIndex[r.st]);
     const govSt = D.gov.map((r) => this.stIndex[r.st]);
@@ -224,13 +245,18 @@
     for (let k = 0; k < n; k++) {
       const eN = this.zN[k] * sN;
       const zS = this.zS.subarray(k * ns, (k + 1) * ns);
+      if (demo) {
+        const zg = this.zDemo.subarray(k * 9, k * 9 + 9);
+        for (let i = 0; i < nd; i++) { const c = dCoef[i]; let v = 0; for (let g = 0; g < 9; g++) v += c[g] * zg[g]; dDemo[i] = v; }
+        for (let j = 0; j < ns; j++) { const c = stCoef[j]; let v = 0; for (let g = 0; g < 9; g++) v += c[g] * zg[g]; stDemo[j] = v; }
+      }
       let hd = 0, hr = 0;
       const zD = this.zD.subarray(k * nd, (k + 1) * nd);
       for (let i = 0; i < nd; i++) {
         const base = m.house[i];
         let v;
         if (base > 90 || base < -90) v = base;
-        else v = base + eN + zS[dSt[i]] * sS + zD[i] * SIG.house;
+        else v = base + eN + zS[dSt[i]] * sS + zD[i] * SIG.house + dDemo[i];
         if (v > 0) { hd++; hWin[i]++; } else if (rSideIsR[i]) hr++;
       }
       hHist[hd]++; hSum += hd; if (hd >= 218) hControl++;
@@ -238,7 +264,7 @@
       let sd = 0, osb = false;
       const zSen = this.zSen.subarray(k * nsen, (k + 1) * nsen);
       for (let i = 0; i < nsen; i++) {
-        const v = m.senate[i] + eN + zS[senSt[i]] * sS + zSen[i] * SIG.sen;
+        const v = m.senate[i] + eN + zS[senSt[i]] * sS + zSen[i] * SIG.sen + stDemo[senSt[i]];
         if (v > 0) {
           sWin[i]++;
           if (i === osbornIdx) osb = true; else sd++;
@@ -254,7 +280,7 @@
       let gd = 0;
       const zG = this.zGov.subarray(k * ngov, (k + 1) * ngov);
       for (let i = 0; i < ngov; i++) {
-        const v = m.gov[i] + eN + zS[govSt[i]] * sS + zG[i] * SIG.gov;
+        const v = m.gov[i] + eN + zS[govSt[i]] * sS + zG[i] * SIG.gov + stDemo[govSt[i]];
         if (v > 0) { gd++; gWin[i]++; }
       }
       const gTot = GOV_FIXED_D + gd;
@@ -288,20 +314,22 @@
   // Expected House seats and Senate seats at a set of national margins, other settings held fixed
   Model.prototype.curve = function (sc, gs) {
     const cur = this.national(sc);
-    const sH = Math.sqrt(SIG.house * SIG.house + SIG.state * SIG.state);
-    const sSen = Math.sqrt(SIG.sen * SIG.sen + SIG.state * SIG.state);
+    const demo = sc.demo !== false, sS = demo ? STATE_SD_DEMO : SIG.state;
+    const D = this.d;
+    const hSD = D.districts.map((d) => Math.sqrt(SIG.house * SIG.house + sS * sS + (demo ? Math.pow(this.demoSD(this.demoCoef(sc, d.race, d.age)), 2) : 0)));
+    const senSD = D.senate.map((r) => { const c = D.statecomp[r.st]; return Math.sqrt(SIG.sen * SIG.sen + sS * sS + (demo ? Math.pow(this.demoSD(this.demoCoef(sc, c.race, c.age)), 2) : 0)); });
     const m = this.margins(sc);
     return gs.map((g) => {
       const shift = g - cur;
       let h = 0, hr = 0;
       m.house.forEach((v, i) => {
-        const pd = v > 90 ? 1 : v < -90 ? 0 : Phi((v + shift) / sH);
+        const pd = v > 90 ? 1 : v < -90 ? 0 : Phi((v + shift) / hSD[i]);
         h += pd;
         if (this.d.districts[i].rp !== 'I') hr += 1 - pd;
       });
       let s = 34, sr = 31;
       m.senate.forEach((v, i) => {
-        const pd = Phi((v + shift) / sSen);
+        const pd = Phi((v + shift) / senSD[i]);
         if (this.d.senate[i].st !== 'NE') s += pd;
         sr += 1 - pd;
       });
@@ -310,6 +338,7 @@
   };
 
   Model.prototype.SIG = SIG;
+  Model.prototype.DEMO_SD = DEMO_SD;
   Model.prototype.NSIM = NSIM;
   Model.prototype.Phi = Phi;
   root.MidtermModel = Model;
