@@ -1,5 +1,5 @@
 {
- "asof": "2026-10-12",
+ "asof": "2026-10-13",
  "headline": "Measured against the same point in 2024, every comparable measure is more Democratic. Measured against 2022, it isn't, because Democrats have moved from mail ballots to voting early in person.",
  "measures": [
   {
@@ -62,7 +62,7 @@
    "aff": "Nonpartisan outlet; state data"
   }
  ],
- "compare_note": "Democratic share of mail-ballot requests (CNN/Catalist, Oct 1). Gray dot is the same point in 2024. Virginia's early voters with only Democratic primary history lead those with only GOP history by 18 points, vs. 8 in 2024; Ohio's early electorate is about 27 points more Democratic than at this point in 2024 (CNN, Oct 8). CNN also found that the 2022 request pools were more Democratic than 2026's in every listed state except Iowa.",
+ "compare_note": "Democratic share of mail-ballot requests (CNN/Catalist, Oct 1). Gray dot is the same point in 2024. Virginia's early voters with only Democratic primary history lead those with only GOP history by 18 points, vs. 8 in 2024; Ohio's early electorate is about 27 points more Democratic than at this point in 2024 (CNN, Oct 11). CNN also found that the 2022 request pools were more Democratic than 2026's in every listed state except Iowa.",
  "bullets": [
   {
    "title": "The edge over 2024 is real but partly a change in how Democrats vote.",
@@ -148,10 +148,10 @@
   },
   {
    "title": "Nevada is the cautionary tale.",
-   "html": "Its first 2,851 ballots were 48% Democratic and 22% Republican; Jon Ralston called that meaningless this early. In 2024 Democrats led Nevada's mail vote, Republicans led the total early vote, and Trump won.",
+   "html": "By Oct 12, 2,955 ballots had been accepted: 48.6% from Democrats, 22.2% from Republicans and 24.8% from nonpartisans. Jon Ralston calls numbers this small meaningless. In 2024 Democrats led Nevada's mail vote, Republicans led the total early vote, and Trump won.",
    "sources": [
     [
-     "Nevada Independent",
+     "Nevada Independent, Oct 12",
      "https://thenevadaindependent.com/article/the-early-voting-blog-2026-general"
     ]
    ],
@@ -216,11 +216,11 @@
    "Oct 24"
   ]
  ],
- "calendar_note": "Iowa and Kansas mail ballots go out Oct 14. Pennsylvania and New Hampshire have no early in-person voting.",
- "cast_at": 3128834,
- "cast_at_note": "Ballots counted (UF Election Lab, 34 states + DC, state data as of Oct 5-12) when these comparisons were compiled; sets the automatic early-vote weight.",
- "signals_asof": "2026-10-12",
- "signals_verdict": "Against 2024 the early vote looks more Democratic; against 2022 it looks less so. Both comparisons are bent by Democrats switching from mail to in-person voting, so the fair read is that the early vote is consistent with the polls. The first clean test is in-person voting in Georgia (from Oct 13) and North Carolina (from Oct 15).",
+ "calendar_note": "Georgia's in-person early voting opens Oct 13; Iowa and Kansas mail ballots go out Oct 14. Pennsylvania and New Hampshire have no early in-person voting.",
+ "cast_at": 3452880,
+ "cast_at_note": "Ballots counted (UF Election Lab, 36 jurisdictions reporting, state data as of Oct 8-13) when these comparisons were compiled; sets the automatic early-vote weight.",
+ "signals_asof": "2026-10-13",
+ "signals_verdict": "Against 2024 the early vote looks more Democratic; against 2022 it looks less so. Both comparisons are bent by Democrats switching from mail to in-person voting, so the fair read is that the early vote is consistent with the polls. The first clean test is in-person voting in Georgia (opened Oct 13) and North Carolina (from Oct 15).",
  "signals": [
   {
    "dir": "D",
