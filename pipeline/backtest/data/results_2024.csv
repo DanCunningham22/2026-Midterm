@@ -1,0 +1,57 @@
+race,dem_cand,rep_cand,dem_pct,rep_pct,margin,source_url,dem_votes,rep_votes,total_votes,notes
+House-US,Democratic Party,Republican Party,47.19,49.75,-2.56,https://en.wikipedia.org/wiki/2024_United_States_House_of_Representatives_elections,70571330,74390864,149543421,Wikipedia national results table (infobox shows 49.8% / 47.2%).
+Sen-AZ,Ruben Gallego,Kari Lake,50.06,47.65,2.41,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Arizona,1676335,1595761,3348814,
+Sen-CA,Adam Schiff,Steve Garvey,58.87,41.13,17.74,https://elections.cdn.sos.ca.gov/sov/2024-general/sov/19-uss-ft.pdf,9036252,6312594,15348846,Regular (full-term) election. Percentages computed from SOS vote counts (two-candidate race; SOS prints 58.9% / 41.1%). Wikipedia results table beyond fetch limit.
+Sen-FL,Debbie Mucarsel-Powell,Rick Scott,42.79,55.57,-12.78,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Florida,4603077,5977706,,Total not captured; percentages as printed on Wikipedia.
+Sen-MA,Elizabeth Warren,John Deaton,59.81,40.00,19.81,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Massachusetts,2041668,1365440,3413329,
+Sen-MD,Angela Alsobrooks,Larry Hogan,54.64,42.84,11.80,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Maryland,1650912,1294344,,From the Wikipedia infobox (results table beyond fetch limit).
+Sen-ME,Angus King (I),Demi Kouzounas,52.06,34.64,17.42,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Maine,427331,284338,820782,"Angus King is an independent who caucuses with Democrats; his share is in dem_pct. David Costello (D) 88,891 votes, 10.83%. Percentages are first-choice (King won a majority, no RCV rounds needed)."
+Sen-MI,Elissa Slotkin,Mike Rogers,48.64,48.30,0.34,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Michigan,2712686,2693680,5577183,
+Sen-MN,Amy Klobuchar,Royce White,56.20,40.50,15.70,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Minnesota,1792441,1291712,3189323,
+Sen-MO,Lucas Kunce,Josh Hawley,41.84,55.57,-13.73,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Missouri,1243728,1651907,2972559,
+Sen-MT,Jon Tester,Tim Sheehy,45.50,52.64,-7.14,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Montana,276305,319682,607262,
+Sen-NE,Dan Osborn (I),Deb Fischer,46.52,53.19,-6.67,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Nebraska,436493,499124,,Osborn is an independent (no Democratic nominee); his share is in dem_pct.
+Sen-NJ,Andy Kim,Curtis Bashaw,53.61,43.99,9.62,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_New_Jersey,2161491,1773589,,From the Wikipedia infobox (results table beyond fetch limit).
+Sen-NM,Martin Heinrich,Nella Domenici,55.06,44.94,10.12,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_New_Mexico,497333,405978,903311,
+Sen-NV,Jacky Rosen,Sam Brown,47.87,46.22,1.65,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Nevada,701105,677046,1464728,
+Sen-NY,Kirsten Gillibrand,Mike Sapraicone,58.82,40.52,18.30,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_New_York,4711298,3246114,8010317,Fusion totals: Gillibrand Dem + Working Families lines; Sapraicone Rep + Conservative lines.
+Sen-OH,Sherrod Brown,Bernie Moreno,46.47,50.09,-3.62,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Ohio,2650949,2857383,5704620,
+Sen-PA,Bob Casey Jr.,Dave McCormick,48.56,48.78,-0.22,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Pennsylvania,3384180,3399295,6968735,
+Sen-TN,Gloria Johnson,Marsha Blackburn,34.16,63.80,-29.64,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Tennessee,1027461,1918743,3007608,
+Sen-TX,Colin Allred,Ted Cruz,44.56,53.05,-8.49,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Texas,5031249,5990741,11291854,
+Sen-UT,Caroline Gleich,John Curtis,31.74,62.50,-30.76,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Utah,464515,914700,1463509,
+Sen-VA,Tim Kaine,Hung Cao,54.37,45.44,8.93,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Virginia,2417115,2019911,4445535,
+Sen-WA,Maria Cantwell,Raul Garcia,59.09,40.64,18.45,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Washington,2252577,1549187,3812391,
+Sen-WI,Tammy Baldwin,Eric Hovde,49.33,48.48,0.85,https://en.wikipedia.org/wiki/2024_United_States_Senate_election_in_Wisconsin,1672777,1643996,3390787,
+SenS-NE,Preston Love Jr.,Pete Ricketts,37.42,62.58,-25.16,https://en.wikipedia.org/wiki/2024_United_States_Senate_special_election_in_Nebraska,349902,585103,935005,
+Gov-MO,Crystal Quade,Mike Kehoe,38.72,59.14,-20.42,https://en.wikipedia.org/wiki/2024_Missouri_gubernatorial_election,1146173,1750802,2960266,
+Gov-NC,Josh Stein,Mark Robinson,54.90,40.08,14.82,https://en.wikipedia.org/wiki/2024_North_Carolina_gubernatorial_election,3069496,2241309,5591547,
+Gov-NH,Joyce Craig,Kelly Ayotte,44.27,53.61,-9.34,https://en.wikipedia.org/wiki/2024_New_Hampshire_gubernatorial_election,360149,436122,813497,
+Gov-UT,Brian King,Spencer Cox,28.46,52.89,-24.43,https://en.wikipedia.org/wiki/2024_Utah_gubernatorial_election,420514,781431,1477457,"Phil Lyman (write-in) 200,551 votes, 13.57%."
+Gov-WA,Bob Ferguson,Dave Reichert,55.51,44.28,11.23,https://en.wikipedia.org/wiki/2024_Washington_gubernatorial_election,2143368,1709818,3861388,
+Pres-AZ,Kamala Harris,Donald Trump,46.69,52.22,-5.53,https://www.fec.gov/documents/5644/2024presgeresults.pdf,1582860,1770242,3390161,FEC votes; pct = votes / FEC state total
+Pres-CA,Kamala Harris,Donald Trump,58.47,38.33,20.14,https://www.fec.gov/documents/5644/2024presgeresults.pdf,9276179,6081697,15865475,FEC votes; pct = votes / FEC state total
+Pres-FL,Kamala Harris,Donald Trump,42.99,56.09,-13.10,https://www.fec.gov/documents/5644/2024presgeresults.pdf,4683038,6110125,10893752,FEC votes; pct = votes / FEC state total
+Pres-MA,Kamala Harris,Donald Trump,61.22,36.02,25.20,https://www.fec.gov/documents/5644/2024presgeresults.pdf,2126518,1251303,3473668,FEC votes; pct = votes / FEC state total
+Pres-MD,Kamala Harris,Donald Trump,62.62,34.08,28.54,https://www.fec.gov/documents/5644/2024presgeresults.pdf,1902577,1035550,3038334,FEC votes; pct = votes / FEC state total
+Pres-ME,Kamala Harris,Donald Trump,52.40,45.46,6.94,https://www.fec.gov/documents/5644/2024presgeresults.pdf,435652,377977,831375,FEC votes; pct = votes / FEC state total (statewide)
+Pres-MI,Kamala Harris,Donald Trump,48.31,49.73,-1.42,https://www.fec.gov/documents/5644/2024presgeresults.pdf,2736533,2816636,5664186,FEC votes; pct = votes / FEC state total
+Pres-MN,Kamala Harris,Donald Trump,50.92,46.68,4.24,https://www.fec.gov/documents/5644/2024presgeresults.pdf,1656979,1519032,3253920,FEC votes; pct = votes / FEC state total
+Pres-MO,Kamala Harris,Donald Trump,40.08,58.49,-18.41,https://www.fec.gov/documents/5644/2024presgeresults.pdf,1200599,1751986,2995327,FEC votes; pct = votes / FEC state total
+Pres-MT,Kamala Harris,Donald Trump,38.46,58.39,-19.93,https://www.fec.gov/documents/5644/2024presgeresults.pdf,231906,352079,602990,FEC votes; pct = votes / FEC state total
+Pres-NC,Kamala Harris,Donald Trump,47.65,50.86,-3.21,https://www.fec.gov/documents/5644/2024presgeresults.pdf,2715375,2898423,5699141,FEC votes; pct = votes / FEC state total
+Pres-NE,Kamala Harris,Donald Trump,38.86,59.32,-20.46,https://www.fec.gov/documents/5644/2024presgeresults.pdf,369995,564816,952182,FEC votes; pct = votes / FEC state total (statewide)
+Pres-NH,Kamala Harris,Donald Trump,50.65,47.87,2.78,https://www.fec.gov/documents/5644/2024presgeresults.pdf,418488,395523,826189,FEC votes; pct = votes / FEC state total
+Pres-NJ,Kamala Harris,Donald Trump,51.97,46.06,5.91,https://www.fec.gov/documents/5644/2024presgeresults.pdf,2220713,1968215,4272725,FEC votes; pct = votes / FEC state total
+Pres-NM,Kamala Harris,Donald Trump,51.85,45.85,6.00,https://www.fec.gov/documents/5644/2024presgeresults.pdf,478802,423391,923403,FEC votes; pct = votes / FEC state total
+Pres-NV,Kamala Harris,Donald Trump,47.49,50.59,-3.10,https://www.fec.gov/documents/5644/2024presgeresults.pdf,705197,751205,1484840,FEC votes; pct = votes / FEC state total
+Pres-NY,Kamala Harris,Donald Trump,55.91,43.31,12.60,https://www.fec.gov/documents/5644/2024presgeresults.pdf,4619195,3578899,8262495,FEC votes; pct = votes / FEC state total
+Pres-OH,Kamala Harris,Donald Trump,43.93,55.14,-11.21,https://www.fec.gov/documents/5644/2024presgeresults.pdf,2533699,3180116,5767788,FEC votes; pct = votes / FEC state total
+Pres-PA,Kamala Harris,Donald Trump,48.49,50.20,-1.71,https://www.fec.gov/documents/5644/2024presgeresults.pdf,3423042,3543308,7058732,FEC votes; pct = votes / FEC state total
+Pres-TN,Kamala Harris,Donald Trump,34.47,64.19,-29.72,https://www.fec.gov/documents/5644/2024presgeresults.pdf,1056265,1966865,3063942,FEC votes; pct = votes / FEC state total
+Pres-TX,Kamala Harris,Donald Trump,42.46,56.14,-13.68,https://www.fec.gov/documents/5644/2024presgeresults.pdf,4835250,6393597,11388674,FEC votes; pct = votes / FEC state total
+Pres-UT,Kamala Harris,Donald Trump,37.79,59.38,-21.59,https://www.fec.gov/documents/5644/2024presgeresults.pdf,562566,883818,1488494,FEC votes; pct = votes / FEC state total
+Pres-VA,Kamala Harris,Donald Trump,51.82,46.06,5.76,https://www.fec.gov/documents/5644/2024presgeresults.pdf,2333778,2074097,4503288,FEC votes; pct = votes / FEC state total
+Pres-WA,Kamala Harris,Donald Trump,57.23,39.01,18.22,https://www.fec.gov/documents/5644/2024presgeresults.pdf,2245849,1530923,3924243,FEC votes; pct = votes / FEC state total
+Pres-WI,Kamala Harris,Donald Trump,48.74,49.60,-0.86,https://www.fec.gov/documents/5644/2024presgeresults.pdf,1668229,1697626,3422918,FEC votes; pct = votes / FEC state total
+Pres-US,Kamala Harris,Donald Trump,48.32,49.80,-1.48,https://www.fec.gov/documents/5644/2024presgeresults.pdf,75017613,77302580,155238302,FEC votes; FEC prints 48.32% / 49.80%

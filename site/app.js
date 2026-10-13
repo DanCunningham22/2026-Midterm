@@ -31,17 +31,21 @@
     age: [[-5, 75], [-25, 55], [-40, 35], [-35, 45]],
     gender: [[-40, 35], [-15, 50]],
   };
-  // The first oval is the forecast itself: every setting at its default (polls plus early vote)
-  const FORECAST_NAT = M.national(M.defaults) + M.evShift(M.defaults);
+  // The first ovals are the two starting points: our forecast (the backtested blend, data.indep) and the polls alone.
+  // Every setting at its default for that basis; the early vote is included in both.
+  const HAS_OURS = M.hasIndep;
+  const natAt = (s) => M.national(s) + M.evShift(s);
+  const FORECAST_NAT = natAt(M.defaults);
+  const POLLS_NAT = natAt(M.defaultsPolls);
   const PRESETS = [
-    { k: 'forecast', label: 'Forecast ' + fm(FORECAST_NAT), v: null },
+    { k: 'forecast', label: (HAS_OURS ? 'Our forecast ' : 'Forecast ') + fm(FORECAST_NAT), v: null },
+  ].concat(HAS_OURS ? [{ k: 'polls', label: 'Polls only ' + fm(POLLS_NAT), v: null }] : []).concat([
     { k: 'd4', label: 'D+4', v: 4 },
     { k: 'd9', label: 'D+9', v: 9 },
     { k: 'specials', label: 'Specials pace D+11', v: 11 },
-    { k: 'miss', label: '2024-size poll miss D+5.4', v: 5.4 },
     { k: 'even', label: 'Even', v: 0 },
     { k: 'r22', label: '2022 rerun R+2.8', v: -2.8 },
-  ];
+  ]);
   const ORDINAL = (n) => { const s = ['th', 'st', 'nd', 'rd'], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); };
 
   // ---------------------------------------------------------------- formatting
@@ -143,25 +147,45 @@
   }
 
   // ---------------------------------------------------------------- the forecast (default settings)
-  let R0 = null;   // the forecast's simulation, kept so it can be shown next to any scenario
-  function atForecast() {
-    const d = M.defaults;
+  let R0 = null, R0p = null;   // the forecast's simulation (and the polls-only one), kept to show next to any scenario
+  function atDefaults(d) {
+    if (M.basis(sc) !== M.basis(d)) return false;
     if (Math.abs(M.national(sc) - M.national(d)) > 0.05) return false;
     if (sc.T !== d.T || sc.edge !== d.edge || sc.evw !== d.evw || sc.sigN !== d.sigN || sc.cand !== d.cand || (sc.demo !== false) !== (d.demo !== false)) return false;
     return ['race', 'age', 'gender'].every((dim) => d.dev[dim].every((v, i) => Math.abs(sc.dev[dim][i] - v) < 0.05 && Math.abs(sc.mult[dim][i] - d.mult[dim][i]) < 0.001));
   }
+  const atForecast = () => atDefaults(M.defaults);
+  const atPolls = () => HAS_OURS && atDefaults(M.defaultsPolls);
+  const titlePrefix = () => (atForecast() ? '' : atPolls() ? 'Polls only: ' : 'Your scenario: ');
   function resetToForecast() { sc = M.clone(M.defaults); ui.pattern = 'blend'; buildXtabs(); update(); }
+  function showPollsOnly() { sc = M.clone(M.defaultsPolls); ui.pattern = 'blend'; buildXtabs(); update(); }
   function renderForecastCard() {
     if (!R0) R0 = M.simulate(M.clone(M.defaults));
+    if (HAS_OURS && !R0p) R0p = M.simulate(M.clone(M.defaultsPolls));
     const rv = rView(), P = rv ? 'R' : 'D', cls = rv ? 'r' : 'd';
-    const h = rv ? R0.house.r : R0.house, s = rv ? R0.senate.r : R0.senate, g = rv ? R0.gov.r : R0.gov;
-    const hc = rv ? R0.house.r.control : R0.house.control, scc = rv ? R0.senate.rcontrol : R0.senate.control, gc = rv ? R0.gov.r.control : R0.gov.maj;
-    const item = (lab, p, sub) => '<div class="fc-item"><span class="fc-lab">' + lab + '</span><span class="fc-v ' + cls + '">' + P + ' ' + fp(p) + '</span><span class="fc-sub">' + sub + '</span></div>';
-    const on = atForecast();
-    $('fcCard').innerHTML = '<div class="fc-head"><span class="fc-k">Today\'s forecast</span><span class="fc-s">polls plus early vote, national vote ' + fm(FORECAST_NAT) + (D.meta && D.meta.generated ? ' · updated ' + fmtStamp(D.meta.generated) : '') + '</span></div>' +
-      '<div class="fc-grid">' + item('House majority', hc, Math.round(h.mean) + ' seats on average') + item('Senate control', scc, s.mean.toFixed(1) + ' seats on average') + item('26+ governors', gc, g.mean.toFixed(1) + ' governors on average') + '</div>' +
-      '<p class="fc-note">' + (on ? 'You\'re looking at the forecast: the model with every setting at its default. Change anything and the map and charts show your own scenario.'
-        : 'The map and charts below show <b>your scenario</b>, not the forecast. <button class="fc-back" id="fcBack">Back to the forecast</button>') + '</p>';
+    const pick = (X) => ({
+      hc: rv ? X.house.r.control : X.house.control, sc: rv ? X.senate.rcontrol : X.senate.control, gc: rv ? X.gov.r.control : X.gov.maj,
+      h: rv ? X.house.r.mean : X.house.mean, s: rv ? X.senate.r.mean : X.senate.mean, g: rv ? X.gov.r.mean : X.gov.mean,
+    });
+    const o = pick(R0), q = R0p ? pick(R0p) : null;
+    const item = (lab, p, sub, pp, psub) => '<div class="fc-item"><span class="fc-lab">' + lab + '</span><span class="fc-v ' + cls + '">' + P + ' ' + fp(p) + '</span><span class="fc-sub">' + sub + '</span>' +
+      (pp != null ? '<span class="fc-polls">Polls alone: ' + P + ' ' + fp(pp) + ', ' + psub + '</span>' : '') + '</div>';
+    const on = atForecast(), onP = atPolls();
+    const stamp = D.meta && D.meta.generated ? ' · updated ' + fmtStamp(D.meta.generated) : '';
+    const head = HAS_OURS
+      ? '<span class="fc-k">Our forecast</span><span class="fc-s">national House vote ' + fm(FORECAST_NAT) + ' (±' + D.indep.sig.toFixed(1) + '); the polls alone say ' + fm(POLLS_NAT) + stamp + '</span>'
+      : '<span class="fc-k">Today\'s forecast</span><span class="fc-s">polls plus early vote, national vote ' + fm(FORECAST_NAT) + stamp + '</span>';
+    const back = '<button class="fc-back" id="fcBack">Back to ' + (HAS_OURS ? 'our forecast' : 'the forecast') + '</button>';
+    const note = on
+      ? (HAS_OURS ? 'The polls, corrected by how they\'ve done in past midterms and weighed against special elections, approval and last year\'s governor races. <a href="#backtest">How it\'s built, and how it would have done since 1998</a>. Change anything and the map and charts show your own scenario.'
+        : 'You\'re looking at the forecast: the model with every setting at its default. Change anything and the map and charts show your own scenario.')
+      : onP ? 'The map and charts below show <b>the polls alone</b>, without our corrections. ' + back
+        : 'The map and charts below show <b>your scenario</b>, not ' + (HAS_OURS ? 'our' : 'the') + ' forecast. ' + back;
+    $('fcCard').innerHTML = '<div class="fc-head">' + head + '</div>' +
+      '<div class="fc-grid">' + item('House majority', o.hc, Math.round(o.h) + ' seats on average', q && q.hc, q && Math.round(q.h) + ' seats') +
+      item('Senate control', o.sc, o.s.toFixed(1) + ' seats on average', q && q.sc, q && q.s.toFixed(1)) +
+      item('26+ governors', o.gc, o.g.toFixed(1) + ' governors on average', q && q.gc, q && q.g.toFixed(1)) + '</div>' +
+      '<p class="fc-note">' + note + '</p>';
     const b = $('fcBack'); if (b) b.addEventListener('click', resetToForecast);
   }
 
@@ -173,6 +197,7 @@
       const b = e.target.closest('.oval'); if (!b) return;
       const p = PRESETS.find((x) => x.k === b.dataset.k);
       if (p.k === 'forecast') { resetToForecast(); return; }
+      if (p.k === 'polls') { showPollsOnly(); return; }
       sc.C = M.solveC(sc, p.v);
       update();
     });
@@ -187,7 +212,7 @@
     $('envOut').className = 'env-value num ' + (eff > 0.05 ? 'd' : eff < -0.05 ? 'r' : '');
     document.querySelectorAll('#presets .oval').forEach((b) => {
       const p = PRESETS.find((x) => x.k === b.dataset.k);
-      b.setAttribute('aria-checked', (p.k === 'forecast' ? atForecast() : Math.abs(nat - p.v) < 0.05) ? 'true' : 'false');
+      b.setAttribute('aria-checked', (p.k === 'forecast' ? atForecast() : p.k === 'polls' ? atPolls() : Math.abs(nat - p.v) < 0.05) ? 'true' : 'false');
     });
     const h = R.house, s = R.senate, g = R.gov;
     const rv = rView(), P = rv ? 'R' : 'D', cls = rv ? 'r' : 'd';
@@ -378,6 +403,22 @@
     return '<div class="comp" aria-hidden="true">' + s.map((v, i) => '<span class="' + cls[i] + '" style="width:' + (v * 100).toFixed(1) + '%"></span>').join('') + '</div>' +
       '<div class="comp-key">' + s.map((v, i) => '<span><span class="' + cls[i] + '" style="display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px"></span>' + lab[i] + ' ' + Math.round(v * 100) + '%</span>').join('') + '</div>';
   }
+  // Senate and governor races: our forecast's starting margin next to the polls' (data.indep)
+  function oursInfo(t, r) {
+    if (!HAS_OURS || t === 'house') return null;
+    const I = D.indep, v = I[t === 'senate' ? 'senate' : 'gov'][r.id];
+    const kept = (I.kept || []).find((k) => k.id === r.id);
+    return { kept: kept ? kept.why : null, ours: v == null ? r.base : v, polls: r.base, a: t === 'senate' ? I.a_sen : I.a_gov, fund: r.src === 'fundamentals' };
+  }
+  function oursText(t, r) {
+    const x = oursInfo(t, r);
+    if (!x) return '';
+    if (x.kept) return 'Our forecast keeps the polls here: ' + esc(x.kept) + '.';
+    if (x.fund) return 'Our forecast moves it with our national vote, to ' + fm(x.ours) + '.';
+    return 'Our forecast blends this with the state\'s lean plus our national vote (' + Math.round(x.a * 100) + '/' + Math.round((1 - x.a) * 100) +
+      ', the mix that best predicted past ' + (t === 'senate' ? 'Senate' : 'governor') + ' races; <a href="#backtest">backtest</a>), which ' +
+      (Math.abs(x.ours - x.polls) < 0.05 ? 'leaves it at ' : 'moves it to ') + fm(x.ours) + '.';
+  }
   function renderDetail() {
     const box = $('detail');
     const t = ui.tab;
@@ -417,6 +458,10 @@
       extra = '<p class="note">' + parts.join(' ') + '</p><div><span class="tally-k">Estimated electorate (race and education)</span>' + compBar(r.race) + '</div>' + moneyHtml(r);
     } else {
       facts += '<div><dt>2024 president</dt><dd>' + fm(r.m24) + '</dd></div>';
+      const ox = oursInfo(t, r);
+      if (ox && !ox.kept && !ox.fund) {
+        facts += M.basis(sc) === 'ours' ? '<div><dt>Polls alone</dt><dd>' + fm(ox.polls) + '</dd></div>' : '<div><dt>Our forecast</dt><dd>' + fm(ox.ours) + '</dd></div>';
+      }
       const parts = [];
       if (t === 'senate') {
         if (r.src === 'oct9') parts.push('Starts from the Oct 9 Senate model\'s corrected polling average, ' + fm(r.base - (r.drift || 0)) + ' (model chance then ' + r.p9 + '%)' +
@@ -428,6 +473,8 @@
         if (r.src === 'polls') parts.push('Starts from a weighted average of ' + r.npolls + ' public poll' + (r.npolls === 1 ? '' : 's') + ' since late July, ' + fm(r.base) + '. Latest: ' + r.latest.slice(0, 3).map((x) => esc(x.p) + ' ' + x.d + '–' + x.r + ' (' + x.end.slice(5) + (x.lean ? ', ' + x.lean + '-leaning' : '') + ')').join('; ') + '.');
         else parts.push('No recent public polls; starts from fundamentals, ' + fm(r.base) + '.');
       }
+      const ot = oursText(t, r);
+      if (ot) parts.push(ot);
       if (r.note) parts.push(esc(r.note));
       extra = '<p class="note">' + parts.join(' ') + '</p>' + (t === 'senate' ? moneyHtml(r) : '');
     }
@@ -644,21 +691,21 @@
     const tipH = crossing(curve, 'houseR', 217.5), tipS = crossing(curve, 'senateR', 49.5);
     if (t === 'house') {
       const h = R.house.r;
-      $('resTitle').textContent = (atForecast() ? '' : 'Your scenario: ') + 'House outlook';
+      $('resTitle').textContent = titlePrefix() + 'House outlook';
       head = 'Republicans win <b class="r">' + Math.round(h.mean) + '</b> seats on average (80% of simulations: ' + h.lo + '–' + h.hi + '). ' +
         'Chance of a Republican majority: <b>' + fp(h.control) + '</b>. ' + tipTextR(tipH, 'House');
       drawHist(h.hist, 135, 260, 218, 'Republican seats', 'R');
       $('histCap').textContent = R.n.toLocaleString() + ' simulations. Red bars are Republican majorities.';
     } else if (t === 'senate') {
       const s = R.senate;
-      $('resTitle').textContent = (atForecast() ? '' : 'Your scenario: ') + 'Senate outlook';
+      $('resTitle').textContent = titlePrefix() + 'Senate outlook';
       head = 'Republicans hold <b class="r">' + s.r.mean.toFixed(1) + '</b> seats on average, including 31 not up (80%: ' + s.r.lo + '–' + s.r.hi + '). ' +
         'Republican control <b>' + fp(s.rcontrol) + '</b>, Democratic control <b>' + fp(s.control) + '</b>, Osborn decides <b>' + fp(s.osborn) + '</b>. ' + tipTextR(tipS, 'Senate');
       drawHist(s.r.hist, 40, 58, 50, 'Republican seats', 'R');
       $('histCap').textContent = 'Republicans need 50 seats, since VP Vance breaks ties. Osborn (NE) counts for neither party. Red bars are Republican control.';
     } else {
       const g = R.gov.r;
-      $('resTitle').textContent = (atForecast() ? '' : 'Your scenario: ') + 'Governors outlook';
+      $('resTitle').textContent = titlePrefix() + 'Governors outlook';
       head = 'Republicans hold <b class="r">' + g.mean.toFixed(1) + '</b> governorships on average after Nov 3, including 8 not up (80%: ' + g.lo + '–' + g.hi + '). ' +
         'Chance of 26 or more: <b>' + fp(g.control) + '</b>.';
       drawHist(g.hist, 14, 34, 26, 'Republican governors', 'R');
@@ -676,7 +723,7 @@
     const tipH = crossing(curve, 'house', 217.5), tipS = crossing(curve, 'senate', 50.5);
     if (t === 'house') {
       const h = R.house;
-      $('resTitle').textContent = (atForecast() ? '' : 'Your scenario: ') + 'House outlook';
+      $('resTitle').textContent = titlePrefix() + 'House outlook';
       head = 'Democrats win <b class="d">' + Math.round(h.mean) + '</b> seats on average (80% of simulations: ' + h.lo + '–' + h.hi + '). ' +
         'Chance of a Democratic majority: <b>' + fp(h.control) + '</b>. ' +
         (tipH !== null ? 'With these settings Democrats are favored for the House at <b>' + fm(tipH) + '</b> or better nationally.' : '');
@@ -684,7 +731,7 @@
       $('histCap').textContent = R.n.toLocaleString() + ' simulations. Blue bars are Democratic majorities.';
     } else if (t === 'senate') {
       const s = R.senate;
-      $('resTitle').textContent = (atForecast() ? '' : 'Your scenario: ') + 'Senate outlook';
+      $('resTitle').textContent = titlePrefix() + 'Senate outlook';
       head = 'Democrats hold <b class="d">' + s.mean.toFixed(1) + '</b> seats on average, including 34 not up (80%: ' + s.lo + '–' + s.hi + '). ' +
         'Democratic control <b>' + fp(s.control) + '</b>, Republican control <b>' + fp(s.rcontrol) + '</b>, Osborn decides <b>' + fp(s.osborn) + '</b>. ' +
         (tipS !== null ? 'Control tips at about <b>' + fm(tipS) + '</b> nationally.' : '');
@@ -692,7 +739,7 @@
       $('histCap').textContent = 'Democratic caucus includes King and Sanders; Osborn (NE) is counted separately. Blue bars are Democratic control.';
     } else {
       const g = R.gov;
-      $('resTitle').textContent = (atForecast() ? '' : 'Your scenario: ') + 'Governors outlook';
+      $('resTitle').textContent = titlePrefix() + 'Governors outlook';
       head = 'Democrats hold <b class="d">' + g.mean.toFixed(1) + '</b> governorships on average after Nov 3, including 6 not up (80%: ' + g.lo + '–' + g.hi + '). ' +
         'Chance of 26 or more: <b>' + fp(g.maj) + '</b>.';
       drawHist(R.gov.hist, 16, 36, 26, 'Democratic governors');
@@ -795,13 +842,18 @@
     $('raceTitle').textContent = q ? 'Matching races' : t === 'house' ? 'Closest House races' : t === 'senate' ? 'Senate races' : 'Governor races';
     $('raceSub').textContent = 'Sorted by projected margin. Select a row to see it on the map. * = incumbent running.';
     const mcol = t !== 'gov' && D.money && D.money.races;
-    $('raceTable').querySelector('thead').innerHTML = '<tr><th>Race</th><th>Matchup</th><th class="n col24">2024 pres.</th><th class="n">Projected</th><th class="n">Chance</th><th class="n colflip">Flips at</th>' + (mcol ? '<th class="n colmoney" title="Outside spending (independent expenditures) in the general election, FEC">Outside $</th>' : '') + '</tr>';
+    const ocol = HAS_OURS && t !== 'house', oursBasis = M.basis(sc) === 'ours';
+    const ocell = (r) => { const x = oursInfo(t, r); return fm(oursBasis ? x.polls : x.ours); };
+    $('raceTable').querySelector('thead').innerHTML = '<tr><th>Race</th><th>Matchup</th><th class="n col24">2024 pres.</th><th class="n">Projected</th><th class="n">Chance</th><th class="n colflip">Flips at</th>' +
+      (ocol ? '<th class="n colpolls" title="' + (oursBasis ? 'Where the polls alone start the race, before our corrections' : 'Where our forecast starts the race') + '">' + (oursBasis ? 'Polls alone' : 'Our forecast') + '</th>' : '') +
+      (mcol ? '<th class="n colmoney" title="Outside spending (independent expenditures) in the general election, FEC">Outside $</th>' : '') + '</tr>';
     const rows = idx.slice(0, limit).map((i) => {
       const r = list[i], m = raceMargin(t, i), p = raceP(t, i), f = flipPoint(t, i), rt = rating(p);
       return '<tr data-i="' + i + '"' + (ui.sel === i ? ' class="sel"' : '') + '><td class="code">' + esc(r.id) + '</td><td><span class="full">' + matchup(t, r, true) + '</span><span class="short">' + shortMatchup(t, r) + '</span></td><td class="n col24">' + fm(r.m24) +
-        '</td><td class="n ' + (m > 0 ? 'd' : 'r') + '">' + fm(m) + '</td><td class="n"><span class="pill ' + rt.k + '">' + chanceText(p, r) + '</span></td><td class="n colflip">' + (f === null ? '—' : fm(f)) + '</td>' + (mcol ? '<td class="n colmoney">' + moneyCell(r) + '</td>' : '') + '</tr>';
+        '</td><td class="n ' + (m > 0 ? 'd' : 'r') + '">' + fm(m) + '</td><td class="n"><span class="pill ' + rt.k + '">' + chanceText(p, r) + '</span></td><td class="n colflip">' + (f === null ? '—' : fm(f)) + '</td>' +
+        (ocol ? '<td class="n colpolls muted">' + ocell(r) + '</td>' : '') + (mcol ? '<td class="n colmoney">' + moneyCell(r) + '</td>' : '') + '</tr>';
     });
-    $('raceTable').querySelector('tbody').innerHTML = rows.join('') || '<tr><td colspan="7" class="muted">No races match.</td></tr>';
+    $('raceTable').querySelector('tbody').innerHTML = rows.join('') || '<tr><td colspan="8" class="muted">No races match.</td></tr>';
     $('moreBtn').hidden = !!q || idx.length <= limit && !ui.showAll;
     $('moreBtn').textContent = ui.showAll ? 'Show fewer' : 'Show all ' + idx.length;
   }
@@ -953,7 +1005,8 @@
     if (document.activeElement !== $('evw')) $('evw').value = Math.round(w * 100);
     $('evwOut').textContent = (w * 100).toFixed(w < 0.1 && w > 0 ? 1 : 0) + '%';
     const shift = M.evShift(sc);
-    $('evwHint').textContent = 'The early vote implies about ' + fm(D.evproj.median) + ' (see below), vs. ' + fm(D.G0) + ' in the polls. At this weight it moves the national vote ' + (shift >= 0 ? '+' : '−') + Math.abs(shift).toFixed(2) + ' pts.';
+    const ours = M.basis(sc) === 'ours';
+    $('evwHint').textContent = 'The early vote implies about ' + fm(D.evproj.median) + ' (see below), vs. ' + fm(M.target(M.basis(sc))) + (ours ? ' in our forecast' : ' in the polls') + '. At this weight it moves the national vote ' + (shift >= 0 ? '+' : '−') + Math.abs(shift).toFixed(2) + ' pts.';
     sliderTicks($('evwWrap'), $('evw'), [[M.evAuto() * 100, 'auto', 'Auto: share of expected vote already cast']]);
     $('evAuto').setAttribute('aria-pressed', sc.evw === null ? 'true' : 'false');
     $('evFace').setAttribute('aria-pressed', sc.evw === 1 ? 'true' : 'false');
@@ -961,7 +1014,7 @@
     // uncertainty
     if (document.activeElement !== $('sig')) $('sig').value = sc.sigN;
     $('sigOut').textContent = sc.sigN < 0.05 ? 'None (exact)' : '±' + sc.sigN.toFixed(1) + ' pts';
-    sliderTicks($('sigWrap'), $('sig'), [[3.9, '', 'Oct 9 Senate model']]);
+    sliderTicks($('sigWrap'), $('sig'), [[3.9, '', 'Polls only (as in the Oct 9 Senate model)']].concat(HAS_OURS ? [[D.indep.sig, '', 'Our forecast: the backtested blend misses less']] : []));
     $('cand').checked = sc.cand;
     $('demo').checked = sc.demo !== false;
   }
@@ -1042,7 +1095,7 @@
     $('early-vote').innerHTML =
       '<div class="ev-head"><div><h2>What the early vote says so far</h2>' +
       '<p class="sub">About ' + (us.cast / 1e6).toFixed(1) + ' million ballots are in, roughly ' + Math.round(pct2022 * 100) + '% of what a 2022-sized midterm would bring. ' + esc(st.headline || '') + '</p></div>' +
-      '<div class="callout"><h3>How the map uses it</h3><p class="small" style="margin:0">The comparisons below were measured when about ' + (auto * 100).toFixed(1) + '% of the expected vote was in, so the default gives them that much weight. They imply about ' + fm(D.evproj.median) + ', vs. ' + fm(D.G0) + ' in the polls, which moves the national vote by ' + (M.evShift(M.defaults)).toFixed(2) + ' pts. Raise the weight in the controls to take them at face value. Ballot counts and the North Carolina comparison refresh every three hours; the other comparisons, the signals and the story are refreshed daily (last on ' + sinceStory + ').</p></div></div>' +
+      '<div class="callout"><h3>How the map uses it</h3><p class="small" style="margin:0">The comparisons below were measured when about ' + (auto * 100).toFixed(1) + '% of the expected vote was in, so the default gives them that much weight. They imply about ' + fm(D.evproj.median) + ', vs. ' + (HAS_OURS ? fm(M.target('ours')) + ' in our forecast (' + fm(D.G0) + ' in the polls)' : fm(D.G0) + ' in the polls') + ', which moves the national vote by ' + (M.evShift(M.defaults)).toFixed(2) + ' pts. Raise the weight in the controls to take them at face value. Ballot counts and the North Carolina comparison refresh every three hours; the other comparisons, the signals and the story are refreshed daily (last on ' + sinceStory + ').</p></div></div>' +
       '<div class="stats">' +
       '<div class="stat"><div class="stat-v num">' + (us.cast / 1e6).toFixed(2) + 'M</div><div class="stat-k">ballots counted in ' + us.reporting + ' states (UF Election Lab' + (us.asof_min ? ', state data as of ' + fmtDay(us.asof_min) + (us.asof_max !== us.asof_min ? '–' + fmtDay(us.asof_max) : '') : '') + ')</div></div>' +
       '<div class="stat"><div class="stat-v num">' + (pct2022 * 100).toFixed(1) + '%</div><div class="stat-k">of 2022\'s 112.0M total ballots</div></div>' +
@@ -1210,15 +1263,17 @@
   // ---------------------------------------------------------------- method section
   function buildMethod() {
     const pu = D.polls_used.map((p) => p.pollster + ' (' + p.end.slice(5).replace('-', '/') + ', ' + p.pop + ')').join('; ');
+    const I = D.indep;
     $('method').innerHTML = '<h2>How it works</h2><div class="method-grid"><div>' +
+      (I ? '<p><b>Our forecast.</b> The map starts from our forecast, not the raw polls. The national House vote (' + fm(I.national) + ' now, vs. ' + fm(I.polls) + ' in the polls) blends four signals, each weighted by how well it predicted past midterms: the generic-ballot polls corrected for their record (they ran too Democratic in ' + I.backtest.polls.n_over + ' of the last ' + I.backtest.polls.n + ' elections), special elections, presidential approval, and the 2025 Virginia and New Jersey governor races. Senate and governor polls are blended with each state\'s lean plus that national vote, ' + Math.round(I.a_sen * 100) + '/' + Math.round((1 - I.a_sen) * 100) + ' for the Senate and ' + Math.round(I.a_gov * 100) + '/' + Math.round((1 - I.a_gov) * 100) + ' for governors. <a href="#backtest">The backtest</a> shows how it would have done in every midterm since 1998. "Polls only" in the scenario bar shows the map without these corrections.</p>' : '') +
       '<p><b>House.</b> Each district starts from its 2024 presidential margin on the lines in force for 2026, including the Texas, California, North Carolina, Ohio, Utah, Florida, Tennessee, Louisiana and Alabama redraws. It then moves with the national House vote, measured against 2024\'s R+1.5. A district moves more or less than the nation depending on who lives there: each group\'s swing and turnout change apply in proportion to that group\'s share of the district\'s voters. Candidate effects add 2 points for an incumbent and half of each candidate\'s past over- or under-performance of the presidential vote. At D+6 with only uniform swing, the lines give 223 Democratic seats; Decision Desk HQ reported 222 on the same test.</p>' +
       '<p><b>Groups.</b> The electorate is split three independent ways: race and education, age, and gender. Each split covers every voter, and a change in one shows up in the others (Hispanic voters are in every age group). The 2024 baseline is Pew Research Center\'s validated voters. Lowering turnout toward a midterm moves the electorate toward Pew\'s 2022 validated-voter mix: older, whiter and more college-educated. The default 2026 pattern sits halfway between 2024 and the average crosstabs of recent national polls (' + esc(pu) + '). Polls and validated-voter studies measure groups differently, which is why the default only goes halfway. The pollster picker loads one top-rated pollster\'s latest crosstabs instead: its gaps between groups, and optionally its national margin. Asian and other voters stay at their 2024 pattern, because their poll samples are tiny and Native American voters, who matter in several districts, are barely measured.</p>' +
       '<p><b>District electorates are estimates.</b> They come from each district\'s voting-age population by race, age and education, weighted by turnout factors fitted so the national total matches Pew\'s 2024 voters. The white college share is approximated from the district\'s overall college rate, and gender is assumed to be the same everywhere.</p>' +
       '</div><div>' +
-      '<p><b>Senate.</b> The 14 competitive races start from the corrected polling averages of a companion Senate model run on Oct 9, which used every public poll since Aug 1 (from RealClearPolling, 270toWin, Wikipedia and pollsters\' releases, excluding campaign internals) and adjusted each pollster for its lean and likely-voter screen. The other 21 start from 2024 presidential lean plus the national environment and 3 points for an incumbent; Montana uses its three-way polls (Alme vs. Bodnar). Every control then moves each state by how its electorate responds, relative to the default. With the defaults the Senate reproduces that model: 67% Democratic control vs. 65%.</p>' +
+      '<p><b>Senate.</b> The 14 competitive races start from the corrected polling averages of a companion Senate model run on Oct 9, which used every public poll since Aug 1 (from RealClearPolling, 270toWin, Wikipedia and pollsters\' releases, excluding campaign internals) and adjusted each pollster for its lean and likely-voter screen. The other 21 start from 2024 presidential lean plus the national environment and 3 points for an incumbent; Montana uses its three-way polls (Alme vs. Bodnar). Every control then moves each state by how its electorate responds, relative to the default. With the polls-only settings the Senate reproduces that model: 67% Democratic control vs. 65%.</p>' +
       '<p><b>Governors.</b> A recency- and quality-weighted average of public polls since late July, with R- or D-leaning pollsters at half weight; fundamentals where there are no polls (CO, HI, OK, SD, WY). They move 0.8 points per point of national change.</p>' +
       '<p><b>Uncertainty.</b> ' + M.NSIM.toLocaleString() + ' simulations with the same random draws each time, so results don\'t flicker as you drag. Each draws a shared national error (Student t with 5 degrees of freedom, SD from the slider), a state error (SD 1.9) shared by every race in the state, a race error (House 5, Senate 3.8, governors 4.5), and a demographic error: each group can land off the scenario (SD in points of margin: white college 4, white non-college 4, Black 5, Hispanic 7, Asian &amp; other 6, ages 18–29 5, older groups 3), moving each district and state by how far its electorate differs from the nation\'s. That makes places with similar voters miss together, the way polls missed white non-college voters in 2016 and 2020 and Hispanic voters in 2020 and 2024. It barely changes the chamber odds, because the misses cancel across the country, but it makes heavily Hispanic districts like TX-28 and FL-27 less certain and ties them together.</p>' +
-      '<p><b>Updates.</b> Every three hours the app rebuilds itself from fresh data: candidates and race polls from ElectIndex\'s public feed, ballot counts from UF Election Lab, and a new national default. The national default (' + fm(D.G0) + ' now) is a weighted average of public generic-ballot polls from the last four weeks: one poll per pollster (' + (D.G0_polls || '30') + ' pollsters), weighted by recency, sample size and pollster rating, with partisan-leaning pollsters at half weight. The competitive Senate races start from the Oct 9 corrected averages and move by the change in a simple poll average since then. The early-vote signals, story and same-point comparisons are refreshed daily from published analyses; the 2026 crosstab polls are added as pollsters release them. The Watch tab\'s dates, developments and Trump and Vance stops are refreshed daily, each linked to the page that confirms it. If a source fails, the app keeps its last good numbers and says so at the top.</p>' +
+      '<p><b>Updates.</b> Every three hours the app rebuilds itself from fresh data: candidates and race polls from ElectIndex\'s public feed, ballot counts from UF Election Lab, and a new national polling average. The polling average (' + fm(D.G0) + ' now) is a weighted average of public generic-ballot polls from the last four weeks: one poll per pollster (' + (D.G0_polls || '30') + ' pollsters), weighted by recency, sample size and pollster rating, with partisan-leaning pollsters at half weight.' + (I ? ' Our forecast is recomputed from it on every run; its approval and special-election inputs are checked daily.' : '') + ' The competitive Senate races start from the Oct 9 corrected averages and move by the change in a simple poll average since then. The early-vote signals, story and same-point comparisons are refreshed daily from published analyses; the 2026 crosstab polls are added as pollsters release them. The Watch tab\'s dates, developments and Trump and Vance stops are refreshed daily, each linked to the page that confirms it. If a source fails, the app keeps its last good numbers and says so at the top.</p>' +
       '<p><b>Money.</b> From the Federal Election Commission\'s bulk files, refreshed a few times a day: each nominee\'s campaign totals for 2025–26 (raised, spent, cash on hand, through their latest report) and outside spending, the independent expenditures super PACs, party committees and other groups report on 24- and 48-hour reports for or against each nominee (amended reports replace earlier versions; general election only, so primary and runoff spending is left out). Not covered: ads run before those reporting windows, party spending coordinated with campaigns, and governor races, which are state elections. Money is shown, not used in the forecast: it mostly follows how close a race already looks, an extra dollar in a saturated race moves few votes, and candidate quality, which fundraising partly reflects, is already in the model. Where it helps is as a cross-check: the Watch tab flags races where the money and the forecast disagree.</p>' +
       '<p><b>What it doesn\'t know.</b> District polls (shown, not used), expert ratings, money (shown, not used) and late scandals such as NV-2\'s.</p>' +
       sealedHtml() +
@@ -1228,8 +1283,92 @@
       '<li>Pew Research Center validated voters: <a href="https://www.pewresearch.org/politics/2025/06/26/voting-patterns-in-the-2024-election/">2024</a>, 2022 and 2018 (<a href="https://docs.google.com/spreadsheets/d/1JczVvbrlxkLiYYiNPSv0TRlWsbvYEihkZrnH1kQXIH8/edit?usp=sharing">detailed tables</a>).</li>' +
       '<li>2026 poll crosstabs: <a href="https://www.pewresearch.org/politics/2026/10/08/midterm-vote-preferences-by-race-and-ethnicity-age-and-other-demographics/">Pew (Oct 8)</a>, <a href="https://assets1.cbsnewsstatic.com/hub/cms/prod_cms_alt/file/2026/10/04/0957ee32-a848-4872-b659-14303d3d3734/cbsnews_20261004_sun.pdf">CBS News/YouGov</a>, <a href="https://d3nkl3psvxxpe9.cloudfront.net/documents/econTabReport_703uvs1.pdf">Economist/YouGov</a>, <a href="https://maristpoll.marist.edu/wp-content/uploads/2026/09/NPR_PBS-News_Marist-Poll_USA-NOS-and-Tables_202609171435.pdf">NPR/PBS/Marist</a>, <a href="https://static.foxnews.com/foxnews.com/content/uploads/2026/09/fox_september-11-14-2026_national_cross-tabs_september-16-release.pdf">Fox News</a>, <a href="https://law.marquette.edu/assets/community/poll/MLSPSC35/MLSPSC35CrosstabsRV.html">Marquette</a>, <a href="https://emersoncollegepolling.com/september-2026-national-poll-democrats/">Emerson</a> (pollster picker only). Pollster ratings: ElectIndex.</li>' +
       '<li>Generic-ballot polls: ElectIndex\'s poll file (compiled from public polls). For comparison: <a href="https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls">Silver Bulletin</a>, <a href="https://www.realclearpolling.com/polls/state-of-the-union/generic-congressional-vote">RealClearPolling</a>, <a href="https://fiftyplusone.news/polls/generic-ballot/generic-ballot">FiftyPlusOne</a>.</li>' +
+      (I ? '<li>Backtest: <a href="https://github.com/fivethirtyeight/data/tree/master/pollster-ratings">FiveThirtyEight\'s pollster-ratings archive</a> (every poll in the final three weeks, 1998–2022, with results); 2024 polls from <a href="https://www.realclearpolling.com/polls/state-of-the-union/2024/generic-congressional-vote">RealClearPolling</a> and pollster releases; House popular vote, 1946–2024, from each election\'s national results table on Wikipedia, checked against Brookings\' Vital Statistics on Congress; presidential approval from <a href="https://news.gallup.com/poll/203198/presidential-approval-ratings-donald-trump.aspx">Gallup</a> (earlier presidents via the <a href="https://www.presidency.ucsb.edu/statistics/data/george-w-bush-public-approval">American Presidency Project</a>\'s Gallup tables); special elections from <a href="https://www.the-downballot.com/p/100-specials-since-trumps-return">The Downballot</a>, <a href="https://amp.cnn.com/cnn/2018/02/22/politics/special-elections-good-for-democrats">CNN</a> and the <a href="https://www.nbcdfw.com/news/politics/do-special-election-results-spell-doom-for-republicans-in-2026/3983422/?amp=1">AP</a>.</li>' : '') +
       '<li>Turnout and early vote: <a href="https://election.lab.ufl.edu/early-vote/2026-early-voting/">UF Election Lab</a> (2026 early vote; 2018, 2022, 2024 turnout); <a href="https://www.cnn.com/2026/10/01/politics/cnn-early-voting-takeaways-democratic-advantage">CNN/Catalist</a>; <a href="https://www.nbcnews.com/politics/2026-election/early-vote-analysis-mail-ballot-concerns-are-changing-democrats-vote-rcna602489">NBC News/UPenn</a>; state election offices.</li>' +
       '</ul>';
+  }
+
+  // ---------------------------------------------------------------- our forecast: how it's built, and how it would have done
+  function renderBacktest() {
+    const box = $('backtest');
+    if (!box) return;
+    const I = D.indep;
+    if (!I || !I.backtest) { box.hidden = true; return; }
+    const B = I.backtest, met = B.metrics, S = B.state, inp = I.inputs || {};
+    const one = (v) => (+v).toFixed(1);
+    const pct = (w) => Math.round(w * 100) + '%';
+    const ext = (u, t) => '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(t) + '</a>';
+    const raceOf = (id) => D.senate.find((r) => r.id === id) || D.gov.find((r) => r.id === id);
+    // 1. the national vote: four signals
+    const comps = I.comps.map((c) => '<tr><td><b>' + esc(c.label) + '</b><span class="lens-sub">' + esc(c.note) + '</span></td>' +
+      '<td class="n ' + (c.est > 0 ? 'd' : 'r') + '">' + fm(c.est) + '</td><td class="n bt-col">±' + one(c.sigma) + '</td><td class="n">' + pct(c.weight) + '</td></tr>').join('');
+    // 2. each midterm since 1998, predicted without its own result
+    const mids = B.national.filter((r) => r.midterm && r.blend != null);
+    const miss = (v, a) => Math.abs(v - a);
+    const top = Math.max.apply(null, mids.map((r) => Math.max(miss(r.polls, r.actual), miss(r.blend, r.actual)))) || 1;
+    const bar = (e, cls) => '<span class="bt-m"><span class="bt-bar ' + cls + '" style="width:' + (e / top * 72).toFixed(1) + '%"></span><i>' + one(e) + '</i></span>';
+    const score = mids.map((r) => {
+      const ep = miss(r.polls, r.actual), eo = miss(r.blend, r.actual);
+      return '<tr' + (eo > ep ? ' class="bt-worse"' : '') + '><td>' + r.year + '</td><td class="n">' + fm(r.polls) + '</td><td class="n"><b>' + fm(r.blend) + '</b></td><td class="n">' + fm(r.actual) + '</td>' +
+        '<td class="bt-misses">' + bar(ep, 'p') + bar(eo, 'o') + '</td></tr>';
+    }).join('');
+    const mm = met.midterms_1998_2022, tm = met.trump_midterms;
+    const worse = mids.filter((r) => miss(r.blend, r.actual) > miss(r.polls, r.actual));
+    const nBetter = mids.length - worse.length;
+    // 3. Senate and governor races
+    const SS = S.Sen, GG = S.Gov;
+    const srow = (lab, a, b, n) => '<tr><td>' + lab + '</td><td class="n">' + one(a) + '</td><td class="n"><b>' + one(b) + '</b></td><td class="n">' + n + '</td></tr>';
+    const keptInc = (I.kept || []).filter((k) => /incumbent/.test(k.why)).map((k) => {
+      const r = raceOf(k.id), who = r && r.inc ? lastName(r.inc === 'D' ? r.dn : r.rn) : '';
+      return esc(k.id) + (who ? ' ' + esc(who) : '');
+    });
+    const keptOther = (I.kept || []).filter((k) => !/incumbent/.test(k.why)).map((k) => esc(k.id) + ' (' + esc(k.why.replace(/;.*$/, '')) + ')');
+    // 4. what didn't hold up
+    const mb = S.midterm_bias || {};
+    const mbTxt = Object.keys(mb).sort().map((y) => y + ': ' + one(Math.abs(mb[y])) + (mb[y] > 0 ? ' too D' : ' too R')).join(', ');
+    const tr = B.state_track || [];
+    const pair = (a, b) => tr.find((x) => x.prev === a && x.cur === b);
+    const pTxt = (x) => (x ? x.prev + '→' + x.cur + ': ' + x.none.toFixed(2) + ' → ' + x.k25.toFixed(2) : '');
+    const midPairs = [pair(2014, 2018), pair(2018, 2022)].filter(Boolean), presPairs = [pair(2016, 2020), pair(2022, 2024)].filter(Boolean);
+    // 5. sensitivity and inputs
+    const sens = (I.sens || []).map((x) => '<li>' + esc(x.label) + ': <b>' + fm(x.est) + (x.est2 != null ? ' / ' + fm(x.est2) : '') + '</b></li>').join('');
+    const ap = inp.approval || {}, spc = inp.specials || {}, off = inp.offyear || {};
+    const apSrc = (ap.sources || []).map((x) => ext(x[1], x[0])).join('; ');
+    box.innerHTML = '<h2>How our forecast is built, and how it would have done</h2>' +
+      '<p class="sub bt-lede">The polls have missed before, so our forecast doesn\'t just read them. It weighs four signals by how well each predicted the House vote in past midterms, and every piece is tested on elections it wasn\'t fitted to. Recent elections count more (an election ' + B.weights.half_life + ' years back counts half), and presidential years count half as much as midterms.</p>' +
+      '<div class="bt-big"><span><span class="bt-k d">' + fm(I.national) + '</span> our forecast of the House vote (±' + one(I.sig) + ')</span><span><span class="bt-k muted">' + fm(I.polls) + '</span> the polls alone</span></div>' +
+      '<div class="bt-grid"><div>' +
+      '<h3>The national vote: four signals</h3>' +
+      '<div class="table-scroll"><table class="bt-table"><thead><tr><th>Signal</th><th class="n">Says</th><th class="n bt-col" title="Typical miss in past midterms">Typical miss</th><th class="n">Weight</th></tr></thead><tbody>' + comps + '</tbody></table></div>' +
+      '<p class="chart-cap">Weights are inverse to each signal\'s typical miss in the backtest. The signals partly share errors (they all read the same electorate), so the blend is less certain than the weights alone suggest. The model adds 1.5 points for how the national vote turns into seats, for ±' + one(I.sig) + ' in all, vs. ±3.9 for the polls alone.</p>' +
+      '</div><div>' +
+      '<h3>Every midterm since 1998</h3>' +
+      '<p class="sub">House vote three weeks out, each year predicted without its own result.</p>' +
+      '<div class="table-scroll"><table class="bt-table"><thead><tr><th>Year</th><th class="n">Polls</th><th class="n">Ours</th><th class="n">Result</th><th>Miss <span class="bt-key"><span class="bt-bar p"></span>polls <span class="bt-bar o"></span>ours</span></th></tr></thead><tbody>' + score + '</tbody></table></div>' +
+      '<p class="chart-cap">Average miss (root mean square): polls ' + one(mm.polls) + ' points, ours ' + one(mm.blend) + '; in the two Trump midterms, ' + one(tm.polls) + ' vs. ' + one(tm.blend) + '. Ours was closer in ' + nBetter + ' of ' + mids.length + (worse.length ? '. The exception' + (worse.length > 1 ? 's were ' : ' was ') + worse.map((r) => r.year).join(', ') + (worse.length === 1 && worse[0].year === 2018 ? ', the year most like this one: the polls underestimated Democrats, and our correction would have made the miss bigger.' : '.') : '.') + ' Special-election data exists for 2006, 2018 and 2022 and the governor signal from 2006; other years use the signals they had.</p>' +
+      '</div></div>' +
+      '<div class="bt-grid"><div>' +
+      '<h3>Senate and governor races</h3>' +
+      '<p class="sub">Red-state polls have overstated Democrats relative to blue-state polls (about ' + one(Math.abs(S.lean_slope) * 10) + ' points for every 10 points of state lean). Blending each race\'s polls with the state\'s lean plus the national vote, ' + Math.round(I.a_sen * 100) + '/' + Math.round((1 - I.a_sen) * 100) + ' for the Senate and ' + Math.round(I.a_gov * 100) + '/' + Math.round((1 - I.a_gov) * 100) + ' for governors, cut the miss:</p>' +
+      '<div class="table-scroll"><table class="bt-table"><thead><tr><th>Average miss, pts</th><th class="n">Polls</th><th class="n">Blend</th><th class="n">Races</th></tr></thead><tbody>' +
+      srow('Senate, 2000–2024', SS.rmse_polls, SS.rmse_blend, SS.n) + srow('Senate, 2018 and 2022', SS.rmse_polls_trump_mid, SS.rmse_blend_trump_mid, SS.n_trump_mid) +
+      srow('Governors, 2000–2024', GG.rmse_polls, GG.rmse_blend, GG.n) + srow('Governors, 2018 and 2022', GG.rmse_polls_trump_mid, GG.rmse_blend_trump_mid, GG.n_trump_mid) + '</tbody></table></div>' +
+      '<p class="chart-cap">Races decided by less than 20 points, final-three-week poll averages. Each year is scored with the blend chosen from the other years. The blend was closer in ' + SS.n_better + ' of ' + SS.n + ' Senate races and ' + GG.n_better + ' of ' + GG.n + ' governor races. ' +
+      (keptInc.length ? 'Kept at their polls: incumbents running against their state\'s lean, which a state\'s lean can\'t account for (' + keptInc.join(', ') + ')' + (keptOther.length ? ', and ' + keptOther.join(', ') : '') + '.' : keptOther.length ? 'Kept at their polls: ' + keptOther.join(', ') + '.' : '') + '</p>' +
+      '</div><div>' +
+      '<h3>What didn\'t hold up</h3><ul class="bt-list">' +
+      '<li><b>A blanket correction to state polls.</b> Their average miss in midterms flips direction: ' + mbTxt + '.</li>' +
+      '<li><b>Trusting the pollsters that were right last time.</b> Among the ' + B.pollsters.n + ' pollsters with 20 or more final-three-week polls in both 1998–2016 and 2018–2022, accuracy in the first period didn\'t predict the second (correlation ' + B.pollsters.corr.toFixed(2).replace('-', '−') + ').</li>' +
+      (midPairs.length ? '<li><b>Carrying a state\'s last miss forward.</b> Correcting each state by a quarter of its last miss helped a little from one Trump-era midterm to the next (' + midPairs.map(pTxt).join('; ') + ') but hurt when carried into a presidential year (' + presPairs.map(pTxt).join('; ') + '). Too unstable to use.</li>' : '') +
+      '</ul>' +
+      '<h3>How much the choices matter</h3><ul class="bt-list">' + sens + '</ul>' +
+      '</div></div>' +
+      '<h3>Inputs, checked daily</h3><ul class="bt-list bt-inputs">' +
+      (ap.net != null ? '<li><b>Trump\'s net approval: ' + (ap.net > 0 ? '+' : '−') + Math.abs(ap.net).toFixed(0) + '</b>' + (apSrc ? ' (' + apSrc + ')' : '') + '. Midterms since ' + B.fund.first + ' are fitted on Gallup\'s final reading before each election.</li>' : '') +
+      (spc.value != null ? '<li><b>Special elections: Democrats ' + (spc.value > 0 ? '+' : '−') + Math.abs(spc.value).toFixed(1) + ' vs. 2024</b> across ' + spc.n + ' races' + (spc.recent != null ? ' (' + (spc.recent > 0 ? '+' : '−') + Math.abs(spc.recent).toFixed(1) + ' in ' + esc(spc.recent_label || 'this year') + ')' : '') + (spc.source ? ', ' + ext(spc.source[1], spc.source[0]) : '') + '. In 2006, 2018 and 2022 specials overstated the final swing by ' + Object.keys(B.specials.over).map((y) => one(B.specials.over[y])).join(', ') + ' points.</li>' : '') +
+      (off.VA != null ? '<li><b>2025 governors:</b> Virginia ' + (off.VA > 0 ? '+' : '−') + Math.abs(off.VA).toFixed(1) + ' and New Jersey ' + (off.NJ > 0 ? '+' : '−') + Math.abs(off.NJ).toFixed(1) + ' points more Democratic than in 2024 (' + (off.sources || []).map((x) => ext(x[1], x[0].replace(/ gubernatorial election$/, ''))).join(', ') + ').</li>' : '') +
+      '</ul>' +
+      '<p class="chart-cap bt-caveat"><b>Caveats.</b> Seven midterms is a small sample, and only three have comparable special-election data. House seats are not backtested district by district; they come from the national vote through the same model as everything else. The economy, money and crosstab accuracy are not in the forecast yet.</p>';
   }
 
   // ---------------------------------------------------------------- render all
@@ -1270,7 +1409,7 @@
   }
   function lensRows() {
     return [
-      { k: 'forecast', name: 'The forecast', sub: 'halfway between 2024 and the 2026 polls' },
+      { k: 'forecast', name: HAS_OURS ? 'Our forecast' : 'The forecast', sub: 'halfway between 2024 and the 2026 polls' },
       { k: '2024', name: '2024 pattern', sub: 'how each group voted in 2024' },
       { k: 'polls', name: '2026 poll average', sub: 'all the 2026 crosstabs, averaged' },
     ].concat((D.pollsters || []).map((p) => ({ k: 'poll:' + p.k, p, name: p.short + ' ' + p.pop, sub: fmtDay(p.end) + ' · their national number ' + fm(p.top) })));
@@ -1294,19 +1433,20 @@
     if (!(D.pollsters || []).length) { box.hidden = true; return; }
     const rv = rView(), P = rv ? 'R' : 'D';
     const head = '<h3>Same national vote, different crosstabs</h3>';
-    if (!LENS) { box.innerHTML = head + '<p class="sub">Running the forecast with each pollster\'s group-by-group numbers…</p>'; return; }
+    // until the simulations finish, draw the same table with placeholders, so nothing below it jumps when they land
+    const L = LENS || lensRows();
     const val = (x, k) => (rv ? x.v[k + 'r'] : x.v[k]);
-    const cell = (x, k) => '<td class="n"><span class="pill ' + rating(x.v[k]).k + '">' + P + ' ' + fp(val(x, k)) + '</span></td>';
+    const cell = (x, k) => (x.v ? '<td class="n"><span class="pill ' + rating(x.v[k]).k + '">' + P + ' ' + fp(val(x, k)) + '</span></td>' : '<td class="n"><span class="pill">…</span></td>');
     const act = (x) => (x.k === 'forecast'
       ? (atForecast() ? '<span class="muted small">Showing</span>' : '<button class="lens-go" data-k="forecast">Show</button>')
       : '<button class="lens-go" data-k="' + esc(x.k) + '">Load</button>');
     const row = (x, cls) => '<tr' + (cls ? ' class="' + cls + '"' : '') + '><td><b>' + esc(x.name) + '</b><span class="lens-sub">' + esc(x.sub) + '</span></td>' +
       cell(x, 'h') + cell(x, 's') + cell(x, 'g') + '<td class="n lens-act">' + act(x) + '</td></tr>';
-    const base = LENS.slice(0, 3), polls = LENS.slice(3).sort((a, b) => val(b, 's') - val(a, 's'));
-    const ends = (k) => { const a = LENS.map((x) => val(x, k)); return [fp(Math.min.apply(null, a)), fp(Math.max.apply(null, a))]; };
+    const base = L.slice(0, 3), polls = LENS ? L.slice(3).sort((a, b) => val(b, 's') - val(a, 's')) : L.slice(3);
+    const ends = (k) => { if (!LENS) return ['…', '…']; const a = LENS.map((x) => val(x, k)); return [fp(Math.min.apply(null, a)), fp(Math.max.apply(null, a))]; };
     const hE = ends('h'), sE = ends('s');
     box.innerHTML = head +
-      '<p class="sub">The forecast at the same national vote (' + fm(FORECAST_NAT) + ') with each source\'s gaps between groups. Chances are for ' + (rv ? 'Republicans' : 'Democrats') + '.</p>' +
+      '<p class="sub">' + (HAS_OURS ? 'Our forecast' : 'The forecast') + ' at the same national vote (' + fm(FORECAST_NAT) + ') with each source\'s gaps between groups. Chances are for ' + (rv ? 'Republicans' : 'Democrats') + '.</p>' +
       '<div class="table-scroll"><table><thead><tr><th>Crosstabs from</th><th class="n">House</th><th class="n">Senate</th><th class="n">Govs 26+</th><th class="lens-act"></th></tr></thead><tbody>' +
       row(base[0], 'lens-base') + row(base[1]) + row(base[2], 'lens-sep') + polls.map((x) => row(x)).join('') + '</tbody></table></div>' +
       '<p class="chart-cap">The House stays between ' + hE[0] + ' and ' + hE[1] + '; the Senate runs from ' + sE[0] + ' to ' + sE[1] + '. Most Senate battlegrounds (Maine, Iowa, Ohio, Kansas, Nebraska, Alaska, Michigan, Minnesota, New Hampshire) are whiter than the country, so which groups are moving matters more for the Senate than for the House. ' +
@@ -1617,11 +1757,16 @@
       const h = location.hash.replace(/^#\/?/, '');
       showScreen(SCREENS.indexOf(h) >= 0 ? h : 'map', false);
     });
-    // in-page links to a section open that section's screen on phones
-    const JUMP = { 'early-vote': 'early', watch: 'watch', method: 'adjust' };
-    document.querySelectorAll('a[href^="#"]').forEach((a) => {
-      const s = JUMP[a.getAttribute('href').slice(1)];
-      if (s) a.addEventListener('click', (e) => { if (isTabbed()) { e.preventDefault(); showScreen(s, true); } });
+    // in-page links to a section open that section's screen on phones (delegated: some links are drawn later)
+    const JUMP = { 'early-vote': 'early', watch: 'watch', method: 'adjust', backtest: 'outlook' };
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+      if (!a) return;
+      const id = a.getAttribute('href').slice(1), s = JUMP[id];
+      if (!s || !isTabbed()) return;
+      e.preventDefault();
+      if (ui.screen !== s) showScreen(s, true);
+      if (id === 'backtest') { const el = $(id); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
     // hide the dock while the on-screen keyboard is up
     document.addEventListener('focusin', (e) => { if (e.target.matches && e.target.matches('input[type="search"]')) document.body.classList.add('kbd'); });
@@ -1650,6 +1795,7 @@
   wireMap();
   wireScreens();
   buildMethod();
+  renderBacktest();
   R = M.simulate(sc);
   buildEarlyVote();
   applyLayout();
@@ -1682,7 +1828,7 @@
     const shortStamp = meta.generated ? new Date(meta.generated).toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit', timeZone: ET }) + ' ET' : 'recently';
     document.getElementById('eyebrow').innerHTML = '<span class="xl">2026 midterms · </span>updated <span class="xl">' + (meta.generated ? fmtStamp(meta.generated) : 'recently') + '</span><span class="xs">' + shortStamp + '</span> · <span class="xl">' + dayText + '</span><span class="xs">' + shortDays + '</span>';
     const chip = document.getElementById('staleChip');
-    const labels = { early_vote: 'Early-vote counts', electindex: 'Polls and candidates', generic_ballot: 'National polling average', nc_sbe: 'North Carolina early-vote comparison', fec: 'Campaign money (FEC)' };
+    const labels = { early_vote: 'Early-vote counts', electindex: 'Polls and candidates', generic_ballot: 'National polling average', nc_sbe: 'North Carolina early-vote comparison', fec: 'Campaign money (FEC)', backtest: 'Our forecast' };
     const stale = Object.keys(meta.sources || {}).filter((k) => !meta.sources[k].ok);
     const ageH = meta.generated ? (Date.now() - new Date(meta.generated).getTime()) / 3600000 : 0;
     if (ageH > 36) { chip.textContent = 'Not updated since ' + fmtStamp(meta.generated); chip.hidden = false; }

@@ -43,10 +43,26 @@
     // Turnout-level interpolation anchors (VEP %)
     this.T22 = D.vep['2022'];
     this.T24 = D.vep['2024'];
+    // Two starting points ("bases"). 'polls': the national polling average and each race's polls.
+    // 'ours': the backtested forecast (data.indep): its own national vote, and Senate and governor polls
+    // blended with each state's lean. Without data.indep the two are the same.
+    this.hasIndep = !!(D.indep && isFinite(D.indep.national));
+    const pick = (list, key) => list.map((r) => (this.hasIndep && D.indep[key] && isFinite(D.indep[key][r.id]) ? D.indep[key][r.id] : r.base));
+    this.raceBase = {
+      polls: { senate: D.senate.map((r) => r.base), gov: D.gov.map((r) => r.base) },
+      ours: { senate: pick(D.senate, 'senate'), gov: pick(D.gov, 'gov') },
+    };
     this._draws();
-    this.defaults = this.defaultScenario();
-    this.defaultDeltas = this.statewideDeltas(this.defaults);
+    this.defaultsPolls = this.defaultScenario('polls');
+    this.defaults = this.hasIndep ? this.defaultScenario('ours') : this.defaultsPolls;
+    // each basis's race margins are anchored at its own default statewide deltas
+    this.refDeltas = { polls: this.statewideDeltas(this.defaultsPolls) };
+    this.refDeltas.ours = this.hasIndep ? this.statewideDeltas(this.defaults) : this.refDeltas.polls;
+    this.defaultDeltas = this.refDeltas[this.basis(this.defaults)];
   }
+  Model.prototype.basis = function (sc) { return sc && sc.basis === 'ours' && this.hasIndep ? 'ours' : 'polls'; };
+  // the national vote each basis starts from
+  Model.prototype.target = function (basis) { return basis === 'ours' && this.hasIndep ? this.d.indep.national : this.d.G0; };
 
   Model.prototype._draws = function () {
     const rand = rng(20261103);
@@ -75,8 +91,9 @@
     const D = this.d;
     return this.base24[dim].dev.map((v, i) => v + this.blendWeight(dim, i) * (D.polldev[dim][i].dev - v));
   };
-  Model.prototype.defaultScenario = function () {
+  Model.prototype.defaultScenario = function (basis) {
     const D = this.d;
+    const b = basis === 'ours' && this.hasIndep ? 'ours' : 'polls';
     const dev = {};
     DIMS.forEach((dim) => { dev[dim] = this.blendDev(dim); });
     const sc = {
@@ -85,12 +102,13 @@
       T: this.T22,
       edge: 0,
       evw: null,           // null = automatic (share of expected vote already cast)
-      sigN: SIG.nat,
+      sigN: b === 'ours' ? D.indep.sig : SIG.nat,
       cand: true,
       demo: true,          // correlated demographic errors
+      basis: b,
       C: 0,
     };
-    sc.C = this.solveC(sc, D.G0);
+    sc.C = this.solveC(sc, this.target(b));
     return sc;
   };
 
@@ -147,7 +165,7 @@
   };
   Model.prototype.evWeight = function (sc) { return sc.evw === null ? this.evAuto() : sc.evw; };
   Model.prototype.evShift = function (sc) {
-    return this.evWeight(sc) * (this.d.evproj.median - this.d.G0);
+    return this.evWeight(sc) * (this.d.evproj.median - this.target(this.basis(sc)));
   };
 
   // Turnout-edge transform: Democratic supporters turn out k (fraction) more than Republican ones
@@ -204,8 +222,9 @@
       return d.m24 + this.deltaFor(sc, d.race, d.age, d.m24) + (sc.cand ? this.candEffect(d) : 0);
     });
     const sd = this.statewideDeltas(sc);
-    const senate = this.d.senate.map((r) => r.base + 1.0 * (sd[r.st] - this.defaultDeltas[r.st]));
-    const gov = this.d.gov.map((r) => r.base + 0.8 * (sd[r.st] - this.defaultDeltas[r.st]));
+    const b = this.basis(sc), ref = this.refDeltas[b], rb = this.raceBase[b];
+    const senate = this.d.senate.map((r, i) => rb.senate[i] + 1.0 * (sd[r.st] - ref[r.st]));
+    const gov = this.d.gov.map((r, i) => rb.gov[i] + 0.8 * (sd[r.st] - ref[r.st]));
     return { house, senate, gov, national: this.national(sc) + this._ev };
   };
 

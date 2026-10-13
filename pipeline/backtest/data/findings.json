@@ -1,0 +1,402 @@
+{
+ "state_persistence": [
+  {
+   "a": 2006,
+   "b": 2010,
+   "n": 36,
+   "corr": 0.13
+  },
+  {
+   "a": 2010,
+   "b": 2014,
+   "n": 38,
+   "corr": -0.03
+  },
+  {
+   "a": 2014,
+   "b": 2018,
+   "n": 36,
+   "corr": 0.38
+  },
+  {
+   "a": 2018,
+   "b": 2022,
+   "n": 31,
+   "corr": 0.33
+  },
+  {
+   "a": 2014,
+   "b": 2016,
+   "n": 31,
+   "corr": 0.09
+  },
+  {
+   "a": 2016,
+   "b": 2018,
+   "n": 28,
+   "corr": 0.33
+  },
+  {
+   "a": 2016,
+   "b": 2020,
+   "n": 19,
+   "corr": -0.44
+  },
+  {
+   "a": 2018,
+   "b": 2020,
+   "n": 24,
+   "corr": -0.14
+  },
+  {
+   "a": 2020,
+   "b": 2022,
+   "n": 19,
+   "corr": -0.1
+  },
+  {
+   "a": 2020,
+   "b": 2024,
+   "n": 15,
+   "corr": 0.27
+  },
+  {
+   "a": 2022,
+   "b": 2024,
+   "n": 18,
+   "corr": 0.26
+  }
+ ],
+ "state_carry_forward": [
+  {
+   "k": 0.0,
+   "rmse": 4.74,
+   "n": 173
+  },
+  {
+   "k": 0.15,
+   "rmse": 4.721,
+   "n": 173
+  },
+  {
+   "k": 0.25,
+   "rmse": 4.759,
+   "n": 173
+  },
+  {
+   "k": 0.35,
+   "rmse": 4.836,
+   "n": 173
+  },
+  {
+   "k": 0.5,
+   "rmse": 5.021,
+   "n": 173
+  }
+ ],
+ "state_residuals": {
+  "ME": {
+   "2014": 3.3,
+   "2018": 1.3,
+   "2020": 8.0,
+   "2022": -4.2
+  },
+  "NH": {
+   "2014": -2.4,
+   "2016": -2.7,
+   "2018": 0.1,
+   "2020": -0.0,
+   "2022": -4.3,
+   "2024": 7.7
+  },
+  "MI": {
+   "2014": -4.7,
+   "2018": 2.5,
+   "2020": -1.6,
+   "2022": -7.0,
+   "2024": 0.0
+  },
+  "MN": {
+   "2014": -1.7,
+   "2018": -2.0,
+   "2020": -2.1,
+   "2022": -2.4,
+   "2024": -3.7
+  },
+  "GA": {
+   "2014": 0.3,
+   "2016": -3.0,
+   "2018": 0.2,
+   "2020": -6.5,
+   "2022": -2.0
+  },
+  "NC": {
+   "2014": -1.1,
+   "2016": -1.7,
+   "2020": -0.7,
+   "2022": -2.0,
+   "2024": -3.2
+  },
+  "OH": {
+   "2014": 5.1,
+   "2016": 0.6,
+   "2018": 4.6,
+   "2022": 1.9,
+   "2024": -1.4
+  },
+  "IA": {
+   "2014": 2.1,
+   "2016": 1.1,
+   "2018": 4.5,
+   "2020": 1.3,
+   "2022": -0.7
+  },
+  "TX": {
+   "2014": 0.3,
+   "2018": -4.0,
+   "2020": -3.0,
+   "2022": -0.1,
+   "2024": 1.1
+  },
+  "KS": {
+   "2014": 0.0,
+   "2016": -5.0,
+   "2018": -6.1,
+   "2020": 0.8,
+   "2022": -0.3
+  },
+  "AK": {
+   "2014": -6.0,
+   "2016": -5.4,
+   "2018": -7.7,
+   "2020": 3.0,
+   "2022": 0.7
+  },
+  "NE": {
+   "2014": -4.9
+  },
+  "SC": {
+   "2014": -5.0,
+   "2016": 0.8,
+   "2018": -11.0,
+   "2020": 1.5
+  },
+  "FL": {
+   "2014": -3.0,
+   "2016": -2.7,
+   "2018": 2.6,
+   "2022": 8.0,
+   "2024": 3.7
+  },
+  "WI": {
+   "2014": 0.5,
+   "2016": 2.3,
+   "2018": 1.6,
+   "2022": -4.9,
+   "2024": -1.9
+  },
+  "PA": {
+   "2014": -0.5,
+   "2016": -2.1,
+   "2018": 0.9,
+   "2022": -5.8,
+   "2024": -0.1
+  },
+  "AZ": {
+   "2014": 1.0,
+   "2016": -2.4,
+   "2018": -0.1,
+   "2020": -2.1,
+   "2022": -4.5,
+   "2024": -0.9
+  },
+  "NV": {
+   "2014": 9.7,
+   "2016": -7.3,
+   "2018": -4.2,
+   "2022": -3.1,
+   "2024": 0.2
+  },
+  "MT": {
+   "2014": -4.2,
+   "2016": -4.3,
+   "2018": -0.8,
+   "2020": 0.1,
+   "2024": -2.5
+  },
+  "VT": {
+   "2014": 11.9,
+   "2016": 5.2,
+   "2018": 6.8,
+   "2022": 5.8
+  },
+  "OR": {
+   "2014": -2.5,
+   "2016": -1.8,
+   "2018": -1.6,
+   "2022": -2.2
+  }
+ },
+ "pollster_persistence": {
+  "corr": -0.14,
+  "n": 25,
+  "note": "relative absolute error, 1998-2016 vs 2018-2022, pollsters with 20+ polls in each"
+ },
+ "pollsters_2018_2022": [
+  {
+   "pollster": "Cygnal",
+   "better_by": 1.78,
+   "n": 37
+  },
+  {
+   "pollster": "Mason-Dixon Polling & Strategy",
+   "better_by": 1.68,
+   "n": 17
+  },
+  {
+   "pollster": "YouGov",
+   "better_by": 1.21,
+   "n": 67
+  },
+  {
+   "pollster": "Public Policy Polling",
+   "better_by": 1.12,
+   "n": 30
+  },
+  {
+   "pollster": "Remington Research Group",
+   "better_by": 1.03,
+   "n": 19
+  },
+  {
+   "pollster": "Research Co.",
+   "better_by": 1.0,
+   "n": 40
+  },
+  {
+   "pollster": "Global Strategy Group",
+   "better_by": 0.91,
+   "n": 16
+  },
+  {
+   "pollster": "The New York Times/Siena College",
+   "better_by": 0.89,
+   "n": 97
+  },
+  {
+   "pollster": "Data for Progress",
+   "better_by": 0.84,
+   "n": 57
+  },
+  {
+   "pollster": "University of New Hampshire Survey Center",
+   "better_by": 0.82,
+   "n": 22
+  },
+  {
+   "pollster": "Emerson College",
+   "better_by": 0.81,
+   "n": 146
+  },
+  {
+   "pollster": "Beacon Research/Shaw & Co. Research",
+   "better_by": 0.72,
+   "n": 44
+  },
+  {
+   "pollster": "Mitchell Research & Communications",
+   "better_by": 0.7,
+   "n": 15
+  },
+  {
+   "pollster": "Suffolk University",
+   "better_by": 0.62,
+   "n": 33
+  },
+  {
+   "pollster": "Harris Insights & Analytics",
+   "better_by": 0.4,
+   "n": 42
+  },
+  {
+   "pollster": "Gravis Marketing",
+   "better_by": 0.34,
+   "n": 26
+  },
+  {
+   "pollster": "Marist College",
+   "better_by": 0.19,
+   "n": 53
+  },
+  {
+   "pollster": "Civiqs",
+   "better_by": 0.19,
+   "n": 33
+  },
+  {
+   "pollster": "Siena College",
+   "better_by": 0.18,
+   "n": 29
+  },
+  {
+   "pollster": "Vox Populi Polling",
+   "better_by": 0.1,
+   "n": 20
+  },
+  {
+   "pollster": "Monmouth University Polling Institute",
+   "better_by": -0.06,
+   "n": 21
+  },
+  {
+   "pollster": "SurveyUSA",
+   "better_by": -0.14,
+   "n": 43
+  },
+  {
+   "pollster": "Ipsos",
+   "better_by": -0.16,
+   "n": 57
+  },
+  {
+   "pollster": "SSRS",
+   "better_by": -0.28,
+   "n": 36
+  },
+  {
+   "pollster": "Rasmussen Reports",
+   "better_by": -0.43,
+   "n": 29
+  },
+  {
+   "pollster": "Quinnipiac University",
+   "better_by": -0.46,
+   "n": 35
+  },
+  {
+   "pollster": "InsiderAdvantage",
+   "better_by": -0.54,
+   "n": 41
+  },
+  {
+   "pollster": "Change Research",
+   "better_by": -0.64,
+   "n": 48
+  },
+  {
+   "pollster": "Trafalgar Group",
+   "better_by": -0.97,
+   "n": 78
+  },
+  {
+   "pollster": "Morning Consult",
+   "better_by": -1.17,
+   "n": 43
+  },
+  {
+   "pollster": "Wick",
+   "better_by": -1.43,
+   "n": 18
+  }
+ ]
+}

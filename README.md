@@ -2,7 +2,7 @@
 
 An installable web app for gaming out the 2026 midterms: set the national House vote, each group's margin
 and turnout, and the House (all 435 districts on the 2026 lines), Senate and governor maps redraw. It opens
-on the forecast (every setting at its default), tracks what the early vote says, and has a Watch tab with
+on our forecast (below), with the polls-only version a tap away, tracks what the early vote says, and has a Watch tab with
 dates ahead, recent developments, where the money is going in each House and Senate race, and a log of
 Trump's and Vance's campaign stops. Sliders run Democratic on
 the left, Republican on the right.
@@ -19,7 +19,8 @@ A GitHub Actions job (`.github/workflows/update.yml`) runs every three hours. It
 |---|---|---|
 | Candidates, incumbency, race polls, generic-ballot polls | [ElectIndex forecast data](https://github.com/ElectIndex/26_us_forecast_data) | automatic |
 | Early-vote ballot counts and party splits | [UF Election Lab](https://election.lab.ufl.edu/early-vote/2026-early-voting/) | automatic |
-| National default (generic-ballot average) | computed from the poll list | automatic |
+| National polling average (generic ballot) | computed from the poll list | automatic |
+| Our forecast: national vote and Senate/governor adjustments | `pipeline/backtest/backtest.py`, inputs in `pipeline/content/fundamentals.json` | automatic; approval and special-election inputs checked daily |
 | Senate: competitive races | Oct 9 corrected averages + change in a simple poll average since | automatic drift; base by hand |
 | Early-vote signals, story and same-point comparisons | `pipeline/content/story.json` | daily scheduled refresh |
 | 2026 national crosstab polls (and the pollster picker) | `pipeline/static/polls_2026.csv` | as pollsters release them |
@@ -32,6 +33,30 @@ and keeps the last copy for offline use.
 
 To refresh on demand: **Actions → Update data and publish → Run workflow**.
 
+## Our forecast, and its backtest
+
+The polls have missed before, so the app's headline doesn't just read them. `pipeline/backtest/backtest.py`
+blends four signals for the national House vote, each weighted by how well it predicted past midterms
+(midterms count twice as much as presidential years; an election 12 years back counts half):
+
+- **Generic-ballot polls, corrected for their record.** In the final three weeks they ran too Democratic in
+  11 of the 14 elections from 1998 to 2024 (FiveThirtyEight's pollster-ratings archive, plus 2024 compiled
+  from RealClearPolling and pollster releases).
+- **Special elections**, less the amount they overstated the final swing in 2006, 2018 and 2022.
+- **Presidential approval** and the midterm penalty (midterms since 1950, Gallup).
+- **The Virginia and New Jersey governor races** the year before.
+
+Senate and governor polls are blended with each state's lean plus that national vote (80/20 for the Senate,
+90/10 for governors), the mix that best predicted 2000–2024 races out of sample. Incumbents running against
+their state's lean, races with an independent and three-way races keep their polls. Every piece is scored on
+elections it wasn't fitted to; the app's backtest section shows the results, what didn't hold up (pollster and
+state track records), and how much the choices matter.
+
+```
+python3 pipeline/backtest/make_tables.py   # rebuilds the poll-vs-result tables from the 538 archive (needs internet)
+python3 pipeline/backtest/backtest.py      # prints the backtest and today's call
+```
+
 ## Model in brief
 
 - **House:** each district's 2024 presidential margin on its 2026 lines, moved by the national House vote
@@ -39,7 +64,8 @@ To refresh on demand: **Actions → Update data and publish → Run workflow**.
   proportion to each group's share), plus incumbency and candidate track records.
 - **Groups:** race × education, age and gender as three independent splits. Baselines from Pew Research
   Center validated voters (2024, 2022, 2018). Default 2026 pattern halfway between 2024 and 2026 poll crosstabs.
-- **Uncertainty:** 4,000 simulations with a shared national error (t, 5 df), state errors and race errors.
+- **Uncertainty:** 4,000 simulations with a shared national error (t, 5 df; SD from the backtest for our
+  forecast, 3.9 for the polls alone), state errors, race errors and correlated demographic errors.
 
 ## Run locally
 

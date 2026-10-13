@@ -28,6 +28,9 @@ import urllib.request
 
 import fec_money
 
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'backtest'))
+import backtest  # noqa: E402  (pipeline/backtest/backtest.py: our forecast and its backtest)
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FEED_URL = 'https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/'
 FEED_FILES = ['races.csv', 'candidates.csv', 'race_polls.csv', 'pollster_ratings.csv', 'gcb_polls.csv']
@@ -646,6 +649,22 @@ def main():
         except Exception as e:
             stale('fec', e)
             out['money'] = pm
+    # our forecast: the national vote from four backtested signals, and Senate/governor polls blended with each
+    # state's lean (pipeline/backtest/backtest.py). Inputs that change by hand live in content/fundamentals.json.
+    try:
+        fund = load_json(os.path.join(ROOT, 'pipeline', 'content', 'fundamentals.json'), {})
+        ind = backtest.live(out['G0'], out['senate'], out['gov'], out['statecomp'], out['N24'], fund)
+        if not -15 <= ind['national'] <= 25 or not 1.0 <= ind['sig'] <= 8.0:
+            raise ValueError(f"our forecast out of range: national {ind['national']}, sigma {ind['sig']}")
+        if not all(math.isfinite(v) for v in list(ind['senate'].values()) + list(ind['gov'].values())):
+            raise ValueError('our forecast has a non-numeric race margin')
+        ind['inputs'] = {k: fund.get(k) for k in ('asof', 'approval', 'specials', 'offyear')}
+        out['indep'] = ind
+        ok('backtest', f"national {ind['national']:+.2f} vs polls {ind['polls']:+.2f}")
+    except Exception as e:
+        stale('backtest', e)
+        if prev.get('indep'):
+            out['indep'] = prev['indep']
     out['meta'] = dict(generated=now.isoformat(timespec='minutes'), build_date=today.isoformat(), sources=status,
                        senate_asof=senate_cfg['asof'])
 
