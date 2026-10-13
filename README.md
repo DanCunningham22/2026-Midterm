@@ -21,6 +21,8 @@ A GitHub Actions job (`.github/workflows/update.yml`) runs every three hours. It
 | Early-vote ballot counts and party splits | [UF Election Lab](https://election.lab.ufl.edu/early-vote/2026-early-voting/) | automatic |
 | National polling average (generic ballot) | computed from the poll list | automatic |
 | Our forecast: national vote and Senate/governor adjustments | `pipeline/backtest/backtest.py`, inputs in `pipeline/content/fundamentals.json` | automatic; approval and special-election inputs checked daily |
+| Economic series for the backtest and the other-signals panel | [FRED](https://fred.stlouisfed.org/) and [datasets/s-and-p-500](https://github.com/datasets/s-and-p-500) via `pipeline/econ.py` | automatic, about twice a day |
+| Other signals' current readings (sentiment, gas, markets, raters, retirements) | `pipeline/content/signals.json` | daily scheduled refresh |
 | Senate: competitive races | Oct 9 corrected averages + change in a simple poll average since | automatic drift; base by hand |
 | Early-vote signals, story and same-point comparisons | `pipeline/content/story.json` | daily scheduled refresh |
 | 2026 national crosstab polls (and the pollster picker) | `pipeline/static/polls_2026.csv` | as pollsters release them |
@@ -51,6 +53,12 @@ Senate and governor polls are blended with each state's lean plus that national 
 their state's lean, races with an independent and three-way races keep their polls. Every piece is scored on
 elections it wasn't fitted to; the app's backtest section shows the results, what didn't hold up (pollster and
 state track records), and how much the choices matter.
+
+Other signals are tested the same way and shown, not used: consumer sentiment, unemployment, inflation,
+restaurant and gasoline prices, real income, GDP, jobs, the S&P 500 (FRED and Shiller series fetched by
+`pipeline/econ.py` into `pipeline/backtest/data/econ/`) and House retirements by party. Added to approval and
+exposure, none improves the midterm prediction out of sample. Current readings (sentiment, gas, a Chipotle
+bowl, prediction markets, Cook's ratings, retirements) live in `pipeline/content/signals.json`.
 
 ```
 python3 pipeline/backtest/make_tables.py   # rebuilds the poll-vs-result tables from the 538 archive (needs internet)
