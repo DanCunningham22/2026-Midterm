@@ -351,6 +351,114 @@ def state_track(d):
     return out
 
 
+# ---------------------------------------------------------------- other signals (tested, shown, not in the blend)
+ECON = os.path.join(DATA, 'econ')
+SIGNALS = [
+    # key, label, series, how, unit, note
+    ('sent', 'Consumer sentiment (Michigan)', 'UMCSENT', 'level', 'index', 'Latest reading by September'),
+    ('sent_chg', 'Consumer sentiment, change from a year ago', 'UMCSENT', 'diff12', 'pts', ''),
+    ('unemp', 'Unemployment rate', 'UNRATE', 'level', '%', 'September'),
+    ('unemp_chg', 'Unemployment, change from a year ago', 'UNRATE', 'diff12', 'pts', ''),
+    ('infl', 'Inflation (CPI, year over year)', 'CPIAUCSL', 'yoy', '%', 'August'),
+    ('food_away', 'Restaurant prices (CPI food away from home, year over year)', 'CUSR0000SEFV', 'yoy', '%', 'The Chipotle-bowl index'),
+    ('gas', 'Gasoline prices (CPI, year over year)', 'CUSR0000SETB01', 'yoy', '%', 'August'),
+    ('rdi', 'Real disposable income per person (year over year)', 'A229RX0', 'yoy', '%', 'August'),
+    ('gdp', 'Real GDP (year over year)', 'GDPC1', 'yoy', '%', 'Second quarter'),
+    ('jobs', 'Payroll jobs (year over year)', 'PAYEMS', 'yoy', '%', 'September'),
+    ('sp500', 'S&P 500 (year over year)', 'SP500_MONTHLY', 'yoy', '%', 'September average'),
+    ('retire', 'House retirements, president\'s party minus the other party', None, 'retire', 'members', 'Members not seeking re-election'),
+]
+
+
+def _series(sid):
+    out = {}
+    try:
+        for r in csv.DictReader(open(os.path.join(ECON, sid + '.csv'), encoding='utf-8')):
+            out[r['date'][:7]] = float(r['value'])
+    except OSError:
+        pass
+    return out
+
+
+def _at(d, y, m, back):
+    for k in range(back + 1):
+        mm, yy = m - k, y
+        while mm <= 0:
+            mm += 12
+            yy -= 1
+        v = d.get(f'{yy}-{mm:02d}')
+        if v is not None:
+            return v
+    return None
+
+
+def _feature(how, d, y, m, back=0):
+    if how == 'level':
+        return _at(d, y, m, back)
+    a, b = _at(d, y, m, back), _at(d, y - 1, m, back)
+    if a is None or b is None:
+        return None
+    return a - b if how == 'diff12' else 100 * (a / b - 1)
+
+
+MONTH = {'UMCSENT': (9, 4), 'UNRATE': (9, 0), 'CPIAUCSL': (8, 0), 'CUSR0000SEFV': (8, 0), 'CUSR0000SETB01': (8, 0),
+         'A229RX0': (8, 0), 'GDPC1': (4, 0), 'PAYEMS': (9, 0), 'SP500_MONTHLY': (9, 0)}
+
+
+def _retire(y, pres_party):
+    try:
+        for r in csv.DictReader(open(os.path.join(DATA, 'retirements.csv'), encoding='utf-8')):
+            if int(r['year']) == y and 'not used' not in r['note']:
+                d, rp = int(r['dem']), int(r['rep'])
+                return (rp - d) if pres_party == 'R' else (d - rp)
+    except OSError:
+        pass
+    return None
+
+
+def other_signals(cal, president='R'):
+    """Does each signal predict the president's party's midterm swing beyond approval and exposure? Leave-one-out,
+    midterms since 1950 where the series exists. Returns each signal's current reading and its verdict."""
+    F = cal['fund']['rows']
+    series = {sid: _series(sid) for sid in MONTH}
+    out = []
+    for key, label, sid, how, unit, note in SIGNALS:
+        vals = {}
+        for r in F:
+            if sid:
+                m, back = MONTH[sid]
+                vals[r['y']] = _feature(how, series[sid], r['y'], m, back)
+            else:
+                vals[r['y']] = _retire(r['y'], 'D' if r['s'] == 1 else 'R')
+        if sid:
+            m, back = MONTH[sid]
+            now = _feature(how, series[sid], YEAR, m, back)
+        else:
+            now = _retire(YEAR, president)
+        rows_ = [r for r in F if vals.get(r['y']) is not None]
+        if len(rows_) < 6 or now is None:
+            out.append(dict(key=key, label=label, unit=unit, note=note, now=now, n=len(rows_), verdict='no data'))
+            continue
+        X0 = [[1, r['net'], r['prev']] for r in rows_]
+        X1 = [[1, r['net'], r['prev'], vals[r['y']]] for r in rows_]
+        Y = [r['chg'] for r in rows_]
+        def loo(X):
+            e = []
+            for i in range(len(X)):
+                b = ols(X[:i] + X[i + 1:], Y[:i] + Y[i + 1:])
+                e.append(sum(a * c for a, c in zip(b, X[i])) - Y[i])
+            return math.sqrt(st.mean(v * v for v in e))
+        r0, r1 = loo(X0), loo(X1)
+        beta = ols(X1, Y)
+        gain = 100 * (1 - r1 / r0)
+        verdict = 'helps a little' if gain >= 5 else ('no help' if gain > -5 else 'hurts')
+        # direction of the fitted effect, in the president's party's terms
+        out.append(dict(key=key, label=label, unit=unit, note=note, now=round(now, 2), n=len(rows_), first=min(r['y'] for r in rows_),
+                        gain=round(gain, 1), coef=round(beta[-1], 3), rmse_base=round(r0, 2), rmse_with=round(r1, 2), verdict=verdict,
+                        hist={str(r['y']): round(vals[r['y']], 2) for r in rows_}))
+    return out
+
+
 def live(g0, senate, gov, statecomp, n24, content):
     """Called by build.py on every run. Returns what the app shows as "Our forecast" and its backtest."""
     d = load()
@@ -398,6 +506,7 @@ def live(g0, senate, gov, statecomp, n24, content):
                        n_races=len(d['races'])),
             state_track=state_track(d),
             pollsters=F['pollster_persistence'],
+            signals=other_signals(cal),
             weights=dict(midterm=1.0, presidential=PRES_W, half_life=HALF_LIFE, rho=RHO, seat_extra=SEAT_EXTRA),
         ),
     )

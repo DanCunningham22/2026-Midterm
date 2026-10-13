@@ -680,6 +680,7 @@ def main():
         if not all(math.isfinite(v) for v in list(ind['senate'].values()) + list(ind['gov'].values())):
             raise ValueError('our forecast has a non-numeric race margin')
         ind['inputs'] = {k: fund.get(k) for k in ('asof', 'approval', 'specials', 'offyear')}
+        ind['signals_now'] = load_json(os.path.join(ROOT, 'pipeline', 'content', 'signals.json'), {})
         out['indep'] = ind
         ok('backtest', f"national {ind['national']:+.2f} vs polls {ind['polls']:+.2f}")
     except Exception as e:

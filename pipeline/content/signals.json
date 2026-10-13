@@ -1,0 +1,66 @@
+{
+ "asof": "2026-10-13",
+ "note": "Current readings for the other-signals panel; the backtest's history comes from pipeline/backtest/data/econ (FRED) and retirements.csv. Each item: what it is, the latest value, the comparison, the source page that states it.",
+ "items": [
+  {
+   "key": "sent",
+   "label": "Consumer sentiment (University of Michigan)",
+   "value": 46.3,
+   "value_label": "46.3, October preliminary (Oct 9)",
+   "compare": "48.1 in September (final); 53.6 in October 2025 (FRED, UMCSENT)",
+   "say": "Near the lowest readings in the survey's history; sentiment has been low under both parties since 2022.",
+   "src": "investingLive, Oct 9",
+   "url": "https://investinglive.com/news/us-october-umich-prelim-consumer-sentiment-vs-47-8-expected/"
+  },
+  {
+   "key": "gasprice",
+   "label": "Gasoline, national average (AAA)",
+   "value": 4.34,
+   "value_label": "$4.34 a gallon (Oct 13)",
+   "compare": "$3.12 a year ago; a record for autumn",
+   "say": "Up about 39% in a year with crude above $90.",
+   "src": "AAA, Oct 8–13",
+   "url": "https://gasprices.aaa.com/pump-prices-remain-at-record-highs-for-autumn/"
+  },
+  {
+   "key": "chipotle",
+   "label": "A Chipotle chicken burrito bowl",
+   "value": 10.45,
+   "value_label": "about $10.45 and up (early 2026)",
+   "compare": "\"below $9\" in October 2022, per Chipotle's CEO",
+   "say": "Roughly 15–20% more than four years ago; restaurant prices overall are up 3.4% in the past year (CPI food away from home, August).",
+   "src": "Reuters via ThePricer (May 2026); Food Business News (Oct 2022)",
+   "url": "https://www.thepricer.org/how-much-does-a-chipotle-bowl-cost/"
+  },
+  {
+   "key": "markets",
+   "label": "Prediction markets: Democratic House",
+   "value": 90,
+   "value_label": "90% (Kalshi 90.1¢, Polymarket 91¢)",
+   "compare": "Senate: about 61–62% Democratic from the balance-of-power contracts",
+   "say": "Markets sit between the polls-only model (94%) and the expert raters.",
+   "src": "DeFi Rate, Oct 13",
+   "url": "https://defirate.com/odds/2026-midterms/house-control-odds/"
+  },
+  {
+   "key": "cook",
+   "label": "Cook Political Report House ratings",
+   "value": 21,
+   "value_label": "21 toss-ups: 15 Republican-held, 6 Democratic-held (Oct 9)",
+   "compare": "Cook's likely range: Democrats gain 9–19 seats, 224–234",
+   "say": "Democrats need a fifth of the toss-ups for a majority if the seats leaning their way hold.",
+   "src": "Axios, Oct 9",
+   "url": "https://www.axios.com/2026/10/09/cook-report-18-house-races-move-democrats"
+  },
+  {
+   "key": "retire",
+   "label": "House members not seeking re-election",
+   "value": 61,
+   "value_label": "37 Republicans, 24 Democrats (plus two Democratic delegates)",
+   "compare": "2018: 37 R, 18 D; 2022: 20 R, 29 D",
+   "say": "More Republicans leaving, including 20 running for other office; retirements have not tracked the swing in past midterms.",
+   "src": "Wikipedia, 2026 House elections, retirements (Oct 13)",
+   "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections"
+  }
+ ]
+}

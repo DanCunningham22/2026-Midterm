@@ -1288,6 +1288,31 @@
       '</ul>';
   }
 
+  // ---------------------------------------------------------------- other signals: the economy, markets, raters, retirements
+  function otherSignalsHtml(I) {
+    const B = I.backtest, tested = B.signals || [], now = (I.signals_now && I.signals_now.items) || [];
+    if (!tested.length && !now.length) return '';
+    const ext = (u, t) => '<a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(t) + '</a>';
+    const nowRows = now.map((x) => '<tr><td><b>' + esc(x.label) + '</b><span class="lens-sub">' + esc(x.say || '') + '</span></td><td>' + esc(x.value_label) + '<span class="lens-sub">' + esc(x.compare || '') + '</span></td><td class="bt-col">' + (x.url ? ext(x.url, x.src || 'Source') : esc(x.src || '')) + '</td></tr>').join('');
+    const vcls = { 'helps a little': 'ok', 'no help': '', hurts: 'bad', 'no data': '' };
+    const vtxt = { 'helps a little': 'Helps a little', 'no help': 'No help', hurts: 'Hurts', 'no data': 'Too little data' };
+    const fmtNow = (x) => (x.now == null ? '—' : (x.unit === '%' || x.unit === 'pts' ? (x.now > 0 ? '+' : '') + x.now.toFixed(1) + (x.unit === '%' ? '%' : ' pts') : x.unit === 'members' ? (x.now > 0 ? '+' : '') + x.now : x.now.toFixed(1)));
+    const testRows = tested.map((x) => '<tr><td>' + esc(x.label) + (x.note ? '<span class="lens-sub">' + esc(x.note) + '</span>' : '') + '</td><td class="n">' + fmtNow(x) + '</td>' +
+      '<td class="n bt-col">' + (x.gain == null ? '—' : (x.gain > 0 ? '+' : '') + x.gain.toFixed(0) + '%') + '</td><td><span class="sig-v ' + (vcls[x.verdict] || '') + '">' + (vtxt[x.verdict] || esc(x.verdict)) + '</span>' + (x.n ? '<span class="lens-sub">' + x.n + ' midterms since ' + x.first + '</span>' : '') + '</td></tr>').join('');
+    const helps = tested.filter((x) => x.verdict === 'helps a little').map((x) => x.label.toLowerCase());
+    return '<div class="bt-grid"><div>' +
+      '<h3>Other signals: what they say now</h3>' +
+      '<p class="sub">Readings people watch that aren\'t polls. Shown for context; none is in the forecast (see the test on the right).</p>' +
+      '<div class="table-scroll"><table class="bt-table"><thead><tr><th>Signal</th><th>Now</th><th class="bt-col">Source</th></tr></thead><tbody>' + nowRows + '</tbody></table></div>' +
+      '</div><div>' +
+      '<h3>Do they predict midterms?</h3>' +
+      '<p class="sub">Each signal added to approval and exposure, tested on midterms since 1950 (leave one out). "Gain" is how much it cut the typical miss; negative means it made the prediction worse.</p>' +
+      '<div class="table-scroll"><table class="bt-table"><thead><tr><th>Signal</th><th class="n">2026</th><th class="n bt-col">Gain</th><th>Verdict</th></tr></thead><tbody>' + testRows + '</tbody></table></div>' +
+      '<p class="chart-cap">' + (helps.length ? 'Only ' + helps.join(' and ') + ' helped at all, and ' + (helps.length > 1 ? 'they' : 'it') + ' would barely move 2026, so it stays out. ' : '') +
+      'Approval already absorbs the economy: a president presiding over high prices or rising unemployment is already unpopular. Markets and raters are informed judgments rather than independent data, so they are shown here rather than blended in.</p>' +
+      '</div></div>';
+  }
+
   // ---------------------------------------------------------------- our forecast: how it's built, and how it would have done
   function renderBacktest() {
     const box = $('backtest');
@@ -1363,12 +1388,13 @@
       '</ul>' +
       '<h3>How much the choices matter</h3><ul class="bt-list">' + sens + '</ul>' +
       '</div></div>' +
+      otherSignalsHtml(I) +
       '<h3>Inputs, checked daily</h3><ul class="bt-list bt-inputs">' +
       (ap.net != null ? '<li><b>Trump\'s net approval: ' + (ap.net > 0 ? '+' : '−') + Math.abs(ap.net).toFixed(0) + '</b>' + (apSrc ? ' (' + apSrc + ')' : '') + '. Midterms since ' + B.fund.first + ' are fitted on Gallup\'s final reading before each election.</li>' : '') +
       (spc.value != null ? '<li><b>Special elections: Democrats ' + (spc.value > 0 ? '+' : '−') + Math.abs(spc.value).toFixed(1) + ' vs. 2024</b> across ' + spc.n + ' races' + (spc.recent != null ? ' (' + (spc.recent > 0 ? '+' : '−') + Math.abs(spc.recent).toFixed(1) + ' in ' + esc(spc.recent_label || 'this year') + ')' : '') + (spc.source ? ', ' + ext(spc.source[1], spc.source[0]) : '') + '. In 2006, 2018 and 2022 specials overstated the final swing by ' + Object.keys(B.specials.over).map((y) => one(B.specials.over[y])).join(', ') + ' points.</li>' : '') +
       (off.VA != null ? '<li><b>2025 governors:</b> Virginia ' + (off.VA > 0 ? '+' : '−') + Math.abs(off.VA).toFixed(1) + ' and New Jersey ' + (off.NJ > 0 ? '+' : '−') + Math.abs(off.NJ).toFixed(1) + ' points more Democratic than in 2024 (' + (off.sources || []).map((x) => ext(x[1], x[0].replace(/ gubernatorial election$/, ''))).join(', ') + ').</li>' : '') +
       '</ul>' +
-      '<p class="chart-cap bt-caveat"><b>Caveats.</b> Seven midterms is a small sample, and only three have comparable special-election data. House seats are not backtested district by district; they come from the national vote through the same model as everything else. The economy, money and crosstab accuracy are not in the forecast yet.</p>';
+      '<p class="chart-cap bt-caveat"><b>Caveats.</b> Seven midterms is a small sample, and only three have comparable special-election data. House seats are not backtested district by district; they come from the national vote through the same model as everything else. Money and crosstab accuracy are not in the forecast.</p>';
   }
 
   // ---------------------------------------------------------------- render all
