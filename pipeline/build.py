@@ -620,7 +620,8 @@ def main():
         age = None
     if a.no_fec:
         out['money'] = pm
-    elif age is not None and age < dt.timedelta(hours=5, minutes=30) and pmeta.get('fec', {}).get('ok'):
+    elif (age is not None and age < dt.timedelta(hours=5, minutes=30) and pmeta.get('fec', {}).get('ok')
+          and pm.get('v') == fec_money.VERSION):
         out['money'] = pm
         status['fec'] = pmeta['fec']
     else:

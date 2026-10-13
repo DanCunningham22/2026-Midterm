@@ -30,6 +30,7 @@ import urllib.request
 import zipfile
 
 CYCLE = 2026
+VERSION = 2          # bump when the method changes, so the next run refetches instead of reusing
 BASE = f'https://www.fec.gov/files/bulk-downloads/{CYCLE}/'
 CAND_FILES = [f'webl{CYCLE % 100}.zip', f'weball{CYCLE % 100}.zip']
 IE_FILE = f'independent_expenditure_{CYCLE}.csv'
@@ -418,6 +419,7 @@ def build(districts, senate, log=print):
         raise ValueError(f'only {matched} of {len(races)} races matched FEC candidates')
     ie_diag['aliases'] = aliases
     return dict(
+        v=VERSION,
         races={k: v for k, v in races.items() if v},
         asof=dict(cand=max(thru) if thru else None, ie=ie_diag.get('last')),
         diag=dict(file=used, candidates=len(cands), races=len(races), matched=matched, no_summary=no_summary[:40],
