@@ -26,6 +26,8 @@ import re
 import sys
 import urllib.request
 
+import fec_money
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FEED_URL = 'https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/'
 FEED_FILES = ['races.csv', 'candidates.csv', 'race_polls.csv', 'pollster_ratings.csv', 'gcb_polls.csv']
@@ -482,6 +484,7 @@ def main():
     ap.add_argument('--out', default=os.path.join(ROOT, 'site', 'data.json'))
     ap.add_argument('--feed-dir', help='read the ElectIndex files from this directory instead of fetching')
     ap.add_argument('--no-nc', action='store_true', help='skip the North Carolina file download (local runs)')
+    ap.add_argument('--no-fec', action='store_true', help='skip the FEC campaign-money downloads (local runs)')
     ap.add_argument('--uf-csv', help='read the UF early-vote file from this path instead of fetching')
     ap.add_argument('--today', help='override the build date (YYYY-MM-DD)')
     a = ap.parse_args()
@@ -607,6 +610,41 @@ def main():
     out['story'] = story
     out['sealed'] = load_json(os.path.join(ROOT, 'pipeline', 'content', 'sealed.json'), {'versions': []})
     out['watch'] = clean_watch(load_json(os.path.join(ROOT, 'pipeline', 'content', 'watch.json'), {}))
+
+    # campaign money from the FEC (House and Senate; governors are state races). The files change about daily,
+    # so they are fetched at most every ~6 hours; a failed fetch keeps the last good figures.
+    pm = prev.get('money') or None
+    try:
+        age = now - dt.datetime.fromisoformat(pm['fetched']) if pm and pm.get('fetched') else None
+    except ValueError:
+        age = None
+    if a.no_fec:
+        out['money'] = pm
+    elif age is not None and age < dt.timedelta(hours=5, minutes=30) and pmeta.get('fec', {}).get('ok'):
+        out['money'] = pm
+        status['fec'] = pmeta['fec']
+    else:
+        try:
+            m = fec_money.build(out['districts'], out['senate'], log=lambda x: print(x, file=sys.stderr))
+            m['fetched'] = now.isoformat(timespec='minutes')
+            ie_err = m['diag']['ie'].get('error') or not m['diag']['ie'].get('kept')
+            if ie_err and pm and pm.get('races'):
+                # only the outside-spending file failed: keep its last figures next to the new candidate totals
+                for rid, e in pm['races'].items():
+                    if rid in m['races']:
+                        for k in ('o', 'top', 'nsp'):
+                            if k in e:
+                                m['races'][rid][k] = e[k]
+                m['asof']['ie'] = (pm.get('asof') or {}).get('ie')
+            out['money'] = m
+            if ie_err:
+                stale('fec', f"outside-spending file: {m['diag']['ie'].get('error') or 'no rows kept'}")
+            else:
+                ok('fec', f"{m['diag']['matched']} races matched; candidate reports through {m['asof']['cand']}, "
+                          f"outside spending through {m['asof']['ie']}")
+        except Exception as e:
+            stale('fec', e)
+            out['money'] = pm
     out['meta'] = dict(generated=now.isoformat(timespec='minutes'), build_date=today.isoformat(), sources=status,
                        senate_asof=senate_cfg['asof'])
 

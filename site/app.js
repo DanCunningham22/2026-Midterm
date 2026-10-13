@@ -1557,14 +1557,14 @@
     const shortStamp = meta.generated ? new Date(meta.generated).toLocaleString('en-US', { weekday: 'short', hour: 'numeric', minute: '2-digit', timeZone: ET }) + ' ET' : 'recently';
     document.getElementById('eyebrow').innerHTML = '<span class="xl">2026 midterms · </span>updated <span class="xl">' + (meta.generated ? fmtStamp(meta.generated) : 'recently') + '</span><span class="xs">' + shortStamp + '</span> · <span class="xl">' + dayText + '</span><span class="xs">' + shortDays + '</span>';
     const chip = document.getElementById('staleChip');
-    const labels = { early_vote: 'Early-vote counts', electindex: 'Polls and candidates', generic_ballot: 'National polling average', nc_sbe: 'North Carolina early-vote comparison' };
+    const labels = { early_vote: 'Early-vote counts', electindex: 'Polls and candidates', generic_ballot: 'National polling average', nc_sbe: 'North Carolina early-vote comparison', fec: 'Campaign money (FEC)' };
     const stale = Object.keys(meta.sources || {}).filter((k) => !meta.sources[k].ok);
     const ageH = meta.generated ? (Date.now() - new Date(meta.generated).getTime()) / 3600000 : 0;
     if (ageH > 36) { chip.textContent = 'Not updated since ' + fmtStamp(meta.generated); chip.hidden = false; }
     else if (stale.length) {
       const k = stale[0], lo = meta.sources[k].last_ok;
-      chip.textContent = labels[k] + ' didn\'t refresh' + (lo ? '; last good ' + fmtStamp(lo) : '');
-      chip.title = stale.map((x) => labels[x] + ': ' + meta.sources[x].detail).join('\n');
+      chip.textContent = (labels[k] || k) + ' didn\'t refresh' + (lo ? '; last good ' + fmtStamp(lo) : '');
+      chip.title = stale.map((x) => (labels[x] || x) + ': ' + meta.sources[x].detail).join('\n');
       chip.hidden = false;
     }
   }
