@@ -43,6 +43,14 @@ python3 pipeline/build.py --out site/data.json   # needs internet
 python3 -m http.server -d site 8000              # then open http://localhost:8000
 ```
 
+## Sealed forecasts
+
+Besides this scenario model, a separate judgment-based forecast is kept privately and updated as the data
+moves. Each version is sealed: the SHA-256 fingerprint of its full text is added to
+`pipeline/content/sealed.json` and shown in the app's How it works section. After Election Day the texts can
+be published; anyone can check one with `sha256sum` (the text ends with a single line break) and compare it with
+the fingerprint and the commit date here.
+
 ## Credits and data terms
 
 District results and demographics on the 2026 lines are derived from ElectIndex's public data, which does

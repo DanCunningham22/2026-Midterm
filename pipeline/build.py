@@ -580,6 +580,7 @@ def main():
 
     out['evproj'] = ev_projection(story, base['N24'], out.get('nc'))
     out['story'] = story
+    out['sealed'] = load_json(os.path.join(ROOT, 'pipeline', 'content', 'sealed.json'), {'versions': []})
     out['meta'] = dict(generated=now.isoformat(timespec='minutes'), build_date=today.isoformat(), sources=status,
                        senate_asof=senate_cfg['asof'])
 

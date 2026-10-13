@@ -1168,6 +1168,14 @@
     $('evProj').innerHTML = '<svg viewBox="0 0 ' + W + ' ' + (meas.length * 22 + 26) + '" role="img" aria-label="National environment implied by each early-vote measure">' + ph + '</svg>';
   }
 
+  // fingerprints of a separate, privately kept forecast: proof of what it said and when, without revealing it
+  function sealedHtml() {
+    const v = ((D.sealed || {}).versions || []).slice().reverse();
+    if (!v.length) return '';
+    return '<p><b>Sealed forecasts.</b> A separate judgment call, beyond this model, is kept privately and updated as the data moves. Each version is sealed with a SHA-256 fingerprint of its full text, listed here when it is made, so the text can be checked after Election Day: ' +
+      v.map((x) => 'version ' + x.v + ', ' + esc(x.label) + ': <code class="hash">' + esc(x.sha256) + '</code>').join('; ') + '.</p>';
+  }
+
   // ---------------------------------------------------------------- method section
   function buildMethod() {
     const pu = D.polls_used.map((p) => p.pollster + ' (' + p.end.slice(5).replace('-', '/') + ', ' + p.pop + ')').join('; ');
@@ -1181,6 +1189,7 @@
       '<p><b>Uncertainty.</b> ' + M.NSIM.toLocaleString() + ' simulations with the same random draws each time, so results don\'t flicker as you drag. Each draws a shared national error (Student t with 5 degrees of freedom, SD from the slider), a state error (SD 1.9) shared by every race in the state, a race error (House 5, Senate 3.8, governors 4.5), and a demographic error: each group can land off the scenario (SD in points of margin: white college 4, white non-college 4, Black 5, Hispanic 7, Asian &amp; other 6, ages 18–29 5, older groups 3), moving each district and state by how far its electorate differs from the nation\'s. That makes places with similar voters miss together, the way polls missed white non-college voters in 2016 and 2020 and Hispanic voters in 2020 and 2024. It barely changes the chamber odds, because the misses cancel across the country, but it makes heavily Hispanic districts like TX-28 and FL-27 less certain and ties them together.</p>' +
       '<p><b>Updates.</b> Twice a day the app rebuilds itself from fresh data: candidates and race polls from ElectIndex\'s public feed, ballot counts from UF Election Lab, and a new national default. The national default (' + fm(D.G0) + ' now) is a weighted average of public generic-ballot polls from the last four weeks: one poll per pollster (' + (D.G0_polls || '30') + ' pollsters), weighted by recency, sample size and pollster rating, with partisan-leaning pollsters at half weight. The competitive Senate races start from the Oct 9 corrected averages and move by the change in a simple poll average since then. The early-vote signals, story and same-point comparisons are refreshed daily from published analyses; the 2026 crosstab polls are added as pollsters release them. If a source fails, the app keeps its last good numbers and says so at the top.</p>' +
       '<p><b>What it doesn\'t know.</b> District polls (shown, not used), expert ratings, money and late scandals such as NV-2\'s.</p>' +
+      sealedHtml() +
       '</div></div>' +
       '<h3 style="margin-top:12px">Sources</h3><ul class="sources">' +
       '<li><a href="https://github.com/ElectIndex/26_us_forecast_data">ElectIndex 2026 forecast data</a>: 2020 and 2024 presidential results on the 2026 district lines, district voting-age population, candidates and incumbency, and raw race polls (repository as of Oct 12, 11:40 ET).</li>' +
