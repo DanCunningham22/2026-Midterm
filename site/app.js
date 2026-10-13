@@ -9,7 +9,7 @@
   let sc = M.clone(M.defaults);
   let R = null;              // last simulation
   const ui = { tab: 'house', cmode: 'chance', sel: null, dim: 'race', query: '', showAll: false, pattern: 'blend', side: 'D', screen: 'map' };
-  const SCREENS = ['map', 'outlook', 'races', 'adjust', 'early'];
+  const SCREENS = ['map', 'outlook', 'races', 'adjust', 'early', 'watch'];
   try {
     const saved = JSON.parse(localStorage.getItem('msm-ui') || 'null');
     if (saved && saved.tab) { ui.tab = saved.tab; ui.cmode = saved.cmode || 'chance'; ui.dim = saved.dim || 'race'; ui.side = saved.side === 'R' ? 'R' : 'D'; if (SCREENS.indexOf(saved.screen) >= 0) ui.screen = saved.screen; }
@@ -180,7 +180,9 @@
   function renderBar() {
     const nat = M.national(sc);
     const eff = R.m.national;
-    $('env').value = nat.toFixed(1);
+    // left is Democratic, right is Republican: the slider holds the negated margin
+    $('env').value = (-nat).toFixed(1);
+    $('env').setAttribute('aria-valuetext', fm(nat));
     $('envOut').textContent = fm(eff);
     $('envOut').className = 'env-value num ' + (eff > 0.05 ? 'd' : eff < -0.05 ? 'r' : '');
     document.querySelectorAll('#presets .oval').forEach((b) => {
@@ -347,9 +349,8 @@
     }
     if (t === 'gov') { fixedD = 6; fixedR = 8; total = 50; need = 26; needLab = '26 for a majority'; }
     const W = 1000, H = 34;
-    // in the Republican view the bar fills from the Republican end, so the line still marks what that side needs
+    // Democrats fill from the left and Republicans from the right in both views; the line marks what the viewed side needs
     const segs = [['dfix', fixedD], ['sd', counts.sd], ['ld', counts.ld], ['nd', counts.nd], ['tu', counts.tu], ['nr', counts.nr], ['lr', counts.lr], ['sr', counts.sr], ['rfix', fixedR]];
-    if (rv) segs.reverse();
     let x = 0, h = '';
     segs.forEach(([k, n]) => {
       if (!n) return;
@@ -360,10 +361,11 @@
         (k === 'dfix' ? fixedD + ' Democratic seats not up' : k === 'rfix' ? fixedR + ' Republican seats not up' : n + ' ' + rating(k === 'sd' ? 1 : k === 'ld' ? 0.9 : k === 'nd' ? 0.7 : k === 'tu' ? 0.5 : k === 'nr' ? 0.3 : k === 'lr' ? 0.1 : 0).t) + '</title></rect>';
       x += w;
     });
-    const mx = need / total * W;
+    const at = rv ? total - need : need;   // the Republican threshold is counted from the right end
+    const mx = at / total * W;
     h += '<line x1="' + mx.toFixed(1) + '" x2="' + mx.toFixed(1) + '" y1="0" y2="24" class="maj-line"/>';
     $('seatbar').innerHTML = '<svg viewBox="0 0 1000 24" preserveAspectRatio="none" aria-hidden="true">' + h + '</svg>' +
-      '<div class="seat-need" style="left:' + (need / total * 100).toFixed(2) + '%">' + needLab + '</div>';
+      '<div class="seat-need" style="left:' + (at / total * 100).toFixed(2) + '%">' + needLab + '</div>';
   }
 
   // ---------------------------------------------------------------- detail panel
@@ -738,7 +740,8 @@
     const mk = (id, key, ylo, yhi, need, ylab, H, tipv, needLab) => {
       const W = chartW(id, 300, 520), L = 40, Rr = 10, T = 14, B = 28;
       $(id).setAttribute('viewBox', '0 0 ' + W + ' ' + H);
-      const gx = (g) => L + (g - gridG[0]) / (gridG[gridG.length - 1] - gridG[0]) * (W - L - Rr);
+      // Democratic environments on the left, Republican on the right, like the sliders
+      const gx = (g) => L + (gridG[gridG.length - 1] - g) / (gridG[gridG.length - 1] - gridG[0]) * (W - L - Rr);
       const gy = (v) => T + (1 - (v - ylo) / (yhi - ylo)) * (H - T - B);
       let h = '<g class="axis">';
       const ystep = (yhi - ylo) > 60 ? 40 : 4;
@@ -823,11 +826,11 @@
     box.innerHTML = labs.map((l, i) => {
       const rg = GROUP_RANGE[dim][i];
       return '<div class="xtab-row"><span class="xtab-name">' + l + '</span><span class="xtab-share num" id="xs' + i + '"></span>' +
-        '<div class="xtab-line"><span class="lab">Margin</span><div class="slider-wrap" id="xmw' + i + '"><input type="range" id="xm-' + dim + '-' + i + '" data-i="' + i + '" class="xm" min="' + rg[0] + '" max="' + rg[1] + '" step="0.5" aria-label="' + l + ' margin"></div><output id="xmo' + i + '"></output></div>' +
+        '<div class="xtab-line"><span class="lab">Margin</span><div class="slider-wrap" id="xmw' + i + '"><input type="range" id="xm-' + dim + '-' + i + '" data-i="' + i + '" class="xm" min="' + (-rg[1]) + '" max="' + (-rg[0]) + '" step="0.5" aria-label="' + l + ' margin"></div><output id="xmo' + i + '"></output></div>' +
         '<div class="xtab-line"><span class="lab">Turnout</span><div class="slider-wrap"><input type="range" id="xt-' + dim + '-' + i + '" data-i="' + i + '" class="xt" min="0.6" max="1.5" step="0.01" aria-label="' + l + ' turnout"></div><output id="xto' + i + '"></output></div></div>';
     }).join('');
     box.querySelectorAll('.xm').forEach((inp) => inp.addEventListener('input', () => {
-      M.setGroupMargin(sc, ui.dim, +inp.dataset.i, +inp.value);
+      M.setGroupMargin(sc, ui.dim, +inp.dataset.i, -inp.value);   // negated: left is Democratic
       ui.pattern = 'custom';
       update(true);
     }));
@@ -915,7 +918,8 @@
     $('pollKey').textContent = pl ? pl.short + '\'s own numbers' : '2026 polls';
     gm.forEach((v, i) => {
       const inp = $('xm-' + dim + '-' + i); if (!inp) return;
-      if (document.activeElement !== inp) inp.value = v.toFixed(1);
+      if (document.activeElement !== inp) inp.value = (-v).toFixed(1);
+      inp.setAttribute('aria-valuetext', fm(v));
       $('xmo' + i).textContent = fm(v);
       $('xmo' + i).className = v > 0 ? 'd' : 'r';
       $('xs' + i).textContent = Math.round(ns[i] * 100) + '% of voters';
@@ -930,7 +934,7 @@
         ticks = ticks.slice(0, 1);
         if (v !== null && v !== undefined && pl.approx.indexOf(key) < 0) ticks.push([pl.top + v, 'poll', pl.short + '\'s own number: ' + fm(pl.top + v)]);
       }
-      sliderTicks($('xmw' + i), inp, ticks);
+      sliderTicks($('xmw' + i), inp, ticks.map(([tv, c, ti]) => [-tv, c, ti]));
     });
     document.querySelectorAll('#patternChips .chip').forEach((b) => b.setAttribute('aria-pressed', b.dataset.k === ui.pattern ? 'true' : 'false'));
     document.querySelectorAll('#pollsterChips .pchip').forEach((b) => b.setAttribute('aria-pressed', 'poll:' + b.dataset.k === ui.pattern ? 'true' : 'false'));
@@ -960,8 +964,14 @@
     $('cand').checked = sc.cand;
     $('demo').checked = sc.demo !== false;
   }
+  function setTab(t) {
+    if (ui.tab === t) return;
+    ui.tab = t; ui.sel = null; ui.showAll = false; saveUi(); tip.hidden = true;
+    document.querySelectorAll('.tabs[role="tablist"] button[data-tab]').forEach((b) => b.setAttribute('aria-selected', b.dataset.tab === t ? 'true' : 'false'));
+    render();
+  }
   function wireControls() {
-    $('env').addEventListener('input', () => { sc.C = M.solveC(sc, +$('env').value); update(true); });
+    $('env').addEventListener('input', () => { sc.C = M.solveC(sc, -$('env').value); update(true); });
     $('turnout').addEventListener('input', () => { sc.T = +$('turnout').value; update(true); });
     $('edge').addEventListener('input', () => { sc.edge = +$('edge').value; update(true); });
     $('evw').addEventListener('input', () => { sc.evw = +$('evw').value / 100; update(true); });
@@ -973,16 +983,10 @@
     $('demo').addEventListener('change', () => { sc.demo = $('demo').checked; update(); });
     $('resetBtn').addEventListener('click', resetToForecast);
     document.querySelectorAll('#dimTabs button').forEach((b) => b.addEventListener('click', () => { ui.dim = b.dataset.dim; saveUi(); buildXtabs(); renderControls(); }));
-    const setTab = (t) => {
-      if (ui.tab === t) return;
-      ui.tab = t; ui.sel = null; ui.showAll = false; saveUi(); tip.hidden = true;
-      document.querySelectorAll('.tabs[role="tablist"] button[data-tab]').forEach((b) => b.setAttribute('aria-selected', b.dataset.tab === t ? 'true' : 'false'));
-      render();
-    };
     document.querySelectorAll('[data-tab]').forEach((b) => b.addEventListener('click', () => {
       setTab(b.dataset.tab);
       if (!b.classList.contains('tally-item')) return;
-      if (isTabbed()) { if (ui.screen === 'adjust' || ui.screen === 'early') showScreen('map', true); }
+      if (isTabbed()) { if (ui.screen === 'adjust' || ui.screen === 'early' || ui.screen === 'watch') showScreen('map', true); }
       else $('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }));
     $('cmChance').addEventListener('click', () => { ui.cmode = 'chance'; saveUi(); render(); });
@@ -1213,7 +1217,7 @@
       '<p><b>Senate.</b> The 14 competitive races start from the corrected polling averages of a companion Senate model run on Oct 9, which used every public poll since Aug 1 (from RealClearPolling, 270toWin, Wikipedia and pollsters\' releases, excluding campaign internals) and adjusted each pollster for its lean and likely-voter screen. The other 21 start from 2024 presidential lean plus the national environment and 3 points for an incumbent; Montana uses its three-way polls (Alme vs. Bodnar). Every control then moves each state by how its electorate responds, relative to the default. With the defaults the Senate reproduces that model: 67% Democratic control vs. 65%.</p>' +
       '<p><b>Governors.</b> A recency- and quality-weighted average of public polls since late July, with R- or D-leaning pollsters at half weight; fundamentals where there are no polls (CO, HI, OK, SD, WY). They move 0.8 points per point of national change.</p>' +
       '<p><b>Uncertainty.</b> ' + M.NSIM.toLocaleString() + ' simulations with the same random draws each time, so results don\'t flicker as you drag. Each draws a shared national error (Student t with 5 degrees of freedom, SD from the slider), a state error (SD 1.9) shared by every race in the state, a race error (House 5, Senate 3.8, governors 4.5), and a demographic error: each group can land off the scenario (SD in points of margin: white college 4, white non-college 4, Black 5, Hispanic 7, Asian &amp; other 6, ages 18–29 5, older groups 3), moving each district and state by how far its electorate differs from the nation\'s. That makes places with similar voters miss together, the way polls missed white non-college voters in 2016 and 2020 and Hispanic voters in 2020 and 2024. It barely changes the chamber odds, because the misses cancel across the country, but it makes heavily Hispanic districts like TX-28 and FL-27 less certain and ties them together.</p>' +
-      '<p><b>Updates.</b> Every three hours the app rebuilds itself from fresh data: candidates and race polls from ElectIndex\'s public feed, ballot counts from UF Election Lab, and a new national default. The national default (' + fm(D.G0) + ' now) is a weighted average of public generic-ballot polls from the last four weeks: one poll per pollster (' + (D.G0_polls || '30') + ' pollsters), weighted by recency, sample size and pollster rating, with partisan-leaning pollsters at half weight. The competitive Senate races start from the Oct 9 corrected averages and move by the change in a simple poll average since then. The early-vote signals, story and same-point comparisons are refreshed daily from published analyses; the 2026 crosstab polls are added as pollsters release them. If a source fails, the app keeps its last good numbers and says so at the top.</p>' +
+      '<p><b>Updates.</b> Every three hours the app rebuilds itself from fresh data: candidates and race polls from ElectIndex\'s public feed, ballot counts from UF Election Lab, and a new national default. The national default (' + fm(D.G0) + ' now) is a weighted average of public generic-ballot polls from the last four weeks: one poll per pollster (' + (D.G0_polls || '30') + ' pollsters), weighted by recency, sample size and pollster rating, with partisan-leaning pollsters at half weight. The competitive Senate races start from the Oct 9 corrected averages and move by the change in a simple poll average since then. The early-vote signals, story and same-point comparisons are refreshed daily from published analyses; the 2026 crosstab polls are added as pollsters release them. The Watch tab\'s dates, developments and Trump and Vance stops are refreshed daily, each linked to the page that confirms it. If a source fails, the app keeps its last good numbers and says so at the top.</p>' +
       '<p><b>What it doesn\'t know.</b> District polls (shown, not used), expert ratings, money and late scandals such as NV-2\'s.</p>' +
       sealedHtml() +
       '</div></div>' +
@@ -1240,8 +1244,213 @@
     renderDetail();
     renderForecastCard();
     renderResults();
+    renderLens();
     renderTable();
     renderControls();
+  }
+
+  // ---------------------------------------------------------------- pollster lens: the forecast with each pollster's crosstabs
+  // Same national vote, each source's gaps between groups. Computed once, lazily, a simulation per tick.
+  let LENS = null, lensBusy = false;
+  function lensScenario(kind, p) {
+    const s = M.clone(M.defaults);
+    ['race', 'age', 'gender'].forEach((dim) => {
+      const def = M.blendDev(dim);
+      s.dev[dim] = def.map((v, i) => {
+        if (kind === 'poll') return p.dev[dim][i] == null ? v : p.dev[dim][i];
+        if (kind === 'polls') return D.polldev[dim][i].dev;
+        if (kind === '2024') return D.base['2024'][dim].dev[i];
+        return v;
+      });
+    });
+    s.C = M.solveC(s, M.national(M.defaults));
+    return s;
+  }
+  function lensRows() {
+    return [
+      { k: 'forecast', name: 'The forecast', sub: 'halfway between 2024 and the 2026 polls' },
+      { k: '2024', name: '2024 pattern', sub: 'how each group voted in 2024' },
+      { k: 'polls', name: '2026 poll average', sub: 'all the 2026 crosstabs, averaged' },
+    ].concat((D.pollsters || []).map((p) => ({ k: 'poll:' + p.k, p, name: p.short + ' ' + p.pop, sub: fmtDay(p.end) + ' · their national number ' + fm(p.top) })));
+  }
+  function computeLens() {
+    if (LENS || lensBusy) return;
+    lensBusy = true;
+    const rows = lensRows(), out = [];
+    let j = 0;
+    const step = () => {
+      const r = rows[j++];
+      const res = r.k === 'forecast' ? (R0 || (R0 = M.simulate(M.clone(M.defaults)))) : M.simulate(lensScenario(r.p ? 'poll' : r.k, r.p));
+      out.push(Object.assign({ v: { h: res.house.control, hr: res.house.r.control, s: res.senate.control, sr: res.senate.rcontrol, g: res.gov.maj, gr: res.gov.r.control } }, r));
+      if (j < rows.length) { setTimeout(step, 0); return; }
+      LENS = out; lensBusy = false; renderLens();
+    };
+    setTimeout(step, 0);
+  }
+  function renderLens() {
+    const box = $('lens'); if (!box) return;
+    if (!(D.pollsters || []).length) { box.hidden = true; return; }
+    const rv = rView(), P = rv ? 'R' : 'D';
+    const head = '<h3>Same national vote, different crosstabs</h3>';
+    if (!LENS) { box.innerHTML = head + '<p class="sub">Running the forecast with each pollster\'s group-by-group numbers…</p>'; return; }
+    const val = (x, k) => (rv ? x.v[k + 'r'] : x.v[k]);
+    const cell = (x, k) => '<td class="n"><span class="pill ' + rating(x.v[k]).k + '">' + P + ' ' + fp(val(x, k)) + '</span></td>';
+    const act = (x) => (x.k === 'forecast'
+      ? (atForecast() ? '<span class="muted small">Showing</span>' : '<button class="lens-go" data-k="forecast">Show</button>')
+      : '<button class="lens-go" data-k="' + esc(x.k) + '">Load</button>');
+    const row = (x, cls) => '<tr' + (cls ? ' class="' + cls + '"' : '') + '><td><b>' + esc(x.name) + '</b><span class="lens-sub">' + esc(x.sub) + '</span></td>' +
+      cell(x, 'h') + cell(x, 's') + cell(x, 'g') + '<td class="n lens-act">' + act(x) + '</td></tr>';
+    const base = LENS.slice(0, 3), polls = LENS.slice(3).sort((a, b) => val(b, 's') - val(a, 's'));
+    const ends = (k) => { const a = LENS.map((x) => val(x, k)); return [fp(Math.min.apply(null, a)), fp(Math.max.apply(null, a))]; };
+    const hE = ends('h'), sE = ends('s');
+    box.innerHTML = head +
+      '<p class="sub">The forecast at the same national vote (' + fm(FORECAST_NAT) + ') with each source\'s gaps between groups. Chances are for ' + (rv ? 'Republicans' : 'Democrats') + '.</p>' +
+      '<div class="table-scroll"><table><thead><tr><th>Crosstabs from</th><th class="n">House</th><th class="n">Senate</th><th class="n">Govs 26+</th><th class="lens-act"></th></tr></thead><tbody>' +
+      row(base[0], 'lens-base') + row(base[1]) + row(base[2], 'lens-sep') + polls.map((x) => row(x)).join('') + '</tbody></table></div>' +
+      '<p class="chart-cap">The House stays between ' + hE[0] + ' and ' + hE[1] + '; the Senate runs from ' + sE[0] + ' to ' + sE[1] + '. Most Senate battlegrounds (Maine, Iowa, Ohio, Kansas, Nebraska, Alaska, Michigan, Minnesota, New Hampshire) are whiter than the country, so which groups are moving matters more for the Senate than for the House. ' +
+      'A single poll\'s subgroups are small: a 150-person group\'s margin carries about ±15 points of sampling error, so the forecast follows the average rather than any one pollster. Load applies a row to the map as your scenario.</p>';
+    box.querySelectorAll('.lens-go').forEach((b) => b.addEventListener('click', () => {
+      const k = b.dataset.k;
+      if (k === 'forecast') resetToForecast();
+      else if (k.indexOf('poll:') === 0) applyPollster(k.slice(5));
+      else applyPattern(k);
+    }));
+  }
+  function initLens() {
+    const box = $('lens'); if (!box || !(D.pollsters || []).length) return;
+    if (!('IntersectionObserver' in window)) { setTimeout(computeLens, 2500); return; }
+    const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); computeLens(); } }, { rootMargin: '300px' });
+    io.observe(box);
+  }
+
+  // ---------------------------------------------------------------- Watch: dates ahead, what's happened, the campaign trail
+  const wui = { up: false, hap: false, log: false };
+  const KIND = { rally: 'Rally', stop: 'Campaign stop', fundraiser: 'Fundraiser', 'tele-rally': 'Tele-rally', official: 'Official visit' };
+  const todayISO = () => new Intl.DateTimeFormat('en-CA', { timeZone: ET, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+  function dayLabel(iso, today) {
+    const [y, m, d] = iso.split('-').map(Number), [ty, tm, td] = today.split('-').map(Number);
+    const diff = Math.round((Date.UTC(y, m - 1, d) - Date.UTC(ty, tm - 1, td)) / 86400000);
+    const wd = new Date(Date.UTC(y, m - 1, d, 12)).toLocaleDateString('en-US', { weekday: 'short', timeZone: 'UTC' });
+    return (diff === 0 ? 'Today · ' : diff === 1 ? 'Tomorrow · ' : '') + wd + ' ' + fmtDay(iso);
+  }
+  function raceRef(code) {
+    const c = String(code || '').toUpperCase().replace(/-AL$/, '-01');
+    const t = /-SEN$/.test(c) ? 'senate' : /-GOV$/.test(c) ? 'gov' : /^[A-Z]{2}-\d{2}$/.test(c) ? 'house' : null;
+    if (!t) return null;
+    const i = races(t).findIndex((r) => r.id === c);
+    return i < 0 ? null : { t, i, r: races(t)[i], id: c };
+  }
+  // a race with today's forecast chance; tapping it opens the race on the map
+  function raceChip(code) {
+    const ref = raceRef(code); if (!ref) return '';
+    const res = R0 || R, p = res[ref.t === 'gov' ? 'gov' : ref.t].p[ref.i];
+    return '<button class="rchip" data-race="' + ref.id + '" title="Open ' + ref.id + ' on the map">' + ref.id + ' <span class="pill ' + rating(p).k + '">' + chanceText(p, ref.r) + '</span></button>';
+  }
+  const chipsFor = (list) => (list || []).map(raceChip).join('');
+  const srcLink = (x) => (x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.src || 'Source') + '</a>' + (x.aff ? ' (' + esc(x.aff) + ')' : '') : '');
+  function goRace(code) {
+    const ref = raceRef(code); if (!ref) return;
+    setTab(ref.t);
+    openRace(ref.i, true);
+  }
+  function watchUpcoming(W, today) {
+    const all = (W.upcoming || []).filter((x) => x.date >= today && x.group !== 'election-night');
+    const night = (W.upcoming || []).filter((x) => x.group === 'election-night');
+    const shown = wui.up ? all : all.slice(0, 8);
+    let h = '<h3>Coming up</h3>', last = null;
+    if (!all.length) h += '<p class="sub">Nothing scheduled in the list right now.</p>';
+    h += '<ul class="w-list">';
+    shown.forEach((x) => {
+      if (x.date !== last) { h += '</ul><p class="w-day">' + dayLabel(x.date, today) + '</p><ul class="w-list">'; last = x.date; }
+      h += '<li class="w-item"><div class="w-top"><span class="w-when">' + (x.time ? esc(x.time) + ' ET' : '') + '</span><p class="w-title">' + esc(x.title) + '</p></div>' +
+        (x.what ? '<p class="w-what">' + esc(x.what) + '</p>' : '') + (x.why ? '<p class="w-why">' + esc(x.why) + '</p>' : '') +
+        '<div class="w-meta">' + chipsFor(x.races) + '<span>' + srcLink(x) + '</span></div></li>';
+    });
+    h += '</ul>';
+    if (all.length > 8) h += '<button class="more w-more" data-k="up">' + (wui.up ? 'Show fewer' : 'Show all ' + all.length) + '</button>';
+    if (night.length) {
+      h += '<details class="w-night"><summary>Election night: when polls close (ET)</summary><ul class="w-list">' + night.map((x) =>
+        '<li class="w-item"><div class="w-top"><span class="w-when">' + esc(x.time || '') + '</span><p class="w-title">' + esc(x.title) + '</p></div>' +
+        (x.what ? '<p class="w-what">' + esc(x.what) + '</p>' : '') + '<div class="w-meta">' + chipsFor(x.races) + '<span>' + srcLink(x) + '</span></div></li>').join('') + '</ul></details>';
+    }
+    return h;
+  }
+  function watchHappened(W) {
+    const all = (W.happened || []).slice().sort((a, b) => b.date.localeCompare(a.date));
+    const shown = wui.hap ? all : all.slice(0, 6);
+    let h = '<h3>What\'s happened</h3><p class="sub" style="margin-bottom:0">Developments that matter for control, newest first.</p><ul class="w-list">';
+    shown.forEach((x) => {
+      h += '<li class="w-item"><div class="w-top"><span class="w-when">' + fmtDay(x.date) + '</span><p class="w-title">' + esc(x.title) + '</p></div>' +
+        '<p class="w-what">' + esc(x.what) + '</p>' + (x.why ? '<p class="w-why">' + esc(x.why) + '</p>' : '') +
+        '<div class="w-meta">' + chipsFor(x.races) + '<span>' + srcLink(x) + '</span></div></li>';
+    });
+    h += '</ul>';
+    if (all.length > 6) h += '<button class="more w-more" data-k="hap">' + (wui.hap ? 'Show fewer' : 'Show all ' + all.length) + '</button>';
+    return h;
+  }
+  function trailMap(byState) {
+    const W = 11 * TW + TW / 2 + 8, H = 7 * 1.5 * TR + 2 * TR + 8;
+    let h = '<svg class="tmap" viewBox="0 0 ' + W.toFixed(1) + ' ' + H.toFixed(1) + '" role="img" aria-label="Campaign stops by state, colored by the 2024 presidential result">';
+    Object.keys(TILE).forEach((s) => {
+      const [x, y] = tileXY(s), v = byState[s], c = D.statecomp[s];
+      const n = v ? v.T + v.V : 0;
+      const tip24 = c ? ' (2024: ' + (c.m24 > 0 ? 'Harris' : 'Trump') + ' +' + Math.abs(c.m24).toFixed(1) + ')' : '';
+      h += '<path class="ttile ' + (n ? 'f-' + marginBin(c ? c.m24 : 0) : 'f-none') + '" d="' + hexPath(x, y, TR - 1) + '"><title>' + (STATE_NAMES[s] || s) +
+        (n ? ': Trump ' + v.T + ', Vance ' + v.V : ': no stops') + tip24 + '</title></path>';
+      h += '<text class="tilelab ' + (n ? 'on' : 'off') + '" x="' + x.toFixed(1) + '" y="' + (y - (n ? 6 : 0)).toFixed(1) + '">' + s + '</text>';
+      if (n) h += '<text class="tilep" x="' + x.toFixed(1) + '" y="' + (y + 10).toFixed(1) + '">' + [v.T ? 'T' + v.T : '', v.V ? 'V' + v.V : ''].filter(Boolean).join(' ') + '</text>';
+    });
+    return h + '</svg>';
+  }
+  function watchTrail(W, today) {
+    const T = (W.trail || []).filter((x) => x.status !== 'canceled' && x.status !== 'postponed');
+    const isAhead = (x) => x.date > today || (x.date === today && x.status !== 'held');
+    const inPerson = T.filter((x) => x.kind !== 'tele-rally' && TILE[x.st]);
+    const byState = {};
+    inPerson.forEach((x) => { const b = byState[x.st] || (byState[x.st] = { T: 0, V: 0 }); b[x.who === 'Trump' ? 'T' : 'V']++; });
+    const done = inPerson.filter((x) => !isAhead(x)), ahead = inPerson.filter(isAhead);
+    const cnt = (list, who) => list.filter((x) => x.who === who).length;
+    const red = done.filter((x) => D.statecomp[x.st] && D.statecomp[x.st].m24 <= -10).length;
+    const tele = T.filter((x) => x.kind === 'tele-rally');
+    // states with a close Senate or governor race (20-80% in today's forecast) that neither has visited or scheduled
+    const res = R0 || R, gap = {};
+    ['senate', 'gov'].forEach((t) => races(t).forEach((r, i) => { const p = res[t].p[i]; if (p > 0.2 && p < 0.8 && !byState[r.st]) gap[r.st] = 1; }));
+    const gapNames = Object.keys(gap).sort().map((s) => STATE_NAMES[s] || s);
+    let h = '<h3>On the trail: Trump and Vance</h3><p class="sub">' + esc(W.trail_note || 'Rallies and campaign stops, and the ones announced.') + '</p>';
+    h += '<div class="stats trail-stats">' +
+      '<div class="stat"><div class="stat-v num">' + cnt(done, 'Trump') + '</div><div class="stat-k">Trump events in person' + (cnt(ahead, 'Trump') ? ', ' + cnt(ahead, 'Trump') + ' more announced' : '') + (tele.length ? '; plus tele-rallies' : '') + '</div></div>' +
+      '<div class="stat"><div class="stat-v num">' + cnt(done, 'Vance') + '</div><div class="stat-k">Vance events in person' + (cnt(ahead, 'Vance') ? ', ' + cnt(ahead, 'Vance') + ' more announced' : '') + '</div></div>' +
+      '<div class="stat"><div class="stat-v num">' + red + ' of ' + done.length + '</div><div class="stat-k">in states Trump carried by 10+ points in 2024</div></div></div>';
+    if (gapNames.length) h += '<p class="trail-gap">No stops yet in states with a close Senate or governor race in today\'s forecast: ' + gapNames.join(', ') + '.</p>';
+    const order = T.filter(isAhead).sort((a, b) => a.date.localeCompare(b.date)).concat(T.filter((x) => !isAhead(x)).sort((a, b) => b.date.localeCompare(a.date)));
+    const shown = wui.log ? order : order.slice(0, 10);
+    const log = '<ol class="trail-log">' + shown.map((x) => {
+      const up = isAhead(x);
+      return '<li class="tl-item"><div class="tl-top"><span class="tl-date">' + fmtDay(x.date) + '</span><span class="who ' + (x.who === 'Trump' ? 'trump' : 'vance') + '">' + esc(x.who) + '</span>' +
+        '<span class="tl-where">' + esc(x.city) + ', ' + esc(x.st) + '</span><span class="tl-kind">' + esc(KIND[x.kind] || x.kind || '') + '</span>' + (up ? '<span class="tag-up">' + (x.date === today ? 'Today' : 'Announced') + '</span>' : '') + '</div>' +
+        (x.note ? '<p class="tl-note">' + esc(x.note) + '</p>' : '') +
+        '<div class="w-meta">' + chipsFor((x.boosting || []).map((b) => b.race)) + '<span>' + srcLink(x) + '</span></div></li>';
+    }).join('') + '</ol>' + (order.length > 10 ? '<button class="more w-more" data-k="log">' + (wui.log ? 'Show fewer' : 'Show all ' + order.length) + '</button>' : '');
+    h += '<div class="trail-grid"><div>' + trailMap(byState) + '<p class="tmap-key">Stops by state (T = Trump, V = Vance), including announced ones. States with stops are shaded by the 2024 presidential result; gray means no stops.</p></div><div>' + log + '</div></div>';
+    return h;
+  }
+  function renderWatch() {
+    const W = D.watch || {};
+    const box = $('watch'); if (!box) return;
+    if (!W.upcoming && !W.happened && !W.trail) { box.innerHTML = '<h2>What to watch</h2><p class="sub">Not available right now.</p>'; return; }
+    const today = todayISO();
+    box.innerHTML = '<h2>What to watch</h2><p class="sub">Dates ahead, recent developments that matter for control, and where Trump and Vance are campaigning. Updated daily' + (W.asof ? ', last on ' + fmtDay(W.asof) : '') +
+      '. Each chance is today\'s forecast; tap one to open the race on the map.</p>' +
+      '<div class="w-grid"><div class="w-up">' + watchUpcoming(W, today) + '</div><div class="w-trail">' + watchTrail(W, today) + '</div><div class="w-hap">' + watchHappened(W) + '</div></div>';
+  }
+  function wireWatch() {
+    const box = $('watch'); if (!box) return;
+    box.addEventListener('click', (e) => {
+      const chip = e.target.closest('.rchip');
+      if (chip) { goRace(chip.dataset.race); return; }
+      const more = e.target.closest('.w-more');
+      if (more) { wui[more.dataset.k] = !wui[more.dataset.k]; renderWatch(); }
+    });
   }
 
   // ---------------------------------------------------------------- phone layout: one screen at a time, bottom tab bar
@@ -1316,6 +1525,9 @@
   buildEarlyVote();
   applyLayout();
   render();
+  renderWatch();
+  wireWatch();
+  initLens();
   showFreshness(D);
   }
 

@@ -104,8 +104,8 @@ input[type="range"]::-webkit-slider-runnable-track { height: 4px; border-radius:
 input[type="range"]::-moz-range-track { height: 4px; border-radius: 2px; background: var(--rule); }
 input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--card); border: 2px solid var(--ink); margin-top: -7px; }
 input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: var(--card); border: 2px solid var(--ink); }
-.env-slider input[type="range"]::-webkit-slider-runnable-track { height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--sr), var(--tu) 27%, var(--sd)); }
-.env-slider input[type="range"]::-moz-range-track { height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--sr), var(--tu) 27%, var(--sd)); }
+.env-slider input[type="range"]::-webkit-slider-runnable-track { height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--sd), var(--tu) 73%, var(--sr)); }
+.env-slider input[type="range"]::-moz-range-track { height: 8px; border-radius: 4px; background: linear-gradient(90deg, var(--sd), var(--tu) 73%, var(--sr)); }
 .env-slider input[type="range"]::-webkit-slider-thumb { width: 22px; height: 22px; margin-top: -7px; border-width: 3px; }
 .slider-wrap { position: relative; }
 .tick { position: absolute; top: 2px; width: 2px; height: 7px; background: var(--ink-3); transform: translateX(-1px); pointer-events: none; }
@@ -360,7 +360,7 @@ body.tabbed.kbd .dock { display: none; }
 .dock-env .env-label { display: none; }
 .dock-env .env-value { font-size: 27px; min-width: 3.5ch; }
 .dock-env .presets { margin-top: 0; padding-bottom: 4px; }
-.tabbar { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-top: 1px solid var(--rule-2); }
+.tabbar { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border-top: 1px solid var(--rule-2); }
 .tabbar button { display: grid; justify-items: center; gap: 1px; border: 0; background: none; padding: 6px 0 4px; color: var(--ink-3);
   font-size: 11px; font-weight: 600; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .tabbar svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
@@ -381,6 +381,56 @@ body.tabbed #map.house { touch-action: pan-y; }
 body.tabbed #map.house.zoomed-in { touch-action: none; }
 .map-hint { display: none; font-size: 12px; color: var(--ink-3); margin: 6px 0 0; }
 body.tabbed .map-hint.show { display: block; }
+
+/* pollster lens: the forecast with each pollster's crosstabs */
+.lens { margin-top: 18px; border-top: 1px solid var(--rule); padding-top: 14px; }
+.lens h3 { font-size: 18px; margin: 0 0 4px; }
+.lens td { vertical-align: middle; }
+.lens-sub { display: block; font-size: 12px; color: var(--ink-3); font-weight: 400; }
+.lens tr.lens-base td { background: var(--paper); }
+.lens tr.lens-sep td { border-bottom: 2px solid var(--rule); }
+.lens-go { border: 1px solid var(--rule); background: var(--card); color: var(--ink); border-radius: 999px; padding: 2px 10px; font-size: 12px; cursor: pointer; }
+@media (max-width: 480px) { .lens .lens-act { display: none; } .lens td, .lens th { padding-left: 5px; padding-right: 5px; } }
+
+/* watch: coming up, what's happened, the campaign trail */
+.w-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "up hap" "trail trail"; gap: 18px 28px; margin-top: 6px; }
+.w-up { grid-area: up; } .w-hap { grid-area: hap; }
+.w-trail { grid-area: trail; border-top: 1px solid var(--rule); padding-top: 14px; }
+.w-grid h3 { font-size: 19px; margin: 0 0 2px; }
+.w-day { font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-2); font-weight: 700; margin: 14px 0 2px; }
+.w-list { list-style: none; margin: 0; padding: 0; }
+.w-item { padding: 9px 0; border-bottom: 1px solid var(--rule-2); }
+.w-top { display: flex; gap: 8px; align-items: baseline; }
+.w-when { flex: none; font-size: 12px; color: var(--ink-2); font-variant-numeric: tabular-nums; min-width: 58px; }
+.w-title { font-weight: 700; margin: 0; font-size: 15px; line-height: 1.3; }
+.w-what { margin: 3px 0 0; font-size: 13px; line-height: 1.45; }
+.w-why { margin: 3px 0 0; font-size: 13px; line-height: 1.45; color: var(--ink-2); }
+.w-meta { display: flex; flex-wrap: wrap; gap: 5px 6px; align-items: center; margin-top: 6px; font-size: 12px; color: var(--ink-3); }
+.w-meta a { color: var(--ink-2); }
+.rchip { display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--rule); background: var(--card); color: var(--ink); border-radius: 999px; padding: 1px 2px 1px 8px; font-size: 12px; font-weight: 600; cursor: pointer; }
+.rchip .pill { font-size: 11px; padding: 1px 6px; }
+.w-night { margin-top: 14px; }
+.w-night summary { cursor: pointer; font-weight: 600; font-size: 14px; }
+.trail-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 12px 24px; align-items: start; margin-top: 8px; }
+.tmap { width: 100%; height: auto; display: block; }
+.ttile { stroke: var(--card); stroke-width: 2; }
+.tmap-key { font-size: 12px; color: var(--ink-3); margin: 4px 0 0; }
+.trail-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 4px; }
+.trail-stats .stat-v { font-size: 26px; }
+.trail-gap { font-size: 13px; color: var(--ink-2); margin: 10px 0 0; line-height: 1.45; }
+.trail-log { list-style: none; margin: 0; padding: 0; }
+.tl-item { padding: 8px 0; border-bottom: 1px solid var(--rule-2); }
+.tl-top { display: flex; flex-wrap: wrap; gap: 3px 8px; align-items: baseline; }
+.tl-date { font-size: 12px; color: var(--ink-2); font-variant-numeric: tabular-nums; min-width: 44px; }
+.who { font-size: 11px; font-weight: 700; border-radius: 4px; padding: 1px 6px; letter-spacing: 0.02em; border: 1px solid var(--rep); }
+.who.trump { background: var(--rep); color: var(--card); }
+.who.vance { color: var(--rep); }
+.tl-where { font-weight: 600; font-size: 14px; }
+.tl-kind { font-size: 12px; color: var(--ink-3); }
+.tag-up { font-size: 11px; font-weight: 700; color: var(--ink); background: var(--mark-soft); border: 1px solid var(--mark); border-radius: 999px; padding: 0 7px; }
+.tl-note { margin: 3px 0 0; font-size: 13px; color: var(--ink-2); line-height: 1.45; }
+@media (max-width: 900px) { .trail-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 760px) { .w-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "up" "trail" "hap"; } .w-hap { border-top: 1px solid var(--rule); padding-top: 14px; } }
 
 /* standalone app additions */
 :root { color-scheme: light; }
@@ -411,7 +461,7 @@ body.tabbed .banner { bottom: calc(var(--dock-h, 150px) + 10px); }
       <div class="env">
         <span class="env-label" id="envLabel">National House vote (two-party margin)</span>
         <output class="env-value num" id="envOut" for="env">D+8.3</output>
-        <div class="env-slider"><div class="slider-wrap" id="envWrap"><input type="range" id="env" min="-6" max="16" step="0.1" aria-labelledby="envLabel"></div></div>
+        <div class="env-slider"><div class="slider-wrap" id="envWrap"><input type="range" id="env" min="-16" max="6" step="0.1" aria-labelledby="envLabel"></div></div>
         <div class="presets" role="radiogroup" aria-label="Preset environments" id="presets"></div>
       </div>
       <div class="tally-wrap">
@@ -522,6 +572,7 @@ body.tabbed .banner { bottom: calc(var(--dock-h, 150px) + 10px); }
             <div class="chart" style="margin-top:10px"><svg id="curveS" viewBox="0 0 420 150" role="img" aria-label="Expected Senate seats by national margin"></svg><p class="chart-cap">Expected seats at each national margin with your other settings held fixed and no national polling error. The gold marker is your scenario.</p></div>
           </div>
         </div>
+        <div class="lens" id="lens"></div>
       </section>
 
       <section class="card area-races" data-screen="races" aria-label="Races">
@@ -535,6 +586,7 @@ body.tabbed .banner { bottom: calc(var(--dock-h, 150px) + 10px); }
   </main>
 
   <section class="card" id="early-vote" data-screen="early" aria-label="Early vote" style="margin-top:16px"></section>
+  <section class="card" id="watch" data-screen="watch" aria-label="What to watch" style="margin-top:16px"></section>
   <section class="card" id="method" data-screen="adjust" aria-label="Method and sources" style="margin-top:16px"></section>
   <footer data-screen="adjust">Probabilities describe this model under the settings shown, not a forecast of record. District data on the 2026 lines derived from ElectIndex's public forecast data; group baselines from Pew Research Center; early vote from UF Election Lab.</footer>
 </div>
@@ -548,6 +600,7 @@ body.tabbed .banner { bottom: calc(var(--dock-h, 150px) + 10px); }
     <button data-go="races"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.5h11M9 12h11M9 17.5h11"/><circle cx="4.8" cy="6.5" r="1.3"/><circle cx="4.8" cy="12" r="1.3"/><circle cx="4.8" cy="17.5" r="1.3"/></svg><span>Races</span></button>
     <button data-go="adjust"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2.2"/><circle cx="9" cy="17" r="2.2"/></svg><span>Adjust</span></button>
     <button data-go="early"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5h16V20H4z"/><path d="M8 11.5V4h8v7.5"/><path d="M10 7.5l1.6 1.6L14.4 6"/><path d="M9 15h6"/></svg><span>Early vote</span></button>
+    <button data-go="watch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.6 12S6 5.8 12 5.8 21.4 12 21.4 12 18 18.2 12 18.2 2.6 12 2.6 12z"/><circle cx="12" cy="12" r="2.9"/></svg><span>Watch</span></button>
   </nav>
 </div>
 

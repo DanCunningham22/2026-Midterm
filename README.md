@@ -1,8 +1,10 @@
 # 2026 Midterm Scenario Map
 
 An installable web app for gaming out the 2026 midterms: set the national House vote, each group's margin
-and turnout, and the House (all 435 districts on the 2026 lines), Senate and governor maps redraw. It also
-tracks what the early vote says.
+and turnout, and the House (all 435 districts on the 2026 lines), Senate and governor maps redraw. It opens
+on the forecast (every setting at its default), tracks what the early vote says, and has a Watch tab with
+dates ahead, recent developments and a log of Trump's and Vance's campaign stops. Sliders run Democratic on
+the left, Republican on the right.
 
 **App:** this repository's GitHub Pages site. On a phone, open it in Safari (iPhone) or Chrome (Android) and
 choose **Add to Home Screen**.
@@ -20,6 +22,7 @@ A GitHub Actions job (`.github/workflows/update.yml`) runs every three hours. It
 | Senate: competitive races | Oct 9 corrected averages + change in a simple poll average since | automatic drift; base by hand |
 | Early-vote signals, story and same-point comparisons | `pipeline/content/story.json` | daily scheduled refresh |
 | 2026 national crosstab polls (and the pollster picker) | `pipeline/static/polls_2026.csv` | as pollsters release them |
+| Watch tab: dates ahead, developments, Trump and Vance stops | `pipeline/content/watch.json` | daily scheduled refresh |
 
 If a feed fails or returns something implausible, the build keeps the previous numbers for that section and
 the app shows which source didn't refresh. The app loads the newest `site/data.json` every time it opens

@@ -8,7 +8,7 @@ Inputs
                                  estimates, hex layout, Pew validated-voter baselines, early-vote benchmarks
   pipeline/static/polls_2026.csv national generic-ballot crosstabs (hand-maintained)
   pipeline/content/*.json        hand-maintained content: Senate averages from the Oct 9 model, the
-                                 early-vote story and same-point comparisons
+                                 early-vote story and same-point comparisons, the Watch tab (watch.json)
   live feeds (fetched each run)  ElectIndex forecast data (candidates, race polls, generic-ballot polls)
                                  and the UF Election Lab early-vote file
 
@@ -22,6 +22,7 @@ import io
 import json
 import math
 import os
+import re
 import sys
 import urllib.request
 
@@ -69,6 +70,30 @@ def load_json(path, default=None):
             return json.load(f)
     except (OSError, ValueError):
         return default
+
+
+def clean_watch(w):
+    """The Watch tab's content (pipeline/content/watch.json, kept up by the daily task). Malformed entries are
+    dropped rather than allowed to break the app; every kept entry links to the page that confirms it."""
+    if not isinstance(w, dict):
+        return {}
+
+    def ok(x, need):
+        return (isinstance(x, dict) and all(isinstance(x.get(k), str) and x.get(k).strip() for k in need)
+                and re.match(r'^\d{4}-\d{2}-\d{2}$', x['date']) is not None
+                and str(x.get('url', '')).startswith('https://'))
+
+    def races(x):
+        x['races'] = [r for r in x.get('races', []) if isinstance(r, str)]
+        return x
+
+    out = {k: str(w.get(k, '')) for k in ('asof', 'note', 'trail_note')}
+    out['happened'] = [races(x) for x in w.get('happened', []) if ok(x, ('date', 'title', 'what'))]
+    out['upcoming'] = [races(x) for x in w.get('upcoming', []) if ok(x, ('date', 'title'))]
+    out['trail'] = [x for x in w.get('trail', []) if ok(x, ('date', 'who', 'city', 'st')) and x['who'] in ('Trump', 'Vance')]
+    for x in out['trail']:
+        x['boosting'] = [b for b in x.get('boosting', []) if isinstance(b, dict) and isinstance(b.get('race'), str)]
+    return out
 
 
 # ---------------------------------------------------------------- polls
@@ -581,6 +606,7 @@ def main():
     out['evproj'] = ev_projection(story, base['N24'], out.get('nc'))
     out['story'] = story
     out['sealed'] = load_json(os.path.join(ROOT, 'pipeline', 'content', 'sealed.json'), {'versions': []})
+    out['watch'] = clean_watch(load_json(os.path.join(ROOT, 'pipeline', 'content', 'watch.json'), {}))
     out['meta'] = dict(generated=now.isoformat(timespec='minutes'), build_date=today.isoformat(), sources=status,
                        senate_asof=senate_cfg['asof'])
 
