@@ -1,6 +1,17 @@
 {
  "note": "SHA-256 fingerprints of the sealed versions of a separate, judgment-based forecast that is kept privately until after Election Day. Hash = SHA-256 of the version's full text (UTF-8) ending with one line break.",
  "versions": [
-  {"v": 1, "sealed": "2026-10-13T00:12-04:00", "label": "Oct 13, 12:12 AM ET", "sha256": "ca1e57a74f1c38328c5d6f2d5d0a4151cdfda2ef0fca905499a9ed1b8f282b5e"}
+  {
+   "v": 1,
+   "sealed": "2026-10-13T00:12-04:00",
+   "label": "Oct 13, 12:12 AM ET",
+   "sha256": "ca1e57a74f1c38328c5d6f2d5d0a4151cdfda2ef0fca905499a9ed1b8f282b5e"
+  },
+  {
+   "v": 2,
+   "sealed": "2026-10-13T15:05:00-04:00",
+   "label": "Oct 13, 3:05 PM ET",
+   "sha256": "d307d3fe56e5600e2ba624fd05e90bc204ff5e92e0415cb15d5badf4f906d451"
+  }
  ]
 }
