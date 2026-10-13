@@ -31,8 +31,10 @@
     age: [[-5, 75], [-25, 55], [-40, 35], [-35, 45]],
     gender: [[-40, 35], [-15, 50]],
   };
+  // The first oval is the forecast itself: every setting at its default (polls plus early vote)
+  const FORECAST_NAT = M.national(M.defaults) + M.evShift(M.defaults);
   const PRESETS = [
-    { k: 'polls', label: 'Polling avg ' + fm(D.G0), v: D.G0 },
+    { k: 'forecast', label: 'Forecast ' + fm(FORECAST_NAT), v: null },
     { k: 'd4', label: 'D+4', v: 4 },
     { k: 'd9', label: 'D+9', v: 9 },
     { k: 'specials', label: 'Specials pace D+11', v: 11 },
@@ -140,6 +142,29 @@
     });
   }
 
+  // ---------------------------------------------------------------- the forecast (default settings)
+  let R0 = null;   // the forecast's simulation, kept so it can be shown next to any scenario
+  function atForecast() {
+    const d = M.defaults;
+    if (Math.abs(M.national(sc) - M.national(d)) > 0.05) return false;
+    if (sc.T !== d.T || sc.edge !== d.edge || sc.evw !== d.evw || sc.sigN !== d.sigN || sc.cand !== d.cand || (sc.demo !== false) !== (d.demo !== false)) return false;
+    return ['race', 'age', 'gender'].every((dim) => d.dev[dim].every((v, i) => Math.abs(sc.dev[dim][i] - v) < 0.05 && Math.abs(sc.mult[dim][i] - d.mult[dim][i]) < 0.001));
+  }
+  function resetToForecast() { sc = M.clone(M.defaults); ui.pattern = 'blend'; buildXtabs(); update(); }
+  function renderForecastCard() {
+    if (!R0) R0 = M.simulate(M.clone(M.defaults));
+    const rv = rView(), P = rv ? 'R' : 'D', cls = rv ? 'r' : 'd';
+    const h = rv ? R0.house.r : R0.house, s = rv ? R0.senate.r : R0.senate, g = rv ? R0.gov.r : R0.gov;
+    const hc = rv ? R0.house.r.control : R0.house.control, scc = rv ? R0.senate.rcontrol : R0.senate.control, gc = rv ? R0.gov.r.control : R0.gov.maj;
+    const item = (lab, p, sub) => '<div class="fc-item"><span class="fc-lab">' + lab + '</span><span class="fc-v ' + cls + '">' + P + ' ' + fp(p) + '</span><span class="fc-sub">' + sub + '</span></div>';
+    const on = atForecast();
+    $('fcCard').innerHTML = '<div class="fc-head"><span class="fc-k">Today\'s forecast</span><span class="fc-s">polls plus early vote, national vote ' + fm(FORECAST_NAT) + (D.meta && D.meta.generated ? ' · updated ' + fmtStamp(D.meta.generated) : '') + '</span></div>' +
+      '<div class="fc-grid">' + item('House majority', hc, Math.round(h.mean) + ' seats on average') + item('Senate control', scc, s.mean.toFixed(1) + ' seats on average') + item('26+ governors', gc, g.mean.toFixed(1) + ' governors on average') + '</div>' +
+      '<p class="fc-note">' + (on ? 'You\'re looking at the forecast: the model with every setting at its default. Change anything and the map and charts show your own scenario.'
+        : 'The map and charts below show <b>your scenario</b>, not the forecast. <button class="fc-back" id="fcBack">Back to the forecast</button>') + '</p>';
+    const b = $('fcBack'); if (b) b.addEventListener('click', resetToForecast);
+  }
+
   // ---------------------------------------------------------------- scenario bar
   function buildPresets() {
     const box = $('presets');
@@ -147,6 +172,7 @@
     box.addEventListener('click', (e) => {
       const b = e.target.closest('.oval'); if (!b) return;
       const p = PRESETS.find((x) => x.k === b.dataset.k);
+      if (p.k === 'forecast') { resetToForecast(); return; }
       sc.C = M.solveC(sc, p.v);
       update();
     });
@@ -159,7 +185,7 @@
     $('envOut').className = 'env-value num ' + (eff > 0.05 ? 'd' : eff < -0.05 ? 'r' : '');
     document.querySelectorAll('#presets .oval').forEach((b) => {
       const p = PRESETS.find((x) => x.k === b.dataset.k);
-      b.setAttribute('aria-checked', Math.abs(nat - p.v) < 0.05 ? 'true' : 'false');
+      b.setAttribute('aria-checked', (p.k === 'forecast' ? atForecast() : Math.abs(nat - p.v) < 0.05) ? 'true' : 'false');
     });
     const h = R.house, s = R.senate, g = R.gov;
     const rv = rView(), P = rv ? 'R' : 'D', cls = rv ? 'r' : 'd';
@@ -616,21 +642,21 @@
     const tipH = crossing(curve, 'houseR', 217.5), tipS = crossing(curve, 'senateR', 49.5);
     if (t === 'house') {
       const h = R.house.r;
-      $('resTitle').textContent = 'House outlook';
+      $('resTitle').textContent = (atForecast() ? '' : 'Your scenario: ') + 'House outlook';
       head = 'Republicans win <b class="r">' + Math.round(h.mean) + '</b> seats on average (80% of simulations: ' + h.lo + '–' + h.hi + '). ' +
         'Chance of a Republican majority: <b>' + fp(h.control) + '</b>. ' + tipTextR(tipH, 'House');
       drawHist(h.hist, 135, 260, 218, 'Republican seats', 'R');
       $('histCap').textContent = R.n.toLocaleString() + ' simulations. Red bars are Republican majorities.';
     } else if (t === 'senate') {
       const s = R.senate;
-      $('resTitle').textContent = 'Senate outlook';
+      $('resTitle').textContent = (atForecast() ? '' : 'Your scenario: ') + 'Senate outlook';
       head = 'Republicans hold <b class="r">' + s.r.mean.toFixed(1) + '</b> seats on average, including 31 not up (80%: ' + s.r.lo + '–' + s.r.hi + '). ' +
         'Republican control <b>' + fp(s.rcontrol) + '</b>, Democratic control <b>' + fp(s.control) + '</b>, Osborn decides <b>' + fp(s.osborn) + '</b>. ' + tipTextR(tipS, 'Senate');
       drawHist(s.r.hist, 40, 58, 50, 'Republican seats', 'R');
       $('histCap').textContent = 'Republicans need 50 seats, since VP Vance breaks ties. Osborn (NE) counts for neither party. Red bars are Republican control.';
     } else {
       const g = R.gov.r;
-      $('resTitle').textContent = 'Governors outlook';
+      $('resTitle').textContent = (atForecast() ? '' : 'Your scenario: ') + 'Governors outlook';
       head = 'Republicans hold <b class="r">' + g.mean.toFixed(1) + '</b> governorships on average after Nov 3, including 8 not up (80%: ' + g.lo + '–' + g.hi + '). ' +
         'Chance of 26 or more: <b>' + fp(g.control) + '</b>.';
       drawHist(g.hist, 14, 34, 26, 'Republican governors', 'R');
@@ -648,7 +674,7 @@
     const tipH = crossing(curve, 'house', 217.5), tipS = crossing(curve, 'senate', 50.5);
     if (t === 'house') {
       const h = R.house;
-      $('resTitle').textContent = 'House outlook';
+      $('resTitle').textContent = (atForecast() ? '' : 'Your scenario: ') + 'House outlook';
       head = 'Democrats win <b class="d">' + Math.round(h.mean) + '</b> seats on average (80% of simulations: ' + h.lo + '–' + h.hi + '). ' +
         'Chance of a Democratic majority: <b>' + fp(h.control) + '</b>. ' +
         (tipH !== null ? 'With these settings Democrats are favored for the House at <b>' + fm(tipH) + '</b> or better nationally.' : '');
@@ -656,7 +682,7 @@
       $('histCap').textContent = R.n.toLocaleString() + ' simulations. Blue bars are Democratic majorities.';
     } else if (t === 'senate') {
       const s = R.senate;
-      $('resTitle').textContent = 'Senate outlook';
+      $('resTitle').textContent = (atForecast() ? '' : 'Your scenario: ') + 'Senate outlook';
       head = 'Democrats hold <b class="d">' + s.mean.toFixed(1) + '</b> seats on average, including 34 not up (80%: ' + s.lo + '–' + s.hi + '). ' +
         'Democratic control <b>' + fp(s.control) + '</b>, Republican control <b>' + fp(s.rcontrol) + '</b>, Osborn decides <b>' + fp(s.osborn) + '</b>. ' +
         (tipS !== null ? 'Control tips at about <b>' + fm(tipS) + '</b> nationally.' : '');
@@ -664,7 +690,7 @@
       $('histCap').textContent = 'Democratic caucus includes King and Sanders; Osborn (NE) is counted separately. Blue bars are Democratic control.';
     } else {
       const g = R.gov;
-      $('resTitle').textContent = 'Governors outlook';
+      $('resTitle').textContent = (atForecast() ? '' : 'Your scenario: ') + 'Governors outlook';
       head = 'Democrats hold <b class="d">' + g.mean.toFixed(1) + '</b> governorships on average after Nov 3, including 6 not up (80%: ' + g.lo + '–' + g.hi + '). ' +
         'Chance of 26 or more: <b>' + fp(g.maj) + '</b>.';
       drawHist(R.gov.hist, 16, 36, 26, 'Democratic governors');
@@ -945,7 +971,7 @@
     $('sig').addEventListener('input', () => { sc.sigN = +$('sig').value; update(true); });
     $('cand').addEventListener('change', () => { sc.cand = $('cand').checked; update(); });
     $('demo').addEventListener('change', () => { sc.demo = $('demo').checked; update(); });
-    $('resetBtn').addEventListener('click', () => { sc = M.clone(M.defaults); ui.pattern = 'blend'; buildXtabs(); update(); });
+    $('resetBtn').addEventListener('click', resetToForecast);
     document.querySelectorAll('#dimTabs button').forEach((b) => b.addEventListener('click', () => { ui.dim = b.dataset.dim; saveUi(); buildXtabs(); renderControls(); }));
     const setTab = (t) => {
       if (ui.tab === t) return;
@@ -1011,7 +1037,7 @@
     $('early-vote').innerHTML =
       '<div class="ev-head"><div><h2>What the early vote says so far</h2>' +
       '<p class="sub">About ' + (us.cast / 1e6).toFixed(1) + ' million ballots are in, roughly ' + Math.round(pct2022 * 100) + '% of what a 2022-sized midterm would bring. ' + esc(st.headline || '') + '</p></div>' +
-      '<div class="callout"><h3>How the map uses it</h3><p class="small" style="margin:0">The comparisons below were measured when about ' + (auto * 100).toFixed(1) + '% of the expected vote was in, so the default gives them that much weight. They imply about ' + fm(D.evproj.median) + ', vs. ' + fm(D.G0) + ' in the polls, which moves the national vote by ' + (M.evShift(M.defaults)).toFixed(2) + ' pts. Raise the weight in the controls to take them at face value. Ballot counts and the North Carolina comparison refresh twice a day; the other comparisons, the signals and the story are refreshed daily (last on ' + sinceStory + ').</p></div></div>' +
+      '<div class="callout"><h3>How the map uses it</h3><p class="small" style="margin:0">The comparisons below were measured when about ' + (auto * 100).toFixed(1) + '% of the expected vote was in, so the default gives them that much weight. They imply about ' + fm(D.evproj.median) + ', vs. ' + fm(D.G0) + ' in the polls, which moves the national vote by ' + (M.evShift(M.defaults)).toFixed(2) + ' pts. Raise the weight in the controls to take them at face value. Ballot counts and the North Carolina comparison refresh every three hours; the other comparisons, the signals and the story are refreshed daily (last on ' + sinceStory + ').</p></div></div>' +
       '<div class="stats">' +
       '<div class="stat"><div class="stat-v num">' + (us.cast / 1e6).toFixed(2) + 'M</div><div class="stat-k">ballots counted in ' + us.reporting + ' states (UF Election Lab' + (us.asof_min ? ', state data as of ' + fmtDay(us.asof_min) + (us.asof_max !== us.asof_min ? '–' + fmtDay(us.asof_max) : '') : '') + ')</div></div>' +
       '<div class="stat"><div class="stat-v num">' + (pct2022 * 100).toFixed(1) + '%</div><div class="stat-k">of 2022\'s 112.0M total ballots</div></div>' +
@@ -1069,7 +1095,7 @@
       '<div class="table-scroll"><table class="nc-table"><thead><tr><th>' + nc.days_before + ' days out</th>' + cols.map((c) => '<th class="n">' + c[0] + '</th>').join('') + '</tr></thead><tbody>' +
       row('Ballots accepted', (c) => Math.round(c.all).toLocaleString()) + row('Registered Democrats', (c) => pc(c, 'DEM')) + row('Registered Republicans', (c) => pc(c, 'REP')) +
       row('Unaffiliated', (c) => pc(c, 'UNA')) + row('D minus R', gap) + row('Black voters', (c) => pc(c, 'black')) + row('Voted in person', (c) => pc(c, 'onestop')) +
-      '</tbody></table></div><p class="chart-cap">Accepted mail and early in-person ballots through ' + fmtDay(nc.asof) + ', against the same number of days before Election Day in 2022 and 2024, from the State Board of Elections\' own files. Recomputed twice a day.</p></div>';
+      '</tbody></table></div><p class="chart-cap">Accepted mail and early in-person ballots through ' + fmtDay(nc.asof) + ', against the same number of days before Election Day in 2022 and 2024, from the State Board of Elections\' own files. Recomputed every three hours.</p></div>';
   }
   // ---- daily record kept by the update job
   function dailyPanel() {
@@ -1187,7 +1213,7 @@
       '<p><b>Senate.</b> The 14 competitive races start from the corrected polling averages of a companion Senate model run on Oct 9, which used every public poll since Aug 1 (from RealClearPolling, 270toWin, Wikipedia and pollsters\' releases, excluding campaign internals) and adjusted each pollster for its lean and likely-voter screen. The other 21 start from 2024 presidential lean plus the national environment and 3 points for an incumbent; Montana uses its three-way polls (Alme vs. Bodnar). Every control then moves each state by how its electorate responds, relative to the default. With the defaults the Senate reproduces that model: 67% Democratic control vs. 65%.</p>' +
       '<p><b>Governors.</b> A recency- and quality-weighted average of public polls since late July, with R- or D-leaning pollsters at half weight; fundamentals where there are no polls (CO, HI, OK, SD, WY). They move 0.8 points per point of national change.</p>' +
       '<p><b>Uncertainty.</b> ' + M.NSIM.toLocaleString() + ' simulations with the same random draws each time, so results don\'t flicker as you drag. Each draws a shared national error (Student t with 5 degrees of freedom, SD from the slider), a state error (SD 1.9) shared by every race in the state, a race error (House 5, Senate 3.8, governors 4.5), and a demographic error: each group can land off the scenario (SD in points of margin: white college 4, white non-college 4, Black 5, Hispanic 7, Asian &amp; other 6, ages 18–29 5, older groups 3), moving each district and state by how far its electorate differs from the nation\'s. That makes places with similar voters miss together, the way polls missed white non-college voters in 2016 and 2020 and Hispanic voters in 2020 and 2024. It barely changes the chamber odds, because the misses cancel across the country, but it makes heavily Hispanic districts like TX-28 and FL-27 less certain and ties them together.</p>' +
-      '<p><b>Updates.</b> Twice a day the app rebuilds itself from fresh data: candidates and race polls from ElectIndex\'s public feed, ballot counts from UF Election Lab, and a new national default. The national default (' + fm(D.G0) + ' now) is a weighted average of public generic-ballot polls from the last four weeks: one poll per pollster (' + (D.G0_polls || '30') + ' pollsters), weighted by recency, sample size and pollster rating, with partisan-leaning pollsters at half weight. The competitive Senate races start from the Oct 9 corrected averages and move by the change in a simple poll average since then. The early-vote signals, story and same-point comparisons are refreshed daily from published analyses; the 2026 crosstab polls are added as pollsters release them. If a source fails, the app keeps its last good numbers and says so at the top.</p>' +
+      '<p><b>Updates.</b> Every three hours the app rebuilds itself from fresh data: candidates and race polls from ElectIndex\'s public feed, ballot counts from UF Election Lab, and a new national default. The national default (' + fm(D.G0) + ' now) is a weighted average of public generic-ballot polls from the last four weeks: one poll per pollster (' + (D.G0_polls || '30') + ' pollsters), weighted by recency, sample size and pollster rating, with partisan-leaning pollsters at half weight. The competitive Senate races start from the Oct 9 corrected averages and move by the change in a simple poll average since then. The early-vote signals, story and same-point comparisons are refreshed daily from published analyses; the 2026 crosstab polls are added as pollsters release them. If a source fails, the app keeps its last good numbers and says so at the top.</p>' +
       '<p><b>What it doesn\'t know.</b> District polls (shown, not used), expert ratings, money and late scandals such as NV-2\'s.</p>' +
       sealedHtml() +
       '</div></div>' +
@@ -1212,6 +1238,7 @@
     renderSeatbar();
     renderMap();
     renderDetail();
+    renderForecastCard();
     renderResults();
     renderTable();
     renderControls();

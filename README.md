@@ -9,7 +9,7 @@ choose **Add to Home Screen**.
 
 ## How it stays current
 
-A GitHub Actions job (`.github/workflows/update.yml`) runs at 6 AM and 6 PM Eastern. It runs
+A GitHub Actions job (`.github/workflows/update.yml`) runs every three hours. It runs
 `pipeline/build.py`, which pulls:
 
 | What | Source | Refresh |

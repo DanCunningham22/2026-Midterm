@@ -2,7 +2,7 @@ name: Update data and publish
 
 on:
   schedule:
-    - cron: '0 10,22 * * *'   # 6 AM and 6 PM Eastern (EDT)
+    - cron: '23 */3 * * *'    # every three hours at :23 (off the top of the hour, which GitHub often delays)
   workflow_dispatch:           # "Run workflow" button for an on-demand refresh
   push:
     branches: [main]
