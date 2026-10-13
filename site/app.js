@@ -1492,8 +1492,12 @@
       const h = location.hash.replace(/^#\/?/, '');
       showScreen(SCREENS.indexOf(h) >= 0 ? h : 'map', false);
     });
-    const evLink = document.querySelector('a[href="#early-vote"]');
-    if (evLink) evLink.addEventListener('click', (e) => { if (isTabbed()) { e.preventDefault(); showScreen('early', true); } });
+    // in-page links to a section open that section's screen on phones
+    const JUMP = { 'early-vote': 'early', watch: 'watch', method: 'adjust' };
+    document.querySelectorAll('a[href^="#"]').forEach((a) => {
+      const s = JUMP[a.getAttribute('href').slice(1)];
+      if (s) a.addEventListener('click', (e) => { if (isTabbed()) { e.preventDefault(); showScreen(s, true); } });
+    });
     // hide the dock while the on-screen keyboard is up
     document.addEventListener('focusin', (e) => { if (e.target.matches && e.target.matches('input[type="search"]')) document.body.classList.add('kbd'); });
     document.addEventListener('focusout', () => document.body.classList.remove('kbd'));
