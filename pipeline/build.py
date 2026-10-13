@@ -26,6 +26,7 @@ import re
 import sys
 import urllib.request
 
+import econ
 import fec_money
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'backtest'))
@@ -488,6 +489,7 @@ def main():
     ap.add_argument('--feed-dir', help='read the ElectIndex files from this directory instead of fetching')
     ap.add_argument('--no-nc', action='store_true', help='skip the North Carolina file download (local runs)')
     ap.add_argument('--no-fec', action='store_true', help='skip the FEC campaign-money downloads (local runs)')
+    ap.add_argument('--no-econ', action='store_true', help='skip the economic-series downloads (local runs)')
     ap.add_argument('--uf-csv', help='read the UF early-vote file from this path instead of fetching')
     ap.add_argument('--today', help='override the build date (YYYY-MM-DD)')
     a = ap.parse_args()
@@ -649,6 +651,25 @@ def main():
         except Exception as e:
             stale('fec', e)
             out['money'] = pm
+    # economic series (FRED, S&P 500) about twice a day; the files are committed next to data.json
+    if not a.no_econ:
+        pe = pmeta.get('econ', {})
+        try:
+            fresh = bool(pe.get('ok') and pe.get('last_ok')) and now - dt.datetime.fromisoformat(pe['last_ok']) < dt.timedelta(hours=11, minutes=30)
+        except ValueError:
+            fresh = False
+        if fresh:
+            status['econ'] = pe
+        else:
+            est = econ.refresh(log=lambda x: print(x, file=sys.stderr))
+            bad = [k for k, (good, _) in est.items() if not good]
+            if len(bad) > len(est) // 2:
+                stale('econ', '; '.join(f'{k}: {est[k][1]}' for k in bad)[:300])
+            else:
+                ok('econ', f"{len(est) - len(bad)} of {len(est)} series" + (f"; kept the last copy of {', '.join(bad)}" if bad else ''))
+    elif pmeta.get('econ'):
+        status['econ'] = pmeta['econ']
+
     # our forecast: the national vote from four backtested signals, and Senate/governor polls blended with each
     # state's lean (pipeline/backtest/backtest.py). Inputs that change by hand live in content/fundamentals.json.
     try:

@@ -32,7 +32,7 @@ jobs:
         run: |
           git config user.name "midterm-map-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add site/data.json
+          git add site/data.json pipeline/backtest/data/econ
           if git diff --cached --quiet; then
             echo "No change in data."
           else
