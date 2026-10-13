@@ -414,7 +414,7 @@
       if (r.id === 'CA-06') parts.push('Kevin Kiley is running as an independent after Prop 50 redrew his seat.');
       const mw = sc.demo !== false ? movesWith(i) : [];
       if (mw.length) parts.push('Moves most with: ' + mw.map((x) => '<a href="#" data-sel="' + x.j + '">' + x.id + '</a>').join(', ') + ' (shared state and voter mix).');
-      extra = '<p class="note">' + parts.join(' ') + '</p><div><span class="tally-k">Estimated electorate (race and education)</span>' + compBar(r.race) + '</div>';
+      extra = '<p class="note">' + parts.join(' ') + '</p><div><span class="tally-k">Estimated electorate (race and education)</span>' + compBar(r.race) + '</div>' + moneyHtml(r);
     } else {
       facts += '<div><dt>2024 president</dt><dd>' + fm(r.m24) + '</dd></div>';
       const parts = [];
@@ -429,7 +429,7 @@
         else parts.push('No recent public polls; starts from fundamentals, ' + fm(r.base) + '.');
       }
       if (r.note) parts.push(esc(r.note));
-      extra = '<p class="note">' + parts.join(' ') + '</p>';
+      extra = '<p class="note">' + parts.join(' ') + '</p>' + (t === 'senate' ? moneyHtml(r) : '');
     }
     box.innerHTML = '<div class="detail-top"><span class="detail-title">' + esc(r.id) + ' · ' + esc(raceName(t, r)) + '</span><span class="pill ' + rt.k + '">' + rt.t + '</span></div>' +
       '<div class="matchup">' + matchup(t, r, true) + '</div><dl class="facts">' + facts + '</dl>' + extra;
@@ -794,13 +794,14 @@
     const limit = ui.showAll || q ? idx.length : (t === 'house' ? 30 : 15);
     $('raceTitle').textContent = q ? 'Matching races' : t === 'house' ? 'Closest House races' : t === 'senate' ? 'Senate races' : 'Governor races';
     $('raceSub').textContent = 'Sorted by projected margin. Select a row to see it on the map. * = incumbent running.';
-    $('raceTable').querySelector('thead').innerHTML = '<tr><th>Race</th><th>Matchup</th><th class="n col24">2024 pres.</th><th class="n">Projected</th><th class="n">Chance</th><th class="n colflip">Flips at</th></tr>';
+    const mcol = t !== 'gov' && D.money && D.money.races;
+    $('raceTable').querySelector('thead').innerHTML = '<tr><th>Race</th><th>Matchup</th><th class="n col24">2024 pres.</th><th class="n">Projected</th><th class="n">Chance</th><th class="n colflip">Flips at</th>' + (mcol ? '<th class="n colmoney" title="Outside spending (independent expenditures) in the general election, FEC">Outside $</th>' : '') + '</tr>';
     const rows = idx.slice(0, limit).map((i) => {
       const r = list[i], m = raceMargin(t, i), p = raceP(t, i), f = flipPoint(t, i), rt = rating(p);
       return '<tr data-i="' + i + '"' + (ui.sel === i ? ' class="sel"' : '') + '><td class="code">' + esc(r.id) + '</td><td><span class="full">' + matchup(t, r, true) + '</span><span class="short">' + shortMatchup(t, r) + '</span></td><td class="n col24">' + fm(r.m24) +
-        '</td><td class="n ' + (m > 0 ? 'd' : 'r') + '">' + fm(m) + '</td><td class="n"><span class="pill ' + rt.k + '">' + chanceText(p, r) + '</span></td><td class="n colflip">' + (f === null ? '—' : fm(f)) + '</td></tr>';
+        '</td><td class="n ' + (m > 0 ? 'd' : 'r') + '">' + fm(m) + '</td><td class="n"><span class="pill ' + rt.k + '">' + chanceText(p, r) + '</span></td><td class="n colflip">' + (f === null ? '—' : fm(f)) + '</td>' + (mcol ? '<td class="n colmoney">' + moneyCell(r) + '</td>' : '') + '</tr>';
     });
-    $('raceTable').querySelector('tbody').innerHTML = rows.join('') || '<tr><td colspan="6" class="muted">No races match.</td></tr>';
+    $('raceTable').querySelector('tbody').innerHTML = rows.join('') || '<tr><td colspan="7" class="muted">No races match.</td></tr>';
     $('moreBtn').hidden = !!q || idx.length <= limit && !ui.showAll;
     $('moreBtn').textContent = ui.showAll ? 'Show fewer' : 'Show all ' + idx.length;
   }
@@ -1218,7 +1219,8 @@
       '<p><b>Governors.</b> A recency- and quality-weighted average of public polls since late July, with R- or D-leaning pollsters at half weight; fundamentals where there are no polls (CO, HI, OK, SD, WY). They move 0.8 points per point of national change.</p>' +
       '<p><b>Uncertainty.</b> ' + M.NSIM.toLocaleString() + ' simulations with the same random draws each time, so results don\'t flicker as you drag. Each draws a shared national error (Student t with 5 degrees of freedom, SD from the slider), a state error (SD 1.9) shared by every race in the state, a race error (House 5, Senate 3.8, governors 4.5), and a demographic error: each group can land off the scenario (SD in points of margin: white college 4, white non-college 4, Black 5, Hispanic 7, Asian &amp; other 6, ages 18–29 5, older groups 3), moving each district and state by how far its electorate differs from the nation\'s. That makes places with similar voters miss together, the way polls missed white non-college voters in 2016 and 2020 and Hispanic voters in 2020 and 2024. It barely changes the chamber odds, because the misses cancel across the country, but it makes heavily Hispanic districts like TX-28 and FL-27 less certain and ties them together.</p>' +
       '<p><b>Updates.</b> Every three hours the app rebuilds itself from fresh data: candidates and race polls from ElectIndex\'s public feed, ballot counts from UF Election Lab, and a new national default. The national default (' + fm(D.G0) + ' now) is a weighted average of public generic-ballot polls from the last four weeks: one poll per pollster (' + (D.G0_polls || '30') + ' pollsters), weighted by recency, sample size and pollster rating, with partisan-leaning pollsters at half weight. The competitive Senate races start from the Oct 9 corrected averages and move by the change in a simple poll average since then. The early-vote signals, story and same-point comparisons are refreshed daily from published analyses; the 2026 crosstab polls are added as pollsters release them. The Watch tab\'s dates, developments and Trump and Vance stops are refreshed daily, each linked to the page that confirms it. If a source fails, the app keeps its last good numbers and says so at the top.</p>' +
-      '<p><b>What it doesn\'t know.</b> District polls (shown, not used), expert ratings, money and late scandals such as NV-2\'s.</p>' +
+      '<p><b>Money.</b> From the Federal Election Commission\'s bulk files, refreshed a few times a day: each nominee\'s campaign totals for 2025–26 (raised, spent, cash on hand, through their latest report) and outside spending, the independent expenditures super PACs, party committees and other groups report on 24- and 48-hour reports for or against each nominee (amended reports replace earlier versions; general election only, so primary and runoff spending is left out). Not covered: ads run before those reporting windows, party spending coordinated with campaigns, and governor races, which are state elections. Money is shown, not used in the forecast: it mostly follows how close a race already looks, an extra dollar in a saturated race moves few votes, and candidate quality, which fundraising partly reflects, is already in the model. Where it helps is as a cross-check: the Watch tab flags races where the money and the forecast disagree.</p>' +
+      '<p><b>What it doesn\'t know.</b> District polls (shown, not used), expert ratings, money (shown, not used) and late scandals such as NV-2\'s.</p>' +
       sealedHtml() +
       '</div></div>' +
       '<h3 style="margin-top:12px">Sources</h3><ul class="sources">' +
@@ -1321,6 +1323,127 @@
     if (!('IntersectionObserver' in window)) { setTimeout(computeLens, 2500); return; }
     const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); computeLens(); } }, { rootMargin: '300px' });
     io.observe(box);
+  }
+
+  // ---------------------------------------------------------------- campaign money (FEC): shown, not used in the forecast
+  const mraces = () => (D.money && D.money.races) || {};
+  function usd(v) {
+    const a = Math.abs(v || 0);
+    if (a >= 1e9) return '$' + (v / 1e9).toFixed(2) + 'B';
+    if (a >= 1e8) return '$' + Math.round(v / 1e6) + 'M';
+    if (a >= 1e6) return '$' + (v / 1e6).toFixed(1) + 'M';
+    if (a >= 1e3) return '$' + Math.round(v / 1e3) + 'K';
+    return '$' + Math.round(v || 0);
+  }
+  // o = [for D, against D, for R, against R]; spending against one side helps the other
+  function helped(mo) { const o = (mo && mo.o) || [0, 0, 0, 0]; return { D: o[0] + o[3], R: o[2] + o[1], all: o[0] + o[1] + o[2] + o[3] }; }
+  const ACRO = new Set(['PAC', 'DCCC', 'DSCC', 'NRCC', 'NRSC', 'RNC', 'DNC', 'AFP', 'SBA', 'NRA', 'SEIU', 'CLF', 'HMP', 'SMP', 'SLF', 'USA', 'AFL', 'CIO', 'AFSCME', 'LCV', 'NEA', 'AFT', 'UAW', 'MAGA', 'GOP', 'II', 'III', 'IV', 'AB', 'US', 'NC', 'PA', 'GA', 'MI', 'OH', 'TX', 'FL', 'IA', 'KS', 'NE', 'AK', 'MN', 'NH', 'SC', 'NY', 'AZ', 'NV', 'WI', 'VA', 'CA', 'CO', 'ME', 'MT']);
+  const SMALLW = new Set(['of', 'to', 'in', 'on', 'at', 'by', 'for', 'and', 'the', 'a', 'an', 'or', 'with']);
+  // FEC committee names arrive in capitals; mixed-case names are kept as filed
+  function titleName(s) {
+    s = String(s || '').trim();
+    if (s.split(/\s+/).length > 2) s = s.replace(/,?\s+(INC|LLC)\.?$/i, '');
+    if (s !== s.toUpperCase()) return s;
+    return s.split(/\s+/).map((w, k) => {
+      const core = w.replace(/[^A-Za-z]/g, '').toUpperCase();
+      if (ACRO.has(core) || (core.length > 1 && core.length <= 4 && !/[AEIOUY]/.test(core))) return w;
+      const lw = w.toLowerCase();
+      if (k > 0 && SMALLW.has(lw)) return lw;
+      if (lw === 'inc.' || lw === 'inc') return 'Inc.';
+      return lw.replace(/(^|[-(\/])([a-z])/g, (m, p, c) => p + c.toUpperCase()).replace(/^([a-z])/, (c) => c.toUpperCase()).replace(/^(O'|Mc)([a-z])/, (m, p, c) => p + c.toUpperCase());
+    }).join(' ');
+  }
+  function splitBar(dv, rv, labelD, labelR) {
+    const t = dv + rv; if (!t) return '';
+    const pd = dv / t * 100;
+    return '<div class="msplit" role="img" aria-label="Outside spending: ' + usd(dv) + ' helping ' + esc(labelD) + ', ' + usd(rv) + ' helping ' + esc(labelR) + '"><span class="bd" style="width:' + pd.toFixed(1) + '%"></span><span class="br" style="width:' + (100 - pd).toFixed(1) + '%"></span></div>';
+  }
+  const sideName = (r, side) => esc(lastName(side === 'D' ? r.dn : r.rn) || (side === 'D' ? 'Democrat' : 'Republican'));
+  const sideTag = (r, side) => side === 'D' ? (r.dp === 'I' ? 'I' : 'D') : (r.rp === 'I' ? 'I' : 'R');
+  function moneyCell(r) {
+    const h = helped(mraces()[r.id]);
+    if (!h.all) return '<span class="muted">—</span>';
+    return '<span title="Helping ' + sideName(r, 'D') + ' ' + usd(h.D) + '; helping ' + sideName(r, 'R') + ' ' + usd(h.R) + '">' + usd(h.all) + '</span>' +
+      '<span class="mini" aria-hidden="true"><span class="bd" style="width:' + (h.D / h.all * 100).toFixed(0) + '%"></span><span class="br" style="width:' + (h.R / h.all * 100).toFixed(0) + '%"></span></span>';
+  }
+  function moneyHtml(r) {
+    const mo = mraces()[r.id];
+    if (!D.money || !mo) return '';
+    const h = helped(mo), A = D.money.asof || {};
+    const dn = sideName(r, 'D'), rn = sideName(r, 'R');
+    const cell = (x, k) => (x ? usd(x[k]) : '<span class="muted">—</span>');
+    const thru = (x) => (x && x.thru ? fmtDay(x.thru) : '<span class="muted">no report yet</span>');
+    let html = '<div class="money"><span class="tally-k">Money (FEC)</span><table class="mtab"><thead><tr><th></th><th class="n d">' + dn + ' (' + sideTag(r, 'D') + ')</th><th class="n r">' + rn + ' (' + sideTag(r, 'R') + ')</th></tr></thead><tbody>' +
+      '<tr><td>Campaign raised</td><td class="n">' + cell(mo.d, 'raised') + '</td><td class="n">' + cell(mo.r, 'raised') + '</td></tr>' +
+      '<tr><td>Cash on hand</td><td class="n">' + cell(mo.d, 'cash') + '</td><td class="n">' + cell(mo.r, 'cash') + '</td></tr>' +
+      '<tr class="mtab-sub"><td>Reports through</td><td class="n">' + thru(mo.d) + '</td><td class="n">' + thru(mo.r) + '</td></tr>' +
+      '<tr><td>Outside groups helping</td><td class="n">' + usd(h.D) + '</td><td class="n">' + usd(h.R) + '</td></tr></tbody></table>';
+    if (h.all > 0) html += splitBar(h.D, h.R, lastName(r.dn), lastName(r.rn));
+    if (mo.top && mo.top.length) html += '<p class="note">Biggest outside spenders: ' + mo.top.slice(0, 4).map((x) => esc(titleName(x[0])) + ' ' + usd(x[1]) + ' <span class="' + (x[2] === 'D' ? 'd' : 'r') + '">(for ' + (x[2] === 'D' ? dn : rn) + ')</span>').join(' · ') + (mo.nsp > 4 ? ' · ' + (mo.nsp - 4) + ' more' : '') + '.</p>';
+    const fecLink = (x, nm) => (x && x.id ? '<a href="https://www.fec.gov/data/candidate/' + encodeURIComponent(x.id) + '/" target="_blank" rel="noopener">' + nm + '</a>' : '');
+    const links = [fecLink(mo.d, dn), fecLink(mo.r, rn)].filter(Boolean);
+    html += '<p class="chart-cap">Outside spending is general-election independent expenditures on 24- and 48-hour reports through ' + (A.ie ? fmtDay(A.ie) : '—') + '; spending against one candidate counts as helping the other. Shown, not used in the forecast.' + (links.length ? ' FEC filings: ' + links.join(' · ') + '.' : '') + '</p></div>';
+    return html;
+  }
+  function candReportNote() {
+    const n = {};
+    Object.values(mraces()).forEach((e) => ['d', 'r'].forEach((k) => { if (e[k] && e[k].thru) n[e[k].thru] = (n[e[k].thru] || 0) + 1; }));
+    const mode = Object.keys(n).sort((a, b) => n[b] - n[a])[0];
+    const today = todayISO();
+    return 'Campaign totals run through each candidate\'s latest report' + (mode ? ' (most often ' + fmtDay(mode) + ')' : '') +
+      (today < '2026-10-15' ? '; reports through Sep 30 are due Oct 15' : today < '2026-10-22' ? '; pre-election reports through Oct 14 are due Oct 22' : '') + '.';
+  }
+  // Watch: where the money is going, and where it disagrees with the forecast
+  const MONEY_HEAVY = { senate: 15e6, house: 3e6 }, MONEY_LIGHT = { senate: 3e6, house: 5e5 };
+  function moneyFlags(res) {
+    const out = [];
+    ['senate', 'house'].forEach((t) => races(t).forEach((r, i) => {
+      const mo = mraces()[r.id]; if (!mo) return;
+      const h = helped(mo), p = res[t].p[i];
+      if (h.all >= MONEY_HEAVY[t] && (p >= 0.9 || p <= 0.1)) out.push({ k: 'heavy', t, r, i, h, p });
+      else if (p >= 0.35 && p <= 0.65 && h.all < MONEY_LIGHT[t]) out.push({ k: 'light', t, r, i, h, p });
+    }));
+    return out.sort((a, b) => (a.k === b.k ? b.h.all - a.h.all : a.k === 'heavy' ? -1 : 1));
+  }
+  function watchMoney() {
+    const MO = D.money; if (!MO || !MO.races) return '';
+    const tab = wui.mtab || 'senate', res = R0 || R, A = MO.asof || {};
+    const tot = (t) => races(t).reduce((acc, r) => { const h = helped(mraces()[r.id]); acc.D += h.D; acc.R += h.R; return acc; }, { D: 0, R: 0 });
+    const ts = tot('senate'), th = tot('house');
+    const all = ['senate', 'house'].flatMap((t) => races(t).map((r) => ({ r, h: helped(mraces()[r.id]) })));
+    const top1 = all.reduce((a, x) => (x.h.all > a.h.all ? x : a), all[0]);
+    const pctR = (x) => Math.round(x.R / Math.max(1, x.D + x.R) * 100);
+    let h = '<h3>Follow the money</h3><p class="sub">Outside spending by super PACs, party committees and other groups in the general election, through ' + (A.ie ? fmtDay(A.ie) : '—') + ', and the candidates\' own money, from FEC reports. ' + candReportNote() + ' Shown, not used in the forecast.</p>';
+    h += '<div class="stats trail-stats">' +
+      '<div class="stat"><div class="stat-v num">' + usd(ts.D + ts.R) + '</div><div class="stat-k">outside spending in Senate races, ' + pctR(ts) + '% of it helping Republicans</div></div>' +
+      '<div class="stat"><div class="stat-v num">' + usd(th.D + th.R) + '</div><div class="stat-k">in House races, ' + pctR(th) + '% helping Republicans</div></div>' +
+      (top1 && top1.h.all ? '<div class="stat"><div class="stat-v num">' + usd(top1.h.all) + '</div><div class="stat-k">in the most expensive race, ' + esc(top1.r.id) + '</div></div>' : '') + '</div>';
+    const flags = moneyFlags(res);
+    const heavy = flags.filter((x) => x.k === 'heavy'), light = flags.filter((x) => x.k === 'light');
+    if (heavy.length) {
+      const favD = heavy.filter((x) => x.p >= 0.5).length;
+      h += '<div class="mflags"><p class="w-day">Big money, lopsided forecast</p><p class="mf-intro">' + heavy.length + ' race' + (heavy.length === 1 ? '' : 's') + ' where outside groups have spent at least ' + usd(MONEY_HEAVY.senate) + ' (Senate) or ' + usd(MONEY_HEAVY.house) + ' (House) though the forecast gives one side 90% or more' +
+        (favD === heavy.length ? '. The forecast favors the Democrat in every one: the people spending the money are treating these as closer than the forecast does.' : favD === 0 ? '. The forecast favors the Republican in every one: the people spending the money are treating these as closer than the forecast does.' : '.') + (heavy.length > 8 ? ' Showing the 8 with the most outside money.' : '') + '</p><ul class="mf-list">' +
+        heavy.slice(0, 8).map((x) => '<li>' + raceChip(x.r.id) + '<span class="mf-t">' + usd(x.h.all) + ' outside, ' + Math.round(Math.max(x.h.D, x.h.R) / x.h.all * 100) + '% helping ' + (x.h.D >= x.h.R ? sideName(x.r, 'D') : sideName(x.r, 'R')) + '</span></li>').join('') + '</ul></div>';
+    }
+    if (light.length) {
+      h += '<div class="mflags"><p class="w-day">Close forecast, little money</p><p class="mf-intro">Races the forecast puts between 35% and 65% where outside groups have spent under ' + usd(MONEY_LIGHT.senate) + ' (Senate) or ' + usd(MONEY_LIGHT.house) + ' (House): neither side\'s groups are treating them as top targets.</p><ul class="mf-list">' +
+        light.slice(0, 8).map((x) => '<li>' + raceChip(x.r.id) + '<span class="mf-t">' + usd(x.h.all) + ' outside</span></li>').join('') + '</ul></div>';
+    }
+    const list = races(tab).map((r, i) => ({ r, i, mo: mraces()[r.id], h: helped(mraces()[r.id]) })).filter((x) => x.h.all > 0).sort((a, b) => b.h.all - a.h.all);
+    const shown = wui.mall ? list : list.slice(0, 8);
+    h += '<div class="w-mtabs" role="group" aria-label="Chamber"><button class="chip mtab-btn" data-m="senate" aria-pressed="' + (tab === 'senate') + '">Senate</button><button class="chip mtab-btn" data-m="house" aria-pressed="' + (tab === 'house') + '">House</button></div>';
+    h += '<ol class="mn-list">' + shown.map((x) => {
+      const mo = x.mo, r = x.r, dn = sideName(r, 'D'), rn = sideName(r, 'R');
+      const cand = (mo.d || mo.r) ? '<p class="mn-line">Campaigns raised: <span class="d">' + dn + ' ' + (mo.d ? usd(mo.d.raised) : '—') + '</span> · <span class="r">' + rn + ' ' + (mo.r ? usd(mo.r.raised) : '—') + '</span>; cash on hand ' + (mo.d ? usd(mo.d.cash) : '—') + ' · ' + (mo.r ? usd(mo.r.cash) : '—') + '</p>' : '';
+      const topSp = mo.top && mo.top.length ? '<p class="mn-line muted">Top: ' + mo.top.slice(0, 2).map((s) => esc(titleName(s[0])) + ' ' + usd(s[1]) + ' (' + (s[2] === 'D' ? dn : rn) + ')').join(' · ') + '</p>' : '';
+      return '<li class="mn-item"><div class="mn-top">' + raceChip(r.id) + '<span class="mn-total num">' + usd(x.h.all) + '</span><span class="mn-k">outside</span></div>' +
+        splitBar(x.h.D, x.h.R, lastName(r.dn), lastName(r.rn)) +
+        '<div class="mn-sides"><span class="d">' + dn + ' ' + usd(x.h.D) + '</span><span class="r">' + usd(x.h.R) + ' ' + rn + '</span></div>' + cand + topSp + '</li>';
+    }).join('') + '</ol>';
+    if (list.length > 8) h += '<button class="more w-more" data-k="mall">' + (wui.mall ? 'Show fewer' : 'Show all ' + list.length) + '</button>';
+    h += '<p class="chart-cap">Independent expenditures on 24- and 48-hour reports, general election only; spending against one candidate counts as helping the other. Independents running in a Democrat\'s place (Osborn in Nebraska, Bodnar in Montana) count on that side. Not covered: ads run before the reporting windows, party spending coordinated with campaigns, and governor races. Source: Federal Election Commission bulk data.</p>';
+    return h;
   }
 
   // ---------------------------------------------------------------- Watch: dates ahead, what's happened, the campaign trail
@@ -1441,7 +1564,7 @@
     const today = todayISO();
     box.innerHTML = '<h2>What to watch</h2><p class="sub">Dates ahead, recent developments that matter for control, and where Trump and Vance are campaigning. Updated daily' + (W.asof ? ', last on ' + fmtDay(W.asof) : '') +
       '. Each chance is today\'s forecast; tap one to open the race on the map.</p>' +
-      '<div class="w-grid"><div class="w-up">' + watchUpcoming(W, today) + '</div><div class="w-trail">' + watchTrail(W, today) + '</div><div class="w-hap">' + watchHappened(W) + '</div></div>';
+      '<div class="w-grid"><div class="w-up">' + watchUpcoming(W, today) + '</div>' + (D.money && D.money.races ? '<div class="w-money">' + watchMoney() + '</div>' : '') + '<div class="w-trail">' + watchTrail(W, today) + '</div><div class="w-hap">' + watchHappened(W) + '</div></div>';
   }
   function wireWatch() {
     const box = $('watch'); if (!box) return;
@@ -1449,7 +1572,9 @@
       const chip = e.target.closest('.rchip');
       if (chip) { goRace(chip.dataset.race); return; }
       const more = e.target.closest('.w-more');
-      if (more) { wui[more.dataset.k] = !wui[more.dataset.k]; renderWatch(); }
+      if (more) { wui[more.dataset.k] = !wui[more.dataset.k]; renderWatch(); return; }
+      const mt = e.target.closest('.mtab-btn');
+      if (mt) { wui.mtab = mt.dataset.m; wui.mall = false; renderWatch(); }
     });
   }
 

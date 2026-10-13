@@ -397,7 +397,7 @@ body.tabbed .map-hint.show { display: block; }
 @media (max-width: 480px) { .lens .lens-act { display: none; } .lens td, .lens th { padding-left: 5px; padding-right: 5px; } }
 
 /* watch: coming up, what's happened, the campaign trail */
-.w-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "up hap" "trail trail"; gap: 18px 28px; margin-top: 6px; }
+.w-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "up hap" "money money" "trail trail"; gap: 18px 28px; margin-top: 6px; }
 .w-up { grid-area: up; } .w-hap { grid-area: hap; }
 .w-trail { grid-area: trail; border-top: 1px solid var(--rule); padding-top: 14px; }
 .w-grid h3 { font-size: 19px; margin: 0 0 2px; }
@@ -434,7 +434,35 @@ body.tabbed .map-hint.show { display: block; }
 .tag-up { font-size: 11px; font-weight: 700; color: var(--ink); background: var(--mark-soft); border: 1px solid var(--mark); border-radius: 999px; padding: 0 7px; }
 .tl-note { margin: 3px 0 0; font-size: 13px; color: var(--ink-2); line-height: 1.45; }
 @media (max-width: 900px) { .trail-grid { grid-template-columns: minmax(0, 1fr); } }
-@media (max-width: 760px) { .w-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "up" "trail" "hap"; } .w-hap { border-top: 1px solid var(--rule); padding-top: 14px; } }
+@media (max-width: 760px) { .w-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "up" "money" "trail" "hap"; } .w-hap { border-top: 1px solid var(--rule); padding-top: 14px; } }
+
+/* money (FEC) */
+.money { margin-top: 12px; }
+.mtab { font-size: 13px; margin: 4px 0 6px; }
+.mtab th, .mtab td { padding: 4px 6px; }
+.mtab th { font-size: 12px; text-transform: none; letter-spacing: 0; white-space: normal; }
+.mtab-sub td { font-size: 11px; color: var(--ink-3); }
+.msplit { display: flex; height: 8px; border-radius: 4px; overflow: hidden; background: var(--none); margin: 6px 0 4px; }
+.msplit .bd, .mini .bd { background: var(--ld); }
+.msplit .br, .mini .br { background: var(--lr); }
+.mini { display: inline-flex; width: 34px; height: 6px; border-radius: 3px; overflow: hidden; margin-left: 6px; vertical-align: middle; background: var(--none); }
+@media (max-width: 600px) { .colmoney { display: none; } }
+.w-money { grid-area: money; border-top: 1px solid var(--rule); padding-top: 14px; }
+.w-mtabs { display: flex; gap: 6px; margin: 14px 0 2px; }
+.mn-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; }
+.mn-item { padding: 10px 0; border-bottom: 1px solid var(--rule-2); }
+.mn-top { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.mn-total { font-family: var(--font-display); font-weight: 700; font-size: 20px; margin-left: auto; }
+.mn-k { font-size: 12px; color: var(--ink-3); }
+.mn-sides { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; font-weight: 600; }
+.mn-line { margin: 4px 0 0; font-size: 12px; line-height: 1.45; }
+.mflags { margin-top: 14px; }
+.mf-intro { font-size: 13px; color: var(--ink-2); margin: 2px 0 8px; max-width: 80ch; line-height: 1.45; }
+.mf-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 6px 18px; }
+.mf-list li { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+.mf-list .rchip, .mn-top .rchip, .w-meta .rchip { white-space: nowrap; flex: none; }
+.mf-t { color: var(--ink-2); }
+@media (max-width: 900px) { .mn-list { grid-template-columns: minmax(0, 1fr); } }
 
 /* standalone app additions */
 :root { color-scheme: light; }

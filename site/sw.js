@@ -1,7 +1,7 @@
 // Service worker: network first for everything from this site, so new code and numbers arrive as soon as
 // you're online; after 4 seconds without an answer, or offline, it serves the last cached copy instead.
 // Google Fonts are cached on first use.
-const CACHE = 'midterm-map-v11';
+const CACHE = 'midterm-map-v12';
 const FONTS = 'midterm-fonts-v1';
 const SHELL = ['./', './index.html', './app.js', './model.js', './data.json', './manifest.webmanifest',
   './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png', './icons/favicon-32.png'];
