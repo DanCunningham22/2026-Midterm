@@ -591,6 +591,9 @@ def pa_wayback_points(log):
             asof = dt.date(int(dm.group(3)), int(dm.group(1)), int(dm.group(2))).isoformat() if dm else None
             hdr = next(r for r in rows if r and any('CountyName' in str(c) for c in r if c))
             idx = {str(c).strip(): i for i, c in enumerate(hdr) if c}
+            if not any(re.search(r'Returned', k, re.I) for k in idx):
+                log(f'PA wayback {ts}: applications only (no returns yet), skipped')
+                continue
             col = lambda pat: next(i for k, i in idx.items() if re.search(pat, k, re.I))
             rd, rr, rt = col(r'Dem.*Returned'), col(r'Rep.*Returned'), col(r'Total.*Returned')
             ad, ar, at = col(r'Dem.*Approved'), col(r'Rep.*Approved'), col(r'Total.*Approved')
