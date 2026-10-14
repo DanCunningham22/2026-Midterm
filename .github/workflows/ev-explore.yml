@@ -4,6 +4,10 @@ name: Explore early-vote sources
 # reports (2022, 2024, 2026) and commits small text summaries to pipeline/scratch/ev_explore/ for inspection.
 on:
   workflow_dispatch:
+    inputs:
+      pass:
+        description: "Which pass to run (explore or explore2)"
+        default: "explore2"
 
 permissions:
   contents: write
@@ -16,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
       - run: pip install openpyxl
       - name: Explore
-        run: python3 pipeline/ev_sources.py explore pipeline/scratch/ev_explore
+        run: python3 pipeline/ev_sources.py ${{ github.event.inputs.pass || 'explore2' }} pipeline/scratch/ev_explore
       - name: Commit the findings
         run: |
           git config user.name "midterm-map-bot"
