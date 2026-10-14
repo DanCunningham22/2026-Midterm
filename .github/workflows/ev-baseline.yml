@@ -1,0 +1,29 @@
+name: Build early-vote baselines (party registration)
+
+# One-off: downloads what the election offices and UF Election Lab still serve for 2020, 2022 and 2024 (Colorado's
+# daily spreadsheets, Florida's archived status counts, Pennsylvania's archived report, UF's 2024 file and 2020
+# state pages) and writes pipeline/static/ev_baselines.json. Run it from the Actions tab (or by API dispatch).
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  baseline:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install openpyxl pypdf
+      - name: Build the baselines
+        run: python3 pipeline/evreg.py baseline pipeline/static/ev_baselines.json pipeline/scratch/ev_baseline
+      - name: Save to the repository
+        run: |
+          git config user.name "midterm-map-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pipeline/static/ev_baselines.json pipeline/scratch/ev_baseline
+          if git diff --cached --quiet; then echo "No change."; exit 0; fi
+          git commit -m "Early-vote baselines by party registration (2020, 2022, 2024)"
+          git pull --rebase origin main
+          git push

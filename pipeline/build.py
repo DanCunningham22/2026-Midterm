@@ -519,6 +519,7 @@ def main():
     ap.add_argument('--no-fec', action='store_true', help='skip the FEC campaign-money downloads (local runs)')
     ap.add_argument('--no-econ', action='store_true', help='skip the economic-series downloads (local runs)')
     ap.add_argument('--uf-csv', help='read the UF early-vote file from this path instead of fetching')
+    ap.add_argument('--no-archive', action='store_true', help='do not save the raw early-vote files under pipeline/data')
     ap.add_argument('--today', help='override the build date (YYYY-MM-DD)')
     a = ap.parse_args()
 
@@ -602,6 +603,7 @@ def main():
             out[k] = prev[k]
 
     # early vote
+    text = None
     try:
         text = open(a.uf_csv, encoding='utf-8-sig').read() if a.uf_csv else fetch(UF_URL)
         ev = build_early_vote(rows(text), base['ev_bench'])
@@ -622,6 +624,27 @@ def main():
             raise SystemExit('early-vote data unavailable and no previous data to fall back on')
         out['ev'] = prev['ev']
         out['ev_hist'] = prev.get('ev_hist', [])
+
+    # official early vote by party registration (PA, FL, NV, CO, IA, AZ) vs the same point in 2022 and 2024
+    try:
+        import evreg
+        uf_rows = rows(text) if text else []
+        nat = {}
+        with open(os.path.join(ROOT, 'pipeline', 'backtest', 'data', 'house_vote.csv'), encoding='utf-8') as f:
+            for r in csv.DictReader(f):
+                if r['year'] in ('2022', '2024'):
+                    nat[int(r['year'])] = float(r['margin'])
+        out['evreg'] = evreg.block(uf_rows, prev.get('evreg'), today,
+                                   baselines=load_json(os.path.join(ROOT, 'pipeline', 'static', 'ev_baselines.json')),
+                                   hand=load_json(os.path.join(ROOT, 'pipeline', 'content', 'ev_points.json')), nat=nat)
+        ok('evreg', f"{len(out['evreg']['states'])} states, {len(out['evreg']['hist'])} daily entries")
+        if not a.uf_csv and not a.no_archive:
+            saved = evreg.archive(today, uf_text=text, log=lambda m: print(m, file=sys.stderr))
+            if saved:
+                print(f"archived {', '.join(saved)}", file=sys.stderr)
+    except Exception as e:
+        stale('evreg', e)
+        out['evreg'] = prev.get('evreg')
 
     # North Carolina: same-point comparison with 2022 and 2024 from the State Board of Elections' files
     bl_path = os.path.join(ROOT, 'pipeline', 'static', 'nc_baseline.json')
