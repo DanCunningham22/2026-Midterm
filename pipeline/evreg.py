@@ -104,9 +104,13 @@ def days_out(year, date):
     return (ELECTION[year] - dt.date.fromisoformat(date)).days
 
 
+MAX_SPAN = 7   # days: interpolate only between reports this close together
+
+
 def interp(points, k):
     """Gap (and ballots) at k days out from a year's points, by linear interpolation between the two nearest
-    reports. None before the first report."""
+    reports when they are within MAX_SPAN days of each other. None before the first report or across a wider gap
+    (then 'near' names the bracketing reports)."""
     pts = sorted(((p['k'], p['gap'], p.get('all')) for p in points if p.get('gap') is not None), key=lambda t: -t[0])
     if not pts or k > pts[0][0]:
         return None
@@ -115,6 +119,8 @@ def interp(points, k):
             return dict(gap=g, all=a, exact=True)
         if kk < k:
             k0, g0, a0 = pts[i - 1]
+            if k0 - kk > MAX_SPAN:
+                return dict(gap=None, near=[k0, kk])
             w = (k0 - k) / (k0 - kk)
             return dict(gap=g0 + w * (g - g0), all=(a0 + w * (a - a0)) if a0 and a else (a or a0), exact=False)
     return dict(gap=pts[-1][1], all=pts[-1][2], exact=False)
@@ -242,9 +248,9 @@ def compare(hist, points, calib, nat):
             bl = interp(pts, k)
             key = f'y{yr % 100}'
             series = [[p['k'], p['gap'], p.get('all')] for p in sorted(pts, key=lambda p: -p['k'])]
-            if not bl:
+            if not bl or bl.get('gap') is None:
                 first = max((p['k'] for p in pts), default=None)
-                row[key] = dict(gap=None, first_k=first, n=len(pts), series=series)
+                row[key] = dict(gap=None, first_k=first, near=(bl or {}).get('near'), n=len(pts), series=series)
                 continue
             dg = gap - bl['gap']
             implied = slope['b'] * dg

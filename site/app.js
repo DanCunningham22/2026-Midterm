@@ -1171,7 +1171,7 @@
     }
     const rows = E.states.map((s) => {
       const c22 = s.y22 || {}, c24 = s.y24 || {};
-      const base = (c) => c.gap == null ? '<span class="muted">' + (c.first_k != null ? 'from ' + kTxt(c.first_k) : 'none') + '</span>' : gapTxt(c.gap) + (c.all ? '<br><span class="muted small">' + Math.round(c.all).toLocaleString() + (c.exact ? '' : ' (interpolated)') + '</span>' : '');
+      const base = (c) => c.gap == null ? '<span class="muted">' + (c.near ? 'reports at ' + c.near[0] + ' and ' + c.near[1] + ' days out only' : c.first_k != null ? 'from ' + kTxt(c.first_k) : 'none') + '</span>' : gapTxt(c.gap) + (c.all ? '<br><span class="muted small">' + Math.round(c.all).toLocaleString() + (c.exact ? '' : ' (interpolated)') + '</span>' : '');
       const imp = c22.dmargin == null ? '—' : '<b>' + signed(c22.dmargin) + '</b> ± ' + c22.se.toFixed(1) + (c22.implied_state != null ? '<br><span class="muted small">' + c22.race + ': ' + fm(c22.result) + ' → ' + fm(c22.implied_state) + '</span>' : '');
       return '<tr><td><b>' + esc(s.name) + '</b><br><span class="muted small">' + evregMeasure(s) + (s.ip_start ? ' · in person from ' + s.ip_start.slice(5).replace('-', '/') : s.st === 'PA' ? ' · no in-person early vote' : '') + '</span></td>' +
         '<td class="n">' + s.all.toLocaleString() + '<br><span class="muted small">' + fmtDay(s.asof) + ', ' + kTxt(s.k) + '</span></td>' +
