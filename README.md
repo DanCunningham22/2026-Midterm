@@ -20,6 +20,7 @@ A GitHub Actions job (`.github/workflows/update.yml`) runs every three hours. It
 | Candidates, incumbency, race polls, generic-ballot polls | [ElectIndex forecast data](https://github.com/ElectIndex/26_us_forecast_data) | automatic |
 | Race polls the feed doesn't have yet (from the pollsters' own releases) | `pipeline/content/extra_polls.csv` | daily scheduled refresh; a row drops out once the feed has the poll |
 | Early-vote ballot counts and party splits | [UF Election Lab](https://election.lab.ufl.edu/early-vote/2026-early-voting/) | automatic |
+| Official early vote by party registration (PA, FL, NV, CO, IA, AZ) vs. the same point in 2022 and 2024 | `pipeline/evreg.py`; baselines in `pipeline/static/ev_baselines.json` (built by the *Build early-vote baselines* workflow) and `pipeline/content/ev_points.json`; raw daily files under `pipeline/data/earlyvote/2026/` | automatic |
 | National polling average (generic ballot) | computed from the poll list | automatic |
 | Our forecast: national vote and Senate/governor adjustments | `pipeline/backtest/backtest.py`, inputs in `pipeline/content/fundamentals.json` | automatic; approval and special-election inputs checked daily |
 | Economic series for the backtest and the other-signals panel | [FRED](https://fred.stlouisfed.org/) and [datasets/s-and-p-500](https://github.com/datasets/s-and-p-500) via `pipeline/econ.py` | automatic, about twice a day |
@@ -64,6 +65,36 @@ bowl, prediction markets, Cook's ratings, retirements) live in `pipeline/content
 ```
 python3 pipeline/backtest/make_tables.py   # rebuilds the poll-vs-result tables from the 538 archive (needs internet)
 python3 pipeline/backtest/backtest.py      # prints the backtest and today's call
+```
+
+## Official early vote by party registration
+
+Six states' election offices publish returned ballots by the voter's registered party every day: Pennsylvania
+(mail only), Florida, Nevada, Colorado, Iowa and Arizona (Arizona through a county compilation). UF Election
+Lab's daily file carries those figures, and the build (`pipeline/evreg.py`) keeps a daily history of them,
+archives the raw files (UF's CSV, Pennsylvania's spreadsheet, Florida's statewide text files, Colorado's
+releases once they start) under `pipeline/data/earlyvote/2026/`, and compares each state's
+registered-Democrat-minus-Republican gap with the same number of days before Election Day in 2022 and 2024.
+
+Baselines come from two files. `pipeline/static/ev_baselines.json` is machine-built by the *Build early-vote
+baselines* workflow from what the offices still serve: Colorado's daily ballot-return spreadsheets (2022 and
+2024), Florida's archived final status counts, archived copies of Pennsylvania's 2024 report and of UF's 2024
+file (Wayback Machine), and the final 2020, 2022 and 2024 early vote by state (UF's 2020 pages, the 2022
+RPubs tracker, the 2024 file). `pipeline/content/ev_points.json` holds hand-entered dated points from official
+daily reports as quoted by the Nevada Independent, Bleeding Heartland (Iowa), the Philadelphia Inquirer and
+other outlets, each with its source. The build interpolates between a year's points to the current days-out.
+
+The "implied" column turns the change in a state's gap since 2022 into points of margin with a slope fitted on
+history: across states with party registration, how much the presidential margin moved from 2020 to 2024 per
+point of change in the final early vote's gap, fitted separately for states where early voting is mostly mail
+(the slope is small, because a mail electorate's party mix moves with voting habits more than with the
+national mood) and for states with in-person early voting. The pooled figure weights states by that fit's
+scatter and leaves mail-only states out of the comparison with 2024. Party registration is not vote choice,
+and a comparison made before in-person voting opens mostly measures who votes by mail; the panel says when
+each state's in-person voting begins.
+
+```
+python3 pipeline/evreg.py baseline pipeline/static/ev_baselines.json   # rebuild the baselines (needs internet, openpyxl, pypdf)
 ```
 
 ## Model in brief

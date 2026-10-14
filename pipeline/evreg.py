@@ -477,16 +477,18 @@ def uf_finals_2024(log):
 
 
 def _party_table(text, heading):
-    """First 'Party ... Democrat n pct Republican n pct' table after a heading in a UF static page's text."""
-    i = text.find(heading)
-    if i < 0:
-        return None
-    seg = text[i:i + 1500]
-    dm = re.search(r'Democrat[s]?\s+([\d,]+)', seg)
-    rm = re.search(r'Republican[s]?\s+([\d,]+)', seg)
-    tm = re.search(r'TOTAL\s+([\d,]+)', seg)
-    if dm and rm and tm:
-        return dict(d=num(dm.group(1)), r=num(rm.group(1)), all=num(tm.group(1)))
+    """The 'Democrats n ... Republicans n ... TOTAL n' table that directly follows a heading in a UF static page's
+    text (the heading may also appear in a table of contents, so every occurrence is tried and the first one with
+    the party rows right after it wins)."""
+    for m in re.finditer(re.escape(heading), text):
+        seg = text[m.end():m.end() + 500]
+        dm = re.search(r'Democrat[s]?\s+([\d,]+)', seg)
+        rm = re.search(r'Republican[s]?\s+([\d,]+)', seg)
+        tm = re.search(r'TOTAL\s+([\d,]+)', seg)
+        if dm and rm and tm and dm.start() < 160:
+            d, r, a = num(dm.group(1)), num(rm.group(1)), num(tm.group(1))
+            if d is not None and r is not None and a and a >= d + r:
+                return dict(d=d, r=r, all=a)
     return None
 
 
@@ -501,9 +503,9 @@ def uf_finals_2020(log, scratch=None):
             continue
         text = re.sub(r'<[^>]+>', ' ', re.sub(r'<script.*?</script>|<style.*?</style>', ' ', html, flags=re.S | re.I))
         text = re.sub(r'\s+', ' ', text)
-        if scratch and st in ('PA', 'FL'):
+        if scratch:
             with open(os.path.join(scratch, f'uf2020_{st}.txt'), 'w', encoding='utf-8') as f:
-                f.write(text[:12000])
+                f.write(text[:6000])
         m = _party_table(text, 'Mail Ballots Returned by Party Registration') or _party_table(text, 'Returned Mail Ballots by Party')
         t = _party_table(text, 'Total Voted by Party Registration') or _party_table(text, 'Voted by Party Registration') or m
         if t:
