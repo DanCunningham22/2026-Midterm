@@ -1,22 +1,12 @@
 {
- "asof": "2026-10-13",
- "headline": "Measured against the same point in 2024, every comparable measure is more Democratic. Measured against 2022, it isn't, because Democrats have moved from mail ballots to voting early in person.",
+ "asof": "2026-10-14",
+ "headline": "Against the same point in 2024, every comparable measure is more Democratic. Against 2022, mail volume is down in Wisconsin and North Carolina and flat in Michigan, while Georgia's first day of in-person voting ran well ahead of 2022's. Democrats have moved from mail ballots to voting early in person, which bends both comparisons.",
  "measures": [
   {
    "st": "IA",
    "label": "Iowa: Democratic share of mail-ballot requests",
    "v26": 67,
    "v24": 54,
-   "kind": "share",
-   "src": "CNN/Catalist, Oct 1",
-   "url": "https://www.cnn.com/2026/10/01/politics/cnn-early-voting-takeaways-democratic-advantage",
-   "aff": "Nonpartisan outlet; Catalist is a Democratic-aligned data vendor"
-  },
-  {
-   "st": "NC",
-   "label": "North Carolina: Democratic share of mail-ballot requests",
-   "v26": 42,
-   "v24": 36,
    "kind": "share",
    "src": "CNN/Catalist, Oct 1",
    "url": "https://www.cnn.com/2026/10/01/politics/cnn-early-voting-takeaways-democratic-advantage",
@@ -62,8 +52,46 @@
    "aff": "Nonpartisan outlet; state data"
   }
  ],
- "compare_note": "Democratic share of mail-ballot requests (CNN/Catalist, Oct 1). Gray dot is the same point in 2024. Virginia's early voters with only Democratic primary history lead those with only GOP history by 18 points, vs. 8 in 2024; Ohio's early electorate is about 27 points more Democratic than at this point in 2024 (CNN, Oct 11). CNN also found that the 2022 request pools were more Democratic than 2026's in every listed state except Iowa.",
+ "compare_note": "Democratic share of mail-ballot requests (CNN/Catalist, Oct 1). Gray dot is the same point in 2024. Virginia's early voters with only Democratic primary history lead those with only GOP history by 18 points, vs. 8 in 2024; Ohio's early electorate is about 27 points more Democratic than at this point in 2024 (CNN, Oct 11). North Carolina's comparison is computed from the State Board of Elections' files. CNN also found that the 2022 request pools were more Democratic than 2026's in every listed state except Iowa.",
  "bullets": [
+  {
+   "title": "Georgia's first day of in-person voting beat 2022's by more than 50,000.",
+   "html": "More than 188,000 Georgians voted in person on Oct 13, more than 53,000 above the first day of early voting in the 2022 midterm (the Secretary of State's office put that day at over 135,000). Tuesday beat every 2022 early-voting day except the last. Mail is small: about 130,000 absentee ballots requested, with 10,200 returned, against nearly 286,000 requested by the end of 2022.",
+   "sources": [
+    [
+     "FOX 5 Atlanta, Oct 14",
+     "https://www.fox5atlanta.com/news/georgia-early-voting-sets-record-more-than-188k-voters"
+    ],
+    [
+     "AJC, Oct 14",
+     "https://www.ajc.com/politics/2026/10/georgia-early-voting-first-day-2026/"
+    ],
+    [
+     "WTOC, Oct 13",
+     "https://www.wtoc.com/2026/10/14/midterm-early-voting-turnout-record-shattered-georgia-secretary-state-says/"
+    ]
+   ],
+   "aff": "Official data via nonpartisan outlets"
+  },
+  {
+   "title": "Ohio shows the mode shift in official numbers.",
+   "html": "Through Oct 13, Ohio counted 194,841 early in-person votes and 33,629 returned mail ballots. At the same point in 2022 the Secretary of State reported 50,368 in-person votes and 871,041 mail requests; this year's requests stand at about 631,000. CNN's Oct 11 analysis put the early electorate about 27 points more Democratic than at this point in 2024.",
+   "sources": [
+    [
+     "Ohio Secretary of State, Oct 13",
+     "https://www.ohiosos.gov/office/media-center/categories/press-releases/2026-10-13a"
+    ],
+    [
+     "Ohio Secretary of State, Oct 18, 2022",
+     "https://www.ohiosos.gov/office/media-center/categories/press-releases/2022-10-18"
+    ],
+    [
+     "CNN (via KRDO), Oct 11",
+     "https://krdo.com/politics/cnn-us-politics/2026/10/11/early-voting-figures-suggest-democratic-gains-in-ohios-most-trump-friendly-counties/"
+    ]
+   ],
+   "aff": "Official data; CNN is a nonpartisan outlet"
+  },
   {
    "title": "The edge over 2024 is real but partly a change in how Democrats vote.",
    "html": "Democratic mail requests in North Carolina are down 40% from 2022, against 18% for Republicans, yet Democrats are returning ballots faster (22% returned vs. 17% in 2022). In an NBC poll, 23% of Democrats plan to vote by mail, down from 34% in 2024, and 36% plan to vote early in person, up from 30%. Democrats' confidence that the Postal Service will deliver ballots on time fell from 86% to 60% (Marist).",
@@ -76,45 +104,34 @@
    "aff": "Nonpartisan"
   },
   {
-   "title": "Volume against 2022 is mixed.",
-   "html": "Michigan's returned absentee ballots are up 30% from the same point in 2022 (201,909 vs. 155,142) and Minnesota's up 29% (127,682 vs. 99,252). North Carolina is 22.5% behind (27,854 vs. 35,958).",
+   "title": "Wisconsin's mail vote is down 30% on 2022; Michigan's has flattened.",
+   "html": "Wisconsin clerks had received about 128,000 absentee ballots three weeks out, against nearly 184,000 at the same point in 2022; Madison fell from about 31,700 to about 9,000, which Dane County's clerk attributes to distrust of the Postal Service. Michigan's returned absentee ballots (440,677 on Oct 13) are only slightly above the same point in 2022 (432,960), though requests are up more than 20% because of the permanent mail list. Neither state registers voters by party.",
    "sources": [
     [
-     "MI SOS",
-     "https://content.govdelivery.com/accounts/MISOS/bulletins/42e2d69"
+     "WPR, Oct 13",
+     "https://www.wpr.org/news/absentee-ballots-wisconsin-down-compared-to-2022"
     ],
     [
-     "FOX 9/MN SOS",
-     "https://www.fox9.com/news/early-voting-minnesota-127k-ballots-accepted-so-far-outpacing-2022-election"
+     "Michigan Secretary of State, Oct 13",
+     "https://www.michigan.gov/sos/resources/news/2026/10/13/three-weeks-before-election-day-6-percent-of-voters-have-already-cast-their-ballot"
+    ]
+   ],
+   "aff": "Official data"
+  },
+  {
+   "title": "Florida Democrats lead the mail vote, as they usually do before in-person voting opens.",
+   "html": "As of Tuesday morning, just over 226,000 mail ballots had come back from registered Democrats, nearly 190,000 from Republicans and nearly 98,000 from voters with no party; about 1.77 million more are outstanding (nearly 760,000 sent to Democrats, 600,000 to Republicans). Republicans typically make up the difference when in-person early voting opens Oct 24.",
+   "sources": [
+    [
+     "Tallahassee Reports, Oct 14",
+     "https://tallahasseereports.com/2026/10/14/more-than-500000-votes-cast-for-general-election"
     ],
     [
-     "NCSBE",
-     "https://s3.amazonaws.com/dl.ncsbe.gov/Press/2026%20General/NC%20Absentee%20Stats%20for%202026%20General/2026-10-10%20Daily%20Absentee%20Stats%20Report%20-%202026%20General.pdf"
+     "Suncoast News, Oct 13",
+     "https://www.mysuncoast.com/2026/10/13/half-million-floridians-return-mail-ballots/"
     ]
    ],
-   "aff": "Official"
-  },
-  {
-   "title": "Virginia is more Democratic but slower.",
-   "html": "State Navigate estimates its early vote is 4.2 points more Democratic than 2025's (6.5 in VA-1, 8.6 in VA-9). Turnout runs 23% behind the same point in 2024, per TargetSmart.",
-   "sources": [
-    [
-     "Cardinal News, Oct 2",
-     "https://cardinalnews.org/2026/10/02/early-voting-numbers-show-a-shift-toward-democrats-if-those-hold-at-least-two-house-seats-in-virginia-could-flip-and-a-third-could-be-close/"
-    ]
-   ],
-   "aff": "Nonpartisan"
-  },
-  {
-   "title": "The early electorate is old.",
-   "html": "Voters 65 and older cast about two-thirds of returned ballots in Michigan, Pennsylvania and Georgia; 18–25s cast 2–6%. It will get younger as in-person voting opens.",
-   "sources": [
-    [
-     "UF Election Lab",
-     "https://election.lab.ufl.edu/early-vote/2026-early-voting/"
-    ]
-   ],
-   "aff": "Nonpartisan"
+   "aff": "Official data via local outlets"
   },
   {
    "title": "Democratic data firms report a Latino and Black surge.",
@@ -133,25 +150,25 @@
   },
   {
    "title": "Republicans say they vote later.",
-   "html": "National Review's Noah Rothman argues Democrats will lead the early vote, \"but perhaps not by the margins the party expects,\" because their own warnings eroded trust in mail. A Virginia GOP volunteer told the Daily Signal that \"Republicans show up on Election Day more so.\" No quantitative RNC early-vote claims for 2026 turned up.",
+   "html": "National Review's Noah Rothman argues Democrats will lead the early vote, \"but perhaps not by the margins the party expects,\" because their own warnings eroded trust in mail. Wisconsin's GOP reads the Madison and Milwaukee declines as \"a lack of enthusiasm among Dem voters\"; the state Democratic Party notes absentee voting also fell about 23% from 2020 to 2024. No quantitative RNC early-vote claims for 2026 turned up.",
    "sources": [
     [
      "National Review, Oct 1",
      ""
     ],
     [
-     "Daily Signal, Sept 19",
-     "https://www.dailysignal.com/2026/09/19/virginias-early-voting-begins/"
+     "WisPolitics, Oct 6",
+     "https://www.wispolitics.com/2026/absentee-voting-down-compared-to-four-years-ago-drop-off-larger-in-dem-madison-milwaukee/"
     ]
    ],
-   "aff": "GOP-aligned"
+   "aff": "GOP-aligned claims, reported by nonpartisan outlets"
   },
   {
    "title": "Nevada is the cautionary tale.",
-   "html": "By Oct 12, 2,955 ballots had been accepted: 48.6% from Democrats, 22.2% from Republicans and 24.8% from nonpartisans. Jon Ralston calls numbers this small meaningless. In 2024 Democrats led Nevada's mail vote, Republicans led the total early vote, and Trump won.",
+   "html": "By the afternoon of Oct 13 just under 6,000 ballots had been accepted, about 0.3% of active voters, with Democrats about 15 points ahead of Republicans (2,229 to 1,298 in the morning count, with 1,163 nonpartisans). Jon Ralston says about 5,000 ballots is not a statistically significant sample. In 2024 Democrats led Nevada's mail vote, Republicans led the total early vote, and Trump won.",
    "sources": [
     [
-     "Nevada Independent, Oct 12",
+     "Nevada Independent, Oct 13",
      "https://thenevadaindependent.com/article/the-early-voting-blog-2026-general"
     ]
    ],
@@ -159,10 +176,6 @@
   }
  ],
  "calendar": [
-  [
-   "GA",
-   "Oct 13"
-  ],
   [
    "IA",
    "Oct 14"
@@ -174,6 +187,10 @@
   [
    "NC",
    "Oct 15"
+  ],
+  [
+   "MN",
+   "Oct 16"
   ],
   [
    "NV",
@@ -216,22 +233,33 @@
    "Oct 24"
   ]
  ],
- "calendar_note": "Georgia's in-person early voting opens Oct 13; Iowa and Kansas mail ballots go out Oct 14. Pennsylvania and New Hampshire have no early in-person voting.",
- "cast_at": 3452880,
- "cast_at_note": "Ballots counted (UF Election Lab, 36 jurisdictions reporting, state data as of Oct 8-13) when these comparisons were compiled; sets the automatic early-vote weight.",
- "signals_asof": "2026-10-13",
- "signals_verdict": "Against 2024 the early vote looks more Democratic; against 2022 it looks less so. Both comparisons are bent by Democrats switching from mail to in-person voting, so the fair read is that the early vote is consistent with the polls. The first clean test is in-person voting in Georgia (opened Oct 13) and North Carolina (from Oct 15).",
+ "calendar_note": "Georgia's in-person early voting opened Oct 13; Iowa and Kansas mail ballots go out Oct 14; North Carolina's one-stop voting opens Oct 15. Colorado mailed its ballots Oct 2-9; Oct 19 is when its voter service centers must open. Pennsylvania and New Hampshire have no early in-person voting.",
+ "cast_at": 4425684,
+ "cast_at_note": "Ballots counted (UF Election Lab, 37 jurisdictions reporting, state data as of Oct 9-14) when these comparisons were compiled; sets the automatic early-vote weight.",
+ "signals_asof": "2026-10-14",
+ "signals_verdict": "Against 2024 the early vote looks more Democratic; against 2022 the mail vote is down in Wisconsin and North Carolina and flat in Michigan, while Georgia's first day of in-person voting ran about 40% above 2022's. All of it is bent by Democrats moving from mail to voting in person, so the early vote is consistent with the polls rather than ahead of them. The next real tests are North Carolina's one-stop voting from Oct 15 and a full week of Georgia's in-person numbers.",
  "signals": [
+  {
+   "dir": "D",
+   "st": "GA",
+   "strength": 2,
+   "title": "Georgia's first day of in-person voting ran well ahead of 2022",
+   "value": "More than 188,000 in-person votes on Oct 13, more than 53,000 above the first day of 2022 (the Secretary of State put 2022's first day at over 135,000). About 130,000 mail ballots requested vs. nearly 286,000 by the end of 2022.",
+   "catch": "Georgia has no party registration, so this is turnout, not direction. Part of the in-person surge is voters who would have used mail; the 2024 first day was over 300,000.",
+   "src": "FOX 5 Atlanta and WTOC, using Georgia Secretary of State data, Oct 13-14",
+   "url": "https://www.fox5atlanta.com/news/georgia-early-voting-sets-record-more-than-188k-voters",
+   "aff": "Official data"
+  },
   {
    "dir": "D",
    "st": "OH",
    "strength": 2,
    "title": "Ohio's early electorate is far more Democratic than in 2024",
-   "value": "About 27 points more Democratic than at this point in 2024, by primary history. Counties Trump won by 20+ are R+5, vs. R+30 then.",
-   "catch": "2024 was a presidential year, and Ohio Republicans are shifting from mail to in person: mail is at 25% of its 2024 pace, in-person at 72%.",
-   "src": "CNN, using Ohio Secretary of State data, Oct 11",
-   "url": "https://edition.cnn.com/2026/10/11/politics/early-voting-midterms-ohio-democratic-shift-vis",
-   "aff": "Nonpartisan"
+   "value": "About 27 points more Democratic than at this point in 2024, by primary history. Counties Trump won by 20+ are R+5, vs. R+30 then. Official count through Oct 13: 194,841 in person (50,368 at the same point in 2022) and 33,629 mail ballots returned.",
+   "catch": "2024 was a presidential year, and Ohio Republicans are shifting from mail to in person: mail requests are about 631,000 vs. 871,041 at this point in 2022.",
+   "src": "CNN, Oct 11; Ohio Secretary of State, Oct 13",
+   "url": "https://krdo.com/politics/cnn-us-politics/2026/10/11/early-voting-figures-suggest-democratic-gains-in-ohios-most-trump-friendly-counties/",
+   "aff": "Nonpartisan; official data"
   },
   {
    "dir": "D",
@@ -268,6 +296,17 @@
   },
   {
    "dir": "D",
+   "st": "FL",
+   "strength": 1,
+   "title": "Florida Democrats lead the returned mail vote",
+   "value": "Just over 226,000 mail ballots from Democrats vs. nearly 190,000 from Republicans and nearly 98,000 from no-party voters, as of Oct 13.",
+   "catch": "No same-point comparison yet; Republicans hold a registration edge of more than a million and typically make up the difference when in-person early voting opens Oct 24.",
+   "src": "Tallahassee Reports, using Division of Elections data, Oct 14",
+   "url": "https://tallahasseereports.com/2026/10/14/more-than-500000-votes-cast-for-general-election",
+   "aff": "Official data via a local outlet"
+  },
+  {
+   "dir": "D",
    "st": "NJ",
    "strength": 1,
    "title": "Trump country in New Jersey is voting less Republican",
@@ -278,14 +317,25 @@
    "aff": "Catalist is a Democratic-aligned vendor"
   },
   {
-   "dir": "D",
+   "dir": "R",
+   "st": "WI",
+   "strength": 2,
+   "title": "Wisconsin's mail vote is running 30% behind 2022",
+   "value": "About 128,000 absentee ballots returned three weeks out, vs. nearly 184,000 at the same point in 2022. Madison: about 9,000 vs. about 31,700.",
+   "catch": "No party registration; the Dane County clerk blames distrust of the Postal Service, and in-person absentee voting doesn't start until Oct 20.",
+   "src": "WPR, using Wisconsin Elections Commission data, Oct 13",
+   "url": "https://www.wpr.org/news/absentee-ballots-wisconsin-down-compared-to-2022",
+   "aff": "Official data"
+  },
+  {
+   "dir": "R",
    "st": "MI",
-   "strength": 1,
-   "title": "Michigan's mail returns are up 30% on 2022",
-   "value": "201,909 ballots returned by Oct 6, vs. 155,142 at the same point in 2022; requests are up 27%.",
-   "catch": "Michigan has no party registration, so this measures turnout, not direction. Most requests come from the permanent mail list.",
-   "src": "Michigan Secretary of State, Oct 6",
-   "url": "https://www.michigan.gov/sos/resources/news/2026/10/06/four-weeks-before-election-day-mail-ballot-returns-are-up-30-over-same-point-in-2022",
+   "strength": 2,
+   "title": "Michigan's mail returns have fallen back to the 2022 pace",
+   "value": "440,677 ballots returned by Oct 13, vs. 432,960 at the same point in 2022; a week earlier returns were 30% ahead. Requests are up more than 20% (2,083,240 vs. 1,707,970).",
+   "catch": "Michigan has no party registration, so this measures turnout, not direction. About 95% of requests come from the permanent mail list; in-person early voting opens Oct 24.",
+   "src": "Michigan Secretary of State, Oct 13",
+   "url": "https://www.michigan.gov/sos/resources/news/2026/10/13/three-weeks-before-election-day-6-percent-of-voters-have-already-cast-their-ballot",
    "aff": "Official data"
   },
   {
@@ -327,21 +377,10 @@
    "strength": 1,
    "title": "Georgia's mail requests fell more in Democratic areas",
    "value": "Down 52% in heavily Harris precincts vs. 39% in heavily Trump precincts.",
-   "catch": "Mail is a small slice of Georgia's vote; in-person early voting starts Oct 13.",
+   "catch": "Mail is about 5% of Georgia's vote; the first day of in-person voting (Oct 13) ran well ahead of 2022.",
    "src": "NBC News/UPenn, Oct 9",
    "url": "https://www.nbcnews.com/politics/2026-election/early-vote-analysis-mail-ballot-concerns-are-changing-democrats-vote-rcna602489",
    "aff": "Nonpartisan academics"
-  },
-  {
-   "dir": "R",
-   "st": "Most states",
-   "strength": 1,
-   "title": "An older early electorate",
-   "value": "Voters 65+ are a bigger share of mail requests than at this point in 2022 or 2024 in nearly every state.",
-   "catch": "Polls have seniors about even this year, so older doesn't mean Republican the way it used to; fewer young voters is the real cost to Democrats.",
-   "src": "CNN, Oct 1",
-   "url": "https://www.cnn.com/2026/10/01/politics/cnn-early-voting-takeaways-democratic-advantage",
-   "aff": "Nonpartisan"
   }
  ]
 }

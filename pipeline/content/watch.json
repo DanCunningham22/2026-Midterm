@@ -1,7 +1,156 @@
 {
- "asof": "2026-10-13",
+ "asof": "2026-10-14",
  "note": "Maintained daily. Every item links to the page that confirms it.",
  "happened": [
+  {
+   "date": "2026-10-14",
+   "title": "Senate Majority PAC adds to Michigan and Maine, pauses Georgia and North Carolina",
+   "what": "Senate Majority PAC is adding $3.7 million in Michigan, bringing its total there to about $35 million, and $3 million in Maine, while pausing its ads in Georgia and North Carolina, where Jon Ossoff and Roy Cooper lead.",
+   "why": "Democrats' main Senate super PAC is treating Georgia and North Carolina as won and concentrating on the two Republican-held seats that would complete a net gain of four.",
+   "races": [
+    "MI-SEN",
+    "ME-SEN",
+    "GA-SEN",
+    "NC-SEN"
+   ],
+   "src": "Semafor, Oct 14",
+   "url": "https://www.semafor.com/article/10/14/2026/top-democratic-super-pac-spends-more-in-michigan-maine",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-13",
+   "title": "GOP super PACs pull out of four House races, reinforce 16",
+   "what": "Congressional Leadership Fund canceled spending in IA-01, NJ-07, MI-08 and OH-01 and added money in 16 districts including PA-01, TX-15, WI-01, VA-01 and MI-04; a MAGA Inc. affiliate also pulled about $1 million meant to help Marty O'Donnell against Rep. Susie Lee in NV-03.",
+   "why": "House Republicans are conceding two of their own Trump-district seats and two Democratic targets to concentrate on districts Trump carried, narrowing their path to 218.",
+   "races": [
+    "IA-01",
+    "NJ-07",
+    "MI-08",
+    "OH-01",
+    "NV-03",
+    "PA-01",
+    "TX-15",
+    "WI-01",
+    "VA-01",
+    "MI-04"
+   ],
+   "src": "AP via KCRG, Oct 14",
+   "url": "https://www.kcrg.com/2026/10/14/battle-lines-shift-house-races-republicans-retreat-front-line-districts/",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-13",
+   "title": "Cook moves Alaska governor to Lean Democrat, three red states off Solid",
+   "what": "The Cook Political Report shifted the Alaska governor race from Toss Up to Lean Democrat, citing Jonathan Kreiss-Tomkins' polling lead and a split Republican field, and moved Oklahoma, Nebraska and Vermont from Solid to Likely Republican.",
+   "why": "Cook says the shifts give Democrats a chance at a majority of governorships for the first time since 2010; its governor map now has four Toss Ups (Georgia, Nevada, Ohio, Wisconsin).",
+   "races": [
+    "AK-GOV",
+    "OK-GOV",
+    "NE-GOV",
+    "VT-GOV"
+   ],
+   "src": "Alaska Landmine, Oct 13",
+   "url": "https://alaskalandmine.com/landmines/cook-shifts-governors-race-to-lean-democrat/",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-13",
+   "title": "Senate Leadership Fund adds $8 million in Nebraska",
+   "what": "Senate Leadership Fund plans about $8 million in new Nebraska spending through Election Day on top of $7 million already spent to defend Sen. Pete Ricketts against independent Dan Osborn, and the crypto PAC Fairshake began a $7 million Nebraska campaign.",
+   "why": "Republicans are now spending to hold a seat Trump carried by about 20 points, money that cannot go to Kansas, Iowa, Ohio or Texas.",
+   "races": [
+    "NE-SEN"
+   ],
+   "src": "Daily Caller, Oct 13",
+   "url": "https://dailycaller.com/2026/10/13/crypto-pac-republicans-save-nebraska-senator-pete-ricketts/",
+   "aff": "R-aligned"
+  },
+  {
+   "date": "2026-10-13",
+   "title": "Ossoff, Collins clash over son-in-law and Epstein in final debate",
+   "what": "In the Atlanta Press Club debate, Sen. Jon Ossoff demanded that Rep. Mike Collins stop his son-in-law from producing what Ossoff called neo-Nazi content from Collins' home, while Collins attacked Ossoff over donor Reid Hoffman's ties to Jeffrey Epstein and would not say directly whether Biden won in 2020.",
+   "why": "It was the last debate in one of the few Democratic-held Senate seats Republicans are contesting, on the first day of Georgia's early voting.",
+   "races": [
+    "GA-SEN"
+   ],
+   "src": "GPB, Oct 14",
+   "url": "https://www.gpb.org/news/2026/10/14/ossoff-and-collins-exchange-fire-in-heated-senate-campaign-debate",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-13",
+   "title": "Hinson breaks with Trump on Russian diesel in final Iowa debate",
+   "what": "In the second and last Hinson-Turek debate, Rep. Ashley Hinson said she disagreed with Trump's deal easing sanctions on Russian diesel, while Josh Turek accused her of pushing Iowa toward a 'second farm crisis' through tariffs and Iran-war votes.",
+   "why": "Iowa's open Republican-held seat is a Cook Toss Up, and Hinson's distance from Trump on fuel prices shows where Republicans think the race is being lost.",
+   "races": [
+    "IA-SEN"
+   ],
+   "src": "Daily Iowan, Oct 13",
+   "url": "https://dailyiowan.com/2026/10/13/hinson-turek-debate-farms-iowa-data-centers-in-last-debate/",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-13",
+   "title": "Collins, Jackson spar over Iran war funding in third Maine debate",
+   "what": "Troy Jackson said Sen. Susan Collins, as Appropriations chair, could defund the Iran war, while Collins said Jackson had filed no FEC reports and did not know Medicare from Medicaid; both opposed tariffs on Canada.",
+   "why": "Maine is a Republican-held seat central to a Democratic Senate majority, and a Suffolk poll released the same week had Jackson at 49-47.",
+   "races": [
+    "ME-SEN"
+   ],
+   "src": "Portland Press Herald, Oct 13",
+   "url": "https://www.pressherald.com/2026/10/13/susan-collins-and-troy-jackson-square-off-in-latest-debate/",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-13",
+   "title": "Sununu keeps Trump at arm's length in first New Hampshire debate",
+   "what": "In the first Pappas-Sununu Senate debate, in North Conway, John Sununu said he had opposed Trump in 2016 and 2024 and tied Chris Pappas to Biden, while Pappas accused Sununu of siding with drug companies; Pappas has agreed to two more debates.",
+   "why": "New Hampshire is the Democratic-held seat Republicans most need to flip, and Sununu's distance from Trump is their path in a state Harris carried.",
+   "races": [
+    "NH-SEN"
+   ],
+   "src": "Washington Examiner, Oct 13",
+   "url": "https://www.washingtonexaminer.com/news/campaigns/congressional/4764399/sununu-trump-senate-debate-pappas-biden/",
+   "aff": "R-aligned"
+  },
+  {
+   "date": "2026-10-13",
+   "title": "Trump endorses Tafoya in Minnesota and Wilson for Alaska governor",
+   "what": "Trump told his Youngstown rally to vote for Michele Tafoya, who has run as a pro-choice Republican independent of the president and called his rhetoric about Minnesota's Somali community inappropriate; on Oct 13 he endorsed Bernadette Wilson for Alaska governor and said he would not back Dave Bronson.",
+   "why": "The Minnesota endorsement undercuts Tafoya's distancing strategy in a race where Peggy Flanagan leads by four, and consolidating Republicans behind Wilson is the GOP's only path in Alaska's ranked-choice governor race.",
+   "races": [
+    "MN-SEN",
+    "AK-GOV"
+   ],
+   "src": "MPR News, Oct 13; Alaska's News Source, Oct 13",
+   "url": "https://www.mprnews.org/story/2026/10/13/michele-tafoya-endorsed-by-trump-for-senate-minnesota",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-13",
+   "title": "Texas polls: Talarico narrowly ahead, Abbott edges back in front",
+   "what": "Marist (Oct 8-11) has James Talarico over Ken Paxton 47-45 among likely voters and Gov. Greg Abbott over Gina Hinojosa 49-45; Siena/ReconMR (Oct 5-8) has Talarico 48-44, down from a six-point lead in September, and Abbott 48-47 after trailing by four.",
+   "why": "Texas is still a live Senate pickup, but both polls show Republicans recovering, especially in the governor race Cook rates Lean Republican.",
+   "races": [
+    "TX-SEN",
+    "TX-GOV"
+   ],
+   "src": "Marist, Oct 14; Siena, Oct 13",
+   "url": "https://maristpoll.marist.edu/polls/2026-midterm-elections-in-texas-october-2026/",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-12",
+   "title": "Rick Jackson skips Atlanta Press Club governor debate",
+   "what": "Republican nominee Rick Jackson skipped the Atlanta Press Club debate to campaign with Gov. Brian Kemp near Augusta, the first general-election governor no-show since 1994; Keisha Lance Bottoms debated an empty podium for 30 minutes and called him a coward.",
+   "why": "Cook rates Georgia's open governorship a Toss Up, and the no-show gives Democrats a message in a race they need for a majority of governorships.",
+   "races": [
+    "GA-GOV"
+   ],
+   "src": "WABE/Georgia Recorder, Oct 13",
+   "url": "https://www.wabe.org/bottoms-faces-empty-podium-on-debate-stage-while-jackson-campaigns-with-kemp/",
+   "aff": ""
+  },
   {
    "date": "2026-10-09",
    "title": "Cook shifts 18 more House races toward Democrats",
@@ -13,190 +162,9 @@
    "src": "Cook Political Report, Oct 9",
    "url": "https://www.cookpolitical.com/analysis/house/house-overview/eighteen-more-house-race-ratings-move-democrats-favor",
    "aff": ""
-  },
-  {
-   "date": "2026-10-09",
-   "title": "Senate Majority PAC commits $5 million to Kansas race",
-   "what": "Democrats' Senate Majority PAC disclosed plans to spend $5 million in the Kansas race between Sen. Roger Marshall and Democrat Adam Hamilton, where national Republicans have promised $14 million to hold the seat.",
-   "why": "With the leading Senate super PACs of both parties now spending there, Kansas has become a two-sided battleground that adds a Republican-held seat to Democrats' possible paths to a majority.",
-   "races": [
-    "KS-SEN"
-   ],
-   "src": "New York Times via GV Wire, Oct 9",
-   "url": "https://gvwire.com/?p=271752",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-08",
-   "title": "Ossoff, Collins trade ethics and Iran attacks in Georgia debate",
-   "what": "In an hour-long Atlanta News First debate, Sen. Jon Ossoff pressed Rep. Mike Collins on a House Ethics Committee investigation and on whether the 2020 election was stolen, while Collins called Ossoff a 'radical' and defended Trump's decision to attack Iran.",
-   "why": "Georgia is one of the few Democratic-held Senate seats Republicans are contesting; early voting opened five days later.",
-   "races": [
-    "GA-SEN"
-   ],
-   "src": "Atlanta Journal-Constitution, Oct 8",
-   "url": "https://www.ajc.com/politics/2026/10/georgia-us-senate-race-jon-ossoff-and-mike-collins-debate/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-08",
-   "title": "Rogers, El-Sayed clash in hostile first Michigan Senate debate",
-   "what": "In a Grand Rapids debate moderated by WOOD-TV's Rick Albin, Republican Mike Rogers raised Hamas, Hezbollah and a group that once employed Democrat Abdul El-Sayed's mother without offering supporting evidence, while El-Sayed said the attacks were meant to distract from prices; both backed temporary federal gas-tax relief.",
-   "why": "Michigan's open Democratic-held seat is a Republican pickup target.",
-   "races": [
-    "MI-SEN"
-   ],
-   "src": "Michigan Public, Oct 9",
-   "url": "https://www.michiganpublic.org/politics-government/2026-10-09/rogers-el-sayed-debate-gets-hostile-as-candidates-clash-in-pivotal-us-senate-race",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-08",
-   "title": "Collins, Jackson spar over contracts, Iran war in debate",
-   "what": "In the second of four Maine Senate debates, Sen. Susan Collins denied a ProPublica report alleging she steered government contracts to a Hawaii business in return for campaign donations, and demanded an apology after Democrat Troy Jackson accused her and her husband of profiting from the Iran war.",
-   "why": "Maine is a Republican-held seat central to Democrats' path to a Senate majority.",
-   "races": [
-    "ME-SEN"
-   ],
-   "src": "Boston Globe, Oct 8",
-   "url": "https://www.bostonglobe.com/2026/10/08/nation/susan-collins-troy-jackson-maine-denate/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-07",
-   "title": "Leaked fundraiser audio shows Paxton blaming war, gas prices",
-   "what": "Axios published audio from a September closed-door fundraiser in which Texas GOP Senate nominee Ken Paxton told donors 'I don't make the decisions' and cited the Iran war, gas prices and diesel, not tariffs, as drags on his campaign; his campaign called the story 'a non-story.'",
-   "why": "Texas is a Republican-held Senate seat on Democrats' path to a majority.",
-   "races": [
-    "TX-SEN"
-   ],
-   "src": "Axios, Oct 7",
-   "url": "https://www.axios.com/2026/10/07/ken-paxton-iran-war-gas-prices-audio-trump-texas",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-06",
-   "title": "Cook moves Kansas Senate to Toss Up; NH, NC shift",
-   "what": "The Cook Political Report moved Kansas from Lean Republican to Toss Up, New Hampshire from Toss Up to Lean Democrat and North Carolina from Lean Democrat to Likely Democrat.",
-   "why": "Cook now puts likely Democratic gains at two to six seats, a range that includes the net gain of four needed for a Senate majority.",
-   "races": [
-    "KS-SEN",
-    "NH-SEN",
-    "NC-SEN"
-   ],
-   "src": "Cook Political Report, Oct 6",
-   "url": "https://www.cookpolitical.com/analysis/senate/senate-overview/senate-majority-squarely-democrats-sights-kansas-moves-toss-two",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-05",
-   "title": "DCCC adds six Trump-district challengers to Red to Blue",
-   "what": "The DCCC added six candidates to its Red to Blue program, bringing it to 46, in districts in Arkansas, Colorado, Florida (27th), Nevada (2nd), New York and Tennessee (9th) that Trump won by an average of at least 16 points in 2024.",
-   "why": "Investing in seats Trump carried comfortably signals that House Democrats see a battlefield extending well beyond the net gain of three seats they need for a majority.",
-   "races": [
-    "FL-27",
-    "NV-02",
-    "TN-09"
-   ],
-   "src": "Colorado Politics, Oct 6",
-   "url": "https://www.coloradopolitics.com/2026/10/06/democrats-expand-target-list-as-polls-point-in-their-favor/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-02",
-   "title": "Top GOP super PAC pauses North Carolina, moves into Kansas",
-   "what": "Senate Leadership Fund put further North Carolina Senate ad spending on hold after spending more than $30 million there, began a seven-figure ad campaign backing Sen. Roger Marshall in Kansas, and had recently increased spending in Ohio and Iowa.",
-   "why": "Pulling back from the open Republican-held North Carolina seat while shoring up Kansas, Ohio and Iowa indicates Senate Republicans are shifting money to defend red-state seats as Democrats pursue a net gain of four.",
-   "races": [
-    "NC-SEN",
-    "KS-SEN",
-    "OH-SEN",
-    "IA-SEN"
-   ],
-   "src": "Semafor, Oct 2",
-   "url": "https://semafor.com/article/10/02/2026/republicans-pull-ad-spending-from-north-carolina",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-01",
-   "title": "Inside Elections moves Alaska Senate to Toss-up",
-   "what": "Inside Elections moved Alaska's Senate race from Tilt R to Toss-up, Nebraska's from Likely R to Lean R and Minnesota's from Likely D to Lean D, and moved the Ohio and Alaska governor races to Toss-up.",
-   "why": "Four of the five moves went against Republicans; Minnesota's Senate race moved toward them.",
-   "races": [
-    "AK-SEN",
-    "NE-SEN",
-    "MN-SEN",
-    "OH-GOV",
-    "AK-GOV"
-   ],
-   "src": "Inside Elections, Oct 1",
-   "url": "https://insideelections.com/election-year/2026/?state-district=ak&office=ii",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-01",
-   "title": "Cook moves Florida, Texas governor races to Lean Republican",
-   "what": "The Cook Political Report shifted the Florida and Texas governor races toward Democrats, rating both Lean Republican while saying well-funded Republicans remain favored in each.",
-   "why": "Cook says Democrats are in a strong position to win a majority of governorships for the first time since 2010, and two large Republican-held states are now on the competitive list.",
-   "races": [
-    "FL-GOV",
-    "TX-GOV"
-   ],
-   "src": "Cook Political Report, Oct 1",
-   "url": "https://www.cookpolitical.com/analysis/governors/florida-governor/democrats-strong-position-regain-majority-governors-two-more",
-   "aff": ""
   }
  ],
  "upcoming": [
-  {
-   "date": "2026-10-13",
-   "time": "",
-   "title": "Georgia early in-person voting begins",
-   "what": "Advance in-person voting begins in Georgia for the Nov. 3 election.",
-   "why": "Votes start banking in the Ossoff-Collins Senate race and the open Bottoms-Jackson governor race, leaving less room for late shifts.",
-   "races": [
-    "GA-SEN",
-    "GA-GOV"
-   ],
-   "src": "Atlanta Journal-Constitution, Oct 8",
-   "url": "https://www.ajc.com/politics/2026/10/georgia-us-senate-race-jon-ossoff-and-mike-collins-debate/"
-  },
-  {
-   "date": "2026-10-13",
-   "time": "",
-   "title": "Collins, Jackson hold third Maine Senate debate",
-   "what": "Sen. Susan Collins and Democrat Troy Jackson meet for their third debate, hosted by WABI and WAGM; no start time was listed.",
-   "why": "Maine's Republican-held seat is central to Democratic hopes for a Senate majority, and the race has polled close.",
-   "races": [
-    "ME-SEN"
-   ],
-   "src": "Newsweek, Oct 8",
-   "url": "https://www.newsweek.com/maine-collins-jackson-debate-12543799"
-  },
-  {
-   "date": "2026-10-13",
-   "time": "10:00 PM",
-   "title": "Hinson, Turek hold second Iowa Senate debate",
-   "what": "Rep. Ashley Hinson (R) and state Rep. Josh Turek (D) debate from WHO-TV's Des Moines studios from 9 to 10 p.m. Central, carried on WHO-TV and six other Iowa-area stations.",
-   "why": "Senate Leadership Fund recently increased spending to defend the open Republican-held seat.",
-   "races": [
-    "IA-SEN"
-   ],
-   "src": "The Desk, Sep 23",
-   "url": "https://thedesk.net/2026/09/nexstar-to-produce-iowa-u-s-senate-debate-aired-across-multiple-stations/"
-  },
-  {
-   "date": "2026-10-13",
-   "time": "8:00 PM",
-   "title": "Ossoff, Collins meet in Atlanta Press Club debate",
-   "what": "Sen. Jon Ossoff and Rep. Mike Collins debate in the Atlanta Press Club Loudermilk-Young series, airing live on GPB stations and GPB.org.",
-   "why": "It comes on the first day of early voting in one of the few Democratic-held Senate seats on the competitive list.",
-   "races": [
-    "GA-SEN"
-   ],
-   "src": "Atlanta Journal-Constitution, Oct 7",
-   "url": "https://www.ajc.com/politics/2026/10/how-to-watch-georgias-midterm-election-debates-and-follow-ajc-coverage/"
-  },
   {
    "date": "2026-10-14",
    "time": "",
@@ -212,6 +180,30 @@
    ],
    "src": "Iowa Secretary of State (VoterReady), accessed Oct 13",
    "url": "https://voterready.iowa.gov/"
+  },
+  {
+   "date": "2026-10-14",
+   "time": "11:00 PM",
+   "title": "Alaska House candidates meet in 'Debate for the State'",
+   "what": "Alaska Public Media's Debate for the State features the U.S. House candidates from 7 to 8 p.m. Alaska time, on statewide radio, TV and alaskapublic.org.",
+   "why": "Rep. Nick Begich's at-large seat is one of the Republican-held seats Democrats are contesting in a state where the Senate race is a Toss-up.",
+   "races": [
+    "AK-01"
+   ],
+   "src": "Alaska Public Media, Oct 2",
+   "url": "https://alaskapublic.org/about/station-news/2026-10-02/your-guide-to-alaskas-election-coverage"
+  },
+  {
+   "date": "2026-10-14",
+   "time": "8:00 PM",
+   "title": "CNN town hall with Talarico in Fort Worth",
+   "what": "CNN and Jubilee Media host a town hall with Texas Senate nominee James Talarico in Fort Worth, moderated by Erin Burnett, live on CNN; Ken Paxton has accepted no debate invitation.",
+   "why": "Texas is a Republican-held seat on Democrats' path to a majority, with Talarico up two in Marist's Oct 8-11 poll.",
+   "races": [
+    "TX-SEN"
+   ],
+   "src": "CNN Press Room, Sep 28",
+   "url": "https://cnnpressroom.blogs.cnn.com/2026/09/28/cnn-and-jubilee-media-partner-to-host-cnn-jubilee-town-hall-with-james-talarico/"
   },
   {
    "date": "2026-10-15",
@@ -265,6 +257,19 @@
   },
   {
    "date": "2026-10-15",
+   "time": "1:20 PM",
+   "title": "Vance rallies in Monroe, Michigan",
+   "what": "Vice President Vance headlines a Trump 47 Committee rally at the LevelUp Training Complex in Monroe, with doors at 10 a.m. and the program at noon.",
+   "why": "Michigan's open Senate seat is a Cook Toss Up, and Monroe County voted for Trump by 27 points in 2024.",
+   "races": [
+    "MI-SEN",
+    "MI-GOV"
+   ],
+   "src": "CBS Detroit, Oct 13",
+   "url": "https://www.cbsnews.com/detroit/news/jd-vance-to-keynote-gop-campaign-rally-in-monroe-michigan/"
+  },
+  {
+   "date": "2026-10-15",
    "time": "7:00 PM",
    "title": "Final Collins-Jackson debate in Bangor",
    "what": "Maine Public, NEWS CENTER Maine and the Portland Press Herald host a live 60-minute debate between Sen. Susan Collins and Democrat Troy Jackson at the Gracie Theater in Bangor.",
@@ -274,6 +279,20 @@
    ],
    "src": "Portland Press Herald, Oct 6",
    "url": "https://www.pressherald.com/?p=7735839"
+  },
+  {
+   "date": "2026-10-16",
+   "time": "",
+   "title": "Minnesota early voting on tabulators begins",
+   "what": "Minnesota's early voting period, in which ballots are fed directly into a counter, begins statewide and runs through Nov. 2; in-person absentee voting has been open since Sept. 18.",
+   "why": "Early votes begin in the Flanagan-Tafoya Senate race, which Inside Elections rates Lean Democrat, and in the MN-02 House race.",
+   "races": [
+    "MN-SEN",
+    "MN-GOV",
+    "MN-02"
+   ],
+   "src": "Minnesota Secretary of State, accessed Oct 14",
+   "url": "https://sos.mn.gov/elections-voting/other-ways-to-vote/vote-early-in-person/"
   },
   {
    "date": "2026-10-17",
@@ -375,6 +394,20 @@
    "url": "https://www.fec.gov/updates/october-reporting-reminder-2026/"
   },
   {
+   "date": "2026-10-23",
+   "time": "",
+   "title": "Arizona mail-ballot request deadline",
+   "what": "Oct. 23 is the last day to request a mail ballot in Arizona; Oct. 27 is the last recommended day to mail it back, and in-person early voting ends Oct. 30.",
+   "why": "Arizona's governor race, rated Lean Democrat by Cook, and the AZ-01 and AZ-06 House seats are on the competitive list.",
+   "races": [
+    "AZ-GOV",
+    "AZ-01",
+    "AZ-06"
+   ],
+   "src": "FOX 10 Phoenix, Oct 1",
+   "url": "https://www.fox10phoenix.com/election/arizona-2026-voter-checklist-important-deadlines-id-rules-voting-options-election-facts"
+  },
+  {
    "date": "2026-10-24",
    "time": "",
    "title": "Michigan statewide early voting begins",
@@ -418,6 +451,19 @@
    ],
    "src": "Pennsylvania Department of State, accessed Oct 13",
    "url": "https://www.pa.gov/agencies/dos/programs/voting-and-elections/upcoming-elections"
+  },
+  {
+   "date": "2026-10-27",
+   "time": "",
+   "title": "Ohio absentee application deadline",
+   "what": "Absentee ballot applications must reach county boards by 8:30 p.m. on Oct. 27; early in-person voting runs extended hours Oct. 26-30, and mail ballots must arrive by 7:30 p.m. on Nov. 3.",
+   "why": "Ohio's Senate race between Jon Husted and Sherrod Brown and its open governor race are both Cook Toss Ups.",
+   "races": [
+    "OH-SEN",
+    "OH-GOV"
+   ],
+   "src": "Ohio Secretary of State, accessed Oct 14",
+   "url": "https://www.ohiosos.gov/elections/voting-schedule-text-only"
   },
   {
    "date": "2026-10-29",
@@ -556,19 +602,6 @@
   },
   {
    "date": "2026-09-10",
-   "who": "Vance",
-   "kind": "rally",
-   "city": "Dallas",
-   "st": "TX",
-   "venue": "American Airlines Center",
-   "boosting": [],
-   "status": "held",
-   "src": "New York Times (via Philadelphia Inquirer), Sep 11",
-   "url": "https://www.inquirer.com/politics/nation/republican-convention-takeaways-trump-vance-20260911.html",
-   "note": "Headlined the second night of the RNC midterm convention."
-  },
-  {
-   "date": "2026-09-10",
    "who": "Trump",
    "kind": "rally",
    "city": "Dallas",
@@ -579,6 +612,19 @@
    "src": "American Presidency Project (pool reports), Sep 10",
    "url": "https://www.presidency.ucsb.edu/documents/pool-reports-september-10-2026",
    "note": "Closing-night speech at the RNC midterm convention."
+  },
+  {
+   "date": "2026-09-10",
+   "who": "Vance",
+   "kind": "rally",
+   "city": "Dallas",
+   "st": "TX",
+   "venue": "American Airlines Center",
+   "boosting": [],
+   "status": "held",
+   "src": "New York Times (via Philadelphia Inquirer), Sep 11",
+   "url": "https://www.inquirer.com/politics/nation/republican-convention-takeaways-trump-vance-20260911.html",
+   "note": "Headlined the second night of the RNC midterm convention."
   },
   {
    "date": "2026-09-14",
@@ -702,36 +748,6 @@
   },
   {
    "date": "2026-10-01",
-   "who": "Vance",
-   "kind": "rally",
-   "city": "Lakeland",
-   "st": "FL",
-   "venue": "Lakeland Linder International Airport",
-   "boosting": [
-    {
-     "name": "Byron Donalds",
-     "race": "FL-GOV"
-    },
-    {
-     "name": "Ashley Moody",
-     "race": "FL-SEN"
-    },
-    {
-     "name": "Mike Beltran",
-     "race": "FL-14"
-    },
-    {
-     "name": "Sydney Gruter",
-     "race": "FL-16"
-    }
-   ],
-   "status": "held",
-   "src": "WUSF, Oct 1",
-   "url": "https://wusf.org/text/politics-issues/2026-10-01/thousands-rally-around-vice-president-jd-vance-during-event-lakeland",
-   "note": "Hangar rally; Donalds, Sen. Moody and House nominees spoke before Vance."
-  },
-  {
-   "date": "2026-10-01",
    "who": "Trump",
    "kind": "official",
    "city": "Denton",
@@ -769,6 +785,36 @@
    "src": "News 9 (KWTV), Oct 1",
    "url": "https://www.news9.com/oklahoma-elections/trump-oklahoma-what-field-crews-are-seeing",
    "note": "First rally of Trump's October swing; touted governor nominee Mike Mazzei."
+  },
+  {
+   "date": "2026-10-01",
+   "who": "Vance",
+   "kind": "rally",
+   "city": "Lakeland",
+   "st": "FL",
+   "venue": "Lakeland Linder International Airport",
+   "boosting": [
+    {
+     "name": "Byron Donalds",
+     "race": "FL-GOV"
+    },
+    {
+     "name": "Ashley Moody",
+     "race": "FL-SEN"
+    },
+    {
+     "name": "Mike Beltran",
+     "race": "FL-14"
+    },
+    {
+     "name": "Sydney Gruter",
+     "race": "FL-16"
+    }
+   ],
+   "status": "held",
+   "src": "WUSF, Oct 1",
+   "url": "https://wusf.org/text/politics-issues/2026-10-01/thousands-rally-around-vice-president-jd-vance-during-event-lakeland",
+   "note": "Hangar rally; Donalds, Sen. Moody and House nominees spoke before Vance."
   },
   {
    "date": "2026-10-02",
@@ -929,28 +975,6 @@
   },
   {
    "date": "2026-10-09",
-   "who": "Vance",
-   "kind": "rally",
-   "city": "Lima",
-   "st": "OH",
-   "venue": "Allen County Regional Airport",
-   "boosting": [
-    {
-     "name": "Jon Husted",
-     "race": "OH-SEN"
-    },
-    {
-     "name": "Vivek Ramaswamy",
-     "race": "OH-GOV"
-    }
-   ],
-   "status": "held",
-   "src": "American Presidency Project (VP pool reports), Oct 9",
-   "url": "https://www.presidency.ucsb.edu/documents/vice-presidential-pool-reports-october-9-2026",
-   "note": "Hangar rally introduced by Sen. Bernie Moreno; Husted and Ramaswamy also spoke."
-  },
-  {
-   "date": "2026-10-09",
    "who": "Trump",
    "kind": "rally",
    "city": "Syracuse",
@@ -974,6 +998,28 @@
    "src": "WSTM/WRGB (via KATV), Oct 9",
    "url": "https://katv.com/news/nation-world/president-donald-trump-rally-oncenter-syracuse-wrgb",
    "note": "About 90-minute speech; Blakeman, Constantino and Buller addressed the crowd."
+  },
+  {
+   "date": "2026-10-09",
+   "who": "Vance",
+   "kind": "rally",
+   "city": "Lima",
+   "st": "OH",
+   "venue": "Allen County Regional Airport",
+   "boosting": [
+    {
+     "name": "Jon Husted",
+     "race": "OH-SEN"
+    },
+    {
+     "name": "Vivek Ramaswamy",
+     "race": "OH-GOV"
+    }
+   ],
+   "status": "held",
+   "src": "American Presidency Project (VP pool reports), Oct 9",
+   "url": "https://www.presidency.ucsb.edu/documents/vice-presidential-pool-reports-october-9-2026",
+   "note": "Hangar rally introduced by Sen. Bernie Moreno; Husted and Ramaswamy also spoke."
   },
   {
    "date": "2026-10-10",
@@ -1002,6 +1048,20 @@
    "note": "Sens. Blackburn and Hagerty spoke; a planned Tuscaloosa stop afterward was canceled."
   },
   {
+   "date": "2026-10-11",
+   "who": "Trump",
+   "kind": "fundraiser",
+   "city": "Sterling",
+   "st": "VA",
+   "venue": "Trump National Golf Club Washington DC",
+   "boosting": [],
+   "status": "held",
+   "src": "Roll Call Factbase calendar, Oct 11",
+   "url": "https://rollcall.com/factbase/trump/topic/calendar/?date=2026-10-11",
+   "aff": "",
+   "note": "White House schedule listed a 1:30 p.m. MAGA Inc. lunch; closed press."
+  },
+  {
    "date": "2026-10-12",
    "who": "Trump",
    "kind": "rally",
@@ -1025,6 +1085,32 @@
   },
   {
    "date": "2026-10-13",
+   "who": "Trump",
+   "kind": "rally",
+   "city": "Wasilla",
+   "st": "AK",
+   "venue": "Menard Sports Center",
+   "boosting": [
+    {
+     "name": "Dan Sullivan",
+     "race": "AK-SEN"
+    },
+    {
+     "name": "Nick Begich",
+     "race": "AK-01"
+    },
+    {
+     "name": "Bernadette Wilson",
+     "race": "AK-GOV"
+    }
+   ],
+   "status": "held",
+   "src": "Alaska Public Media, Oct 13",
+   "url": "https://alaskapublic.org/news/politics/elections/2026-10-13/trump-rally-brings-pardons-promises-and-endorsements-to-wasilla",
+   "note": "About 3,500 inside; Sullivan and Begich spoke; Trump urged Republicans to unite behind Wilson."
+  },
+  {
+   "date": "2026-10-13",
    "who": "Vance",
    "kind": "rally",
    "city": "Tyler",
@@ -1036,33 +1122,15 @@
      "race": "TX-SEN"
     },
     {
-     "name": "Greg Abbott",
-     "race": "TX-GOV"
+     "name": "Trever Nehls",
+     "race": "TX-22"
     }
    ],
-   "status": "announced",
-   "src": "Texas Scorecard, Oct 9",
-   "url": "https://texasscorecard.com/decisiontexas/jd-vance-returning-to-texas-for-midterm-rally-in-tyler/",
-   "aff": "R-aligned",
-   "note": "Vance's second Texas campaign trip in two weeks."
-  },
-  {
-   "date": "2026-10-13",
-   "who": "Trump",
-   "kind": "rally",
-   "city": "Wasilla",
-   "st": "AK",
-   "venue": "Menard Sports Center",
-   "boosting": [
-    {
-     "name": "Dan Sullivan",
-     "race": "AK-SEN"
-    }
-   ],
-   "status": "announced",
-   "src": "Alaska Public Media, Oct 8",
-   "url": "https://alaskapublic.org/news/politics/elections/2026-10-08/trump-to-rally-for-sullivan-in-wasilla-next-week",
-   "note": "Scheduled 3:30 p.m. local; the RNC says it promotes Sen. Sullivan's reelection."
+   "status": "held",
+   "src": "Tyler Morning Telegraph, Oct 14",
+   "url": "https://tylerpaper.com/2026/10/14/u-s-vice-president-jd-vance-backs-paxton-for-senate-shows-support-for-texas-industries/",
+   "aff": "",
+   "note": "Trump 47 Committee airport rally; Paxton spoke; Vance called him 'a man with a backbone.'"
   },
   {
    "date": "2026-10-14",
@@ -1075,12 +1143,16 @@
     {
      "name": "Andy Biggs",
      "race": "AZ-GOV"
+    },
+    {
+     "name": "Mark Lamb",
+     "race": "AZ-05"
     }
    ],
    "status": "announced",
-   "src": "KTAR, Oct 9",
-   "url": "https://ktar.com/arizona-politics-news/election/donald-trump-bullhead-city",
-   "note": "Announced by Turning Point Action; scheduled for 1 p.m. local."
+   "src": "FOX 10 Phoenix, Oct 14",
+   "url": "https://www.fox10phoenix.com/election/president-trump-headlines-bullhead-city-rally-campaign-arizona-republicans",
+   "note": "Trump 47 Committee rally; Biggs to speak, Reps. Gosar and Hamadeh attending; 1 p.m. local."
   },
   {
    "date": "2026-10-14",
@@ -1096,9 +1168,23 @@
     }
    ],
    "status": "announced",
-   "src": "Daily Inter Lake, Oct 12",
-   "url": "https://dailyinterlake.com/news/2026/oct/12/trump-will-touch-down-in-flathead-valley-for-campaign-rally-wednesday/",
-   "note": "Rally for the open western Montana House seat; slated for 6:15 p.m. local."
+   "src": "Daily Inter Lake, Oct 14",
+   "url": "https://dailyinterlake.com/news/2026/oct/14/trump-first-sitting-president-to-visit-northwest-montana-since-ford/",
+   "note": "RNC rally for Aaron Flint; first sitting president in northwest Montana since Ford; 6:15 p.m. local."
+  },
+  {
+   "date": "2026-10-14",
+   "who": "Vance",
+   "kind": "stop",
+   "city": "Atlanta",
+   "st": "GA",
+   "venue": "Hartsfield-Jackson Atlanta International Airport",
+   "boosting": [],
+   "status": "announced",
+   "src": "WSB-TV, Oct 12",
+   "url": "https://www.wsbtv.com/news/local/pres-trump-campaign-georgia-with-rep-collins/6LQTRUDDVBHLVGSDSVADKLNKHY/",
+   "aff": "",
+   "note": "Wednesday-morning meeting with supporters at the airport; candidates not named."
   },
   {
    "date": "2026-10-15",
@@ -1112,6 +1198,20 @@
    "src": "Roll Call Factbase calendar, Oct 13",
    "url": "https://rollcall.com/factbase/trump/topic/calendar/?date=2026-10-15",
    "note": "White House schedule lists two tele-rallies (6:00 and 6:30 p.m. ET); target races not disclosed."
+  },
+  {
+   "date": "2026-10-15",
+   "who": "Vance",
+   "kind": "rally",
+   "city": "Monroe",
+   "st": "MI",
+   "venue": "LevelUp Training Complex",
+   "boosting": [],
+   "status": "announced",
+   "src": "CBS Detroit, Oct 13",
+   "url": "https://www.cbsnews.com/detroit/news/jd-vance-to-keynote-gop-campaign-rally-in-monroe-michigan/",
+   "aff": "",
+   "note": "Trump 47 Committee rally; doors 10 a.m., Vance about 1:20 p.m.; candidates not yet named."
   },
   {
    "date": "2026-10-16",
@@ -1131,9 +1231,74 @@
     }
    ],
    "status": "announced",
-   "src": "Local 3 News (Chattanooga), Oct 12",
-   "url": "https://www.local3news.com/local-news/president-trump-to-campaign-for-gops-collins-jackson-in-dalton-friday/article_0d0833b9-bfa2-4599-ad55-35b8c30d0d5c.html",
-   "note": "Rally for Senate candidate Mike Collins and governor candidate Rick Jackson."
+   "src": "WABE, Oct 12",
+   "url": "https://www.wabe.org/trump-returns-to-georgia-for-2026-midterms-rally/",
+   "note": "Collins and Jackson confirmed attending; doors 11:30 a.m., Trump at 3 p.m."
+  },
+  {
+   "date": "2026-10-17",
+   "who": "Trump",
+   "kind": "rally",
+   "city": "Highland Heights",
+   "st": "KY",
+   "venue": "Truist Arena, Northern Kentucky University",
+   "boosting": [
+    {
+     "name": "Andy Barr",
+     "race": "KY-SEN"
+    },
+    {
+     "name": "Ed Gallrein",
+     "race": "KY-06"
+    }
+   ],
+   "status": "announced",
+   "src": "WKRC Local 12, Oct 13",
+   "url": "https://local12.com/news/local/president-trump-campaign-gop-candidates-northern-kentucky-andy-barr-ed-gallrein-rally-midterm-rally-highland-heights",
+   "aff": "",
+   "note": "Trump 47 Committee rally for Barr and Gallrein; Trump at 2 p.m. ET."
+  },
+  {
+   "date": "2026-10-19",
+   "who": "Trump",
+   "kind": "rally",
+   "city": "Wichita",
+   "st": "KS",
+   "venue": "Century II Performing Arts & Convention Center",
+   "boosting": [
+    {
+     "name": "Roger Marshall",
+     "race": "KS-SEN"
+    }
+   ],
+   "status": "announced",
+   "src": "KCTV5, Oct 13",
+   "url": "https://www.kctv5.com/2026/10/13/president-trump-hold-midterm-rally-kansas-next-week/",
+   "aff": "",
+   "note": "RNC-announced rally for Sen. Marshall in a Cook Toss Up; Trump at 6 p.m. Central."
+  },
+  {
+   "date": "2026-10-20",
+   "who": "Trump",
+   "kind": "rally",
+   "city": "Greenville",
+   "st": "NC",
+   "venue": "Williams Arena at Minges Coliseum, ECU",
+   "boosting": [
+    {
+     "name": "Michael Whatley",
+     "race": "NC-SEN"
+    },
+    {
+     "name": "Laurie Buckhout",
+     "race": "NC-01"
+    }
+   ],
+   "status": "announced",
+   "src": "WRAL, Oct 13",
+   "url": "https://www.wral.com/news/local/trump-visit-north-carolina-greenville-october-2026/",
+   "aff": "",
+   "note": "Second North Carolina rally for Whatley; Trump at 7 p.m. ET."
   }
  ],
  "trail_note": "Trump and Vance campaign appearances since Sep 1, 2026, from White House pool reports, Roll Call Factbase and local coverage. Closed-press fundraisers and tele-rallies are rarely reported, so they are undercounted."

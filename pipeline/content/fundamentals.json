@@ -1,24 +1,24 @@
 {
- "asof": "2026-10-13",
+ "asof": "2026-10-14",
  "approval": {
   "net": -22.0,
-  "note": "Trump job approval, net (approve minus disapprove), averages as of Oct 11-13, 2026",
+  "note": "Trump job approval, net (approve minus disapprove): average of the RealClearPolling (-21.1) and Silver Bulletin (-22.4) nets as of Oct 12-13, 2026, rounded to the nearest 0.5",
   "sources": [
    [
-    "RealClearPolling average, Oct 11: 38.1/59.5",
+    "RealClearPolling average, Oct 12 (polls 9/24-10/12): 38.4/59.5, net -21.1",
     "https://www.realclearpolling.com/polls/approval/donald-trump/approval-rating"
    ],
    [
-    "Silver Bulletin average, Oct 13: net -22.4",
+    "Silver Bulletin average, Oct 13: net -22.4 (all-time low of -23.9 over the weekend)",
     "https://www.natesilver.net/p/trump-approval-ratings-nate-silver-bulletin"
-   ],
-   [
-    "Ballotpedia index, end of September: 39/60",
-    "https://news.ballotpedia.org/2026/10/01/trump-saw-lowest-average-approval-rating-of-his-second-term-in-september/"
    ],
    [
     "FiftyPlusOne average, Oct 13: 34.6/61.9",
     "https://fiftyplusone.news/polls/approval/president"
+   ],
+   [
+    "Ballotpedia index, end of September: 39/60",
+    "https://news.ballotpedia.org/2026/10/01/trump-saw-lowest-average-approval-rating-of-his-second-term-in-september/"
    ]
   ]
  },

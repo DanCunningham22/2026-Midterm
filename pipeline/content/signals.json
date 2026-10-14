@@ -1,5 +1,5 @@
 {
- "asof": "2026-10-13",
+ "asof": "2026-10-14",
  "note": "Current readings for the other-signals panel; the backtest's history comes from pipeline/backtest/data/econ (FRED) and retirements.csv. Each item: what it is, the latest value, the comparison, the source page that states it.",
  "items": [
   {
@@ -15,12 +15,12 @@
   {
    "key": "gasprice",
    "label": "Gasoline, national average (AAA)",
-   "value": 4.34,
-   "value_label": "$4.34 a gallon (Oct 13)",
-   "compare": "$3.12 a year ago; a record for autumn",
-   "say": "Up about 39% in a year with crude above $90.",
-   "src": "AAA, Oct 8–13",
-   "url": "https://gasprices.aaa.com/pump-prices-remain-at-record-highs-for-autumn/"
+   "value": 4.33,
+   "value_label": "$4.33 a gallon (Oct 14)",
+   "compare": "$3.08 a year ago; $4.37 a week ago; AAA calls it a record for autumn",
+   "say": "Up about 41% in a year with crude above $90; the first October above $4.",
+   "src": "AAA, Oct 14",
+   "url": "https://gasprices.aaa.com/"
   },
   {
    "key": "chipotle",
@@ -36,10 +36,10 @@
    "key": "markets",
    "label": "Prediction markets: Democratic House",
    "value": 90,
-   "value_label": "90% (Kalshi 90.1¢, Polymarket 91¢)",
-   "compare": "Senate: about 61–62% Democratic from the balance-of-power contracts",
-   "say": "Markets sit between the polls-only model (94%) and the expert raters.",
-   "src": "DeFi Rate, Oct 13",
+   "value_label": "90% (Kalshi 90.2¢, Polymarket 90.5¢)",
+   "compare": "Senate: about 61-63% Democratic from the balance-of-power contracts (Democrats win both 60.5¢ Kalshi, 62.5¢ Polymarket)",
+   "say": "Markets sit between the polls-only model and the expert raters.",
+   "src": "DeFi Rate, Oct 14",
    "url": "https://defirate.com/odds/2026-midterms/house-control-odds/"
   },
   {
@@ -47,10 +47,10 @@
    "label": "Cook Political Report House ratings",
    "value": 21,
    "value_label": "21 toss-ups: 15 Republican-held, 6 Democratic-held (Oct 9)",
-   "compare": "Cook's likely range: Democrats gain 9–19 seats, 224–234",
+   "compare": "Cook's likely range: Democrats gain 9-19 seats, 224-234; Solid/Likely/Lean D 213, Toss Up 21, Lean/Likely/Solid R 201",
    "say": "Democrats need a fifth of the toss-ups for a majority if the seats leaning their way hold.",
-   "src": "Axios, Oct 9",
-   "url": "https://www.axios.com/2026/10/09/cook-report-18-house-races-move-democrats"
+   "src": "Cook Political Report, Oct 9 (checked Oct 14)",
+   "url": "https://www.cookpolitical.com/ratings/house-race-ratings"
   },
   {
    "key": "retire",
