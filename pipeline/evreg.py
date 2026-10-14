@@ -405,8 +405,33 @@ def fl_points(year, log, scratch=None):
         with open(os.path.join(scratch, f'fl_{year}_statuscounts.txt'), 'w', encoding='utf-8') as f:
             f.write(text)
     pts = []
-    # Expected: per report date, rows for vote-by-mail voted and early voting with Republican, Democrat, Other,
-    # No Party Affiliation, Total. The layout is read loosely: a date on a line, then labelled rows of five numbers.
+    # The archive is the final count (as filed after the election), statewide then by county: take the STATE TOTAL
+    # block as the final point. Rows: five numbers (Republican, Democrat, Other, No Party Affiliation, Total) then
+    # the label, e.g. "1,046,566 1,257,851 67,144 657,591 3,029,152Voted Vote-by-Mail 11/20/2024".
+    i = text.find('STATE TOTAL')
+    if i >= 0:
+        seg = text[i:i + 600]
+        rowre = re.compile(r'([\d,]+) ([\d,]+) ([\d,]+) ([\d,]+) ([\d,]+)\s*(Vote-by-Mail Provided[^\n]*|Voted Vote-by-Mail|Voted Early)')
+        got = {}
+        for m in rowre.finditer(seg):
+            vals = [num(x) for x in m.groups()[:5]]
+            lab = m.group(6)
+            key = 'vbm' if lab == 'Voted Vote-by-Mail' else 'ev' if lab == 'Voted Early' else 'prov'
+            if key not in got:   # the statewide block comes first; county blocks follow
+                got[key] = vals
+        el = ELECTION[year].isoformat()
+        src = 'Florida Division of Elections archived status counts (final, as filed after the election)'
+        if 'vbm' in got:
+            v = got['vbm']
+            pts.append(dict(st='FL', year=year, date=el, m='ret', all=v[4], d=v[1], r=v[0], n=v[2] + v[3], src=src, url=FL_PDF[year]))
+        if 'ev' in got:
+            e = got['ev']
+            pts.append(dict(st='FL', year=year, date=el, m='ip', all=e[4], d=e[1], r=e[0], n=e[2] + e[3], src=src, url=FL_PDF[year]))
+        if 'vbm' in got and 'ev' in got:
+            v, e = got['vbm'], got['ev']
+            pts.append(dict(st='FL', year=year, date=el, m='voted', all=v[4] + e[4], d=v[1] + e[1], r=v[0] + e[0], n=v[2] + v[3] + e[2] + e[3], src=src, url=FL_PDF[year]))
+    log(f'FL {year}: {len(pts)} final points from the archive PDF')
+    return pts
     cur_date = None
     rec = {}
     def flush():
@@ -479,12 +504,13 @@ def uf_finals_2020(log, scratch=None):
         if scratch and st in ('PA', 'FL'):
             with open(os.path.join(scratch, f'uf2020_{st}.txt'), 'w', encoding='utf-8') as f:
                 f.write(text[:12000])
-        t = _party_table(text, 'Total Voted by Party Registration') or _party_table(text, 'Voted by Party Registration')
+        m = _party_table(text, 'Mail Ballots Returned by Party Registration') or _party_table(text, 'Returned Mail Ballots by Party')
+        t = _party_table(text, 'Total Voted by Party Registration') or _party_table(text, 'Voted by Party Registration') or m
         if t:
-            out[st] = t
-            m = _party_table(text, 'Mail Ballots Returned by Party Registration') or _party_table(text, 'Returned Mail Ballots by Party')
+            out[st] = dict(t)
             if m:
                 out[st]['ret'] = [m['d'], m['r'], m['all']]
+            out[st]['mail_only'] = t is m
     log(f'UF 2020 finals: {len(out)} states with party')
     return out
 
@@ -542,7 +568,7 @@ def pa_wayback_points(log):
             col = lambda pat: next(i for k, i in idx.items() if re.search(pat, k, re.I))
             rd, rr, rt = col(r'Dem.*Returned'), col(r'Rep.*Returned'), col(r'Total.*Returned')
             ad, ar, at = col(r'Dem.*Approved'), col(r'Rep.*Approved'), col(r'Total.*Approved')
-            body = [r for r in rows[rows.index(hdr) + 1:] if r and r[0] and num(r[rt]) is not None]
+            body = [r for r in rows[rows.index(hdr) + 1:] if r and r[0] and 'total' not in str(r[0]).lower() and num(r[rt]) is not None]
             s = lambda i: sum(num(r[i]) or 0 for r in body)
             pts.append(dict(st='PA', year=2024, date=asof, m='ret', all=s(rt), d=s(rd), r=s(rr), n=s(rt) - s(rd) - s(rr),
                             req=[s(ad), s(ar), s(at)], src='Pennsylvania Department of State daily report (Wayback Machine copy)',
@@ -553,7 +579,7 @@ def pa_wayback_points(log):
     return pts
 
 
-def wayback_get(url, timeout=120, tries=4, binary=False):
+def wayback_get(url, timeout=120, tries=5, binary=False):
     import time
     last = None
     for i in range(tries):
@@ -561,8 +587,61 @@ def wayback_get(url, timeout=120, tries=4, binary=False):
             return get(url, timeout=timeout, binary=binary)
         except Exception as e:
             last = e
-            time.sleep(5 * (i + 1))
+            time.sleep(min(90, 8 * 2 ** i))
     raise RuntimeError(f'wayback: {last}')
+
+
+def fl_wayback_2024(log, scratch=None):
+    """Florida: archived copies of the Division of Elections' statistics page, one per day, for the 2024 general
+    election: statewide vote-by-mail voted and early voted by party."""
+    page = 'countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats'
+    q = ('https://web.archive.org/cdx/search/cdx?url=' + urllib.parse.quote(page, safe='') +
+         '&output=json&fl=timestamp,statuscode&from=20240920&to=20241106&filter=statuscode:200&collapse=timestamp:8&limit=200')
+    rows = json.loads(wayback_get(q))[1:]
+    log(f'FL 2024 wayback: {len(rows)} daily snapshots')
+    pts = []
+    rowre = re.compile(r'(Vote-by-Mail Provided \(Not Yet Returned\)|Voted Vote-by-Mail|Voted Early)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)(?:\s+(\d{1,2}/\d{1,2}/\d{4}))?')
+    for ts, _ in rows:
+        try:
+            html = wayback_get(f'https://web.archive.org/web/{ts}id_/https://{page}')
+        except Exception as e:
+            log(f'FL 2024 wayback {ts}: {str(e)[:60]}')
+            continue
+        text = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', re.sub(r'<script.*?</script>|<style.*?</style>', ' ', html, flags=re.S | re.I)))
+        i = text.find('Statewide Totals')
+        if i < 0:
+            continue
+        seg = text[i:i + 900]
+        got, asof = {}, None
+        for m in rowre.finditer(seg):
+            lab = m.group(1)
+            vals = [num(x) for x in m.groups()[1:6]]
+            key = 'vbm' if lab == 'Voted Vote-by-Mail' else 'ev' if lab == 'Voted Early' else 'prov'
+            got[key] = vals
+            if m.group(7) and key == 'vbm':
+                mm, dd, yy = m.group(7).split('/')
+                asof = dt.date(int(yy), int(mm), int(dd)).isoformat()
+        if 'vbm' not in got or not got['vbm'][4]:
+            continue
+        # the page reports activity through the prior day: the as-of date is the day before the report date it shows
+        rep = dt.date.fromisoformat(asof) if asof else dt.datetime.strptime(ts[:8], '%Y%m%d').date()
+        date = (rep - dt.timedelta(days=1)).isoformat()
+        src = f'Florida Division of Elections statistics page, Wayback Machine copy of {ts[:8]}'
+        url = f'https://web.archive.org/web/{ts}/https://{page}'
+        v = got['vbm']
+        pts.append(dict(st='FL', year=2024, date=date, m='ret', all=v[4], d=v[1], r=v[0], n=v[2] + v[3], src=src, url=url))
+        e = got.get('ev')
+        if e and e[4]:
+            pts.append(dict(st='FL', year=2024, date=date, m='ip', all=e[4], d=e[1], r=e[0], n=e[2] + e[3], src=src, url=url))
+            pts.append(dict(st='FL', year=2024, date=date, m='voted', all=v[4] + e[4], d=v[1] + e[1], r=v[0] + e[0], n=v[2] + v[3] + e[2] + e[3], src=src, url=url))
+        else:
+            pts.append(dict(st='FL', year=2024, date=date, m='voted', all=v[4], d=v[1], r=v[0], n=v[2] + v[3], src=src, url=url))
+    uniq = {}
+    for p in pts:
+        uniq[(p['date'], p['m'])] = p
+    out = sorted(uniq.values(), key=lambda p: (p['m'], p['date']))
+    log(f'FL 2024 wayback: {len(out)} points')
+    return out
 
 
 def uf_wayback_2024(log, scratch=None):
@@ -614,7 +693,8 @@ def baseline(out_path, scratch=None):
         os.makedirs(scratch, exist_ok=True)
     points, errors = [], []
     for fn, args in ((co_points, (2022, log)), (co_points, (2024, log)), (fl_points, (2022, log, scratch)),
-                     (fl_points, (2024, log, scratch)), (pa_wayback_points, (log,)), (uf_wayback_2024, (log, scratch))):
+                     (fl_points, (2024, log, scratch)), (pa_wayback_points, (log,)), (uf_wayback_2024, (log, scratch)),
+                     (fl_wayback_2024, (log, scratch))):
         try:
             points += fn(*args)
         except Exception as e:
