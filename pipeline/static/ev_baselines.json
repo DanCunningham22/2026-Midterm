@@ -1,5 +1,5 @@
 {
- "built": "2026-10-14T15:27+00:00",
+ "built": "2026-10-14T15:48+00:00",
  "points": [
   {
    "st": "CO",
@@ -302,21 +302,285 @@
    "url": "https://www.coloradosos.gov/pubs/newsRoom/pressReleases/2024/PR20241106BallotReturns.html"
   },
   {
+   "st": "FL",
+   "year": 2022,
+   "date": "2022-11-08",
+   "m": "ret",
+   "all": 2773948.0,
+   "d": 1194857.0,
+   "r": 1001229.0,
+   "n": 577862.0,
+   "src": "Florida Division of Elections archived status counts (final, as filed after the election)",
+   "url": "https://files.floridados.gov/media/706191/2022-ge-rptstatuscountsarchive-ev-vbm.pdf"
+  },
+  {
+   "st": "FL",
+   "year": 2022,
+   "date": "2022-11-08",
+   "m": "ip",
+   "all": 2285465.0,
+   "d": 675629.0,
+   "r": 1167529.0,
+   "n": 442307.0,
+   "src": "Florida Division of Elections archived status counts (final, as filed after the election)",
+   "url": "https://files.floridados.gov/media/706191/2022-ge-rptstatuscountsarchive-ev-vbm.pdf"
+  },
+  {
+   "st": "FL",
+   "year": 2022,
+   "date": "2022-11-08",
+   "m": "voted",
+   "all": 5059413.0,
+   "d": 1870486.0,
+   "r": 2168758.0,
+   "n": 1020169.0,
+   "src": "Florida Division of Elections archived status counts (final, as filed after the election)",
+   "url": "https://files.floridados.gov/media/706191/2022-ge-rptstatuscountsarchive-ev-vbm.pdf"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-11-05",
+   "m": "ret",
+   "all": 3029152.0,
+   "d": 1257851.0,
+   "r": 1046566.0,
+   "n": 724735.0,
+   "src": "Florida Division of Elections archived status counts (final, as filed after the election)",
+   "url": "https://files.floridados.gov/media/708648/2024gen_vbm-ev_statuscounts.pdf"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-11-05",
+   "m": "ip",
+   "all": 5363013.0,
+   "d": 1514619.0,
+   "r": 2552609.0,
+   "n": 1295785.0,
+   "src": "Florida Division of Elections archived status counts (final, as filed after the election)",
+   "url": "https://files.floridados.gov/media/708648/2024gen_vbm-ev_statuscounts.pdf"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-11-05",
+   "m": "voted",
+   "all": 8392165.0,
+   "d": 2772470.0,
+   "r": 3599175.0,
+   "n": 2020520.0,
+   "src": "Florida Division of Elections archived status counts (final, as filed after the election)",
+   "url": "https://files.floridados.gov/media/708648/2024gen_vbm-ev_statuscounts.pdf"
+  },
+  {
    "st": "PA",
    "year": 2024,
    "date": "2024-11-05",
    "m": "ret",
-   "all": 3825352.0,
-   "d": 2107942.0,
-   "r": 1259010.0,
-   "n": 458400.0,
+   "all": 1912676.0,
+   "d": 1053971.0,
+   "r": 629505.0,
+   "n": 229200.0,
    "req": [
-    2403642.0,
-    1432454.0,
-    4401136.0
+    1201821.0,
+    716227.0,
+    2200568.0
    ],
    "src": "Pennsylvania Department of State daily report (Wayback Machine copy)",
    "url": "https://web.archive.org/web/20241106025323/https://www.pavoterservices.pa.gov/2024%20General%20Daily%20Mail%20Ballot%20Report.xlsx"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-10-28",
+   "m": "ip",
+   "all": 2925439.0,
+   "d": 790744.0,
+   "r": 1523153.0,
+   "n": 611542.0,
+   "src": "Florida Division of Elections statistics page, Wayback Machine copy of 20241030",
+   "url": "https://web.archive.org/web/20241030004008/https://countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-10-30",
+   "m": "ip",
+   "all": 3743643.0,
+   "d": 1018259.0,
+   "r": 1904974.0,
+   "n": 820410.0,
+   "src": "Florida Division of Elections statistics page, Wayback Machine copy of 20241031",
+   "url": "https://web.archive.org/web/20241031201450/https://countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-09-25",
+   "m": "ret",
+   "all": 2169.0,
+   "d": 879.0,
+   "r": 782.0,
+   "n": 508.0,
+   "src": "Florida Division of Elections statistics page, Wayback Machine copy of 20240927",
+   "url": "https://web.archive.org/web/20240927004033/https://countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-09-29",
+   "m": "ret",
+   "all": 3244.0,
+   "d": 1270.0,
+   "r": 1189.0,
+   "n": 785.0,
+   "src": "Florida Division of Elections statistics page, Wayback Machine copy of 20241001",
+   "url": "https://web.archive.org/web/20241001111047/https://countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-09-30",
+   "m": "ret",
+   "all": 6152.0,
+   "d": 2492.0,
+   "r": 2281.0,
+   "n": 1379.0,
+   "src": "Florida Division of Elections statistics page, Wayback Machine copy of 20241002",
+   "url": "https://web.archive.org/web/20241002111326/https://countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-10-02",
+   "m": "ret",
+   "all": 42573.0,
+   "d": 18578.0,
+   "r": 15052.0,
+   "n": 8943.0,
+   "src": "Florida Division of Elections statistics page, Wayback Machine copy of 20241003",
+   "url": "https://web.archive.org/web/20241003150933/https://countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-10-03",
+   "m": "ret",
+   "all": 76587.0,
+   "d": 32688.0,
+   "r": 28216.0,
+   "n": 15683.0,
+   "src": "Florida Division of Elections statistics page, Wayback Machine copy of 20241004",
+   "url": "https://web.archive.org/web/20241004190819/https://countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-10-28",
+   "m": "ret",
+   "all": 2216476.0,
+   "d": 935189.0,
+   "r": 795495.0,
+   "n": 485792.0,
+   "src": "Florida Division of Elections statistics page, Wayback Machine copy of 20241030",
+   "url": "https://web.archive.org/web/20241030004008/https://countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-10-30",
+   "m": "ret",
+   "all": 2482331.0,
+   "d": 1041829.0,
+   "r": 882385.0,
+   "n": 558117.0,
+   "src": "Florida Division of Elections statistics page, Wayback Machine copy of 20241031",
+   "url": "https://web.archive.org/web/20241031201450/https://countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-09-25",
+   "m": "voted",
+   "all": 2169.0,
+   "d": 879.0,
+   "r": 782.0,
+   "n": 508.0,
+   "src": "Florida Division of Elections statistics page, Wayback Machine copy of 20240927",
+   "url": "https://web.archive.org/web/20240927004033/https://countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-09-29",
+   "m": "voted",
+   "all": 3244.0,
+   "d": 1270.0,
+   "r": 1189.0,
+   "n": 785.0,
+   "src": "Florida Division of Elections statistics page, Wayback Machine copy of 20241001",
+   "url": "https://web.archive.org/web/20241001111047/https://countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-09-30",
+   "m": "voted",
+   "all": 6152.0,
+   "d": 2492.0,
+   "r": 2281.0,
+   "n": 1379.0,
+   "src": "Florida Division of Elections statistics page, Wayback Machine copy of 20241002",
+   "url": "https://web.archive.org/web/20241002111326/https://countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-10-02",
+   "m": "voted",
+   "all": 42573.0,
+   "d": 18578.0,
+   "r": 15052.0,
+   "n": 8943.0,
+   "src": "Florida Division of Elections statistics page, Wayback Machine copy of 20241003",
+   "url": "https://web.archive.org/web/20241003150933/https://countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-10-03",
+   "m": "voted",
+   "all": 76587.0,
+   "d": 32688.0,
+   "r": 28216.0,
+   "n": 15683.0,
+   "src": "Florida Division of Elections statistics page, Wayback Machine copy of 20241004",
+   "url": "https://web.archive.org/web/20241004190819/https://countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-10-28",
+   "m": "voted",
+   "all": 5141915.0,
+   "d": 1725933.0,
+   "r": 2318648.0,
+   "n": 1097334.0,
+   "src": "Florida Division of Elections statistics page, Wayback Machine copy of 20241030",
+   "url": "https://web.archive.org/web/20241030004008/https://countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-10-30",
+   "m": "voted",
+   "all": 6225974.0,
+   "d": 2060088.0,
+   "r": 2787359.0,
+   "n": 1378527.0,
+   "src": "Florida Division of Elections statistics page, Wayback Machine copy of 20241031",
+   "url": "https://web.archive.org/web/20241031201450/https://countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
   }
  ],
  "finals": {
@@ -755,6 +1019,17 @@
    }
   },
   "2020": {
+   "PA": {
+    "d": 1702484.0,
+    "r": 623404.0,
+    "all": 2629672.0,
+    "ret": [
+     1702484.0,
+     623404.0,
+     2629672.0
+    ],
+    "mail_only": true
+   },
    "FL": {
     "d": 3548112.0,
     "r": 3432696.0,
@@ -763,27 +1038,32 @@
      2146654.0,
      1472826.0,
      4737540.0
-    ]
+    ],
+    "mail_only": false
    },
    "NV": {
     "d": 445351.0,
     "r": 400248.0,
-    "all": 1122970.0
+    "all": 1122970.0,
+    "mail_only": false
    },
    "NC": {
     "d": 231035.0,
     "r": 87224.0,
-    "all": 478828.0
+    "all": 478828.0,
+    "mail_only": false
    },
    "NM": {
     "d": 383297.0,
     "r": 273904.0,
-    "all": 788175.0
+    "all": 788175.0,
+    "mail_only": false
    },
    "MD": {
     "d": 1313642.0,
     "r": 511220.0,
-    "all": 2178906.0
+    "all": 2178906.0,
+    "mail_only": false
    },
    "KY": {
     "d": 535307.0,
@@ -793,17 +1073,20 @@
      318740.0,
      133720.0,
      575000.0
-    ]
+    ],
+    "mail_only": false
    },
    "OK": {
     "d": 183899.0,
     "r": 205286.0,
-    "all": 444729.0
+    "all": 444729.0,
+    "mail_only": false
    },
    "KS": {
     "d": 277962.0,
     "r": 355141.0,
-    "all": 770324.0
+    "all": 770324.0,
+    "mail_only": false
    },
    "SD": {
     "d": 64514.0,
@@ -813,12 +1096,14 @@
      41166.0,
      55094.0,
      118961.0
-    ]
+    ],
+    "mail_only": false
    },
    "LA": {
     "d": 431559.0,
     "r": 365140.0,
-    "all": 977408.0
+    "all": 977408.0,
+    "mail_only": false
    }
   },
   "2022": {
@@ -1050,6 +1335,6 @@
   }
  },
  "errors": [
-  "uf_wayback_2024(<function baseline.<locals>.<lambda> at 0x7f2090de1440>,): wayback: HTTP Error 503: Service Unavailable"
+  "uf_wayback_2024(<function baseline.<locals>.<lambda> at 0x7fc17c0e54e0>,): wayback: HTTP Error 503: Service Unavailable"
  ]
 }
