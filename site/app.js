@@ -1113,12 +1113,109 @@
       '<p class="small"><b>Read it as an illustration.</b> It assumes the early vote\'s tilt carries to the whole electorate and that nobody changes sides. Iowa and Ohio look extreme because both were very Republican early electorates in 2024. And the comparison with 2022 points the other way.</p></div>' +
       '</div>' +
       ((ncPanel() || dailyPanel()) ? '<div class="ev-grid">' + ncPanel() + dailyPanel() + '</div>' : '') +
+      evregPanel() +
       '<h3 style="margin-top:18px">Party registration of ballots so far</h3>' +
       '<div class="table-scroll"><table><thead><tr><th>State</th><th class="n">Ballots</th><th class="n">% of 2022</th><th>D / R / other</th><th class="n">Share D / R / other</th><th class="n">2022 final early vote D / R</th><th class="n">In-person starts</th></tr></thead><tbody>' + trows + '</tbody></table></div>' +
       '<p class="chart-cap">Registered party of voters whose ballots were accepted (UF Election Lab). The 2022 column is the final early vote, not the same point, so it is context only: early returns run more Democratic than the final early vote. Party registration is not vote choice.</p>' +
       '<h3 style="margin-top:14px">When in-person early voting opens</h3><div class="cal">' + (st.calendar || []).map((c) => '<span><b>' + c[0] + '</b> ' + c[1] + '</span>').join('') + '</div>' +
       '<p class="chart-cap">' + esc(st.calendar_note || '') + '</p>';
     drawEvCharts();
+    drawEvregChart();
+    const chips = $('evregChips');
+    if (chips) chips.addEventListener('click', (e) => {
+      const b = e.target.closest('button[data-st]'); if (!b) return;
+      ui.evregState = b.dataset.st;
+      chips.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      drawEvregChart();
+    });
+  }
+
+  // ---- official early vote by party registration: PA, FL, NV, CO, IA, AZ vs the same point in 2022 and 2024
+  const gapTxt = (g, digits) => g == null ? '—' : '<span class="' + (g >= 0 ? 'd' : 'r') + '">' + (g >= 0 ? 'D+' : 'R+') + Math.abs(g).toFixed(digits == null ? 1 : digits) + '</span>';
+  const signed = (v, digits) => (v >= 0 ? '+' : '−') + Math.abs(v).toFixed(digits == null ? 1 : digits);
+  const kTxt = (k) => k === 0 ? 'Election Day' : k === 1 ? '1 day out' : k + ' days out';
+  function evregMeasure(st, long) {
+    const m = st.m === 'ret' ? (st.st === 'IA' ? 'absentee ballots received' : 'mail ballots returned') : 'mail and in-person ballots';
+    return long ? m : (st.m === 'ret' ? 'Mail' : 'Mail + in person');
+  }
+  function evregSignals() {
+    const E = D.evreg;
+    if (!E || !E.states) return [];
+    const out = [];
+    E.states.forEach((s) => {
+      const c = s.y22;
+      if (!c || c.gap == null) return;
+      const big = s.all >= 300000;
+      out.push({ dir: c.dgap >= 0 ? 'D' : 'R', st: s.st + ' · automatic', strength: big ? 3 : 2,
+        title: s.name + '\'s ' + evregMeasure(s, true) + ' vs. the same point in 2022',
+        value: 'Registered Democrats minus Republicans: ' + (s.gap >= 0 ? 'D+' : 'R+') + Math.abs(s.gap).toFixed(1) + ' now (' + s.all.toLocaleString() + ' ballots, ' + kTxt(s.k) + '), vs. ' +
+          (c.gap >= 0 ? 'D+' : 'R+') + Math.abs(c.gap).toFixed(1) + ' at this point in 2022' + (s.y24 && s.y24.gap != null ? ' and ' + (s.y24.gap >= 0 ? 'D+' : 'R+') + Math.abs(s.y24.gap).toFixed(1) + ' in 2024' : '') +
+          '. On the calibration that is ' + signed(c.dmargin) + ' ± ' + c.se.toFixed(1) + ' points on 2022\'s result.',
+        catch: (E.notes || {})[s.st] || 'Party registration is not vote choice.',
+        src: s.src + ', via UF Election Lab, as of ' + fmtDay(s.asof), url: 'https://election.lab.ufl.edu/early-vote/2026-early-voting/', aff: 'Official data, computed here' });
+    });
+    return out;
+  }
+  function evregPanel() {
+    const E = D.evreg;
+    if (!E || !E.states || !E.states.length) return '';
+    const nat22 = E.nat && E.nat['2022'] != null ? E.nat['2022'] : -2.72, nat24 = E.nat && E.nat['2024'] != null ? E.nat['2024'] : -2.56;
+    const cal = E.calib || {};
+    const p22 = (E.pooled || {}).y22, p24 = (E.pooled || {}).y24;
+    const withBase = E.states.filter((s) => s.y22 && s.y22.gap != null);
+    let verdict;
+    if (p22) verdict = '<b>Against the same point in 2022, the official files run ' + (p22.dmargin >= 0 ? 'more Democratic' : 'more Republican') + ' in ' + p22.states.join(', ') + '.</b> Pooled, the change in the gap between registered Democrats and Republicans implies a national vote about ' + Math.abs(p22.dmargin).toFixed(1) + ' points ' + (p22.dmargin >= 0 ? 'to the left of' : 'to the right of') + ' 2022\'s ' + fm(nat22) + ', about ' + fm(p22.implied_nat) + ' ± ' + p22.se.toFixed(1) + (p24 ? '; against 2024 (' + p24.states.join(', ') + ') about ' + fm(p24.implied_nat) + ' ± ' + p24.se.toFixed(1) : '') + '. The polls say ' + fm(D.G0) + '.';
+    else {
+      const soon = E.states.filter((s) => s.y22 && s.y22.first_k != null).map((s) => s.st + ' from ' + kTxt(s.y22.first_k)).join(', ');
+      verdict = '<b>The 2026 count is still ahead of every 2022 baseline point.</b> Comparisons switch on as the calendar reaches each state\'s first archived report' + (soon ? ' (' + soon + ')' : '') + '; until then the table shows where each state stands.';
+    }
+    const rows = E.states.map((s) => {
+      const c22 = s.y22 || {}, c24 = s.y24 || {};
+      const base = (c) => c.gap == null ? '<span class="muted">' + (c.first_k != null ? 'from ' + kTxt(c.first_k) : 'none') + '</span>' : gapTxt(c.gap) + (c.all ? '<br><span class="muted small">' + Math.round(c.all).toLocaleString() + (c.exact ? '' : ' (interpolated)') + '</span>' : '');
+      const imp = c22.dmargin == null ? '—' : '<b>' + signed(c22.dmargin) + '</b> ± ' + c22.se.toFixed(1) + (c22.implied_state != null ? '<br><span class="muted small">' + c22.race + ': ' + fm(c22.result) + ' → ' + fm(c22.implied_state) + '</span>' : '');
+      return '<tr><td><b>' + esc(s.name) + '</b><br><span class="muted small">' + evregMeasure(s) + (s.ip_start ? ' · in person from ' + s.ip_start.slice(5).replace('-', '/') : s.st === 'PA' ? ' · no in-person early vote' : '') + '</span></td>' +
+        '<td class="n">' + s.all.toLocaleString() + '<br><span class="muted small">' + fmtDay(s.asof) + ', ' + kTxt(s.k) + '</span></td>' +
+        '<td class="n colpct"><span class="d">' + s.d.toFixed(1) + '</span> / <span class="r">' + s.r.toFixed(1) + '</span></td>' +
+        '<td class="n">' + gapTxt(s.gap) + '</td><td class="n">' + base(c22) + '</td><td class="n">' + base(c24) + '</td>' +
+        '<td class="n">' + (c22.dgap == null ? '—' : signed(c22.dgap)) + '</td><td class="n">' + imp + '</td></tr>';
+    }).join('');
+    const chips = E.states.map((s, i) => '<button class="chip" data-st="' + s.st + '" aria-pressed="' + String((ui.evregState || E.states[0].st) === s.st) + '">' + s.st + '</button>').join('');
+    const calTxt = cal.all ? (cal.all.assumed ? 'Until the 2020 and 2024 finals are loaded, the slope is assumed: 0.5 for states with in-person early voting and 0.25 for mail-only states.' :
+      'Slope fitted on how each state\'s final early-vote gap and presidential margin moved from 2020 to 2024: ' + cal.all.b.toFixed(2) + ' (± ' + cal.all.se.toFixed(2) + ', ' + cal.all.n + ' states with in-person early voting) and ' + cal.mail.b.toFixed(2) + ' (± ' + cal.mail.se.toFixed(2) + ', ' + cal.mail.n + ' mail-only states); the ± on each row is that fit\'s scatter (' + cal.all.resid + ' and ' + cal.mail.resid + ' points).') : '';
+    return '<div class="ev-vs"><h3>Official early vote by party registration vs. the same point in 2022 and 2024 <span class="auto-tag">updates itself</span></h3>' +
+      '<p class="ev-verdict">' + verdict + '</p>' +
+      '<div class="table-scroll"><table class="nc-table evreg"><thead><tr><th>State</th><th class="n">Ballots</th><th class="n colpct">D / R %</th><th class="n">D − R</th><th class="n">2022, same point</th><th class="n">2024, same point</th><th class="n">vs 2022</th><th class="n">Implied, vs 2022</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
+      '<div class="ev-grid"><div><div class="chips" id="evregChips" style="margin:10px 0 6px">' + chips + '</div><div class="chart" id="evregChart"></div><p class="chart-cap" id="evregCap"></p></div>' +
+      '<div><p class="small" style="margin-top:12px"><b>How to read it.</b> Each row is the registered-party gap among ballots the election office has accepted, measured the same number of days before Election Day as in 2022 (a midterm, so the main comparison) and 2024. "Implied" turns the change since 2022 into points of margin with a slope calibrated on history: a mail-only electorate barely moves with the national mood, so its slope is small. ' + calTxt + ' The pooled figure weights states by that uncertainty and leaves mail-only states out of the 2024 comparison, where Republicans\' 2024 shift into mail voting makes it a measure of habit rather than direction.</p>' +
+      '<p class="small"><b>Sources.</b> ' + E.states.map((s) => esc(s.name) + ': ' + esc(s.src)).join('; ') + '. 2026 figures from <a href="https://election.lab.ufl.edu/early-vote/2026-early-voting/">UF Election Lab</a>\'s daily file, which compiles the official reports; the raw files are saved in the repository every run. Baselines: ' + (E.baseline_built ? 'Colorado\'s and Florida\'s archived daily reports and UF\'s archived 2024 file (built ' + fmtDay(E.baseline_built.slice(0, 10)) + '), plus ' : '') + 'dated official reports as quoted by the Nevada Independent, Bleeding Heartland (Iowa), the Philadelphia Inquirer, WVIA, PhillyVoice, Patch, Floridian Press and Florida Politics.</p></div></div></div>';
+  }
+  function drawEvregChart() {
+    const E = D.evreg, box = $('evregChart');
+    if (!E || !box || !E.states.length) return;
+    const st = E.states.find((s) => s.st === (ui.evregState || E.states[0].st)) || E.states[0];
+    const W = Math.round(Math.max(290, Math.min(560, box.clientWidth || 460))), H = 190, L = 36, R = 40, T = 10, B = 26;
+    const lines = [['2026', st.series || [], 'var(--mark)', 2.5], ['2022', (st.y22 || {}).series || [], 'var(--ink)', 1.6], ['2024', (st.y24 || {}).series || [], 'var(--ink-3)', 1.6]]
+      .map(([lab, ser, col, w]) => [lab, ser.filter((p) => p[1] != null && p[0] <= 45), col, w]).filter((l) => l[1].length);
+    const all = lines.flatMap((l) => l[1]);
+    if (!all.length) { box.innerHTML = ''; $('evregCap').textContent = 'No series yet for ' + st.name + '.'; return; }
+    const kmax = Math.max(45, ...all.map((p) => p[0]));
+    let gmin = Math.min(...all.map((p) => p[1])), gmax = Math.max(...all.map((p) => p[1]));
+    const pad = Math.max(2, (gmax - gmin) * 0.15); gmin = Math.floor((gmin - pad) / 5) * 5; gmax = Math.ceil((gmax + pad) / 5) * 5;
+    const x = (k) => L + (kmax - k) / kmax * (W - L - R), y = (g) => T + (gmax - g) / (gmax - gmin) * (H - T - B);
+    let svg = '<g class="axis">';
+    for (let g = gmin; g <= gmax; g += (gmax - gmin > 30 ? 10 : 5)) svg += '<line class="grid-line" x1="' + L + '" x2="' + (W - R) + '" y1="' + y(g).toFixed(1) + '" y2="' + y(g).toFixed(1) + '"/><text x="' + (L - 4) + '" y="' + (y(g) + 4).toFixed(1) + '" text-anchor="end">' + (g === 0 ? 'Even' : (g > 0 ? 'D+' : 'R+') + Math.abs(g)) + '</text>';
+    [40, 30, 20, 10, 0].forEach((k) => { if (k <= kmax) svg += '<text x="' + x(k).toFixed(1) + '" y="' + (H - 8) + '" text-anchor="' + (k === 0 ? 'end' : 'middle') + '">' + (k === 0 ? 'Election Day' : k + ' days out') + '</text>'; });
+    svg += '</g>';
+    if (gmin < 0 && gmax > 0) svg += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y(0).toFixed(1) + '" y2="' + y(0).toFixed(1) + '" class="maj-line"/>';
+    lines.forEach(([lab, ser, col, w]) => {
+      const pts = ser.slice().sort((a, b) => b[0] - a[0]);
+      svg += '<polyline fill="none" stroke="' + col + '" stroke-width="' + w + '" stroke-linejoin="round" points="' + pts.map((p) => x(p[0]).toFixed(1) + ',' + y(p[1]).toFixed(1)).join(' ') + '"/>';
+      pts.forEach((p) => { svg += '<circle cx="' + x(p[0]).toFixed(1) + '" cy="' + y(p[1]).toFixed(1) + '" r="' + (lab === '2026' ? 3.2 : 2.2) + '" fill="' + col + '"><title>' + lab + ', ' + kTxt(p[0]) + ': ' + (p[1] >= 0 ? 'D+' : 'R+') + Math.abs(p[1]).toFixed(1) + (p[2] ? ' (' + Math.round(p[2]).toLocaleString() + ' ballots)' : '') + '</title></circle>'; });
+      const last = pts[pts.length - 1];
+      svg += '<text class="ev-val" x="' + (x(last[0]) + 5).toFixed(1) + '" y="' + (y(last[1]) + 4).toFixed(1) + '" style="fill:' + col + ';font-weight:700">' + lab + '</text>';
+    });
+    box.innerHTML = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(st.name) + ': registered Democrats minus Republicans among ballots, by days before Election Day, 2026 vs 2022 and 2024">' + svg + '</svg>';
+    $('evregCap').textContent = st.name + ': registered Democrats minus Republicans among ' + evregMeasure(st, true) + ', by days before Election Day. Gold: 2026. Black: 2022. Gray: 2024.' + ((E.notes || {})[st.st] ? ' ' + E.notes[st.st] : '');
   }
 
   // ---- North Carolina, computed every run from the State Board of Elections' files
@@ -1183,7 +1280,7 @@
 
   // early vote vs. the polls: each sourced signal, which way it points, how much weight it deserves, and its catch
   function signalsHtml() {
-    const st = D.story || {}, sig = (st.signals || []).concat(ncSignals());
+    const st = D.story || {}, sig = (st.signals || []).concat(ncSignals(), evregSignals());
     if (!sig.length) return '';
     const gap = D.evproj.median - D.G0;
     const verdict = Math.abs(gap) < 1.5 ? 'The early vote and the polls agree.'

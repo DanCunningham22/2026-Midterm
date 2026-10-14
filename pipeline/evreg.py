@@ -241,9 +241,10 @@ def compare(hist, points, calib, nat):
                 pts = points.get(st, {}).get(yr, {}).get('ret') or []
             bl = interp(pts, k)
             key = f'y{yr % 100}'
+            series = [[p['k'], p['gap'], p.get('all')] for p in sorted(pts, key=lambda p: -p['k'])]
             if not bl:
                 first = max((p['k'] for p in pts), default=None)
-                row[key] = dict(gap=None, first_k=first, n=len(pts))
+                row[key] = dict(gap=None, first_k=first, n=len(pts), series=series)
                 continue
             dg = gap - bl['gap']
             implied = slope['b'] * dg
@@ -253,8 +254,7 @@ def compare(hist, points, calib, nat):
             row[key] = dict(gap=round(bl['gap'], 1), all=round(bl['all']) if bl.get('all') else None, exact=bl['exact'],
                             dgap=round(dg, 1), dmargin=round(implied, 1), se=round(se, 1), n=len(pts),
                             race=race, result=res.get(race), implied_state=round(res[race] + implied, 1) if res.get(race) is not None else None,
-                            implied_nat=round(nat[yr] + implied, 1) if nat.get(yr) is not None else None,
-                            series=[[p['k'], p['gap'], p.get('all')] for p in sorted(pts, key=lambda p: -p['k'])])
+                            implied_nat=round(nat[yr] + implied, 1) if nat.get(yr) is not None else None, series=series)
         states.append(row)
     # pooled: inverse-variance mean of the implied change, vs 2022 (the midterm-to-midterm comparison) and vs 2024
     pooled = {}
