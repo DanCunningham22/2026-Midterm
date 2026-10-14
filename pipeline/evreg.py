@@ -168,7 +168,7 @@ def load_points(baselines, hand):
         except (KeyError, ValueError):
             continue
         g = gap_of(p)
-        if g is None:
+        if g is None or k < 0:
             continue
         q = dict(p)
         q['k'] = k
@@ -583,11 +583,16 @@ def pa_wayback_points(log):
                             url=f'https://web.archive.org/web/{ts}/{url}'))
             log(f'PA {asof}: returned {s(rt):,.0f} D {s(rd):,.0f} R {s(rr):,.0f}')
         except Exception as e:
-            log(f'PA wayback {ts}: {str(e)[:100]}')
+            log(f'PA wayback {ts}: {type(e).__name__} {str(e)[:100]}')
+            try:
+                prev = [' | '.join('' if c is None else str(c) for c in r) for r in rows[:6]]
+                log('PA wayback preview: ' + ' // '.join(prev)[:600])
+            except Exception:
+                pass
     return pts
 
 
-def wayback_get(url, timeout=120, tries=5, binary=False):
+def wayback_get(url, timeout=120, tries=4, binary=False):
     import time
     last = None
     for i in range(tries):
@@ -595,7 +600,8 @@ def wayback_get(url, timeout=120, tries=5, binary=False):
             return get(url, timeout=timeout, binary=binary)
         except Exception as e:
             last = e
-            time.sleep(min(90, 8 * 2 ** i))
+            if i + 1 < tries:
+                time.sleep(min(45, 6 * 2 ** i))
     raise RuntimeError(f'wayback: {last}')
 
 
@@ -603,15 +609,13 @@ def fl_wayback_2024(log, scratch=None):
     """Florida: archived copies of the Division of Elections' statistics page, one per day, for the 2024 general
     election: statewide vote-by-mail voted and early voted by party."""
     page = 'countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats'
-    q = ('https://web.archive.org/cdx/search/cdx?url=' + urllib.parse.quote(page, safe='') +
-         '&output=json&fl=timestamp,statuscode&from=20240920&to=20241106&filter=statuscode:200&collapse=timestamp:8&limit=200')
-    rows = json.loads(wayback_get(q))[1:]
+    rows = cdx_daily(page, '20240920', '20241106', log)
     log(f'FL 2024 wayback: {len(rows)} daily snapshots')
     pts = []
     rowre = re.compile(r'(Vote-by-Mail Provided \(Not Yet Returned\)|Voted Vote-by-Mail|Voted Early)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)\s+([\d,]+)(?:\s+(\d{1,2}/\d{1,2}/\d{4}))?')
     for ts, _ in rows:
         try:
-            html = wayback_get(f'https://web.archive.org/web/{ts}id_/https://{page}')
+            html = wayback_get(f'https://web.archive.org/web/{ts}id_/https://{page}', tries=2)
         except Exception as e:
             log(f'FL 2024 wayback {ts}: {str(e)[:60]}')
             continue
@@ -652,13 +656,33 @@ def fl_wayback_2024(log, scratch=None):
     return out
 
 
+def cdx_daily(url, frm, to, log):
+    """One snapshot per day between two dates (YYYYMMDD), asking the CDX index in 10-day windows and keeping
+    whatever windows answer (the index is flaky)."""
+    out = {}
+    start = dt.datetime.strptime(frm, '%Y%m%d').date()
+    end = dt.datetime.strptime(to, '%Y%m%d').date()
+    d = start
+    while d <= end:
+        e = min(end, d + dt.timedelta(days=9))
+        q = ('https://web.archive.org/cdx/search/cdx?url=' + urllib.parse.quote(url, safe='') +
+             f'&output=json&fl=timestamp,statuscode&from={d.strftime("%Y%m%d")}&to={e.strftime("%Y%m%d")}'
+             '&filter=statuscode:200&collapse=timestamp:8&limit=50')
+        try:
+            rows = json.loads(wayback_get(q, tries=3))[1:]
+            for ts, _ in rows:
+                out[ts[:8]] = ts
+        except Exception as ex:
+            log(f'cdx {url} {d}..{e}: {str(ex)[:60]}')
+        d = e + dt.timedelta(days=1)
+    return [(ts, '200') for day, ts in sorted(out.items())]
+
+
 def uf_wayback_2024(log, scratch=None):
     """Archived copies of UF Election Lab's 2024 file, one per day where the Wayback Machine has one: a same-point
     2024 series for every state the file covers."""
     url = 'election.lab.ufl.edu/data-downloads/earlyvote/2024/US.csv'
-    q = ('https://web.archive.org/cdx/search/cdx?url=' + urllib.parse.quote(url, safe='') +
-         '&output=json&fl=timestamp,statuscode&from=20240920&to=20241106&filter=statuscode:200&collapse=timestamp:8&limit=200')
-    rows = json.loads(wayback_get(q))[1:]
+    rows = cdx_daily(url, '20240920', '20241106', log)
     log(f'UF 2024 wayback: {len(rows)} daily snapshots')
     if scratch:
         with open(os.path.join(scratch, 'uf2024_wayback_cdx.txt'), 'w', encoding='utf-8') as f:
@@ -666,7 +690,7 @@ def uf_wayback_2024(log, scratch=None):
     pts = []
     for ts, _ in rows:
         try:
-            text = wayback_get(f'https://web.archive.org/web/{ts}id_/https://{url}')
+            text = wayback_get(f'https://web.archive.org/web/{ts}id_/https://{url}', tries=2)
         except Exception as e:
             log(f'UF 2024 wayback {ts}: {str(e)[:60]}')
             continue
