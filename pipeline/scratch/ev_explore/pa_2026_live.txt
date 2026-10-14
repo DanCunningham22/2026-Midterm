@@ -1,0 +1,78 @@
+--- sheet Total (max_row 70, max_col 9)
+Information as of 10/14/2026 08:00 AM  |  |  |  |  |  |  |  | 
+CountyName | Total Applications Approved | Dem Applications Approved | Rep Applications Approved | Oth Applications Approved | Total Ballots Returned | Dem Ballots Returned | Rep Ballots Returned | Oth Ballots Returned
+ADAMS | 9560 | 5081 | 3337 | 1142 | 2383 | 1318 | 808 | 257
+ALLEGHENY | 139078 | 103142 | 23176 | 12760 | 66758 | 50597 | 11280 | 4881
+ARMSTRONG | 2969 | 1786 | 964 | 219 | 174 | 102 | 54 | 18
+BEAVER | 13400 | 9252 | 3066 | 1082 | 6447 | 4689 | 1358 | 400
+BEDFORD | 2802 | 1179 | 1426 | 197 | 20 | 4 | 15 | 1
+BERKS | 27666 | 17155 | 7776 | 2735 | 253 | 158 | 70 | 25
+BLAIR | 8306 | 4077 | 3507 | 722 | 39 | 7 | 25 | 7
+BRADFORD | 3354 | 1602 | 1421 | 331 | 1378 | 672 | 586 | 120
+BUCKS | 89868 | 53983 | 25488 | 10397 | 19171 | 11554 | 5870 | 1747
+BUTLER | 17416 | 9766 | 6176 | 1474 | 7949 | 4770 | 2692 | 487
+CAMBRIA | 8178 | 5270 | 2368 | 540 | 9 | 2 | 4 | 3
+CAMERON | 310 | 123 | 157 | 30 | 198 | 80 | 103 | 15
+CARBON | 4427 | 2728 | 1273 | 426 | 2156 | 1428 | 574 | 154
+CENTRE | 13895 | 8785 | 3448 | 1662 | 3955 | 2634 | 901 | 420
+CHESTER | 59418 | 37292 | 13693 | 8433 | 4765 | 3252 | 926 | 587
+CLARION | 1846 | 924 | 765 | 157 | 226 | 124 | 78 | 24
+CLEARFIELD | 3912 | 2203 | 1420 | 289 | 2156 | 1289 | 743 | 124
+CLINTON | 2017 | 1162 | 710 | 145 | 1117 | 680 | 376 | 61
+COLUMBIA | 3689 | 2215 | 1143 | 331 | 1410 | 889 | 422 | 99
+CRAWFORD | 5373 | 3030 | 1891 | 452 | 3367 | 1993 | 1122 | 252
+CUMBERLAND | 26540 | 14744 | 8450 | 3346 | 11885 | 6868 | 3765 | 1252
+DAUPHIN | 24546 | 15956 | 5793 | 2797 | 2544 | 1689 | 629 | 226
+DELAWARE | 51884 | 34756 | 11135 | 5993 | 5121 | 3639 | 1029 | 453
+--- sheet Mail-In (max_row 69, max_col 9)
+CountyName | Total Applications Approved | Dem Applications Approved | Rep Applications Approved | Oth Applications Approved | Total Ballots Returned | Dem Ballots Returned | Rep Ballots Returned | Oth Ballots Returned
+ADAMS | 9424 | 5017 | 3287 | 1120 | 2360 | 1307 | 800 | 253
+ALLEGHENY | 136498 | 101258 | 22828 | 12412 | 66180 | 50171 | 11187 | 4822
+ARMSTRONG | 2943 | 1775 | 956 | 212 | 171 | 100 | 53 | 18
+BEAVER | 13189 | 9149 | 2977 | 1063 | 6365 | 4654 | 1318 | 393
+BEDFORD | 2712 | 1157 | 1366 | 189 | 7 | 1 | 5 | 1
+BERKS | 27204 | 16910 | 7627 | 2667 | 193 | 118 | 61 | 14
+BLAIR | 8186 | 4046 | 3434 | 706 | 29 | 3 | 21 | 5
+BRADFORD | 3265 | 1567 | 1377 | 321 | 1351 | 662 | 572 | 117
+BUCKS | 88553 | 53191 | 25172 | 10190 | 18854 | 11357 | 5795 | 1702
+BUTLER | 17108 | 9649 | 6039 | 1420 | 7891 | 4738 | 2671 | 482
+CAMBRIA | 8105 | 5233 | 2341 | 531 | 0 | 0 | 0 | 0
+CAMERON | 307 | 121 | 156 | 30 | 198 | 80 | 103 | 15
+CARBON | 4328 | 2687 | 1224 | 417 | 2110 | 1409 | 548 | 153
+CENTRE | 13517 | 8512 | 3392 | 1613 | 3871 | 2572 | 889 | 410
+CHESTER | 58167 | 36471 | 13451 | 8245 | 4554 | 3094 | 900 | 560
+CLARION | 1805 | 908 | 745 | 152 | 221 | 121 | 77 | 23
+CLEARFIELD | 3788 | 2160 | 1349 | 279 | 2075 | 1261 | 695 | 119
+CLINTON | 1993 | 1151 | 698 | 144 | 1104 | 674 | 369 | 61
+COLUMBIA | 3652 | 2194 | 1132 | 326 | 1395 | 879 | 418 | 98
+CRAWFORD | 5240 | 2967 | 1840 | 433 | 3315 | 1971 | 1097 | 247
+CUMBERLAND | 25611 | 14358 | 8047 | 3206 | 11544 | 6722 | 3610 | 1212
+DAUPHIN | 24090 | 15724 | 5623 | 2743 | 2467 | 1646 | 611 | 210
+DELAWARE | 50858 | 34040 | 11002 | 5816 | 4940 | 3506 | 1011 | 423
+ELK | 1889 | 1124 | 628 | 137 | 1205 | 734 | 400 | 71
+--- sheet Absentee (max_row 69, max_col 9)
+CountyName | Total Applications Approved | Dem Applications Approved | Rep Applications Approved | Oth Applications Approved | Total Ballots Returned | Dem Ballots Returned | Rep Ballots Returned | Oth Ballots Returned
+ADAMS | 136 | 64 | 50 | 22 | 23 | 11 | 8 | 4
+ALLEGHENY | 2580 | 1884 | 348 | 348 | 578 | 426 | 93 | 59
+ARMSTRONG | 26 | 11 | 8 | 7 | 3 | 2 | 1 | 0
+BEAVER | 211 | 103 | 89 | 19 | 82 | 35 | 40 | 7
+BEDFORD | 90 | 22 | 60 | 8 | 13 | 3 | 10 | 0
+BERKS | 462 | 245 | 149 | 68 | 60 | 40 | 9 | 11
+BLAIR | 120 | 31 | 73 | 16 | 10 | 4 | 4 | 2
+BRADFORD | 89 | 35 | 44 | 10 | 27 | 10 | 14 | 3
+BUCKS | 1315 | 792 | 316 | 207 | 317 | 197 | 75 | 45
+BUTLER | 308 | 117 | 137 | 54 | 58 | 32 | 21 | 5
+CAMBRIA | 73 | 37 | 27 | 9 | 9 | 2 | 4 | 3
+CAMERON | 3 | 2 | 1 | 0 | 0 | 0 | 0 | 0
+CARBON | 99 | 41 | 49 | 9 | 46 | 19 | 26 | 1
+CENTRE | 378 | 273 | 56 | 49 | 84 | 62 | 12 | 10
+CHESTER | 1251 | 821 | 242 | 188 | 211 | 158 | 26 | 27
+CLARION | 41 | 16 | 20 | 5 | 5 | 3 | 1 | 1
+CLEARFIELD | 124 | 43 | 71 | 10 | 81 | 28 | 48 | 5
+CLINTON | 24 | 11 | 12 | 1 | 13 | 6 | 7 | 0
+COLUMBIA | 37 | 21 | 11 | 5 | 15 | 10 | 4 | 1
+CRAWFORD | 133 | 63 | 51 | 19 | 52 | 22 | 25 | 5
+CUMBERLAND | 929 | 386 | 403 | 140 | 341 | 146 | 155 | 40
+DAUPHIN | 456 | 232 | 170 | 54 | 77 | 43 | 18 | 16
+DELAWARE | 1026 | 716 | 133 | 177 | 181 | 133 | 18 | 30
+ELK | 61 | 35 | 22 | 4 | 8 | 6 | 2 | 0
