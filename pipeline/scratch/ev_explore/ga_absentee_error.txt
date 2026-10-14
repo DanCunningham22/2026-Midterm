@@ -1,2 +1,0 @@
-https://sos.ga.gov/page/voter-absentee-files
-HTTP Error 403: Forbidden

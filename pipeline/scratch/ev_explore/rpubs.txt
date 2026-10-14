@@ -1,6 +1,0 @@
-https://rpubs.com/ElectProject/early_vote_2022
-IFRAMES
-//rstudio-pubs-static.s3.amazonaws.com/948837_03cab8303e36475c8aa640e21282676a.html
-
-TEXT
- RPubs - Early Voting 2022 General Election Sign In Username or Email Password Forgot your password? Sign In Cancel R Pubs by RStudio Sign in Register Early Voting 2022 General Election by michael.mcdonald@ufl.edu Last updated about 4 years ago Hide Comments (&ndash;) Share Hide Toolbars × Post on: Twitter Facebook Google+ Or copy &amp; paste this link into an email or IM: 

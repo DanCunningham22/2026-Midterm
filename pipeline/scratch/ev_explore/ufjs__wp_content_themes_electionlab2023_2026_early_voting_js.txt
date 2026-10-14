@@ -1,2 +1,0 @@
-https://election.lab.ufl.edu/wp-content/themes/electionlab2023/2026-early-voting.js
-/data-downloads/earlyvote/2026/US.csv

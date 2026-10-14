@@ -1,9 +1,0 @@
-https://election.lab.ufl.edu/wp-content/themes/electionlab2023/2026-early-voting-national.js
-#hexmap-us-earlyvote-themepicker
-/data-downloads/earlyvote/2026/${abbrv}_cd.csv
-/data-downloads/earlyvote/2026/house_tossup_races.csv
-/early-vote/2026-early-voting/2026-general-election-early-vote-${stateUrlSlug(statename)}/
-hexmap-us-earlyvote
-hexmap-us-earlyvote-theme
-hexmap-us-earlyvote-theme-${option[0]}
-uf-election-lab-national-early-vote-statistics.png
