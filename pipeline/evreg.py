@@ -177,10 +177,13 @@ def load_points(baselines, hand):
     return pts
 
 
-def calibrate(finals):
+def calibrate(finals, bench=None):
     """Slope of the change in a state's presidential margin, 2020 -> 2024, on the change in its final early vote's
-    D-minus-R gap, fitted through the origin. Returns slopes for mail-only and all-mode states, with errors."""
+    D-minus-R gap, fitted through the origin. Returns slopes for mail-only states, for states with in-person early
+    voting, and for the subset where early ballots were most of the 2024 vote (the electorate the gap describes
+    is then nearly the whole electorate), with errors."""
     rows = []
+    bench = bench or {}
     for st, (m20, m24) in PRES.items():
         f20 = (finals.get('2020') or {}).get(st)
         f24 = (finals.get('2024') or {}).get(st)
@@ -189,8 +192,10 @@ def calibrate(finals):
         g20, g24 = gap_of(f20), gap_of(f24)
         if g20 is None or g24 is None:
             continue
+        b = bench.get(st) or {}
+        share = (b.get('ev24') or 0) / b['t22'] if b.get('t22') else None
         rows.append(dict(st=st, dgap=round(g24 - g20, 1), dmargin=round(m24 - m20, 1), mail=st in MAIL_ONLY,
-                         g20=round(g20, 1), g24=round(g24, 1)))
+                         g20=round(g20, 1), g24=round(g24, 1), share=round(share, 2) if share else None))
 
     def fit(sub):
         if len(sub) < 3:
@@ -205,10 +210,13 @@ def calibrate(finals):
         return dict(b=round(b, 3), se=round(math.sqrt(s2 / sxx), 3), resid=round(math.sqrt(s2), 2), n=len(sub))
 
     out = dict(rows=sorted(rows, key=lambda r: r['st']), all=fit([r for r in rows if not r['mail']]),
-               mail=fit([r for r in rows if r['mail']]), pooled=fit(rows), source='2020 -> 2024 change, final early vote vs presidential margin')
+               mail=fit([r for r in rows if r['mail']]), early=fit([r for r in rows if not r['mail'] and r['share'] and r['share'] >= 0.75]),
+               pooled=fit(rows), source='2020 -> 2024 change, final early vote vs presidential margin')
     for k in ('all', 'mail'):
         if not out[k]:
             out[k] = dict(b=FALLBACK_B[k], se=0.25, resid=4.0, n=0, assumed=True)
+    # states where early ballots are most of the vote use the slope fitted on such states when enough of them exist
+    out['use_early'] = bool(out['early'] and out['early']['n'] >= 5)
     return out
 
 
@@ -228,7 +236,7 @@ def compare(hist, points, calib, nat):
             continue
         k = days_out(2026, h['date'])
         gap = 100.0 * (cur[0] - cur[1]) / cur[3]
-        slope = calib['mail'] if cfg['mode'] == 'mail' else calib['all']
+        slope = calib['mail'] if cfg['mode'] == 'mail' else (calib['early'] if calib.get('use_early') else calib['all'])
         row = dict(st=st, name=cfg['name'], m=m, mode=cfg['mode'], asof=h['date'], k=k, all=round(cur[3]),
                    d=round(100.0 * cur[0] / cur[3], 1), r=round(100.0 * cur[1] / cur[3], 1), gap=round(gap, 1),
                    ret=h.get('ret'), ip=h.get('ip'), req=h.get('req'), b=slope['b'], src=cfg['src'],
@@ -277,11 +285,11 @@ def compare(hist, points, calib, nat):
     return states, pooled
 
 
-def block(uf_rows, prev, today, baselines=None, hand=None, nat=None):
+def block(uf_rows, prev, today, baselines=None, hand=None, nat=None, bench=None):
     cur = read_uf(uf_rows)
     hist = update_history((prev or {}).get('hist'), cur)
     points = load_points(baselines, hand)
-    calib = calibrate((baselines or {}).get('finals') or {})
+    calib = calibrate((baselines or {}).get('finals') or {}, bench)
     nat = nat or {2022: -2.72, 2024: -2.56}
     states, pooled = compare(hist, points, calib, nat)
     notes = (hand or {}).get('notes') or {}
@@ -488,6 +496,8 @@ def _party_table(text, heading):
     the party rows right after it wins)."""
     for m in re.finditer(re.escape(heading), text):
         seg = text[m.end():m.end() + 500]
+        if 'Outstanding' in seg[:120] or 'Rejected' in seg[:120]:
+            continue
         dm = re.search(r'Democrat[s]?\s+([\d,]+)', seg)
         rm = re.search(r'Republican[s]?\s+([\d,]+)', seg)
         tm = re.search(r'TOTAL\s+([\d,]+)', seg)
@@ -512,12 +522,20 @@ def uf_finals_2020(log, scratch=None):
         if scratch:
             with open(os.path.join(scratch, f'uf2020_{st}.txt'), 'w', encoding='utf-8') as f:
                 f.write(text[:6000])
-        m = _party_table(text, 'Mail Ballots Returned by Party Registration') or _party_table(text, 'Returned Mail Ballots by Party')
-        t = _party_table(text, 'Total Voted by Party Registration') or _party_table(text, 'Voted by Party Registration') or m
+        m = (_party_table(text, 'Mail Ballots Returned and Accepted by Party Registration') or
+             _party_table(text, 'Mail Ballots Returned by Party Registration') or _party_table(text, 'Returned Mail Ballots by Party'))
+        ip = _party_table(text, 'In-Person Votes by Party Registration') or _party_table(text, 'In-Person Vote by Party Registration')
+        t = _party_table(text, 'Total Voted by Party Registration') or _party_table(text, 'Voted by Party Registration')
+        if not t and m and ip:
+            t = dict(d=m['d'] + ip['d'], r=m['r'] + ip['r'], all=m['all'] + ip['all'])
+        if not t:
+            t = m
         if t:
             out[st] = dict(t)
             if m:
                 out[st]['ret'] = [m['d'], m['r'], m['all']]
+            if ip:
+                out[st]['ip'] = [ip['d'], ip['r'], ip['all']]
             out[st]['mail_only'] = t is m
     log(f'UF 2020 finals: {len(out)} states with party')
     return out

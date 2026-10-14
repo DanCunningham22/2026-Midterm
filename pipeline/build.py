@@ -636,7 +636,8 @@ def main():
                     nat[int(r['year'])] = float(r['margin'])
         out['evreg'] = evreg.block(uf_rows, prev.get('evreg'), today,
                                    baselines=load_json(os.path.join(ROOT, 'pipeline', 'static', 'ev_baselines.json')),
-                                   hand=load_json(os.path.join(ROOT, 'pipeline', 'content', 'ev_points.json')), nat=nat)
+                                   hand=load_json(os.path.join(ROOT, 'pipeline', 'content', 'ev_points.json')), nat=nat,
+                                   bench=(base.get('ev_bench') or {}).get('states'))
         ok('evreg', f"{len(out['evreg']['states'])} states, {len(out['evreg']['hist'])} daily entries")
         if not a.uf_csv and not a.no_archive:
             saved = evreg.archive(today, uf_text=text, log=lambda m: print(m, file=sys.stderr))

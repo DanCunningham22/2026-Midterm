@@ -1180,8 +1180,11 @@
         '<td class="n">' + (c22.dgap == null ? '—' : signed(c22.dgap)) + '</td><td class="n">' + imp + '</td></tr>';
     }).join('');
     const chips = E.states.map((s, i) => '<button class="chip" data-st="' + s.st + '" aria-pressed="' + String((ui.evregState || E.states[0].st) === s.st) + '">' + s.st + '</button>').join('');
-    const calTxt = cal.all ? (cal.all.assumed ? 'Until the 2020 and 2024 finals are loaded, the slope is assumed: 0.5 for states with in-person early voting and 0.25 for mail-only states.' :
-      'Slope fitted on how each state\'s final early-vote gap and presidential margin moved from 2020 to 2024: ' + cal.all.b.toFixed(2) + ' (± ' + cal.all.se.toFixed(2) + ', ' + cal.all.n + ' states with in-person early voting) and ' + cal.mail.b.toFixed(2) + ' (± ' + cal.mail.se.toFixed(2) + ', ' + cal.mail.n + ' mail-only states); the ± on each row is that fit\'s scatter (' + cal.all.resid + ' and ' + cal.mail.resid + ' points).') : '';
+    const slopeTxt = (c, lab) => c ? c.b.toFixed(2) + ' (± ' + c.se.toFixed(2) + ', scatter ' + c.resid + ' pts, ' + c.n + ' ' + lab + ')' : '';
+    const calTxt = cal.all ? ('Slopes fitted on how each state\'s final early-vote gap and presidential margin moved from 2020 to 2024: ' +
+      (cal.use_early && cal.early ? slopeTxt(cal.early, 'states where early ballots were most of the 2024 vote, used for Florida, Nevada, Colorado and Arizona') + '; ' : '') +
+      (cal.all.assumed ? 'assumed 0.5 for other states with in-person early voting' : slopeTxt(cal.all, 'states with in-person early voting' + (cal.use_early ? ', for reference' : ''))) + '; ' +
+      (cal.mail.assumed ? 'assumed 0.25 for mail-only states (too few 2020 finals to fit)' : slopeTxt(cal.mail, 'mail-only states')) + '. The ± on each row is the fit\'s scatter. Those were presidential years with a pandemic-era mail surge unwinding, which is part of why the slopes are small; read them as a floor on how much a gap change means.') : '';
     return '<div class="ev-vs"><h3>Official early vote by party registration vs. the same point in 2022 and 2024 <span class="auto-tag">updates itself</span></h3>' +
       '<p class="ev-verdict">' + verdict + '</p>' +
       '<div class="table-scroll"><table class="nc-table evreg"><thead><tr><th>State</th><th class="n">Ballots</th><th class="n colpct">D / R %</th><th class="n">D − R</th><th class="n">2022, same point</th><th class="n">2024, same point</th><th class="n">vs 2022</th><th class="n">Implied, vs 2022</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
