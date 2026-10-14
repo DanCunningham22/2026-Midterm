@@ -12,6 +12,12 @@
    "sealed": "2026-10-13T15:05:00-04:00",
    "label": "Oct 13, 3:05 PM ET",
    "sha256": "d307d3fe56e5600e2ba624fd05e90bc204ff5e92e0415cb15d5badf4f906d451"
+  },
+  {
+   "v": 3,
+   "sealed": "2026-10-14T10:55:00-04:00",
+   "label": "Oct 14, 10:55 AM ET",
+   "sha256": "3aa73b3e121e46fc235de31de6b27dfb9ea69cebca5793a5ffd7ee5e083917c0"
   }
  ]
 }
