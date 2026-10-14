@@ -18,6 +18,7 @@ A GitHub Actions job (`.github/workflows/update.yml`) runs every three hours. It
 | What | Source | Refresh |
 |---|---|---|
 | Candidates, incumbency, race polls, generic-ballot polls | [ElectIndex forecast data](https://github.com/ElectIndex/26_us_forecast_data) | automatic |
+| Race polls the feed doesn't have yet (from the pollsters' own releases) | `pipeline/content/extra_polls.csv` | daily scheduled refresh; a row drops out once the feed has the poll |
 | Early-vote ballot counts and party splits | [UF Election Lab](https://election.lab.ufl.edu/early-vote/2026-early-voting/) | automatic |
 | National polling average (generic ballot) | computed from the poll list | automatic |
 | Our forecast: national vote and Senate/governor adjustments | `pipeline/backtest/backtest.py`, inputs in `pipeline/content/fundamentals.json` | automatic; approval and special-election inputs checked daily |

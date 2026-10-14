@@ -283,6 +283,34 @@ def pollster_xtabs(path, base24, ratings):
 
 
 # ---------------------------------------------------------------- races
+def add_extra_polls(feed, path):
+    """Polls the ElectIndex feed doesn't have yet (pipeline/content/extra_polls.csv, hand-maintained from the
+    pollsters' own releases). A poll already in the feed (same race, pollster and end date) is left alone, so these
+    rows drop out harmlessly once the feed catches up. Rating and lean come from the feed's pollster ratings."""
+    if not feed or not os.path.exists(path):
+        return 0
+    ratings = {r['pollster']: r for r in feed['pollster_ratings.csv']}
+    have = {(r['race_code'], r['pollster'].split()[0].lower(), r['end_date']) for r in feed['race_polls.csv']}
+    added = 0
+    with open(path, encoding='utf-8') as f:
+        for x in csv.DictReader(f):
+            key = (x['race_code'], x['pollster'].split()[0].lower(), x['end_date'])
+            if key in have or num(x['dem']) is None or num(x['rep']) is None:
+                continue
+            rt = ratings.get(x['pollster']) or ratings.get(RATING_ALIAS.get(x['pollster'], ''), {})
+            if rt.get('banned') == '1':
+                continue
+            feed['race_polls.csv'].append(dict(
+                race_code=x['race_code'], poll_id=f"extra:{x['race_code']}:{x['pollster']}:{x['end_date']}",
+                pollster=x['pollster'], end_date=x['end_date'], n=x['n'], rating=rt.get('rating', ''),
+                lean=(rt.get('lean') or x.get('lean') or ''), dem=x['dem'], rep=x['rep'], margin='',
+                oth=x.get('oth', ''), oth_party='', oth_name=x.get('oth_name', ''), dem2='', rep2='',
+                dem_name=x.get('dem_name', ''), rep_name=x.get('rep_name', '')))
+            have.add(key)
+            added += 1
+    return added
+
+
 def build_races(feed, base, G0, today, senate_cfg):
     races = {r['race_code']: r for r in feed['races.csv']}
     cands = {r['cand_id']: r for r in feed['candidates.csv']}
@@ -524,6 +552,7 @@ def main():
             feed[f] = rows(text)
         if len(feed['races.csv']) < 400:
             raise ValueError('races.csv looks truncated')
+        n_extra = add_extra_polls(feed, os.path.join(ROOT, 'pipeline', 'content', 'extra_polls.csv'))
     except Exception as e:
         stale('electindex', e)
         feed = None
@@ -562,7 +591,7 @@ def main():
     if feed:
         try:
             out['districts'], out['senate'], out['gov'], out['housepolls'] = build_races(feed, base, G0, today, senate_cfg)
-            ok('electindex', 'candidates, incumbency, race polls')
+            ok('electindex', 'candidates, incumbency, race polls' + (f' (+{n_extra} hand-added)' if n_extra else ''))
         except Exception as e:
             stale('electindex', e)
             feed = None

@@ -1,0 +1,4 @@
+race_code,pollster,end_date,n,population,lean,dem,rep,oth,oth_name,dem_name,rep_name,source_url,note
+TX-SEN,Marist,2026-10-11,921,LV,,47,45,,,James Talarico,Ken Paxton,https://maristpoll.marist.edu/polls/2026-midterm-elections-in-texas-october-2026/,"Oct 8-11; 1,196 RV (MOE 4.3), LV MOE 4.9; LV n not stated, estimated from the MOEs. RV: Talarico +4."
+TX-GOV,Marist,2026-10-11,921,LV,,45,49,,,Gina Hinojosa,Greg Abbott,https://maristpoll.marist.edu/polls/2026-midterm-elections-in-texas-october-2026/,"Oct 8-11; same survey. RV: Abbott +1."
+TX-SEN,Quantus Insights,2026-10-11,839,LV,R,46.7,47.2,2.2,Ted Brown,James Talarico,Ken Paxton,https://quantusinsights.org/f/texas-senate-paxton-and-talarico-in-a-near-tie,"Oct 9-11; 854 full sample, 839 voters-only ballot base, MOE 3.6; undecided 3.9. R-aligned pollster."
