@@ -690,6 +690,8 @@ def uf_wayback_2024(log, scratch=None):
 
 
 def baseline(out_path, scratch=None):
+    """Build (or extend) the baselines file. Each source is a part; a part that fails this run keeps its points from
+    the previous file, and the Wayback-based parts accumulate across runs (the archive answers intermittently)."""
     lines = []
 
     def log(*a):
@@ -698,23 +700,47 @@ def baseline(out_path, scratch=None):
         print(msg, file=sys.stderr)
     if scratch:
         os.makedirs(scratch, exist_ok=True)
-    points, errors = [], []
-    for fn, args in ((co_points, (2022, log)), (co_points, (2024, log)), (fl_points, (2022, log, scratch)),
-                     (fl_points, (2024, log, scratch)), (pa_wayback_points, (log,)), (uf_wayback_2024, (log, scratch)),
-                     (fl_wayback_2024, (log, scratch))):
+    try:
+        with open(out_path, encoding='utf-8') as f:
+            prev = json.load(f)
+    except (OSError, ValueError):
+        prev = {}
+    parts = dict(prev.get('parts') or {})
+    errors = []
+    builders = [
+        ('co2022', lambda: co_points(2022, log), False), ('co2024', lambda: co_points(2024, log), False),
+        ('fl2022_final', lambda: fl_points(2022, log, scratch), False), ('fl2024_final', lambda: fl_points(2024, log, scratch), False),
+        ('pa_wayback', lambda: pa_wayback_points(log), True), ('uf_wayback_2024', lambda: uf_wayback_2024(log, scratch), True),
+        ('fl_wayback_2024', lambda: fl_wayback_2024(log, scratch), True),
+    ]
+    for key, fn, accumulate in builders:
         try:
-            points += fn(*args)
+            pts = fn()
         except Exception as e:
-            errors.append(f'{fn.__name__}{args[:1]}: {str(e)[:200]}')
+            errors.append(f'{key}: {str(e)[:200]}')
             log(errors[-1])
-    finals = {}
+            continue
+        if accumulate:
+            merged = {}
+            for p in (parts.get(key) or []) + pts:
+                merged[(p['st'], p['year'], p['date'], p['m'])] = p
+            pts = sorted(merged.values(), key=lambda p: (p['st'], p['year'], p['m'], p['date']))
+        if pts or key not in parts:
+            parts[key] = pts
+        log(f'{key}: {len(parts[key])} points')
+    finals = dict(prev.get('finals') or {})
     for yr, fn in (('2024', lambda: uf_finals_2024(log)), ('2020', lambda: uf_finals_2020(log, scratch)), ('2022', lambda: rpubs_finals_2022(log, scratch))):
         try:
-            finals[yr] = fn()
+            got = fn()
+            if got:
+                merged = dict(finals.get(yr) or {})
+                merged.update(got)
+                finals[yr] = merged
         except Exception as e:
             errors.append(f'finals {yr}: {str(e)[:200]}')
             log(errors[-1])
-    out = dict(built=dt.datetime.now(dt.timezone.utc).isoformat(timespec='minutes'), points=points, finals=finals, errors=errors)
+    points = [p for key in sorted(parts) for p in parts[key]]
+    out = dict(built=dt.datetime.now(dt.timezone.utc).isoformat(timespec='minutes'), points=points, finals=finals, parts=parts, errors=errors)
     with open(out_path, 'w', encoding='utf-8') as f:
         json.dump(out, f, indent=1)
     log(f'wrote {out_path}: {len(points)} points, finals for {[(k, len(v)) for k, v in finals.items()]}, {len(errors)} errors')
