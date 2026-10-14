@@ -690,7 +690,12 @@ def uf_wayback_2024(log, scratch=None):
 
 
 def baseline(out_path, scratch=None):
-    log = lambda *a: print(*a, file=sys.stderr)
+    lines = []
+
+    def log(*a):
+        msg = ' '.join(str(x) for x in a)
+        lines.append(msg)
+        print(msg, file=sys.stderr)
     if scratch:
         os.makedirs(scratch, exist_ok=True)
     points, errors = [], []
@@ -713,6 +718,9 @@ def baseline(out_path, scratch=None):
     with open(out_path, 'w', encoding='utf-8') as f:
         json.dump(out, f, indent=1)
     log(f'wrote {out_path}: {len(points)} points, finals for {[(k, len(v)) for k, v in finals.items()]}, {len(errors)} errors')
+    if scratch:
+        with open(os.path.join(scratch, '_log.txt'), 'w', encoding='utf-8') as f:
+            f.write('\n'.join(lines))
 
 
 if __name__ == '__main__':
