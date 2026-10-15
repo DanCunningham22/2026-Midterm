@@ -198,6 +198,13 @@ input[type="range"]::-moz-range-thumb { width: 14px; height: 14px; border-radius
 .fc-v { font-family: var(--font-display); font-weight: 700; font-size: 28px; line-height: 1.05; }
 .fc-sub { font-size: 12px; color: var(--ink-2); }
 .fc-note { font-size: 13px; color: var(--ink-2); margin: 8px 0 0; }
+.fc-trend { border: 1px solid var(--rule); border-radius: 8px; padding: 12px 14px; margin: -6px 0 16px; background: var(--paper); }
+.fc-trend h3 { margin: 0 0 6px; }
+.fc-trend .tr-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+.fc-trend .tr-chg { font-variant-numeric: tabular-nums; }
+.fc-trend td.n { white-space: nowrap; }
+.fc-trend .up { color: var(--ld); } .fc-trend .dn { color: var(--lr); }
+@media (max-width: 760px) { .fc-trend .tr-grid { grid-template-columns: minmax(0, 1fr); } }
 .fc-polls { font-size: 12px; color: var(--ink-3); }
 .fc-back { border: 1px solid var(--ink); background: var(--card); color: var(--ink); border-radius: 999px; padding: 2px 10px; font-size: 12px; font-weight: 600; cursor: pointer; margin-left: 4px; }
 .res-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 16px; align-items: start; }
@@ -622,6 +629,7 @@ body.tabbed .banner { bottom: calc(var(--dock-h, 150px) + 10px); }
     </aside>
       <section class="card area-res" data-screen="outlook" aria-label="Results">
         <div class="fc-card" id="fcCard"></div>
+        <div class="fc-trend" id="fcTrend" hidden></div>
         <div class="res-grid">
           <div>
             <h2 id="resTitle">House outlook</h2>

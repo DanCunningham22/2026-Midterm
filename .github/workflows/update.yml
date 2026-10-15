@@ -28,6 +28,9 @@ jobs:
       - name: Rebuild data from the live feeds
         run: python3 pipeline/build.py --out site/data.json
 
+      - name: Record today's forecast in the daily trend
+        run: node pipeline/fc_trend.js site/data.json
+
       - name: Save the new data to the repository
         run: |
           git config user.name "midterm-map-bot"

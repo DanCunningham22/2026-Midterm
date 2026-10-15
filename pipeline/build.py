@@ -666,6 +666,7 @@ def main():
 
     out['evproj'] = ev_projection(story, base['N24'], out.get('nc'))
     out['story'] = story
+    out['fc_hist'] = prev.get('fc_hist', [])   # daily forecast record, appended to by pipeline/fc_trend.js after the build
     out['sealed'] = load_json(os.path.join(ROOT, 'pipeline', 'content', 'sealed.json'), {'versions': []})
     out['watch'] = clean_watch(load_json(os.path.join(ROOT, 'pipeline', 'content', 'watch.json'), {}))
 

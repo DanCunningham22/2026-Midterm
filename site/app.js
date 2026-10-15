@@ -189,6 +189,91 @@
     const b = $('fcBack'); if (b) b.addEventListener('click', resetToForecast);
   }
 
+  // ---------------------------------------------------------------- how the forecast has moved (daily record from pipeline/fc_trend.js)
+  function renderTrend() {
+    const box = $('fcTrend');
+    const H = (D.fc_hist || []).filter((h) => h.polls);
+    if (!box) return;
+    if (H.length < 2) { box.hidden = true; return; }
+    box.hidden = false;
+    const last = H[H.length - 1], prev = H[H.length - 2];
+    const firstOurs = H.find((h) => h.ours) || null;
+    const pick = (h) => h.ours || h.polls;
+    const W = Math.round(Math.max(290, Math.min(560, (box.clientWidth || 900) / 2 - 20))), HT = 150, L = 40, R = 14, T = 12, B = 24;
+    const x = (i) => L + (H.length === 1 ? 0 : i / (H.length - 1)) * (W - L - R);
+    const axisDates = (yy) => {
+      let t = '';
+      const step = Math.max(1, Math.ceil(H.length / 6));
+      H.forEach((h, i) => { if (i % step === 0 || i === H.length - 1) t += '<text class="axis" x="' + x(i).toFixed(1) + '" y="' + (yy + 16) + '" text-anchor="' + (i === 0 ? 'start' : i === H.length - 1 ? 'end' : 'middle') + '">' + fmtDay(h.date) + '</text>'; });
+      return '<g class="axis">' + t + '</g>';
+    };
+    const line = (vals, col, w, dash) => {
+      const pts = vals.map((v, i) => (v == null ? null : [x(i), v])).filter(Boolean);
+      return pts.length ? '<polyline fill="none" stroke="' + col + '" stroke-width="' + w + '"' + (dash ? ' stroke-dasharray="4 3"' : '') + ' stroke-linejoin="round" points="' + pts.map((p) => p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ') + '"/>' : '';
+    };
+    // national vote: ours and the polls
+    const natO = H.map((h) => (h.nat != null ? h.nat : null)), natP = H.map((h) => h.G0);
+    const allN = natO.concat(natP).filter((v) => v != null);
+    let nmin = Math.floor(Math.min(...allN) - 1.5), nmax = Math.ceil(Math.max(...allN) + 1.5);
+    const yN = (v) => T + (nmax - v) / (nmax - nmin) * (HT - T - B);
+    let s1 = '<g class="axis">';
+    for (let g = nmin; g <= nmax; g += (nmax - nmin > 8 ? 2 : 1)) s1 += '<line class="grid-line" x1="' + L + '" x2="' + (W - R) + '" y1="' + yN(g).toFixed(1) + '" y2="' + yN(g).toFixed(1) + '"/><text x="' + (L - 5) + '" y="' + (yN(g) + 4).toFixed(1) + '" text-anchor="end">' + (g === 0 ? 'Even' : (g > 0 ? 'D+' : 'R+') + Math.abs(g)) + '</text>';
+    s1 += '</g>' + axisDates(HT - B);
+    s1 += line(natP.map((v) => (v == null ? null : yN(v))), 'var(--ink-3)', 1.6, true) + line(natO.map((v) => (v == null ? null : yN(v))), 'var(--mark)', 2.5, false);
+    H.forEach((h, i) => {
+      if (h.G0 != null) s1 += '<circle cx="' + x(i).toFixed(1) + '" cy="' + yN(h.G0).toFixed(1) + '" r="2.6" fill="var(--ink-3)"><title>' + fmtDay(h.date) + ' polls: ' + fm(h.G0) + '</title></circle>';
+      if (h.nat != null) s1 += '<circle cx="' + x(i).toFixed(1) + '" cy="' + yN(h.nat).toFixed(1) + '" r="3.4" fill="var(--mark)"><title>' + fmtDay(h.date) + ' our forecast: ' + fm(h.nat) + '</title></circle>';
+    });
+    const lab = (vals, col, text) => { const i = vals.length - 1; return vals[i] == null ? '' : '<text class="ev-val" x="' + (x(i) - 4).toFixed(1) + '" y="' + (yN(vals[i]) - 7).toFixed(1) + '" text-anchor="end" style="fill:' + col + ';font-weight:700">' + text + ' ' + fm(vals[i]) + '</text>'; };
+    s1 += lab(natP, 'var(--ink-3)', 'Polls') + lab(natO, 'var(--mark)', 'Ours');
+    // odds
+    const series = [['House', (h) => pick(h).hp, 'var(--mark)'], ['Senate', (h) => pick(h).sp, 'var(--ink)'], ['Governors 26+', (h) => pick(h).gp, 'var(--ink-3)']];
+    const yP = (p) => T + (1 - p) * (HT - T - B);
+    let s2 = '<g class="axis">';
+    [0, 0.25, 0.5, 0.75, 1].forEach((g) => { s2 += '<line class="grid-line" x1="' + L + '" x2="' + (W - R) + '" y1="' + yP(g).toFixed(1) + '" y2="' + yP(g).toFixed(1) + '"/><text x="' + (L - 5) + '" y="' + (yP(g) + 4).toFixed(1) + '" text-anchor="end">' + Math.round(g * 100) + '%</text>'; });
+    s2 += '</g>' + axisDates(HT - B);
+    series.forEach(([name, f, col]) => {
+      const vals = H.map((h) => f(h));
+      s2 += line(vals.map(yP), col, name === 'House' ? 2.5 : 1.8, false);
+      vals.forEach((v, i) => { s2 += '<circle cx="' + x(i).toFixed(1) + '" cy="' + yP(v).toFixed(1) + '" r="2.8" fill="' + col + '"><title>' + fmtDay(H[i].date) + ' ' + name + ': ' + Math.round(v * 100) + '% D' + (H[i].ours ? '' : ' (polls only)') + '</title></circle>'; });
+      const li = vals.length - 1;
+      s2 += '<text class="ev-val" x="' + (x(li) - 4).toFixed(1) + '" y="' + (yP(vals[li]) + (name === 'House' ? -7 : name === 'Senate' ? 13 : -7)).toFixed(1) + '" text-anchor="end" style="fill:' + col + ';font-weight:700">' + name + ' ' + Math.round(vals[li] * 100) + '%</text>';
+    });
+    // changes table
+    const chg = (a, b, digits, pct) => {
+      if (a == null || b == null) return '<span class="muted">—</span>';
+      const d = pct ? (a - b) * 100 : a - b;
+      if (Math.abs(d) < (pct ? 0.5 : 0.05)) return '<span class="muted">no change</span>';
+      return '<span class="tr-chg ' + (d > 0 ? 'up' : 'dn') + '">' + (d > 0 ? '+' : '−') + Math.abs(d).toFixed(digits) + (pct ? ' pts' : '') + '</span>';
+    };
+    const o = pick(last), op = pick(prev), of = firstOurs ? firstOurs.ours : null;
+    const sinceLab = firstOurs && firstOurs !== last ? 'since ' + fmtDay(firstOurs.date) : null;
+    const rows = [
+      '<tr><td>Our forecast, national vote</td><td class="n">' + (last.nat != null ? fm(last.nat) : '—') + '</td><td class="n">' + chg(last.nat, prev.nat, 1) + '</td>' + (sinceLab ? '<td class="n">' + chg(last.nat, firstOurs.nat, 1) + '</td>' : '') + '</tr>',
+      '<tr><td>Polls, national vote</td><td class="n">' + fm(last.G0) + '</td><td class="n">' + chg(last.G0, prev.G0, 1) + '</td>' + (sinceLab ? '<td class="n">' + chg(last.G0, firstOurs.G0, 1) + '</td>' : '') + '</tr>',
+      '<tr><td>House: D seats · majority</td><td class="n">' + o.house.toFixed(0) + ' · ' + Math.round(o.hp * 100) + '%</td><td class="n">' + chg(o.house, op.house, 1) + ' · ' + chg(o.hp, op.hp, 0, true) + '</td>' + (sinceLab ? '<td class="n">' + chg(o.house, of.house, 1) + ' · ' + chg(o.hp, of.hp, 0, true) + '</td>' : '') + '</tr>',
+      '<tr><td>Senate: D seats · control</td><td class="n">' + o.senate.toFixed(1) + ' · ' + Math.round(o.sp * 100) + '%</td><td class="n">' + chg(o.senate, op.senate, 1) + ' · ' + chg(o.sp, op.sp, 0, true) + '</td>' + (sinceLab ? '<td class="n">' + chg(o.senate, of.senate, 1) + ' · ' + chg(o.sp, of.sp, 0, true) + '</td>' : '') + '</tr>',
+      '<tr><td>Governors: D · 26+</td><td class="n">' + o.gov.toFixed(1) + ' · ' + Math.round(o.gp * 100) + '%</td><td class="n">' + chg(o.gov, op.gov, 1) + ' · ' + chg(o.gp, op.gp, 0, true) + '</td>' + (sinceLab ? '<td class="n">' + chg(o.gov, of.gov, 1) + ' · ' + chg(o.gp, of.gp, 0, true) + '</td>' : '') + '</tr>',
+      '<tr><td>Ballots counted (UF)</td><td class="n">' + (last.ev ? (last.ev / 1e6).toFixed(2) + 'M' : '—') + '</td><td class="n">' + (last.ev && prev.ev ? '+' + ((last.ev - prev.ev) / 1e6).toFixed(2) + 'M' : '—') + '</td>' + (sinceLab ? '<td class="n">' + (last.ev && firstOurs.ev ? '+' + ((last.ev - firstOurs.ev) / 1e6).toFixed(2) + 'M' : '—') + '</td>' : '') + '</tr>',
+    ].join('');
+    // race movers: Democratic chance, our forecast
+    const names = {}; (D.senate || []).forEach((r) => { names[r.id] = r; }); (D.gov || []).forEach((r) => { names[r.id] = r; });
+    const movers = (a, b) => {
+      if (!a || !b) return [];
+      const out = [];
+      ['sen', 'govp'].forEach((k) => Object.keys(a[k] || {}).forEach((id) => { if (b[k] && b[k][id] != null) out.push({ id, now: a[k][id], was: b[k][id], d: a[k][id] - b[k][id] }); }));
+      return out.filter((m) => Math.abs(m.d) >= 0.02).sort((p, q) => Math.abs(q.d) - Math.abs(p.d)).slice(0, 5);
+    };
+    const mv = (list) => list.length ? list.map((m) => { const r = names[m.id] || {}; return '<b>' + m.id + '</b> ' + (r.dn ? esc(lastName(r.dn)) + ' vs. ' + esc(lastName(r.rn)) + ': ' : '') + Math.round(m.was * 100) + '% → ' + Math.round(m.now * 100) + '% D'; }).join('; ') : 'no race moved 2 points or more';
+    const mvDay = movers(last.ours, prev.ours), mvAll = of && firstOurs !== last ? movers(last.ours, of) : [];
+    box.innerHTML = '<h3>How the forecast has moved <span class="auto-tag">one point a day</span></h3>' +
+      '<div class="tr-grid"><div><div class="chart" id="trNat"><svg viewBox="0 0 ' + W + ' ' + HT + '" role="img" aria-label="National House vote by day: our forecast and the polls">' + s1 + '</svg></div><p class="chart-cap">National House vote by day: our forecast (gold) and the polling average (gray, dashed).</p></div>' +
+      '<div><div class="chart" id="trOdds"><svg viewBox="0 0 ' + W + ' ' + HT + '" role="img" aria-label="Chance of a Democratic House majority, Senate control and 26 or more governors, by day">' + s2 + '</svg></div><p class="chart-cap">Democratic chances by day, our forecast' + (H.some((h) => !h.ours) ? ' (polls only before Oct 13, when our forecast started)' : '') + '.</p></div></div>' +
+      '<div class="table-scroll"><table class="nc-table"><thead><tr><th>' + fmtDay(last.date) + '</th><th class="n">Now</th><th class="n">Since ' + fmtDay(prev.date) + '</th>' + (sinceLab ? '<th class="n">' + sinceLab.charAt(0).toUpperCase() + sinceLab.slice(1) + '</th>' : '') + '</tr></thead><tbody>' + rows + '</tbody></table></div>' +
+      '<p class="small" style="margin:8px 0 0"><b>Races that moved since ' + fmtDay(prev.date) + ':</b> ' + mv(mvDay) + '.' + (mvAll.length ? ' <b>Since ' + fmtDay(firstOurs.date) + ':</b> ' + mv(mvAll) + '.' : '') + '</p>' +
+      '<p class="chart-cap">Recorded by the update job after each day\'s last run, with every setting at its default; earlier days re-run today\'s model on that day\'s inputs. Odds move with the polls and the early vote, not with anything you change on this page.</p>';
+  }
+
   // ---------------------------------------------------------------- scenario bar
   function buildPresets() {
     const box = $('presets');
@@ -1510,6 +1595,7 @@
     renderMap();
     renderDetail();
     renderForecastCard();
+    renderTrend();
     renderResults();
     renderLens();
     renderTable();
