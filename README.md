@@ -20,6 +20,7 @@ A GitHub Actions job (`.github/workflows/update.yml`) runs every three hours. It
 | Candidates, incumbency, race polls, generic-ballot polls | [ElectIndex forecast data](https://github.com/ElectIndex/26_us_forecast_data) | automatic |
 | Race polls the feed doesn't have yet (from the pollsters' own releases) | `pipeline/content/extra_polls.csv` | daily scheduled refresh; a row drops out once the feed has the poll |
 | Early-vote ballot counts and party splits | [UF Election Lab](https://election.lab.ufl.edu/early-vote/2026-early-voting/) | automatic |
+| Daily record of the forecast (national vote, odds, every Senate and governor race's chance), shown on the Outlook as "How the forecast has moved" | `pipeline/fc_trend.js`, run after each build; kept in `site/data.json` (`fc_hist`), one point per day | automatic |
 | Official early vote by party registration (PA, FL, NV, CO, IA, AZ) vs. the same point in 2022 and 2024 | `pipeline/evreg.py`; baselines in `pipeline/static/ev_baselines.json` (built by the *Build early-vote baselines* workflow) and `pipeline/content/ev_points.json`; raw daily files under `pipeline/data/earlyvote/2026/` | automatic |
 | National polling average (generic ballot) | computed from the poll list | automatic |
 | Our forecast: national vote and Senate/governor adjustments | `pipeline/backtest/backtest.py`, inputs in `pipeline/content/fundamentals.json` | automatic; approval and special-election inputs checked daily |
