@@ -1,5 +1,5 @@
 {
- "asof": "2026-10-14",
+ "asof": "2026-10-15",
  "about": "Hand-entered same-point baselines for the official early vote by party registration, from dated official reports and news reports that quoted them. Counts are returned ballots (m='ret': mail only; 'voted': mail plus in-person early). Where only shares or a lead were reported, 'gap' (D minus R as a percent of all ballots) is given directly and counts are derived or left out. Machine-built points (Colorado's releases, Florida's archive, UF Election Lab finals) are in pipeline/static/ev_baselines.json.",
  "notes": {
   "PA": "No in-person early voting, so this is mail ballots returned. Pennsylvania's mail electorate is heavily Democratic whatever the year (about D+53 at 12 days out in 2022, when Republicans won the national House vote by 3), so it says little about direction; the slope fitted for mail-only states is small for that reason. Requests by party are shown for context.",
@@ -612,6 +612,138 @@
    "n": 625631,
    "src": "UF Election Lab 2024 file, final",
    "url": "https://election.lab.ufl.edu/early-vote/2024-early-voting/"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-10-14",
+   "m": "voted",
+   "all": 526219,
+   "d": 227459,
+   "r": 192406,
+   "n": 106354,
+   "src": "WCTV, Oct 14, 2024 (Division of Elections data as of Monday afternoon: 526,219 mail ballots returned, 227,459 Democrats, 192,406 Republicans, 95,750 no-party, 10,604 third-party; mail only, in-person opened Oct 21)",
+   "url": "https://www.wctv.tv/2024/10/15/florida-mail-in-ballots-top-526000-democrats-hold-slight-edge-over-republicans"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-10-15",
+   "m": "voted",
+   "all": 603731,
+   "d": 260671,
+   "r": 220699,
+   "n": 122361,
+   "src": "CBS News Miami, Oct 15, 2024 (Division of Elections data as of Tuesday: 603,731 mail ballots received, 260,671 Democrats, 220,699 Republicans, 110,265 no-party, 12,096 third-party; mail only)",
+   "url": "https://www.cbsnews.com/miami/news/more-than-600000-vote-by-mail-ballots-received-in-florida-elections-offices"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-10-16",
+   "m": "voted",
+   "all": 709359,
+   "d": 303597,
+   "r": 262136,
+   "n": 143626,
+   "src": "Florida Politics, Oct 17, 2024 (state data as of Wednesday morning, Oct 16: 709,359 mail ballots returned, 303,597 Democrats, 262,136 Republicans, 129,474 no-party, 14,152 third-party; the article carries no dateline, date taken from its 'Wednesday morning' and Oct 17 comments; mail only)",
+   "url": "https://floridapolitics.com/archives/701864-dems-lead-republicans-in-mail-ballots-returned-with-room-to-stretch-lead-further/"
+  },
+  {
+   "st": "FL",
+   "year": 2022,
+   "date": "2022-10-21",
+   "m": "voted",
+   "all": 1043953,
+   "d": 438552,
+   "r": 400287,
+   "n": 205114,
+   "src": "Jacksonville Today, Oct 21, 2022 (Division of Elections data released Friday: 1,043,953 mail ballots cast, 438,552 Democrats, 400,287 Republicans, 189,910 no-party, 15,204 third-party; mail only, in-person opened Oct 24)",
+   "url": "https://jaxtoday.org/2022/10/21/nearly-55000-have-voted-by-mail-in-northeast-florida/"
+  },
+  {
+   "st": "FL",
+   "year": 2022,
+   "date": "2022-10-24",
+   "m": "voted",
+   "all": 1164753,
+   "d": 491708,
+   "r": 444954,
+   "n": 228091,
+   "src": "Florida Politics, Oct 24, 2022 (state data as of Monday morning, the first day of in-person early voting: Democrats 491,708 mail ballots, Republicans 444,954, no-party 211,301, minor-party 16,790; total summed from those, article says 'more than 1.16 million')",
+   "url": "https://floridapolitics.com/archives/566121-as-early-voting-begins-florida-democrats-hold-slight-lead-in-mail-ballots/"
+  },
+  {
+   "st": "PA",
+   "year": 2024,
+   "date": "2024-10-22",
+   "m": "ret",
+   "all": 1051655,
+   "d": 649060,
+   "r": 300862,
+   "n": 101733,
+   "src": "The Center Square via Williamsport Sun-Gazette, Oct 24, 2024 (Department of State data as of 8 a.m. Tuesday, Oct 22: 1,051,655 mail ballots returned, 649,060 Democrats, 300,862 Republicans, 101,733 unaffiliated)",
+   "url": "https://www.sungazette.com/news/top-news/2024/10/over-1-million-ballots-already-cast-in-pennsylvania/"
+  },
+  {
+   "st": "IA",
+   "year": 2022,
+   "date": "2022-10-20",
+   "m": "ret",
+   "all": 11205,
+   "d": 5548,
+   "r": 4202,
+   "n": 1455,
+   "src": "Iowa Secretary of State daily absentee report, Oct 20, 2022, via Bleeding Heartland (ballots received: statewide rows of the mail/email, auditor in-person, satellite tables summed by party; total is the sum of the tables)",
+   "url": "https://www.bleedingheartland.com/2022/10/20/iowa-absentee-ballot-numbers-in-the-2022-general-election/"
+  },
+  {
+   "st": "IA",
+   "year": 2022,
+   "date": "2022-10-21",
+   "m": "ret",
+   "all": 20762,
+   "d": 10038,
+   "r": 7903,
+   "n": 2821,
+   "src": "Iowa Secretary of State daily absentee report, Oct 21, 2022, via Bleeding Heartland (ballots received: statewide rows of the mail/email, auditor in-person, satellite tables summed by party; total is the sum of the tables)",
+   "url": "https://www.bleedingheartland.com/2022/10/20/iowa-absentee-ballot-numbers-in-the-2022-general-election/"
+  },
+  {
+   "st": "IA",
+   "year": 2022,
+   "date": "2022-10-24",
+   "m": "ret",
+   "all": 34635,
+   "d": 17134,
+   "r": 12702,
+   "n": 4799,
+   "src": "Iowa Secretary of State daily absentee report, Oct 24, 2022, via Bleeding Heartland (ballots received: statewide rows of the mail/email, auditor in-person, satellite tables summed by party; total is the sum of the tables)",
+   "url": "https://www.bleedingheartland.com/2022/10/20/iowa-absentee-ballot-numbers-in-the-2022-general-election/"
+  },
+  {
+   "st": "IA",
+   "year": 2022,
+   "date": "2022-10-25",
+   "m": "ret",
+   "all": 70878,
+   "d": 38014,
+   "r": 23526,
+   "n": 9338,
+   "src": "Iowa Secretary of State daily absentee report, Oct 25, 2022, via Bleeding Heartland (ballots received: statewide rows of the mail/email, auditor in-person, satellite and drop-box tables summed by party; the page states the total received as 70,878)",
+   "url": "https://www.bleedingheartland.com/2022/10/20/iowa-absentee-ballot-numbers-in-the-2022-general-election/"
+  },
+  {
+   "st": "IA",
+   "year": 2022,
+   "date": "2022-10-26",
+   "m": "ret",
+   "all": 99413,
+   "d": 54178,
+   "r": 32267,
+   "n": 12968,
+   "src": "Iowa Secretary of State daily absentee report, Oct 26, 2022, via Bleeding Heartland (ballots received: statewide rows of the mail/email, auditor in-person, satellite and drop-box tables summed by party; the page states the total received as 99,413)",
+   "url": "https://www.bleedingheartland.com/2022/10/20/iowa-absentee-ballot-numbers-in-the-2022-general-election/"
   }
  ]
 }

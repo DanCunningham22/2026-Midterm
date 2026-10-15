@@ -1,7 +1,75 @@
 {
- "asof": "2026-10-14",
+ "asof": "2026-10-15",
  "note": "Maintained daily. Every item links to the page that confirms it.",
  "happened": [
+  {
+   "date": "2026-10-15",
+   "title": "Talarico reports $64 million quarter; Ossoff $33 million, Peltola $17 million",
+   "what": "James Talarico's campaign said it raised $64 million from July through September, which it called the largest Senate quarter on record, against $18 million for Ken Paxton; Jon Ossoff reported $33 million raised and $26 million on hand, and Mary Peltola $17 million, as third-quarter FEC reports came due.",
+   "why": "Democratic challengers in Republican-held Texas and Alaska enter the final three weeks with more money than their opponents, and Ossoff's cash lets Democratic groups leave Georgia for pickup states.",
+   "races": [
+    "TX-SEN",
+    "GA-SEN",
+    "AK-SEN"
+   ],
+   "src": "Texas Tribune, Oct 15; AJC, Oct 15; Alaska Native News, Oct 14",
+   "url": "https://www.texastribune.org/2026/10/15/james-talarico-64-million-fundraising-texas-senate/",
+   "aff": "Campaign-reported figures"
+  },
+  {
+   "date": "2026-10-14",
+   "title": "Sabato moves Kansas Senate to Toss-up, four other races shift",
+   "what": "Sabato's Crystal Ball moved Kansas from Leans Republican to Toss-up, citing 'a full-on Republican rescue operation' for Sen. Roger Marshall, and shifted Nebraska to Leans Republican, New Hampshire to Likely Democratic, Minnesota to Leans Democratic and Mississippi to Likely Republican.",
+   "why": "By Crystal Ball's count Republicans now need four of the five Toss-ups to hold the Senate while Democrats need two, the first time this cycle Republicans need more of them.",
+   "races": [
+    "KS-SEN",
+    "NE-SEN",
+    "NH-SEN",
+    "MN-SEN",
+    "MS-SEN"
+   ],
+   "src": "Newsweek, Oct 14",
+   "url": "https://www.newsweek.com/republicans-get-new-midterm-warning-sign-as-kansas-senate-race-shifts-12569771",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-14",
+   "title": "CLF pulls $3 million from Cuellar's district for TX-15 and TX-34",
+   "what": "Congressional Leadership Fund is removing $3 million reserved against Rep. Henry Cuellar in TX-28, after spending $4.6 million there, and moving it to defend Rep. Monica De La Cruz in TX-15 and to press Rep. Vicente Gonzalez in TX-34.",
+   "why": "Republicans are giving up on a redrawn Democratic-held target to protect a Cook Toss Up and chase one, narrowing the House map they drew for themselves in Texas.",
+   "races": [
+    "TX-28",
+    "TX-15",
+    "TX-34"
+   ],
+   "src": "Texas Tribune via TPR, Oct 14",
+   "url": "https://www.tpr.org/government-politics/2026-10-14/house-republicans-pull-3-million-reserved-for-ads-against-henry-cuellar",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-14",
+   "title": "Supreme Court leaves party ad-rate discount in place",
+   "what": "The Supreme Court let the FCC avoid a Fourth Circuit deadline to rule on a Democratic challenge, led by Sen. Jon Ossoff, to its March decision extending candidates' lowest-unit-charge ad discounts to party committees; Justices Sotomayor and Jackson would have denied the request.",
+   "why": "The discount stays in force through Election Day, and Republican party committees held about $233 million at the end of August against about $130 million for Democrats.",
+   "races": [
+    "US"
+   ],
+   "src": "Reuters via WHBL, Oct 14",
+   "url": "https://whbl.com/2026/10/14/us-supreme-court-again-backs-republicans-in-clash-over-political-ad-rates/",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-14",
+   "title": "Talarico takes CNN town hall as Paxton launches bus tour",
+   "what": "At a CNN/Jubilee town hall in Fort Worth, James Talarico said 'the Bible is silent on the issue of abortion,' drew a rebuttal from a Catholic voter, and called ICE a 'secret police force' he does not want to abolish; Ken Paxton, who has agreed to no debate, announced a 30-stop 'Come and Take It' bus tour starting Oct 17 in Rockwall.",
+   "why": "Texas is a Toss-up Republican-held seat, and the abortion exchange is being amplified by conservative outlets while Paxton campaigns without debating.",
+   "races": [
+    "TX-SEN"
+   ],
+   "src": "CBS Texas, Oct 14; Texas Tribune, Oct 14",
+   "url": "https://www.cbsnews.com/texas/news/james-talarico-cnn-town-hall-abortion-ice-ken-paxton-texas-senate-10-14-26/",
+   "aff": ""
+  },
   {
    "date": "2026-10-14",
    "title": "Senate Majority PAC adds to Michigan and Maine, pauses Georgia and North Carolina",
@@ -79,42 +147,6 @@
   },
   {
    "date": "2026-10-13",
-   "title": "Hinson breaks with Trump on Russian diesel in final Iowa debate",
-   "what": "In the second and last Hinson-Turek debate, Rep. Ashley Hinson said she disagreed with Trump's deal easing sanctions on Russian diesel, while Josh Turek accused her of pushing Iowa toward a 'second farm crisis' through tariffs and Iran-war votes.",
-   "why": "Iowa's open Republican-held seat is a Cook Toss Up, and Hinson's distance from Trump on fuel prices shows where Republicans think the race is being lost.",
-   "races": [
-    "IA-SEN"
-   ],
-   "src": "Daily Iowan, Oct 13",
-   "url": "https://dailyiowan.com/2026/10/13/hinson-turek-debate-farms-iowa-data-centers-in-last-debate/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-13",
-   "title": "Collins, Jackson spar over Iran war funding in third Maine debate",
-   "what": "Troy Jackson said Sen. Susan Collins, as Appropriations chair, could defund the Iran war, while Collins said Jackson had filed no FEC reports and did not know Medicare from Medicaid; both opposed tariffs on Canada.",
-   "why": "Maine is a Republican-held seat central to a Democratic Senate majority, and a Suffolk poll released the same week had Jackson at 49-47.",
-   "races": [
-    "ME-SEN"
-   ],
-   "src": "Portland Press Herald, Oct 13",
-   "url": "https://www.pressherald.com/2026/10/13/susan-collins-and-troy-jackson-square-off-in-latest-debate/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-13",
-   "title": "Sununu keeps Trump at arm's length in first New Hampshire debate",
-   "what": "In the first Pappas-Sununu Senate debate, in North Conway, John Sununu said he had opposed Trump in 2016 and 2024 and tied Chris Pappas to Biden, while Pappas accused Sununu of siding with drug companies; Pappas has agreed to two more debates.",
-   "why": "New Hampshire is the Democratic-held seat Republicans most need to flip, and Sununu's distance from Trump is their path in a state Harris carried.",
-   "races": [
-    "NH-SEN"
-   ],
-   "src": "Washington Examiner, Oct 13",
-   "url": "https://www.washingtonexaminer.com/news/campaigns/congressional/4764399/sununu-trump-senate-debate-pappas-biden/",
-   "aff": "R-aligned"
-  },
-  {
-   "date": "2026-10-13",
    "title": "Trump endorses Tafoya in Minnesota and Wilson for Alaska governor",
    "what": "Trump told his Youngstown rally to vote for Michele Tafoya, who has run as a pro-choice Republican independent of the president and called his rhetoric about Minnesota's Somali community inappropriate; on Oct 13 he endorsed Bernadette Wilson for Alaska governor and said he would not back Dave Bronson.",
    "why": "The Minnesota endorsement undercuts Tafoya's distancing strategy in a race where Peggy Flanagan leads by four, and consolidating Republicans behind Wilson is the GOP's only path in Alaska's ranked-choice governor race.",
@@ -124,31 +156,6 @@
    ],
    "src": "MPR News, Oct 13; Alaska's News Source, Oct 13",
    "url": "https://www.mprnews.org/story/2026/10/13/michele-tafoya-endorsed-by-trump-for-senate-minnesota",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-13",
-   "title": "Texas polls: Talarico narrowly ahead, Abbott edges back in front",
-   "what": "Marist (Oct 8-11) has James Talarico over Ken Paxton 47-45 among likely voters and Gov. Greg Abbott over Gina Hinojosa 49-45; Siena/ReconMR (Oct 5-8) has Talarico 48-44, down from a six-point lead in September, and Abbott 48-47 after trailing by four.",
-   "why": "Texas is still a live Senate pickup, but both polls show Republicans recovering, especially in the governor race Cook rates Lean Republican.",
-   "races": [
-    "TX-SEN",
-    "TX-GOV"
-   ],
-   "src": "Marist, Oct 14; Siena, Oct 13",
-   "url": "https://maristpoll.marist.edu/polls/2026-midterm-elections-in-texas-october-2026/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-12",
-   "title": "Rick Jackson skips Atlanta Press Club governor debate",
-   "what": "Republican nominee Rick Jackson skipped the Atlanta Press Club debate to campaign with Gov. Brian Kemp near Augusta, the first general-election governor no-show since 1994; Keisha Lance Bottoms debated an empty podium for 30 minutes and called him a coward.",
-   "why": "Cook rates Georgia's open governorship a Toss Up, and the no-show gives Democrats a message in a race they need for a majority of governorships.",
-   "races": [
-    "GA-GOV"
-   ],
-   "src": "WABE/Georgia Recorder, Oct 13",
-   "url": "https://www.wabe.org/bottoms-faces-empty-podium-on-debate-stage-while-jackson-campaigns-with-kemp/",
    "aff": ""
   },
   {
@@ -165,46 +172,6 @@
   }
  ],
  "upcoming": [
-  {
-   "date": "2026-10-14",
-   "time": "",
-   "title": "Iowa absentee voting begins",
-   "what": "Oct. 14 is the first day of absentee voting in Iowa, and the deadline to vote absentee in person is Nov. 2.",
-   "why": "Early ballots begin in Iowa's competitive Senate and governor races and in the IA-01, IA-02 and IA-03 House contests.",
-   "races": [
-    "IA-SEN",
-    "IA-GOV",
-    "IA-01",
-    "IA-02",
-    "IA-03"
-   ],
-   "src": "Iowa Secretary of State (VoterReady), accessed Oct 13",
-   "url": "https://voterready.iowa.gov/"
-  },
-  {
-   "date": "2026-10-14",
-   "time": "11:00 PM",
-   "title": "Alaska House candidates meet in 'Debate for the State'",
-   "what": "Alaska Public Media's Debate for the State features the U.S. House candidates from 7 to 8 p.m. Alaska time, on statewide radio, TV and alaskapublic.org.",
-   "why": "Rep. Nick Begich's at-large seat is one of the Republican-held seats Democrats are contesting in a state where the Senate race is a Toss-up.",
-   "races": [
-    "AK-01"
-   ],
-   "src": "Alaska Public Media, Oct 2",
-   "url": "https://alaskapublic.org/about/station-news/2026-10-02/your-guide-to-alaskas-election-coverage"
-  },
-  {
-   "date": "2026-10-14",
-   "time": "8:00 PM",
-   "title": "CNN town hall with Talarico in Fort Worth",
-   "what": "CNN and Jubilee Media host a town hall with Texas Senate nominee James Talarico in Fort Worth, moderated by Erin Burnett, live on CNN; Ken Paxton has accepted no debate invitation.",
-   "why": "Texas is a Republican-held seat on Democrats' path to a majority, with Talarico up two in Marist's Oct 8-11 poll.",
-   "races": [
-    "TX-SEN"
-   ],
-   "src": "CNN Press Room, Sep 28",
-   "url": "https://cnnpressroom.blogs.cnn.com/2026/09/28/cnn-and-jubilee-media-partner-to-host-cnn-jubilee-town-hall-with-james-talarico/"
-  },
   {
    "date": "2026-10-15",
    "time": "",
@@ -308,6 +275,18 @@
    "url": "https://thenevadaindependent.com/elections/2026/general"
   },
   {
+   "date": "2026-10-17",
+   "time": "",
+   "title": "Paxton's 'Come and Take It' bus tour begins in Rockwall",
+   "what": "Ken Paxton starts an 18-day, 30-plus-stop bus tour in Rockwall that is to end at the Alamo on Nov. 2.",
+   "why": "Paxton has accepted no debate, so the tour is his main in-person push in a Senate race rated a Toss-up.",
+   "races": [
+    "TX-SEN"
+   ],
+   "src": "Texas Tribune, Oct 14",
+   "url": "https://www.texastribune.org/2026/10/14/ken-paxton-bus-tour-texas-senate-come-and-take-it/"
+  },
+  {
    "date": "2026-10-19",
    "time": "",
    "title": "Texas early voting begins",
@@ -319,6 +298,21 @@
    ],
    "src": "FOX 7 Austin, Oct 12",
    "url": "https://www.fox7austin.com/election/texas-voting-guide-important-dates-november-election"
+  },
+  {
+   "date": "2026-10-19",
+   "time": "",
+   "title": "Alaska and Colorado early in-person voting begins",
+   "what": "Early in-person voting opens in Alaska (through Nov. 3) and Colorado's voter service centers open (through Nov. 3); Texas also opens the same day.",
+   "why": "In-person ballots start in Alaska's Toss-up Senate race and Lean Democrat governor race and in Colorado's CO-08 Toss Up.",
+   "races": [
+    "AK-SEN",
+    "AK-GOV",
+    "AK-01",
+    "CO-08"
+   ],
+   "src": "Ballotpedia, accessed Oct 15",
+   "url": "https://ballotpedia.org/Early_voting_dates,_2026"
   },
   {
    "date": "2026-10-20",
@@ -436,6 +430,19 @@
    ],
    "src": "FOX 35 Orlando, May 27",
    "url": "https://fox35orlando.com/news/florida-2026-election-dates-primary-general-election-voter-registration-deadlines"
+  },
+  {
+   "date": "2026-10-24",
+   "time": "",
+   "title": "Obama rallies in Cleveland with Brown and Acton",
+   "what": "Former President Barack Obama is to campaign in Cleveland with Senate nominee Sherrod Brown and governor nominee Amy Acton on Oct. 24, the first Saturday of Ohio's final-stretch early voting.",
+   "why": "Both Ohio races are Cook Toss Ups, and Republicans have sent Trump to the state twice in October.",
+   "races": [
+    "OH-SEN",
+    "OH-GOV"
+   ],
+   "src": "Axios Cleveland, Oct 14",
+   "url": "https://www.axios.com/local/cleveland/2026/10/14/obama-trump-ohio-midterm-rallies"
   },
   {
    "date": "2026-10-27",
@@ -1149,10 +1156,10 @@
      "race": "AZ-05"
     }
    ],
-   "status": "announced",
-   "src": "FOX 10 Phoenix, Oct 14",
-   "url": "https://www.fox10phoenix.com/election/president-trump-headlines-bullhead-city-rally-campaign-arizona-republicans",
-   "note": "Trump 47 Committee rally; Biggs to speak, Reps. Gosar and Hamadeh attending; 1 p.m. local."
+   "status": "held",
+   "src": "AZFamily, Oct 14",
+   "url": "https://www.azfamily.com/2026/10/14/trump-campaigns-bullhead-city-boost-republicans-part-midterm-rally-blitz/",
+   "note": "Spoke about 100 minutes; Biggs, Lamb, Gosar and Hamadeh joined; attacked Gov. Hobbs."
   },
   {
    "date": "2026-10-14",
@@ -1165,12 +1172,16 @@
     {
      "name": "Aaron Flint",
      "race": "MT-01"
+    },
+    {
+     "name": "Kurt Alme",
+     "race": "MT-SEN"
     }
    ],
-   "status": "announced",
-   "src": "Daily Inter Lake, Oct 14",
-   "url": "https://dailyinterlake.com/news/2026/oct/14/trump-first-sitting-president-to-visit-northwest-montana-since-ford/",
-   "note": "RNC rally for Aaron Flint; first sitting president in northwest Montana since Ford; 6:15 p.m. local."
+   "status": "held",
+   "src": "Montana Free Press, Oct 14",
+   "url": "https://montanafreepress.org/2026/10/14/trump-rallies-for-flint-kalispell/",
+   "note": "About 75-minute speech for Flint; Gianforte, Zinke, Downing and Alme spoke first."
   },
   {
    "date": "2026-10-14",
@@ -1179,12 +1190,17 @@
    "city": "Atlanta",
    "st": "GA",
    "venue": "Hartsfield-Jackson Atlanta International Airport",
-   "boosting": [],
-   "status": "announced",
-   "src": "WSB-TV, Oct 12",
-   "url": "https://www.wsbtv.com/news/local/pres-trump-campaign-georgia-with-rep-collins/6LQTRUDDVBHLVGSDSVADKLNKHY/",
+   "boosting": [
+    {
+     "name": "Mike Collins",
+     "race": "GA-SEN"
+    }
+   ],
+   "status": "held",
+   "src": "GPB, Oct 14",
+   "url": "https://www.gpb.org/news/2026/10/14/jd-vance-encourages-supporters-vote-for-mike-collins-in-atlanta-election-day-looms",
    "aff": "",
-   "note": "Wednesday-morning meeting with supporters at the airport; candidates not named."
+   "note": "Tarmac remarks for Collins before a private fundraiser; Rick Jackson did not attend."
   },
   {
    "date": "2026-10-15",
