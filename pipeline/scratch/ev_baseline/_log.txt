@@ -31,12 +31,10 @@ PA wayback 20240925205010: applications only (no returns yet), skipped
 PA 2024-11-05: returned 1,912,676 D 1,053,971 R 629,505
 pa_wayback: 1 points
 UF 2024 wayback: 8 daily snapshots
-UF 2024 wayback 20240921030421: wayback: <urlopen error _ssl.c:983: The handshake operation 
-UF 2024 wayback: 63 points
+UF 2024 wayback: 69 points
 uf_wayback_2024: 69 points
 FL 2024 wayback: 19 daily snapshots
-FL 2024 wayback 20241003150933: wayback: <urlopen error _ssl.c:983: The handshake operation 
-FL 2024 wayback: 14 points
+FL 2024 wayback: 16 points
 fl_wayback_2024: 16 points
 UF 2024 finals: 27 states with party
 UF 2020 finals: 20 states with party
