@@ -1,6 +1,6 @@
 {
  "asof": "2026-10-15",
- "headline": "The first official same-point comparison is in: Florida's returned mail ballots are D+6.7 by registration, against D+5.8 at this point in 2024, a year Republicans carried the state by 13. Elsewhere every measure is more Democratic than 2024 (Ohio's early electorate has gone from 36% Republican to 41% Democratic), while against 2022 mail volume is down in Wisconsin and North Carolina and Georgia's in-person turnout is running 40% ahead. Democrats have moved from mail to voting in person, which bends every comparison.",
+ "headline": "The first official same-point comparisons are in, on thin numbers: Florida's returned mail ballots were D+6.7 by registration on Oct 14, against D+5.8 at the same point in 2024, a year Republicans carried the state by 13; Iowa's first 1,273 absentee ballots are D+44, against D+12 in 2022 and D+3.5 in 2024. Elsewhere every measure is more Democratic than 2024 (Ohio's early electorate has gone from 36% Republican to 41% Democratic), while against 2022 mail volume is down in Wisconsin and North Carolina and Georgia's in-person turnout is running 40% ahead. Democrats have moved from mail to voting in person, which bends every comparison.",
  "measures": [
   {
    "st": "IA",
@@ -125,7 +125,7 @@
   },
   {
    "title": "Florida's mail vote is a shade more Democratic than at this point in 2024.",
-   "html": "By registration, 669,634 returned mail ballots were D+6.7 as of Oct 14 (286,869 Democrats, 241,910 Republicans, 140,855 others); at the same point in 2024, 709,359 ballots were D+5.8 (303,597 to 262,136). Republicans erased the Democratic mail lead once in-person voting opened in both 2022 and 2024; it opens Oct 19 this year, and about 1.77 million mail ballots are still out.",
+   "html": "By registration, 669,634 returned mail ballots were D+6.7 as of Oct 14 (286,869 Democrats, 241,910 Republicans, 140,855 others); at the same point in 2024, 709,359 ballots were D+5.8 (303,597 to 262,136). The 2024 baseline has gaps between 20 and 8 days out, so the app's card shows the comparison only on days it can match. Republicans erased the Democratic mail lead once in-person voting opened in both 2022 and 2024; it opens Oct 19 this year, and about 1.66 million mail ballots are still out.",
    "sources": [
     [
      "Florida Division of Elections via the app's official comparison, Oct 14",
@@ -239,10 +239,10 @@
   ]
  ],
  "calendar_note": "North Carolina's one-stop voting opened Oct 15; Georgia's in-person voting opened Oct 13; Iowa and Kansas mail ballots went out Oct 14. Colorado mailed its ballots Oct 2-9; Oct 19 is when its voter service centers must open. Pennsylvania and New Hampshire have no early in-person voting.",
- "cast_at": 5447523,
+ "cast_at": 5576000,
  "cast_at_note": "Ballots counted (UF Election Lab, 38 jurisdictions reporting, state data as of Oct 9-15) when these comparisons were compiled; sets the automatic early-vote weight.",
  "signals_asof": "2026-10-15",
- "signals_verdict": "The first official same-point comparison, Florida's, is close to 2024: returned mail ballots are D+6.7 by registration vs. D+5.8 at this point two years ago, when Republicans went on to carry the state by 13; the other five states' 2022 and 2024 baselines begin 12-19 days out, so their comparisons arrive over the coming week. Elsewhere the early vote is more Democratic than 2024 wherever it can be measured (Ohio's early voters have gone from 36% Republican and 26% Democratic to 41% Democratic and 28% Republican), while against 2022 mail volume is down in Wisconsin and North Carolina and Georgia's in-person turnout is up 40%; all of it is bent by Democrats moving from mail to in person, so the early vote is consistent with the polls rather than ahead of them. The next tests are North Carolina's first one-stop day, Nevada's in-person start on Oct 17 and Florida's on Oct 19.",
+ "signals_verdict": "The official same-point comparison rests on thin ground so far: Florida's returned mail ballots were D+6.7 by registration on Oct 14 vs. D+5.8 at this point in 2024, when Republicans went on to carry the state by 13, and Iowa's first 1,273 absentee ballots are D+44 vs. D+12 in 2022 and D+3.5 in 2024, far too few to mean much; Pennsylvania's, Nevada's and Colorado's baselines begin 12-15 days out, so their comparisons arrive over the coming week. Elsewhere the early vote is more Democratic than 2024 wherever it can be measured (Ohio's early voters have gone from 36% Republican and 26% Democratic to 41% Democratic and 28% Republican), while against 2022 mail volume is down in Wisconsin and North Carolina and Georgia's in-person turnout is up 40%; all of it is bent by Democrats moving from mail to in person, so the early vote is consistent with the polls rather than ahead of them. The next tests are North Carolina's first one-stop day, Nevada's in-person start on Oct 17 and Florida's on Oct 19.",
  "signals": [
   {
    "dir": "D",
