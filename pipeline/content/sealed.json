@@ -18,6 +18,12 @@
    "sealed": "2026-10-14T10:55:00-04:00",
    "label": "Oct 14, 10:55 AM ET",
    "sha256": "3aa73b3e121e46fc235de31de6b27dfb9ea69cebca5793a5ffd7ee5e083917c0"
+  },
+  {
+   "v": 4,
+   "sealed": "2026-10-16T10:55:00-04:00",
+   "label": "Oct 16, 10:55 AM ET",
+   "sha256": "958e5c4ae05c2a3d27b3508632f23c14213833147dc8e430ab8c6d4d7172c2de"
   }
  ]
 }
