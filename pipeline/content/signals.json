@@ -1,5 +1,5 @@
 {
- "asof": "2026-10-15",
+ "asof": "2026-10-16",
  "note": "Current readings for the other-signals panel; the backtest's history comes from pipeline/backtest/data/econ (FRED) and retirements.csv. Each item: what it is, the latest value, the comparison, the source page that states it.",
  "items": [
   {
@@ -16,10 +16,10 @@
    "key": "gasprice",
    "label": "Gasoline, national average (AAA)",
    "value": 4.33,
-   "value_label": "$4.33 a gallon (Oct 15)",
-   "compare": "$3.07 a year ago; $4.36 a week ago; AAA calls it a record for autumn",
+   "value_label": "$4.33 a gallon (Oct 16)",
+   "compare": "$3.06 a year ago; $4.37 a week ago; $4.37 a month ago",
    "say": "Up about 41% in a year with crude above $90; the first October above $4.",
-   "src": "AAA, Oct 15",
+   "src": "AAA, Oct 16",
    "url": "https://gasprices.aaa.com/"
   },
   {
@@ -37,19 +37,19 @@
    "label": "Prediction markets: Democratic House",
    "value": 90,
    "value_label": "90% (Kalshi 90.2¢, Polymarket 91¢)",
-   "compare": "Senate: about 62-64% Democratic from the balance-of-power contracts (Democrats win both 61.5¢ Kalshi, 62.5¢ Polymarket; Democratic House with Republican Senate 29.5¢ and 28.5¢)",
+   "compare": "Senate: about 62% Democratic from the balance-of-power contracts (Democrats win both 61.5¢ Kalshi, 62.5¢ Polymarket; Democratic House with Republican Senate 30¢ and 28.5¢)",
    "say": "Markets sit between the polls-only model and the expert raters.",
-   "src": "DeFi Rate, Oct 15",
-   "url": "https://defirate.com/odds/2026-midterms/house-control-odds/"
+   "src": "DeFi Rate, Oct 16",
+   "url": "https://defirate.com/odds/house/"
   },
   {
    "key": "cook",
    "label": "Cook Political Report House ratings",
    "value": 21,
-   "value_label": "21 toss-ups: 15 Republican-held, 6 Democratic-held (Oct 9)",
-   "compare": "Cook's likely range: Democrats gain 9-19 seats, 224-234; Solid/Likely/Lean D 213, Toss Up 21, Lean/Likely/Solid R 201",
+   "value_label": "21 toss-ups: 16 Republican-held, 5 Democratic-held (Oct 16)",
+   "compare": "Cook's likely range (Oct 9): Democrats gain 9-19 seats, 224-234; after 11 more moves toward Democrats on Oct 16: Solid/Likely/Lean D 214, Toss Up 21, Lean/Likely/Solid R 200",
    "say": "Democrats need a fifth of the toss-ups for a majority if the seats leaning their way hold.",
-   "src": "Cook Political Report, Oct 9 (checked Oct 15)",
+   "src": "Cook Political Report, Oct 16",
    "url": "https://www.cookpolitical.com/ratings/house-race-ratings"
   },
   {
@@ -59,7 +59,7 @@
    "value_label": "37 Republicans, 24 Democrats (plus two Democratic delegates)",
    "compare": "2018: 37 R, 18 D; 2022: 20 R, 29 D",
    "say": "More Republicans leaving, including 20 running for other office; retirements have not tracked the swing in past midterms.",
-   "src": "Wikipedia, 2026 House elections, retirements (Oct 15)",
+   "src": "Wikipedia, 2026 House elections, retirements (Oct 16)",
    "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections"
   }
  ]

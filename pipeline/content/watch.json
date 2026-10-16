@@ -1,20 +1,127 @@
 {
- "asof": "2026-10-15",
+ "asof": "2026-10-16",
  "note": "Maintained daily. Every item links to the page that confirms it.",
  "happened": [
   {
+   "date": "2026-10-16",
+   "title": "Cook moves 11 more House races toward Democrats, half in Ohio, Nebraska and Kansas",
+   "what": "The Cook Political Report moved 11 House ratings, all toward Democrats, saying Republicans' troubles are 'particularly pronounced in Midwestern red states'; its Oct 16 ratings page lists the open MT-01 among 21 Toss Ups (16 Republican-held, 5 Democratic-held), MN-01, OH-10, OH-15, NY-21 and SC-01 as Lean Republican, and KS-02, NE-01 and FL-16 as Likely Republican.",
+   "why": "The House map keeps widening into Trump districts in states that also host competitive Senate races, so Republican money is being pulled in two directions.",
+   "races": [
+    "US",
+    "MT-01",
+    "MN-01",
+    "OH-10",
+    "OH-15",
+    "NY-21",
+    "SC-01",
+    "KS-02",
+    "NE-01",
+    "FL-16"
+   ],
+   "src": "Cook Political Report, Oct 16",
+   "url": "https://thecookpoliticalreport.substack.com/p/eleven-more-house-races-shift-toward",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-16",
+   "title": "Musk is the donor behind SLF's $200 million Texas rescue",
+   "what": "Elon Musk gave Senate Leadership Fund $75 million on Sept. 9 and about $83 million two weeks later, money SLF routed into a 'Texas PAC' that has spent more than $159 million on ads for Ken Paxton and plans nearly $200 million, on top of $18.8 million from Musk's America PAC, mostly against James Talarico.",
+   "why": "Republicans are spending at a presidential scale to hold a Senate seat Trump carried by 14 points, money that is not going to Maine, Iowa, Ohio or Kansas.",
+   "races": [
+    "TX-SEN"
+   ],
+   "src": "Texas Tribune via KERA, Oct 16",
+   "url": "https://www.kera.org/2026/10/16/elon-musk-is-the-donor-behind-senate-republicans-massive-rescue-mission-for-ken-paxton/",
+   "aff": ""
+  },
+  {
    "date": "2026-10-15",
-   "title": "Talarico reports $64 million quarter; Ossoff $33 million, Peltola $17 million",
-   "what": "James Talarico's campaign said it raised $64 million from July through September, which it called the largest Senate quarter on record, against $18 million for Ken Paxton; Jon Ossoff reported $33 million raised and $26 million on hand, and Mary Peltola $17 million, as third-quarter FEC reports came due.",
-   "why": "Democratic challengers in Republican-held Texas and Alaska enter the final three weeks with more money than their opponents, and Ossoff's cash lets Democratic groups leave Georgia for pickup states.",
+   "title": "Democratic Senate candidates out-raise Republicans in every battleground",
+   "what": "Third-quarter reports: James Talarico raised $64 million to Ken Paxton's $18 million, Jon Ossoff $33.1 million to Mike Collins' $2.8 million, Abdul El-Sayed $30.7 million to Mike Rogers' $9.7 million, Sherrod Brown $23 million to Jon Husted's $5 million, Troy Jackson $20.4 million to Susan Collins' $5.2 million, Roy Cooper $20 million to Michael Whatley's $2 million, Mary Peltola $17 million to Dan Sullivan's $2 million, Josh Turek $12 million to Ashley Hinson's $3 million and Adam Hamilton $11 million to Roger Marshall's $800,000.",
+   "why": "Republican incumbents and nominees enter the final three weeks dependent on super PACs, whose ad rates are higher, in every seat that decides the Senate.",
    "races": [
     "TX-SEN",
     "GA-SEN",
+    "MI-SEN",
+    "OH-SEN",
+    "ME-SEN",
+    "NC-SEN",
+    "AK-SEN",
+    "IA-SEN",
+    "KS-SEN"
+   ],
+   "src": "Axios, Oct 16",
+   "url": "https://www.axios.com/2026/10/16/democrats-midterms-fundraising-senate",
+   "aff": "Campaign-reported figures"
+  },
+  {
+   "date": "2026-10-15",
+   "title": "Trump blames Cornyn and Rove in advance for any Paxton loss",
+   "what": "On Truth Social, Trump wrote that a Paxton defeat would be the fault of 'WEAK and INEFFECTIVE Political Hacks like John Cornyn and Karl Rove' and called James Talarico the 'antithesis of Texas values'; Cornyn has not endorsed Paxton and Rove has not said he will vote for him.",
+   "why": "The president is preparing an explanation for losing a Senate seat Republicans have held since 1961, four days before Texas early voting begins.",
+   "races": [
+    "TX-SEN"
+   ],
+   "src": "Texas Tribune, Oct 15",
+   "url": "https://www.texastribune.org/2026/10/15/texas-trump-cornyn-rove-truth-social-paxton/",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-15",
+   "title": "Collins and Jackson close their debates with a shouted exchange",
+   "what": "In the fourth and final Maine Senate debate, in Bangor, a protester shouted about data centers, Sen. Susan Collins said he was 'obviously' from Troy Jackson's camp and Jackson told him to 'shut up'; Jackson said Collins votes with Trump 96% of the time, Collins put it at about 72%, and the moderator said the two have benefited from at least $75 million in dark money.",
+   "why": "Maine is a Republican-held seat every rater calls a Toss-up, and the exchange is being circulated by Senate Leadership Fund.",
+   "races": [
+    "ME-SEN"
+   ],
+   "src": "Maine Public, Oct 16",
+   "url": "https://www.mainepublic.org/politics/2026-10-16/key-takeaways-from-the-final-fiery-debate-between-susan-collins-and-troy-jackson",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-15",
+   "title": "Sullivan and Peltola accuse each other of lying in Alaska's Debate for the State",
+   "what": "Sen. Dan Sullivan said Mary Peltola's ads falsely tied him to Epstein-linked donors and asked whether she had the questions in advance (the hosts said no); Peltola said she cannot control PAC ads and called staff-abuse allegations against her 'outright fabrications or mass exaggerations.'",
+   "why": "Alaska is a Republican-held seat Inside Elections rates a Toss-up, and the debate came as both parties reserved more than $9 million each for the final three weeks.",
+   "races": [
     "AK-SEN"
    ],
-   "src": "Texas Tribune, Oct 15; AJC, Oct 15; Alaska Native News, Oct 14",
-   "url": "https://www.texastribune.org/2026/10/15/james-talarico-64-million-fundraising-texas-senate/",
-   "aff": "Campaign-reported figures"
+   "src": "Alaska Public Media, Oct 15",
+   "url": "https://alaskapublic.org/news/politics/elections/2026-10-15/sullivan-and-peltola-trade-verbal-blows-accuse-the-other-of-lying-during-debate-for-the-state",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-15",
+   "title": "Justice Department sues to hold 20,000 California mail ballots",
+   "what": "The Justice Department sued California and two election officials, asking a court to block the counting of about 20,000 mail ballots from voters a federal list calls likely noncitizens until their citizenship is confirmed; similar lists in Nevada, Pennsylvania and New Jersey were found inaccurate, and Gov. Newsom called the suit an attempt to suppress votes.",
+   "why": "California holds several of the House seats that will decide the majority, and the suit tests whether federal list-matching can hold ballots after the 90-day limit on systematic roll maintenance.",
+   "races": [
+    "CA-13",
+    "CA-22",
+    "CA-48"
+   ],
+   "src": "Axios, Oct 15",
+   "url": "https://www.axios.com/2026/10/15/trump-doj-california-voters-ballots-lawsuit",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-15",
+   "title": "Republican Senate candidates break with Trump's Russian diesel deal",
+   "what": "Ashley Hinson, Dan Sullivan, Susan Collins, Jon Husted, Pete Ricketts, Mike Rogers and John Sununu have criticized or distanced themselves from the administration's deal to import Russian diesel, Collins signing a letter calling it 'a gift to our adversary'; Mike Collins, Roger Marshall, Darline Graham, Ken Paxton, Michael Whatley and Michele Tafoya have taken no position.",
+   "why": "Gasoline above $4 is the economic issue of the campaign, and the deal splits Republican candidates from the president in the states that decide the Senate.",
+   "races": [
+    "IA-SEN",
+    "AK-SEN",
+    "ME-SEN",
+    "OH-SEN",
+    "NE-SEN",
+    "MI-SEN",
+    "NH-SEN"
+   ],
+   "src": "Colorado Politics, Oct 15",
+   "url": "https://www.coloradopolitics.com/2026/10/15/the-gop-senate-candidates-skirting-trumps-diesel-deal-with-putin/",
+   "aff": ""
   },
   {
    "date": "2026-10-14",
@@ -30,44 +137,6 @@
    ],
    "src": "Newsweek, Oct 14",
    "url": "https://www.newsweek.com/republicans-get-new-midterm-warning-sign-as-kansas-senate-race-shifts-12569771",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-14",
-   "title": "CLF pulls $3 million from Cuellar's district for TX-15 and TX-34",
-   "what": "Congressional Leadership Fund is removing $3 million reserved against Rep. Henry Cuellar in TX-28, after spending $4.6 million there, and moving it to defend Rep. Monica De La Cruz in TX-15 and to press Rep. Vicente Gonzalez in TX-34.",
-   "why": "Republicans are giving up on a redrawn Democratic-held target to protect a Cook Toss Up and chase one, narrowing the House map they drew for themselves in Texas.",
-   "races": [
-    "TX-28",
-    "TX-15",
-    "TX-34"
-   ],
-   "src": "Texas Tribune via TPR, Oct 14",
-   "url": "https://www.tpr.org/government-politics/2026-10-14/house-republicans-pull-3-million-reserved-for-ads-against-henry-cuellar",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-14",
-   "title": "Supreme Court leaves party ad-rate discount in place",
-   "what": "The Supreme Court let the FCC avoid a Fourth Circuit deadline to rule on a Democratic challenge, led by Sen. Jon Ossoff, to its March decision extending candidates' lowest-unit-charge ad discounts to party committees; Justices Sotomayor and Jackson would have denied the request.",
-   "why": "The discount stays in force through Election Day, and Republican party committees held about $233 million at the end of August against about $130 million for Democrats.",
-   "races": [
-    "US"
-   ],
-   "src": "Reuters via WHBL, Oct 14",
-   "url": "https://whbl.com/2026/10/14/us-supreme-court-again-backs-republicans-in-clash-over-political-ad-rates/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-14",
-   "title": "Talarico takes CNN town hall as Paxton launches bus tour",
-   "what": "At a CNN/Jubilee town hall in Fort Worth, James Talarico said 'the Bible is silent on the issue of abortion,' drew a rebuttal from a Catholic voter, and called ICE a 'secret police force' he does not want to abolish; Ken Paxton, who has agreed to no debate, announced a 30-stop 'Come and Take It' bus tour starting Oct 17 in Rockwall.",
-   "why": "Texas is a Toss-up Republican-held seat, and the abortion exchange is being amplified by conservative outlets while Paxton campaigns without debating.",
-   "races": [
-    "TX-SEN"
-   ],
-   "src": "CBS Texas, Oct 14; Texas Tribune, Oct 14",
-   "url": "https://www.cbsnews.com/texas/news/james-talarico-cnn-town-hall-abortion-ice-ken-paxton-texas-senate-10-14-26/",
    "aff": ""
   },
   {
@@ -120,132 +189,20 @@
    "src": "Alaska Landmine, Oct 13",
    "url": "https://alaskalandmine.com/landmines/cook-shifts-governors-race-to-lean-democrat/",
    "aff": ""
-  },
-  {
-   "date": "2026-10-13",
-   "title": "Senate Leadership Fund adds $8 million in Nebraska",
-   "what": "Senate Leadership Fund plans about $8 million in new Nebraska spending through Election Day on top of $7 million already spent to defend Sen. Pete Ricketts against independent Dan Osborn, and the crypto PAC Fairshake began a $7 million Nebraska campaign.",
-   "why": "Republicans are now spending to hold a seat Trump carried by about 20 points, money that cannot go to Kansas, Iowa, Ohio or Texas.",
-   "races": [
-    "NE-SEN"
-   ],
-   "src": "Daily Caller, Oct 13",
-   "url": "https://dailycaller.com/2026/10/13/crypto-pac-republicans-save-nebraska-senator-pete-ricketts/",
-   "aff": "R-aligned"
-  },
-  {
-   "date": "2026-10-13",
-   "title": "Ossoff, Collins clash over son-in-law and Epstein in final debate",
-   "what": "In the Atlanta Press Club debate, Sen. Jon Ossoff demanded that Rep. Mike Collins stop his son-in-law from producing what Ossoff called neo-Nazi content from Collins' home, while Collins attacked Ossoff over donor Reid Hoffman's ties to Jeffrey Epstein and would not say directly whether Biden won in 2020.",
-   "why": "It was the last debate in one of the few Democratic-held Senate seats Republicans are contesting, on the first day of Georgia's early voting.",
-   "races": [
-    "GA-SEN"
-   ],
-   "src": "GPB, Oct 14",
-   "url": "https://www.gpb.org/news/2026/10/14/ossoff-and-collins-exchange-fire-in-heated-senate-campaign-debate",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-13",
-   "title": "Trump endorses Tafoya in Minnesota and Wilson for Alaska governor",
-   "what": "Trump told his Youngstown rally to vote for Michele Tafoya, who has run as a pro-choice Republican independent of the president and called his rhetoric about Minnesota's Somali community inappropriate; on Oct 13 he endorsed Bernadette Wilson for Alaska governor and said he would not back Dave Bronson.",
-   "why": "The Minnesota endorsement undercuts Tafoya's distancing strategy in a race where Peggy Flanagan leads by four, and consolidating Republicans behind Wilson is the GOP's only path in Alaska's ranked-choice governor race.",
-   "races": [
-    "MN-SEN",
-    "AK-GOV"
-   ],
-   "src": "MPR News, Oct 13; Alaska's News Source, Oct 13",
-   "url": "https://www.mprnews.org/story/2026/10/13/michele-tafoya-endorsed-by-trump-for-senate-minnesota",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-09",
-   "title": "Cook shifts 18 more House races toward Democrats",
-   "what": "The Cook Political Report moved 18 House races toward Democrats, including four Republican-held seats from Toss Up to Lean Democrat and four races from Lean Republican to Toss Up, and called a Democratic gain of nine to 19 seats the most likely outcome.",
-   "why": "That outcome would leave Democrats with 224 to 234 seats, above the 218 needed for a House majority.",
-   "races": [
-    "US"
-   ],
-   "src": "Cook Political Report, Oct 9",
-   "url": "https://www.cookpolitical.com/analysis/house/house-overview/eighteen-more-house-race-ratings-move-democrats-favor",
-   "aff": ""
   }
  ],
  "upcoming": [
   {
-   "date": "2026-10-15",
-   "time": "",
-   "title": "North Carolina one-stop early voting begins",
-   "what": "In-person early voting with same-day registration begins in North Carolina and runs through 3 p.m. on Oct. 31.",
-   "why": "Early votes begin in the open Senate race Cook now rates Likely Democrat and in competitive House districts such as NC-01 and NC-11.",
+   "date": "2026-10-16",
+   "time": "1:00 PM",
+   "title": "Flanagan, Tafoya hold only Minnesota Senate debate",
+   "what": "Peggy Flanagan and Michele Tafoya debate at noon Central on MPR News' Politics Friday, moderated by Brian Bakst, on the radio and at mprnews.org.",
+   "why": "It is the only scheduled debate in a Democratic-held seat Inside Elections rates Lean Democrat, where Tafoya outraised Flanagan in the third quarter.",
    "races": [
-    "NC-SEN",
-    "NC-01",
-    "NC-11"
+    "MN-SEN"
    ],
-   "src": "WBTV, Sep 28",
-   "url": "https://www.wbtv.com/2026/09/28/north-carolina-2026-voter-guide-how-register-whats-ballot-early-voting-details-more/"
-  },
-  {
-   "date": "2026-10-15",
-   "time": "",
-   "title": "FEC third-quarter reports due",
-   "what": "House and Senate campaign committees must file October quarterly reports covering activity from July 1 through Sept. 30.",
-   "why": "The reports show how much cash each campaign has for the final three weeks.",
-   "races": [
-    "US"
-   ],
-   "src": "Federal Election Commission, accessed Oct 13",
-   "url": "https://www.fec.gov/updates/october-reporting-reminder-2026/"
-  },
-  {
-   "date": "2026-10-15",
-   "time": "",
-   "title": "Benson, James hold second Michigan governor debate",
-   "what": "Democrat Jocelyn Benson and Republican John James meet for the second of two scheduled debates, at WDIV-TV in metro Detroit; no start time was listed.",
-   "why": "Michigan's governorship is open and on the competitive list.",
-   "races": [
-    "MI-GOV"
-   ],
-   "src": "Bridge Michigan, Oct 6",
-   "url": "https://bridgemi.com/?p=81038"
-  },
-  {
-   "date": "2026-10-15",
-   "time": "11:00 PM",
-   "title": "Alaska Senate candidates meet in 'Debate for the State'",
-   "what": "Alaska Public Media's Debate for the State features the top two U.S. Senate candidates from 7 to 8 p.m. Alaska time.",
-   "why": "Inside Elections rates the race between Sen. Dan Sullivan and Democrat Mary Peltola a Toss-up, making Alaska a possible Democratic pickup.",
-   "races": [
-    "AK-SEN"
-   ],
-   "src": "Alaska Public Media, Oct 9",
-   "url": "https://alaskapublic.org/news/politics/elections/2026-10-09/alaska-governor-candidates-spar-over-bipartisan-cooperation-among-other-issues-in-debate-for-the-state"
-  },
-  {
-   "date": "2026-10-15",
-   "time": "1:20 PM",
-   "title": "Vance rallies in Monroe, Michigan",
-   "what": "Vice President Vance headlines a Trump 47 Committee rally at the LevelUp Training Complex in Monroe, with doors at 10 a.m. and the program at noon.",
-   "why": "Michigan's open Senate seat is a Cook Toss Up, and Monroe County voted for Trump by 27 points in 2024.",
-   "races": [
-    "MI-SEN",
-    "MI-GOV"
-   ],
-   "src": "CBS Detroit, Oct 13",
-   "url": "https://www.cbsnews.com/detroit/news/jd-vance-to-keynote-gop-campaign-rally-in-monroe-michigan/"
-  },
-  {
-   "date": "2026-10-15",
-   "time": "7:00 PM",
-   "title": "Final Collins-Jackson debate in Bangor",
-   "what": "Maine Public, NEWS CENTER Maine and the Portland Press Herald host a live 60-minute debate between Sen. Susan Collins and Democrat Troy Jackson at the Gracie Theater in Bangor.",
-   "why": "It is the last scheduled debate in a close race for a Republican-held seat central to the Senate majority.",
-   "races": [
-    "ME-SEN"
-   ],
-   "src": "Portland Press Herald, Oct 6",
-   "url": "https://www.pressherald.com/?p=7735839"
+   "src": "MPR News, Oct 16",
+   "url": "https://www.mprnews.org/story/2026/10/16/peggy-flanagan-michele-tafoya-debate-ahead-of-minnesota-us-senate-election"
   },
   {
    "date": "2026-10-16",
@@ -434,15 +391,17 @@
   {
    "date": "2026-10-24",
    "time": "",
-   "title": "Obama rallies in Cleveland with Brown and Acton",
-   "what": "Former President Barack Obama is to campaign in Cleveland with Senate nominee Sherrod Brown and governor nominee Amy Acton on Oct. 24, the first Saturday of Ohio's final-stretch early voting.",
-   "why": "Both Ohio races are Cook Toss Ups, and Republicans have sent Trump to the state twice in October.",
+   "title": "Obama rallies in Cleveland and Detroit",
+   "what": "Former President Barack Obama is to campaign in Cleveland with Sherrod Brown and Amy Acton and in Detroit with Abdul El-Sayed and Jocelyn Benson on Oct. 24, the first Saturday of Michigan's statewide early voting; venues and times are to be announced.",
+   "why": "Ohio's Senate and governor races and Michigan's Senate race are Cook Toss Ups, and Trump and Vance have each campaigned in both states in October.",
    "races": [
     "OH-SEN",
-    "OH-GOV"
+    "OH-GOV",
+    "MI-SEN",
+    "MI-GOV"
    ],
-   "src": "Axios Cleveland, Oct 14",
-   "url": "https://www.axios.com/local/cleveland/2026/10/14/obama-trump-ohio-midterm-rallies"
+   "src": "Statehouse News Bureau, Oct 13",
+   "url": "https://www.statenews.org/government-politics/2026-10-13/former-president-obama-adds-ohio-rally-in-cleveland-for-brown-acton"
   },
   {
    "date": "2026-10-27",
@@ -1209,11 +1168,20 @@
    "city": "Washington",
    "st": "DC",
    "venue": "Oval Office (by phone)",
-   "boosting": [],
-   "status": "announced",
-   "src": "Roll Call Factbase calendar, Oct 13",
-   "url": "https://rollcall.com/factbase/trump/topic/calendar/?date=2026-10-15",
-   "note": "White House schedule lists two tele-rallies (6:00 and 6:30 p.m. ET); target races not disclosed."
+   "boosting": [
+    {
+     "name": "Darline Graham",
+     "race": "SC-SEN"
+    },
+    {
+     "name": "Alan Wilson",
+     "race": "SC-GOV"
+    }
+   ],
+   "status": "held",
+   "src": "WKRC Local 12, Oct 15; FOX Carolina, Oct 15",
+   "url": "https://local12.com/news/nation-world/trump-backs-graham-wilson-and-honeycutt-during-south-carolina-tele-rally-politics-rally-politcs-debate-ruplican-democrat",
+   "note": "6 p.m. ET call for Graham, Wilson and House candidate Jenny Honeycutt; a second 6:30 call listed for Iowa."
   },
   {
    "date": "2026-10-15",
@@ -1222,12 +1190,17 @@
    "city": "Monroe",
    "st": "MI",
    "venue": "LevelUp Training Complex",
-   "boosting": [],
-   "status": "announced",
-   "src": "CBS Detroit, Oct 13",
-   "url": "https://www.cbsnews.com/detroit/news/jd-vance-to-keynote-gop-campaign-rally-in-monroe-michigan/",
+   "boosting": [
+    {
+     "name": "Mike Rogers",
+     "race": "MI-SEN"
+    }
+   ],
+   "status": "held",
+   "src": "Michigan Advance, Oct 15",
+   "url": "https://michiganadvance.com/2026/10/15/vance-calls-michigans-u-s-senate-race-a-test-of-gratitude-versus-grievance-in-rally-for-rogers/",
    "aff": "",
-   "note": "Trump 47 Committee rally; doors 10 a.m., Vance about 1:20 p.m.; candidates not yet named."
+   "note": "Rogers spoke; John James was at the governor debate; Vance called El-Sayed 'a little weasel.'"
   },
   {
    "date": "2026-10-16",
@@ -1315,6 +1288,34 @@
    "url": "https://www.wral.com/news/local/trump-visit-north-carolina-greenville-october-2026/",
    "aff": "",
    "note": "Second North Carolina rally for Whatley; Trump at 7 p.m. ET."
+  },
+  {
+   "date": "2026-10-21",
+   "who": "Trump",
+   "kind": "rally",
+   "city": "Clemson",
+   "st": "SC",
+   "venue": "",
+   "boosting": [],
+   "status": "announced",
+   "src": "WKRC Local 12, Oct 15",
+   "url": "https://local12.com/news/nation-world/2026-10-15-president-trump-to-hold-midterm-rally-in-clemson-on-oct-21-trump-47-committee-inc-politics-voter-campaign",
+   "aff": "",
+   "note": "Trump 47 Committee rally; doors 3:30 p.m., Trump at 7 p.m. ET; venue and candidates not announced."
+  },
+  {
+   "date": "2026-10-22",
+   "who": "Trump",
+   "kind": "rally",
+   "city": "Sioux City",
+   "st": "IA",
+   "venue": "",
+   "boosting": [],
+   "status": "announced",
+   "src": "KTIV, Oct 15",
+   "url": "https://www.ktiv.com/2026/10/16/president-donald-trump-will-headline-midterm-election-rally-sioux-city/",
+   "aff": "",
+   "note": "RNC-announced rally; doors 2:30 p.m., Trump about 6 p.m. Central; venue and candidates not named."
   }
  ],
  "trail_note": "Trump and Vance campaign appearances since Sep 1, 2026, from White House pool reports, Roll Call Factbase and local coverage. Closed-press fundraisers and tele-rallies are rarely reported, so they are undercounted."
