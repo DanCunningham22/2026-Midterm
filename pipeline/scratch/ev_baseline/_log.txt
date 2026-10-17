@@ -30,17 +30,13 @@ fl2024_final: 3 points
 PA wayback 20240925205010: applications only (no returns yet), skipped
 PA 2024-11-05: returned 1,912,676 D 1,053,971 R 629,505
 pa_wayback: 1 points
-cdx election.lab.ufl.edu/data-downloads/earlyvote/2024/US.csv 2024-10-20..2024-10-29: wayback: <urlopen error [Errno 111] Connection refused>
-cdx election.lab.ufl.edu/data-downloads/earlyvote/2024/US.csv 2024-10-30..2024-11-06: wayback: <urlopen error _ssl.c:983: The handshake operation 
-UF 2024 wayback: 4 daily snapshots
-UF 2024 wayback: 28 points
+cdx election.lab.ufl.edu/data-downloads/earlyvote/2024/US.csv 2024-09-30..2024-10-09: wayback: <urlopen error timed out>
+UF 2024 wayback: 6 daily snapshots
+UF 2024 wayback: 53 points
 uf_wayback_2024: 69 points
-cdx countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats 2024-10-10..2024-10-19: wayback: <urlopen error [Errno 111] Connection refused>
 FL 2024 wayback: 19 daily snapshots
-FL 2024 wayback 20241029010603: wayback: <urlopen error [Errno 111] Connection refused>
-FL 2024 wayback 20241030004008: wayback: <urlopen error [Errno 111] Connection refused>
-FL 2024 wayback 20241031201450: wayback: <urlopen error [Errno 111] Connection refused>
-FL 2024 wayback: 10 points
+FL 2024 wayback 20241103215630: wayback: <urlopen error _ssl.c:983: The handshake operation 
+FL 2024 wayback: 16 points
 fl_wayback_2024: 16 points
 UF 2024 finals: 27 states with party
 UF 2020 finals: 20 states with party
