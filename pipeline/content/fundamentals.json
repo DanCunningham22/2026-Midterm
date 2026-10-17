@@ -1,19 +1,19 @@
 {
- "asof": "2026-10-16",
+ "asof": "2026-10-17",
  "approval": {
   "net": -21.5,
-  "note": "Trump job approval, net (approve minus disapprove): average of the RealClearPolling (-20.4) and Silver Bulletin (-22.4) nets as of Oct 14-15, 2026, rounded to the nearest 0.5",
+  "note": "Trump job approval, net (approve minus disapprove): average of the RealClearPolling (-20.7) and Silver Bulletin (-22.3) nets as of Oct 16-17, 2026, rounded to the nearest 0.5",
   "sources": [
    [
-    "RealClearPolling average, Oct 16 (polls 9/26-10/14): 38.8/59.2, net -20.4",
+    "RealClearPolling average, Oct 17 (polls 9/26-10/15): 38.7/59.4, net -20.7",
     "https://www.realclearpolling.com/polls/approval/donald-trump/approval-rating"
    ],
    [
-    "Silver Bulletin average, Oct 15: net -22.4 (all-time low of -23.9 over the Oct 10-11 weekend)",
+    "Silver Bulletin average, Oct 16: net -22.3 (all-time low of -23.9 the weekend before)",
     "https://www.natesilver.net/p/trump-approval-ratings-nate-silver-bulletin"
    ],
    [
-    "FiftyPlusOne average, Oct 15: 35.2/61.4",
+    "FiftyPlusOne average, Oct 16: 35.2/61.5",
     "https://fiftyplusone.news/polls/approval/president"
    ],
    [

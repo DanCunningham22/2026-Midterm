@@ -1,5 +1,5 @@
 {
- "asof": "2026-10-15",
+ "asof": "2026-10-17",
  "about": "Hand-entered same-point baselines for the official early vote by party registration, from dated official reports and news reports that quoted them. Counts are returned ballots (m='ret': mail only; 'voted': mail plus in-person early). Where only shares or a lead were reported, 'gap' (D minus R as a percent of all ballots) is given directly and counts are derived or left out. Machine-built points (Colorado's releases, Florida's archive, UF Election Lab finals) are in pipeline/static/ev_baselines.json.",
  "notes": {
   "PA": "No in-person early voting, so this is mail ballots returned. Pennsylvania's mail electorate is heavily Democratic whatever the year (about D+53 at 12 days out in 2022, when Republicans won the national House vote by 3), so it says little about direction; the slope fitted for mail-only states is small for that reason. Requests by party are shown for context.",
@@ -744,6 +744,18 @@
    "n": 12968,
    "src": "Iowa Secretary of State daily absentee report, Oct 26, 2022, via Bleeding Heartland (ballots received: statewide rows of the mail/email, auditor in-person, satellite and drop-box tables summed by party; the page states the total received as 99,413)",
    "url": "https://www.bleedingheartland.com/2022/10/20/iowa-absentee-ballot-numbers-in-the-2022-general-election/"
+  },
+  {
+   "st": "NV",
+   "year": 2024,
+   "date": "2024-10-21",
+   "m": "voted",
+   "all": 245356,
+   "d": 88983,
+   "r": 96858,
+   "n": 59515,
+   "src": "KSNV News 3 Las Vegas, Oct 21, 2024, 7:49 PM (Secretary of State figures reported Monday evening, after the first three full days of in-person voting): 245,356 votes, Republicans 96,858, Democrats 88,983, nonpartisan and others 59,515; in-person 104,729, mail more than 140,000",
+   "url": "https://news3lv.com/amp/news/local/breaking-down-first-days-early-voting-turnout-nevada-general-election-october-democrats-republicans-presidential-race-ballots-voting-las-vegas-clark-county"
   }
  ]
 }

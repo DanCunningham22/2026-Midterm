@@ -1,7 +1,61 @@
 {
- "asof": "2026-10-16",
+ "asof": "2026-10-17",
  "note": "Maintained daily. Every item links to the page that confirms it.",
  "happened": [
+  {
+   "date": "2026-10-16",
+   "title": "Trump promises $5,000 'tariff' checks if Republicans keep Congress",
+   "what": "At his Dalton, Ga., rally, Trump said every adult citizen would receive $5,000, funded by tariff revenue and to be spent inside the country, if Republicans control both chambers after the midterms; he did not describe a legislative mechanism or timeline.",
+   "why": "It is the first explicit national promise tied to the outcome of the midterms, made with gasoline above $4 and the economy the top issue in every poll.",
+   "races": [
+    "US",
+    "GA-SEN",
+    "GA-GOV"
+   ],
+   "src": "FOX 5 Atlanta, Oct 16",
+   "url": "https://www.fox7austin.com/news/trump-rallies-dalton-collins-jackson-ahead-midterms",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-16",
+   "title": "Flanagan and Tafoya spar over Hegseth, Gaza and fraud in only Minnesota Senate debate",
+   "what": "At MPR News in St. Paul, Peggy Flanagan gave Defense Secretary Pete Hegseth an 'F' and said he should be impeached, called the war in Gaza a genocide, which Michele Tafoya called 'an absolute misrepresentation,' and pivoted from Minnesota's fraud scandals to corruption under Trump; Tafoya accused her of selective compassion on immigration.",
+   "why": "The only scheduled debate in a Democratic-held seat Inside Elections rates Lean Democrat produced no stumble by either candidate, and no major outside group has yet reserved time in the race.",
+   "races": [
+    "MN-SEN"
+   ],
+   "src": "Minnesota Reformer, Oct 16",
+   "url": "https://minnesotareformer.com/2026/10/16/in-senate-debate-tafoya-and-flanagan-cant-shake-ties-to-unpopular-men/",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-15",
+   "title": "Inside Elections moves Texas Senate to Toss-up, New Hampshire to Tilt Democratic",
+   "what": "Inside Elections shifted five Senate ratings toward Democrats: Texas from Tilt Republican to Toss-up, New Hampshire from Toss-up to Tilt Democratic, Kansas from Likely to Tilt Republican, South Carolina from Likely to Lean Republican and Florida from Solid to Likely Republican, writing that 'a Democratic gain of eight seats is not out of the question'; its own ratings page now lists New Hampshire under Tilt Democratic.",
+   "why": "Texas joins the Toss-up column at the rater that had been most favorable to Republicans, and New Hampshire, which Republicans had made their best pickup chance, now tilts Democratic.",
+   "races": [
+    "TX-SEN",
+    "NH-SEN",
+    "KS-SEN",
+    "SC-SEN",
+    "FL-SEN"
+   ],
+   "src": "DSCC (relaying Inside Elections' Oct 15 report), Oct 15",
+   "url": "https://www.dscc.org/article/new-inside-elections-shifts-additional-senate-races-towards-democrats-warn-of-embarrassing-potential-blowout-for-gop-in-final-stretch/",
+   "aff": "D-aligned relay of a nonpartisan rater; Inside Elections' Tilt Democratic page confirms the New Hampshire rating"
+  },
+  {
+   "date": "2026-10-15",
+   "title": "Bolduc, 2022 GOP nominee, leads 58 Republicans and independents endorsing Pappas",
+   "what": "Don Bolduc, the Trump-endorsed Republican who lost New Hampshire's 2022 Senate race, endorsed Democrat Chris Pappas along with 57 other New Hampshire Republicans and independents, including former state Sen. Rick Russman, citing Pappas's work for veterans; an early-October AARP poll had Pappas ahead of John E. Sununu by 7 among likely voters.",
+   "why": "A cross-party endorsement in a Democratic-held seat Republicans had made their best pickup chance, two days after Inside Elections moved it to Tilt Democratic.",
+   "races": [
+    "NH-SEN"
+   ],
+   "src": "Axios, Oct 15",
+   "url": "https://www.axios.com/2026/10/15/chris-pappas-don-bolduc-new-hampshire-senate-endorsement",
+   "aff": ""
+  },
   {
    "date": "2026-10-16",
    "title": "Cook moves 11 more House races toward Democrats, half in Ohio, Nebraska and Kansas",
@@ -57,18 +111,6 @@
   },
   {
    "date": "2026-10-15",
-   "title": "Trump blames Cornyn and Rove in advance for any Paxton loss",
-   "what": "On Truth Social, Trump wrote that a Paxton defeat would be the fault of 'WEAK and INEFFECTIVE Political Hacks like John Cornyn and Karl Rove' and called James Talarico the 'antithesis of Texas values'; Cornyn has not endorsed Paxton and Rove has not said he will vote for him.",
-   "why": "The president is preparing an explanation for losing a Senate seat Republicans have held since 1961, four days before Texas early voting begins.",
-   "races": [
-    "TX-SEN"
-   ],
-   "src": "Texas Tribune, Oct 15",
-   "url": "https://www.texastribune.org/2026/10/15/texas-trump-cornyn-rove-truth-social-paxton/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-15",
    "title": "Collins and Jackson close their debates with a shouted exchange",
    "what": "In the fourth and final Maine Senate debate, in Bangor, a protester shouted about data centers, Sen. Susan Collins said he was 'obviously' from Troy Jackson's camp and Jackson told him to 'shut up'; Jackson said Collins votes with Trump 96% of the time, Collins put it at about 72%, and the moderator said the two have benefited from at least $75 million in dark money.",
    "why": "Maine is a Republican-held seat every rater calls a Toss-up, and the exchange is being circulated by Senate Leadership Fund.",
@@ -106,24 +148,6 @@
    "aff": ""
   },
   {
-   "date": "2026-10-15",
-   "title": "Republican Senate candidates break with Trump's Russian diesel deal",
-   "what": "Ashley Hinson, Dan Sullivan, Susan Collins, Jon Husted, Pete Ricketts, Mike Rogers and John Sununu have criticized or distanced themselves from the administration's deal to import Russian diesel, Collins signing a letter calling it 'a gift to our adversary'; Mike Collins, Roger Marshall, Darline Graham, Ken Paxton, Michael Whatley and Michele Tafoya have taken no position.",
-   "why": "Gasoline above $4 is the economic issue of the campaign, and the deal splits Republican candidates from the president in the states that decide the Senate.",
-   "races": [
-    "IA-SEN",
-    "AK-SEN",
-    "ME-SEN",
-    "OH-SEN",
-    "NE-SEN",
-    "MI-SEN",
-    "NH-SEN"
-   ],
-   "src": "Colorado Politics, Oct 15",
-   "url": "https://www.coloradopolitics.com/2026/10/15/the-gop-senate-candidates-skirting-trumps-diesel-deal-with-putin/",
-   "aff": ""
-  },
-  {
    "date": "2026-10-14",
    "title": "Sabato moves Kansas Senate to Toss-up, four other races shift",
    "what": "Sabato's Crystal Ball moved Kansas from Leans Republican to Toss-up, citing 'a full-on Republican rescue operation' for Sen. Roger Marshall, and shifted Nebraska to Leans Republican, New Hampshire to Likely Democratic, Minnesota to Leans Democratic and Mississippi to Likely Republican.",
@@ -153,71 +177,9 @@
    "src": "Semafor, Oct 14",
    "url": "https://www.semafor.com/article/10/14/2026/top-democratic-super-pac-spends-more-in-michigan-maine",
    "aff": ""
-  },
-  {
-   "date": "2026-10-13",
-   "title": "GOP super PACs pull out of four House races, reinforce 16",
-   "what": "Congressional Leadership Fund canceled spending in IA-01, NJ-07, MI-08 and OH-01 and added money in 16 districts including PA-01, TX-15, WI-01, VA-01 and MI-04; a MAGA Inc. affiliate also pulled about $1 million meant to help Marty O'Donnell against Rep. Susie Lee in NV-03.",
-   "why": "House Republicans are conceding two of their own Trump-district seats and two Democratic targets to concentrate on districts Trump carried, narrowing their path to 218.",
-   "races": [
-    "IA-01",
-    "NJ-07",
-    "MI-08",
-    "OH-01",
-    "NV-03",
-    "PA-01",
-    "TX-15",
-    "WI-01",
-    "VA-01",
-    "MI-04"
-   ],
-   "src": "AP via KCRG, Oct 14",
-   "url": "https://www.kcrg.com/2026/10/14/battle-lines-shift-house-races-republicans-retreat-front-line-districts/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-13",
-   "title": "Cook moves Alaska governor to Lean Democrat, three red states off Solid",
-   "what": "The Cook Political Report shifted the Alaska governor race from Toss Up to Lean Democrat, citing Jonathan Kreiss-Tomkins' polling lead and a split Republican field, and moved Oklahoma, Nebraska and Vermont from Solid to Likely Republican.",
-   "why": "Cook says the shifts give Democrats a chance at a majority of governorships for the first time since 2010; its governor map now has four Toss Ups (Georgia, Nevada, Ohio, Wisconsin).",
-   "races": [
-    "AK-GOV",
-    "OK-GOV",
-    "NE-GOV",
-    "VT-GOV"
-   ],
-   "src": "Alaska Landmine, Oct 13",
-   "url": "https://alaskalandmine.com/landmines/cook-shifts-governors-race-to-lean-democrat/",
-   "aff": ""
   }
  ],
  "upcoming": [
-  {
-   "date": "2026-10-16",
-   "time": "1:00 PM",
-   "title": "Flanagan, Tafoya hold only Minnesota Senate debate",
-   "what": "Peggy Flanagan and Michele Tafoya debate at noon Central on MPR News' Politics Friday, moderated by Brian Bakst, on the radio and at mprnews.org.",
-   "why": "It is the only scheduled debate in a Democratic-held seat Inside Elections rates Lean Democrat, where Tafoya outraised Flanagan in the third quarter.",
-   "races": [
-    "MN-SEN"
-   ],
-   "src": "MPR News, Oct 16",
-   "url": "https://www.mprnews.org/story/2026/10/16/peggy-flanagan-michele-tafoya-debate-ahead-of-minnesota-us-senate-election"
-  },
-  {
-   "date": "2026-10-16",
-   "time": "",
-   "title": "Minnesota early voting on tabulators begins",
-   "what": "Minnesota's early voting period, in which ballots are fed directly into a counter, begins statewide and runs through Nov. 2; in-person absentee voting has been open since Sept. 18.",
-   "why": "Early votes begin in the Flanagan-Tafoya Senate race, which Inside Elections rates Lean Democrat, and in the MN-02 House race.",
-   "races": [
-    "MN-SEN",
-    "MN-GOV",
-    "MN-02"
-   ],
-   "src": "Minnesota Secretary of State, accessed Oct 14",
-   "url": "https://sos.mn.gov/elections-voting/other-ways-to-vote/vote-early-in-person/"
-  },
   {
    "date": "2026-10-17",
    "time": "",
@@ -298,6 +260,18 @@
   },
   {
    "date": "2026-10-21",
+   "time": "7:00 PM",
+   "title": "Vermont Public hosts governor debate",
+   "what": "Vermont Public's gubernatorial debate airs live at 7 p.m. from its Winooski studios, hosted by Mikaela Lefrak, on its radio and television channels, streams and YouTube, with rebroadcasts Oct. 22.",
+   "why": "Cook moved the Vermont governor race from Solid to Likely Republican on Oct. 13, one of the Republican-held governorships Democrats would need for a majority.",
+   "races": [
+    "VT-GOV"
+   ],
+   "src": "Vermont Public, Sep 14",
+   "url": "https://www.vermontpublic.org/about-us/2026-09-14/vermont-public-2026-general-election-debates"
+  },
+  {
+   "date": "2026-10-21",
    "time": "8:00 PM",
    "title": "Marshall, Hamilton debate on Kansas Nexstar stations",
    "what": "Sen. Roger Marshall and Democrat Adam Hamilton debate from 7 to 8 p.m. Central, originating at WDAF-TV in Kansas City and airing on Nexstar stations in Kansas City, Topeka, Wichita and Joplin.",
@@ -331,6 +305,18 @@
    ],
    "src": "KCRG via WOWT, Sep 1",
    "url": "https://www.wowt.com/2026/09/01/iowa-pbs-announces-dates-iowa-governor-us-house-debates/"
+  },
+  {
+   "date": "2026-10-21",
+   "time": "8:00 PM",
+   "title": "Klobuchar, Demuth debate for Minnesota governor",
+   "what": "Amy Klobuchar and Lisa Demuth meet for a 60-minute debate at 7 p.m. Central, live from KTTC/KXLT in Rochester, co-produced by FOX 9 and Gray Media stations and streamed on FOX9.com, the FOX LOCAL app and FOX 9's YouTube channel.",
+   "why": "It is the first scheduled debate in the open governor race, where Klobuchar led Demuth 50-41 in the Mason-Dixon poll ending Oct. 7.",
+   "races": [
+    "MN-GOV"
+   ],
+   "src": "FOX 9, Sep 29",
+   "url": "https://www.fox9.com/news/minnesota-gubernatorial-debate-klobuchar-demuth-oct-21-air-fox-9"
   },
   {
    "date": "2026-10-22",
@@ -1219,10 +1205,10 @@
      "race": "GA-GOV"
     }
    ],
-   "status": "announced",
-   "src": "WABE, Oct 12",
-   "url": "https://www.wabe.org/trump-returns-to-georgia-for-2026-midterms-rally/",
-   "note": "Collins and Jackson confirmed attending; doors 11:30 a.m., Trump at 3 p.m."
+   "status": "held",
+   "src": "FOX 5 Atlanta, Oct 16",
+   "url": "https://www.fox7austin.com/news/trump-rallies-dalton-collins-jackson-ahead-midterms",
+   "note": "Hangar rally of 1,000-plus; Collins and Jackson spoke; Trump promised $5,000 tariff checks."
   },
   {
    "date": "2026-10-17",
@@ -1251,9 +1237,9 @@
    "date": "2026-10-19",
    "who": "Trump",
    "kind": "rally",
-   "city": "Wichita",
+   "city": "Park City",
    "st": "KS",
-   "venue": "Century II Performing Arts & Convention Center",
+   "venue": "Heartland Credit Union Arena",
    "boosting": [
     {
      "name": "Roger Marshall",
@@ -1261,10 +1247,29 @@
     }
    ],
    "status": "announced",
-   "src": "KCTV5, Oct 13",
-   "url": "https://www.kctv5.com/2026/10/13/president-trump-hold-midterm-rally-kansas-next-week/",
+   "src": "WIBW, Oct 16; KCTV5, Oct 13",
+   "url": "https://www.wibw.com/2026/10/16/marshall-hamilton-campaign-topeka-ahead-november-election/",
    "aff": "",
-   "note": "RNC-announced rally for Sen. Marshall in a Cook Toss Up; Trump at 6 p.m. Central."
+   "note": "Rally for Sen. Marshall in a Cook Toss Up, moved to Park City's arena north of Wichita; Trump at 6 p.m. Central."
+  },
+  {
+   "date": "2026-10-19",
+   "who": "Vance",
+   "kind": "rally",
+   "city": "Hendersonville",
+   "st": "NC",
+   "venue": "Hyder Warehouse",
+   "boosting": [
+    {
+     "name": "Michael Whatley",
+     "race": "NC-SEN"
+    }
+   ],
+   "status": "announced",
+   "src": "WBTV, Oct 16",
+   "url": "https://www.wbtv.com/2026/10/16/vance-headline-midterm-rally-north-carolina-next-week-ahead-trump-visits/",
+   "aff": "",
+   "note": "Trump 47 Committee rally; doors 10 a.m., Vance at 1:15 p.m. ET; other speakers unannounced."
   },
   {
    "date": "2026-10-20",
@@ -1316,6 +1321,20 @@
    "url": "https://www.ktiv.com/2026/10/16/president-donald-trump-will-headline-midterm-election-rally-sioux-city/",
    "aff": "",
    "note": "RNC-announced rally; doors 2:30 p.m., Trump about 6 p.m. Central; venue and candidates not named."
+  },
+  {
+   "date": "2026-10-25",
+   "who": "Trump",
+   "kind": "rally",
+   "city": "St. Clair County",
+   "st": "MI",
+   "venue": "",
+   "boosting": [],
+   "status": "announced",
+   "src": "WILX, Oct 16",
+   "url": "https://www.wilx.com/2026/10/16/president-trump-speak-midterm-rally-st-clair-county/",
+   "aff": "",
+   "note": "Trump 47 Committee rally; doors 11:30 a.m., Trump at 3 p.m. ET; venue and candidates not announced."
   }
  ],
  "trail_note": "Trump and Vance campaign appearances since Sep 1, 2026, from White House pool reports, Roll Call Factbase and local coverage. Closed-press fundraisers and tele-rallies are rarely reported, so they are undercounted."
