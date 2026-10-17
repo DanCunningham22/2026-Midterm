@@ -33,13 +33,11 @@ pa_wayback: 1 points
 UF 2024 wayback: 8 daily snapshots
 UF 2024 wayback: 69 points
 uf_wayback_2024: 69 points
-cdx countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats 2024-09-20..2024-09-29: wayback: <urlopen error [Errno 111] Connection refused>
-FL 2024 wayback: 15 daily snapshots
-FL 2024 wayback 20241024050210: wayback: <urlopen error [Errno 111] Connection refused>
-FL 2024 wayback 20241029010603: wayback: <urlopen error [Errno 111] Connection refused>
+FL 2024 wayback: 19 daily snapshots
+FL 2024 wayback 20241002111326: wayback: <urlopen error _ssl.c:983: The handshake operation 
 FL 2024 wayback: 14 points
 fl_wayback_2024: 16 points
 UF 2024 finals: 27 states with party
 UF 2020 finals: 20 states with party
-RPubs 2022 finals: 24 states
+RPubs 2022: The read operation timed out
 wrote pipeline/static/ev_baselines.json: 115 points, finals for [('2024', 27), ('2020', 20), ('2022', 24)], 0 errors
