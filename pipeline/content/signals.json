@@ -1,5 +1,5 @@
 {
- "asof": "2026-10-17",
+ "asof": "2026-10-19",
  "note": "Current readings for the other-signals panel; the backtest's history comes from pipeline/backtest/data/econ (FRED) and retirements.csv. Each item: what it is, the latest value, the comparison, the source page that states it.",
  "items": [
   {
@@ -15,11 +15,11 @@
   {
    "key": "gasprice",
    "label": "Gasoline, national average (AAA)",
-   "value": 4.33,
-   "value_label": "$4.33 a gallon (Oct 16)",
-   "compare": "$3.06 a year ago; $4.37 a week ago; $4.37 a month ago",
-   "say": "Up about 41% in a year with crude above $90; the first October above $4.",
-   "src": "AAA, Oct 16",
+   "value": 4.3,
+   "value_label": "$4.295 a gallon (Oct 19)",
+   "compare": "$3.036 a year ago; $4.356 a week ago; $4.476 a month ago",
+   "say": "Up about 41% in a year, though about 6 cents lower than a week ago.",
+   "src": "AAA, Oct 19",
    "url": "https://gasprices.aaa.com/?state=US"
   },
   {
@@ -35,11 +35,11 @@
   {
    "key": "markets",
    "label": "Prediction markets: Democratic House",
-   "value": 90,
-   "value_label": "90% (Kalshi 90.3¢, Polymarket 91¢)",
-   "compare": "Senate: about 62-63% Democratic from the balance-of-power contracts (Democrats win both 61.5¢ Kalshi, 62.5¢ Polymarket; Democratic House with Republican Senate 29.5¢ and 27.5¢; Republican House with Democratic Senate under 1¢)",
+   "value": 91,
+   "value_label": "91% (Kalshi 90.2¢, Polymarket 92¢)",
+   "compare": "Senate: about 63-64% Democratic from the balance-of-power contracts (Democrats win both 63.5¢ Kalshi, 62.5¢ Polymarket; Democratic House with Republican Senate 27.5¢ on both; Republican House with Democratic Senate under 1¢)",
    "say": "Markets sit between the polls-only model and the expert raters.",
-   "src": "DeFi Rate, Oct 17",
+   "src": "DeFi Rate, Oct 19",
    "url": "https://defirate.com/odds/2026-midterms/house-control-odds/"
   },
   {

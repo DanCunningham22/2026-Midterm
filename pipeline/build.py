@@ -183,11 +183,13 @@ XTAB_EXTRA = {
 }
 WHITE_LABELS = {('race', 'White'), ('race', 'White or Caucasian')}
 RATING_ALIAS = {'CBS News/YouGov': 'YouGov', 'Economist/YouGov': 'YouGov', 'NPR/PBS News/Marist': 'Marist',
-                'Fox News (Beacon Research/Shaw & Co.)': 'Beacon Research/Shaw & Company Research'}
+                'Fox News (Beacon Research/Shaw & Co.)': 'Beacon Research/Shaw & Company Research',
+                'ABC News/Washington Post/Ipsos': 'Ipsos'}
 SHORT_NAME = {'Pew Research Center': 'Pew', 'CBS News/YouGov': 'CBS/YouGov', 'Economist/YouGov': 'Economist/YouGov',
               'NPR/PBS News/Marist': 'Marist', 'Fox News (Beacon Research/Shaw & Co.)': 'Fox News',
               'Marquette Law School': 'Marquette', 'Emerson College': 'Emerson',
-              'New York Times/Siena': 'NYT/Siena', 'Quinnipiac University': 'Quinnipiac'}
+              'New York Times/Siena': 'NYT/Siena', 'Quinnipiac University': 'Quinnipiac',
+              'ABC News/Washington Post/Ipsos': 'ABC/WaPo/Ipsos'}
 
 
 def poll_deviations(path, base24):
