@@ -1,37 +1,37 @@
 {
- "asof": "2026-10-09",
- "source": "Oct 9 Senate polling model (corrected averages: house effects and likely-voter adjustment)",
+ "asof": "2026-10-21",
+ "source": "Senate polling model, re-run Oct 21 on every public poll since Aug 1 in the 14 competitive races (ElectIndex poll feed plus hand-added releases): house effects estimated against other pollsters and shrunk, likely-voter adjustment, 14-day half-life. First run Oct 9.",
  "averages": {
-  "NC": 8.6,
-  "GA": 8.6,
+  "NC": 9.7,
+  "GA": 9.2,
   "NH": 6.3,
-  "OH": 3.3,
-  "MI": 2.9,
-  "TX": 2.7,
-  "MN": 2.2,
-  "AK": 2.0,
-  "ME": 1.5,
-  "KS": 1.4,
-  "IA": 1.0,
-  "NE": -0.7,
-  "SC": -1.9,
-  "FL": -5.9
+  "OH": 2.9,
+  "MI": 3.0,
+  "TX": 1.9,
+  "MN": 3.7,
+  "AK": 3.7,
+  "ME": 2.1,
+  "KS": 1.3,
+  "IA": 0.3,
+  "NE": -1.9,
+  "SC": -1.2,
+  "FL": -6.9
  },
  "p_oct9": {
-  "NC": 93,
-  "GA": 93,
-  "NH": 86,
-  "OH": 72,
-  "MI": 70,
-  "TX": 69,
-  "MN": 65,
-  "AK": 64,
-  "ME": 60,
+  "NC": 96,
+  "GA": 95,
+  "NH": 87,
+  "OH": 71,
+  "MI": 71,
+  "TX": 64,
+  "MN": 75,
+  "AK": 75,
+  "ME": 65,
   "KS": 60,
-  "IA": 57,
-  "NE": 45,
-  "SC": 37,
-  "FL": 15
+  "IA": 52,
+  "NE": 37,
+  "SC": 42,
+  "FL": 11
  },
  "notes": {
   "ID": "Treated as safe R, as in the Oct 9 model. The two polls conflict: Advanced Targeting Research (Sept 16) had Achilles (I) ahead; Peak Insights (R-leaning, Sept 30) had Risch up 25.",
@@ -40,91 +40,77 @@
   "ME": "Troy Jackson replaced Graham Platner as the Democratic nominee (special convention, July 25).",
   "SD": "Bengs (I) is the main opponent; no Democrat on the ballot."
  },
- "recent_research": {
-  "NC": [
-   [
-    "Trafalgar (R-leaning)",
-    "Oct 12",
-    "Cooper 49, Whatley 41"
-   ]
-  ],
-  "MN": [
-   [
-    "Star Tribune/Mason-Dixon",
-    "Oct 12",
-    "Flanagan 47, Tafoya 43"
-   ],
-   [
-    "Rasmussen (R-leaning)",
-    "Oct 9",
-    "Flanagan 48, Tafoya 45"
-   ],
-   [
-    "Morning Consult",
-    "Oct 9",
-    "Flanagan 45, Tafoya 41"
-   ]
-  ],
-  "ME": [
-   [
-    "Rasmussen (R-leaning)",
-    "Oct 11",
-    "Jackson 49, Collins 47"
-   ],
-   [
-    "Washington Post-Schar",
-    "Oct 9",
-    "Jackson 50, Collins 46"
-   ]
-  ],
-  "SC": [
-   [
-    "Rasmussen (R-leaning)",
-    "Oct 11",
-    "Graham Nordone 49, Andrews 45"
-   ]
-  ],
-  "MI": [
-   [
-    "InsiderAdvantage (R-leaning)",
-    "Oct 11",
-    "El-Sayed 48, Rogers 46"
-   ]
-  ],
-  "KS": [
-   [
-    "InsiderAdvantage (R-leaning)",
-    "Oct 11",
-    "Hamilton 48, Marshall 47"
-   ]
-  ],
-  "AK": [
-   [
-    "InsiderAdvantage (R-leaning)",
-    "Oct 11",
-    "Peltola 50, Sullivan 48"
-   ]
-  ],
-  "TX": [
-   [
-    "Trafalgar (R-leaning)",
-    "Oct 10",
-    "Talarico 47, Paxton 44"
-   ]
-  ],
-  "GA": [
-   [
-    "Trafalgar (R-leaning)",
-    "Oct 10",
-    "Ossoff 51, Collins 43"
-   ]
-  ],
-  "IA": [
-   [
-    "Emerson",
-    "Oct 9",
-    "Hinson 47, Turek 45"
-   ]
-  ]
+ "recent_research": {},
+ "history": {
+  "2026-10-09": {
+   "averages": {
+    "NC": 8.6,
+    "GA": 8.6,
+    "NH": 6.3,
+    "OH": 3.3,
+    "MI": 2.9,
+    "TX": 2.7,
+    "MN": 2.2,
+    "AK": 2.0,
+    "ME": 1.5,
+    "KS": 1.4,
+    "IA": 1.0,
+    "NE": -0.7,
+    "SC": -1.9,
+    "FL": -5.9
+   },
+   "p": {
+    "NC": 93,
+    "GA": 93,
+    "NH": 86,
+    "OH": 72,
+    "MI": 70,
+    "TX": 69,
+    "MN": 65,
+    "AK": 64,
+    "ME": 60,
+    "KS": 60,
+    "IA": 57,
+    "NE": 45,
+    "SC": 37,
+    "FL": 15
+   },
+   "p_control_d": 65
+  },
+  "2026-10-21": {
+   "averages": {
+    "NC": 9.7,
+    "GA": 9.2,
+    "NH": 6.3,
+    "OH": 2.9,
+    "MI": 3.0,
+    "TX": 1.9,
+    "MN": 3.7,
+    "AK": 3.7,
+    "ME": 2.1,
+    "KS": 1.3,
+    "IA": 0.3,
+    "NE": -1.9,
+    "SC": -1.2,
+    "FL": -6.9
+   },
+   "p": {
+    "NC": 96,
+    "GA": 95,
+    "NH": 87,
+    "OH": 71,
+    "MI": 71,
+    "TX": 64,
+    "MN": 75,
+    "AK": 75,
+    "ME": 65,
+    "KS": 60,
+    "IA": 52,
+    "NE": 37,
+    "SC": 42,
+    "FL": 11
+   },
+   "p_control_d": 69
+  }
  }
 }

@@ -7,7 +7,7 @@ Inputs
   pipeline/static/base.json      frozen inputs: district baselines on the 2026 lines, electorate
                                  estimates, hex layout, Pew validated-voter baselines, early-vote benchmarks
   pipeline/static/polls_2026.csv national generic-ballot crosstabs (hand-maintained)
-  pipeline/content/*.json        hand-maintained content: Senate averages from the Oct 9 model, the
+  pipeline/content/*.json        hand-maintained content: Senate averages from the Senate polling model, the
                                  early-vote story and same-point comparisons, the Watch tab (watch.json)
   live feeds (fetched each run)  ElectIndex forecast data (candidates, race polls, generic-ballot polls)
                                  and the UF Election Lab early-vote file
@@ -36,7 +36,6 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FEED_URL = 'https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/'
 FEED_FILES = ['races.csv', 'candidates.csv', 'race_polls.csv', 'pollster_ratings.csv', 'gcb_polls.csv']
 UF_URL = 'https://election.lab.ufl.edu/data-downloads/earlyvote/2026/US.csv'
-OCT9 = dt.date(2026, 10, 9)
 AK_TRANSFER = dict(to_d=0.123, to_r=0.635)  # second-choice transfers in AK-GOV, from poll round data (ElectIndex)
 NO_CAND = ('(no', '(No')
 
@@ -351,9 +350,11 @@ def build_races(feed, base, G0, today, senate_cfg):
                  sd=round(strength(r['dem_id']) if dparty == 'D' else 0.0, 2), sr=round(strength(r['rep_id']), 2))
         districts.append(x)
 
-    # Senate: the Oct 9 corrected averages, moved by the change in a simple poll average since Oct 9
+    # Senate: the Senate model's corrected averages (senate_oct9.json, re-run periodically; asof inside), moved by the
+    # change in a simple poll average since that date
     senate = []
     oct9 = senate_cfg['averages']
+    sen_asof = dt.date.fromisoformat(senate_cfg.get('asof', '2026-10-09'))
     for code, r in races.items():
         if r['race_type'] != 'senate':
             continue
@@ -368,7 +369,7 @@ def build_races(feed, base, G0, today, senate_cfg):
         drift = 0.0
         if s in oct9:
             a_now = poll_average(by_race, ratings, code, today)
-            a_then = poll_average(by_race, ratings, code, OCT9)
+            a_then = poll_average(by_race, ratings, code, sen_asof)
             if a_now and a_then:
                 drift = max(-3.0, min(3.0, a_now['avg'] - a_then['avg']))
             b, src = oct9[s] + drift, 'oct9'
@@ -381,7 +382,7 @@ def build_races(feed, base, G0, today, senate_cfg):
         recent = [list(x) for x in senate_cfg['recent_research'].get(s, [])]
         seen = {x[0].split()[0].lower() + x[1] for x in recent}
         for p in sorted(by_race.get(code, {}).values(), key=lambda p: p['end_date'], reverse=True):
-            if p['end_date'] <= '2026-10-09':
+            if p['end_date'] <= sen_asof.isoformat():
                 break
             when = dt.date.fromisoformat(p['end_date']).strftime('%b %-d')
             key = p['pollster'].split()[0].lower() + when

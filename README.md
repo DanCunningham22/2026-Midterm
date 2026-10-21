@@ -26,7 +26,7 @@ A GitHub Actions job (`.github/workflows/update.yml`) runs every three hours. It
 | Our forecast: national vote and Senate/governor adjustments | `pipeline/backtest/backtest.py`, inputs in `pipeline/content/fundamentals.json` | automatic; approval and special-election inputs checked daily |
 | Economic series for the backtest and the other-signals panel | [FRED](https://fred.stlouisfed.org/) and [datasets/s-and-p-500](https://github.com/datasets/s-and-p-500) via `pipeline/econ.py` | automatic, about twice a day |
 | Other signals' current readings (sentiment, gas, markets, raters, retirements) | `pipeline/content/signals.json` | daily scheduled refresh |
-| Senate: competitive races | Oct 9 corrected averages + change in a simple poll average since | automatic drift; base by hand |
+| Senate: competitive races | corrected averages from the Senate polling model (`pipeline/content/senate_oct9.json`, first run Oct 9, re-run Oct 21) + change in a simple poll average since its as-of date | automatic drift; model re-run weekly |
 | Early-vote signals, story and same-point comparisons | `pipeline/content/story.json` | daily scheduled refresh |
 | 2026 national crosstab polls (and the pollster picker) | `pipeline/static/polls_2026.csv` | as pollsters release them |
 | Watch tab: dates ahead, developments, Trump and Vance stops | `pipeline/content/watch.json` | daily scheduled refresh |
