@@ -27,24 +27,17 @@ FL 2022: 3 final points from the archive PDF
 fl2022_final: 3 points
 FL 2024: 3 final points from the archive PDF
 fl2024_final: 3 points
-PA wayback 20240925205010: RuntimeError wayback: HTTP Error 503: Service Temporarily Unavailable
-PA wayback 20241106025323: RuntimeError wayback: HTTP Error 503: Service Temporarily Unavailable
+PA wayback 20240925205010: applications only (no returns yet), skipped
+PA 2024-11-05: returned 1,912,676 D 1,053,971 R 629,505
 pa_wayback: 1 points
-cdx election.lab.ufl.edu/data-downloads/earlyvote/2024/US.csv 2024-09-20..2024-09-29: wayback: HTTP Error 503: Service Temporarily Unavailable
-cdx election.lab.ufl.edu/data-downloads/earlyvote/2024/US.csv 2024-09-30..2024-10-09: wayback: HTTP Error 503: Service Temporarily Unavailable
-cdx election.lab.ufl.edu/data-downloads/earlyvote/2024/US.csv 2024-10-10..2024-10-19: wayback: HTTP Error 503: Service Temporarily Unavailable
-cdx election.lab.ufl.edu/data-downloads/earlyvote/2024/US.csv 2024-10-20..2024-10-29: wayback: HTTP Error 503: Service Temporarily Unavailable
-cdx election.lab.ufl.edu/data-downloads/earlyvote/2024/US.csv 2024-10-30..2024-11-06: wayback: HTTP Error 503: Service Temporarily Unavailable
-UF 2024 wayback: 0 daily snapshots
-UF 2024 wayback: 0 points
+cdx election.lab.ufl.edu/data-downloads/earlyvote/2024/US.csv 2024-10-30..2024-11-06: wayback: <urlopen error [Errno 111] Connection refused>
+UF 2024 wayback: 4 daily snapshots
+UF 2024 wayback 20240921030421: wayback: <urlopen error [Errno 111] Connection refused>
+UF 2024 wayback: 22 points
 uf_wayback_2024: 69 points
-cdx countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats 2024-09-20..2024-09-29: wayback: HTTP Error 503: Service Temporarily Unavailable
-cdx countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats 2024-09-30..2024-10-09: wayback: HTTP Error 503: Service Temporarily Unavailable
-cdx countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats 2024-10-10..2024-10-19: wayback: HTTP Error 503: Service Temporarily Unavailable
-cdx countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats 2024-10-20..2024-10-29: wayback: HTTP Error 503: Service Temporarily Unavailable
-cdx countyballotfiles.floridados.gov/VoteByMailEarlyVotingReports/PublicStats 2024-10-30..2024-11-06: wayback: HTTP Error 503: Service Temporarily Unavailable
-FL 2024 wayback: 0 daily snapshots
-FL 2024 wayback: 0 points
+FL 2024 wayback: 19 daily snapshots
+FL 2024 wayback 20241001111047: wayback: <urlopen error [Errno 111] Connection refused>
+FL 2024 wayback: 14 points
 fl_wayback_2024: 16 points
 UF 2024 finals: 27 states with party
 UF 2020 finals: 20 states with party
