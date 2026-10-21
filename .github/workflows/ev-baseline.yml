@@ -5,8 +5,6 @@ name: Build early-vote baselines (party registration)
 # state pages) and writes pipeline/static/ev_baselines.json. Run it from the Actions tab (or by API dispatch).
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '41 */2 * * *'   # temporary: the Wayback Machine answers intermittently, so keep filling in the 2024 series (remove once complete)
 
 permissions:
   contents: write
