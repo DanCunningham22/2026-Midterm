@@ -53,6 +53,18 @@ def num(x):
         return None
 
 
+# Pollsters kept out even if the feed lists them unflagged: Wedgewood Polls said on Oct 20, 2026 that its polls were
+# fabricated (the feed has since removed them and marks it banned, sometimes as "1.0" rather than "1").
+BLOCKED_POLLSTERS = {'Wedgewood Polls'}
+
+
+def is_banned(pollster, ratings):
+    """True for a pollster the ratings file bans (flag "1" or "1.0") or that BLOCKED_POLLSTERS lists."""
+    if pollster in BLOCKED_POLLSTERS or (pollster or '').split(' ')[0].lower() == 'wedgewood':
+        return True
+    return (num((ratings.get(pollster) or {}).get('banned')) or 0) >= 1
+
+
 def fetch(url, timeout=60, tries=3):
     last = None
     for _ in range(tries):
@@ -113,7 +125,7 @@ def poll_average(by_race, ratings, code, asof, since_days=75):
         age = (asof - end).days
         if age < 0 or age > since_days:
             continue
-        if ratings.get(r['pollster'], {}).get('banned') == '1':
+        if is_banned(r['pollster'], ratings):
             continue
         n = num(r['n']) or 600
         q = max(0.5, num(r['rating']) or 1.0) / 2.0
@@ -144,7 +156,7 @@ def generic_ballot(gcb, ratings, today, window=28):
         except ValueError:
             continue
         age = (today - end).days
-        if age < 0 or age > window or ratings.get(r['pollster'], {}).get('banned') == '1':
+        if age < 0 or age > window or is_banned(r['pollster'], ratings):
             continue
         d, rp = num(r['dem']), num(r['rep'])
         if d is None or rp is None:
@@ -299,7 +311,7 @@ def add_extra_polls(feed, path):
             if key in have or num(x['dem']) is None or num(x['rep']) is None:
                 continue
             rt = ratings.get(x['pollster']) or ratings.get(RATING_ALIAS.get(x['pollster'], ''), {})
-            if rt.get('banned') == '1':
+            if is_banned(x['pollster'], ratings) or (num(rt.get('banned')) or 0) >= 1:
                 continue
             feed['race_polls.csv'].append(dict(
                 race_code=x['race_code'], poll_id=f"extra:{x['race_code']}:{x['pollster']}:{x['end_date']}",
