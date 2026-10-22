@@ -1,7 +1,114 @@
 {
- "asof": "2026-10-21",
+ "asof": "2026-10-22",
  "note": "Maintained daily. Every item links to the page that confirms it.",
  "happened": [
+  {
+   "date": "2026-10-22",
+   "title": "Crystal Ball moves Ohio governor to Leans Democratic, Michigan to Likely Democratic",
+   "what": "Sabato's Crystal Ball shifted Ohio's governor race from Toss-up to Leans Democratic, citing Amy Acton's public polling lead and the backlash to Vivek Ramaswamy's ad about her estranged mother, moved Michigan from Leans to Likely Democratic after allies of John James cut their spending, and moved Alabama and Oklahoma from Safe to Likely Republican; its tally is 26 governorships at least leaning Democratic, 22 at least leaning Republican and two Toss-ups, Nevada and Georgia.",
+   "why": "The rater says Democrats 'appear to be on the cusp of claiming a majority of the nation's governorships,' and Ohio is the first Toss-up governor race to move off the fence this month.",
+   "races": [
+    "OH-GOV",
+    "MI-GOV",
+    "AL-GOV",
+    "OK-GOV",
+    "NV-GOV",
+    "GA-GOV"
+   ],
+   "src": "Sabato's Crystal Ball (Kyle Kondik and J. Miles Coleman), Oct 22",
+   "url": "https://sabatoscrystalball.substack.com/p/the-governors-ohio-to-leans-democratic",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-22",
+   "title": "MAGA Inc. network commits $277 million to the final weeks",
+   "what": "Reuters reports Trump-aligned super PACs have committed more than $277 million to television and mail over the campaign's final six weeks, with MAGA Inc. routing $225 million through two affiliated groups, including more than $36 million in Texas for Ken Paxton, $30.1 million in Michigan for Mike Rogers and more than $28 million in Ohio for Jon Husted; MAGA Inc. reported $164 million in cash.",
+   "why": "The Trump network is now the largest outside spender in three Toss Up Senate races, outside the FEC totals the app shows for party committees.",
+   "races": [
+    "TX-SEN",
+    "MI-SEN",
+    "OH-SEN",
+    "US"
+   ],
+   "src": "Reuters (Virginia Furness) via Hawaii Tribune-Herald, Oct 22",
+   "url": "https://www.hawaiitribune-herald.com/2026/10/22/nation-world-news/trumps-maga-inc-unleashes-277-million-last-ditch-effort-to-save-republicans-in-key-us-races/",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-22",
+   "title": "Vance defends Ramaswamy's ad about Acton's mother as Republicans split",
+   "what": "Vice President Vance told Axios he was 'a little bit disgusted' by Republicans criticizing Vivek Ramaswamy's television ad featuring Amy Acton's estranged mother and told them to stop whining; Jon Husted said 'I would not have run that ad,' Nikki Haley called Ramaswamy 'a bad guy,' and Acton's campaign says the ad cost $4 million.",
+   "why": "The intraparty fight over the ad coincides with Crystal Ball moving the Ohio governor race to Leans Democratic and gives Democrats a closing argument in a state with a Toss Up Senate race on the same ballot.",
+   "races": [
+    "OH-GOV",
+    "OH-SEN"
+   ],
+   "src": "Axios (Alex Isenstadt), Oct 22",
+   "url": "https://axios.com/2026/10/22/vance-ohio-ad-controversy",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-21",
+   "title": "Cook battleground polls: Democrats lead the Iowa, Ohio and Texas Senate races",
+   "what": "Surveys by New River Strategies (D) and GS Strategy Group (R) for the Cook Political Report, taken Oct. 9-13 among likely voters, found Josh Turek 46-44 over Ashley Hinson in Iowa (Libertarian Thomas Laehn 8; n=602), Sherrod Brown 49-43 over Jon Husted in Ohio (n=959) and James Talarico 49-44 over Ken Paxton in Texas (n=934), with Rob Sand 54-43, Amy Acton 49-44 and Greg Abbott 48-46 in the governor races.",
+   "why": "Bipartisan polling for the rater that lists all three as Toss Ups has Democrats ahead in every Republican-held seat they need for the majority.",
+   "races": [
+    "IA-SEN",
+    "OH-SEN",
+    "TX-SEN",
+    "IA-GOV",
+    "OH-GOV",
+    "TX-GOV"
+   ],
+   "src": "Cook Political Report, Oct 21",
+   "url": "https://www.cookpolitical.com/analysis/survey-research/battleground-district-project/new-cpr-battleground-polls-dem-senate",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-21",
+   "title": "Senate Republicans eye Mississippi rescue as SLF's Ohio reservation grows to $93 million",
+   "what": "Axios reports Senate Republicans weighing a cash infusion for Cindy Hyde-Smith in Mississippi plus more for South Carolina and Kansas; AdImpact figures show Senate Leadership Fund's South Carolina buy grew from $5 million to $8.5 million, its Ohio reservations from $28 million to $93 million and Iowa from $11 million to $53 million, with $14 million earmarked for Kansas, while the NRSC took a $20 million loan after raising $31.4 million in September and Trump pledged another $100 million to his super PACs.",
+   "why": "Republican money is being pulled into seats no rater had in play a month ago, a sign the party is defending rather than expanding the Senate map.",
+   "races": [
+    "MS-SEN",
+    "SC-SEN",
+    "KS-SEN",
+    "OH-SEN",
+    "IA-SEN"
+   ],
+   "src": "Axios (Hans Nichols, Marc Caputo and Stef Kight), Oct 21",
+   "url": "https://axios.com/2026/10/21/mississippi-senate-competitive-hyde-smith-colom",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-21",
+   "title": "Democratic leaders sue over federal 'noncitizen' voter lists; California case reassigned",
+   "what": "Chuck Schumer, Hakeem Jeffries and the Democratic campaign committees sued the Trump administration in federal court in Washington over federal voter-roll 'noncitizen' lists and the Justice Department's effort to hold California mail ballots, calling the lists 'shoddily compiled' and citing Nevada's figure falling from about 16,000 names to 185; separately, the DOJ's California suit was reassigned from Judge John Holcomb to Judge David O. Carter, who dismissed the department's voter-data suit in January. No hearing dates were reported.",
+   "why": "The rulings will decide whether federal list-matching can hold ballots in the states with the most competitive House seats.",
+   "races": [
+    "US",
+    "CA-13",
+    "CA-22",
+    "CA-48",
+    "NV-GOV"
+   ],
+   "src": "Washington Examiner (Kaelan Deese), Oct 21; Democracy Docket, Oct 21",
+   "url": "https://www.washingtonexaminer.com/news/justice/4774650/democrats-sue-trump-administration-voter-roll-efforts/",
+   "aff": "Washington Examiner is a conservative outlet; Democracy Docket is Democratic-aligned"
+  },
+  {
+   "date": "2026-10-21",
+   "title": "Rogers asks El-Sayed whether he is 'for America' in final Michigan Senate debate",
+   "what": "In the WXYZ debate, Mike Rogers asked Abdul El-Sayed 'are you for America? Or are you for these terrorist groups overseas?', citing a 2012 letter, which El-Sayed called 'beneath' him; El-Sayed labeled Rogers a 'sock puppet' for Trump, and Rogers conceded the Canadian tariffs 'may not have been well thought through.' In Kansas the same night, Adam Hamilton called his ad about Roger Marshall's handling of a 2005 church-camp report 'a mistake on my part.'",
+   "why": "Both are Cook Toss Ups entering their final two weeks; Michigan's statewide early voting opens Oct. 24.",
+   "races": [
+    "MI-SEN",
+    "KS-SEN"
+   ],
+   "src": "WXYZ (Brett Kast and Marlon Falconer), Oct 21; KCUR, Oct 21",
+   "url": "https://www.wxyz.com/news/michigan-senate-debate-recap-rogers-and-el-sayed-clash-on-tariffs-iran-and-trump-ties",
+   "aff": ""
+  },
   {
    "date": "2026-10-21",
    "title": "NYT/Siena: Democrats lead the House ballot 52-41 among likely voters",
@@ -96,171 +203,9 @@
    "src": "Washington Sun (Elena Schneider), Oct 20; Fox News live blog, Oct 20",
    "url": "https://www.washingtonsun.com/campaigns/dccc-jumps-into-three-new-house-races",
    "aff": ""
-  },
-  {
-   "date": "2026-10-20",
-   "title": "California asks court to reject DOJ bid to hold 20,000 mail ballots",
-   "what": "Attorney General Rob Bonta filed California's opposition to the Justice Department's request for a restraining order that would segregate up to 20,000 mail ballots from voters a federal list calls likely noncitizens, calling the suit 'a reckless political stunt'; a day earlier federal prosecutors charged 28 green-card holders, 22 of them for voting in past elections. No hearing date has been set.",
-   "why": "California holds several of the House seats that will decide the majority, and the ruling will test whether federal list-matching can hold ballots after the 90-day limit on systematic roll maintenance.",
-   "races": [
-    "CA-13",
-    "CA-22",
-    "CA-48"
-   ],
-   "src": "CalMatters (Ryan Sabalow), Oct 20",
-   "url": "https://calmatters.org/politics/2026/10/california-noncitizen-voter-suit/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-19",
-   "title": "Iowa governor debate postponed after a death in Rob Sand's family",
-   "what": "The Iowa PBS debate between Democrat Rob Sand and Republican Zach Lahn set for Oct. 21 will not take place after Sand's brother-in-law was killed in a highway crash; Iowa PBS says it may be rescheduled, and a KCRG-TV debate in Cedar Rapids on Oct. 27 remains scheduled. Lahn said 'some things are bigger than politics.'",
-   "why": "The open Iowa governorship, which Marist had Sand leading 52-45 and co/efficient 49-45, loses one of its two televised debates in the final two weeks.",
-   "races": [
-    "IA-GOV"
-   ],
-   "src": "Radio Iowa (O. Kay Henderson), Oct 19",
-   "url": "https://www.radioiowa.com/2026/10/19/iowa-candidates-for-governor-will-not-debate-this-week-event-may-be-rescheduled/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-19",
-   "title": "Silver Bulletin moves Senate to Likely Democratic, 75% chance",
-   "what": "Nate Silver's FLIPR 2026 forecast, published by Silver Bulletin, raised Democrats' chance of winning Senate control to 75%, moving the chamber from Lean D to Likely D.",
-   "why": "A model that blends polls, fundraising, incumbency and expert ratings now makes Democrats clear favorites to net the four seats they need for a majority.",
-   "races": [
-    "US"
-   ],
-   "src": "Newsweek, Oct 19",
-   "url": "https://www.newsweek.com/nate-silver-revises-democrats-chances-winning-senate-12586949",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-19",
-   "title": "Republicans' ad edge is in Senate races, not the House",
-   "what": "AdImpact figures analyzed by The New York Times show Republicans outspending Democrats $947 million to $625 million in the seven Senate races Cook rates Toss Ups, including roughly $141 million more in Texas and nearly $90 million more in Ohio, but only about $14 million more across the 21 House Toss Ups, where Democrats lead in 11.",
-   "why": "The Republican money advantage is concentrated in the Senate, leaving the House battlefield close to even on the air while Democratic candidates outraised Republicans in 38 of the 42 most competitive House races.",
-   "races": [
-    "US",
-    "TX-SEN",
-    "OH-SEN",
-    "MI-SEN",
-    "ME-SEN",
-    "KS-SEN"
-   ],
-   "src": "New York Times via GV Wire, Oct 19",
-   "url": "https://gvwire.com/2026/10/19/that-huge-republican-cash-edge-its-in-senate-races-not-house-races/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-16",
-   "title": "Trump promises $5,000 'tariff' checks if Republicans keep Congress",
-   "what": "At his Dalton, Ga., rally, Trump said every adult citizen would receive $5,000, funded by tariff revenue and to be spent inside the country, if Republicans control both chambers after the midterms; he did not describe a legislative mechanism or timeline.",
-   "why": "It is the first explicit national promise tied to the outcome of the midterms, made with gasoline above $4 and the economy the top issue in every poll.",
-   "races": [
-    "US",
-    "GA-SEN",
-    "GA-GOV"
-   ],
-   "src": "FOX 5 Atlanta, Oct 16",
-   "url": "https://www.fox7austin.com/news/trump-rallies-dalton-collins-jackson-ahead-midterms",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-16",
-   "title": "Cook moves 11 more House races toward Democrats, half in Ohio, Nebraska and Kansas",
-   "what": "The Cook Political Report moved 11 House ratings, all toward Democrats, saying Republicans' troubles are 'particularly pronounced in Midwestern red states'; its Oct 16 ratings page lists the open MT-01 among 21 Toss Ups (16 Republican-held, 5 Democratic-held), MN-01, OH-10, OH-15, NY-21 and SC-01 as Lean Republican, and KS-02, NE-01 and FL-16 as Likely Republican.",
-   "why": "The House map keeps widening into Trump districts in states that also host competitive Senate races, so Republican money is being pulled in two directions.",
-   "races": [
-    "US",
-    "MT-01",
-    "MN-01",
-    "OH-10",
-    "OH-15",
-    "NY-21",
-    "SC-01",
-    "KS-02",
-    "NE-01",
-    "FL-16"
-   ],
-   "src": "Cook Political Report, Oct 16",
-   "url": "https://thecookpoliticalreport.substack.com/p/eleven-more-house-races-shift-toward",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-16",
-   "title": "Musk is the donor behind SLF's $200 million Texas rescue",
-   "what": "Elon Musk gave Senate Leadership Fund $75 million on Sept. 9 and about $83 million two weeks later, money SLF routed into a 'Texas PAC' that has spent more than $159 million on ads for Ken Paxton and plans nearly $200 million, on top of $18.8 million from Musk's America PAC, mostly against James Talarico.",
-   "why": "Republicans are spending at a presidential scale to hold a Senate seat Trump carried by 14 points, money that is not going to Maine, Iowa, Ohio or Kansas.",
-   "races": [
-    "TX-SEN"
-   ],
-   "src": "Texas Tribune via KERA, Oct 16",
-   "url": "https://www.kera.org/2026/10/16/elon-musk-is-the-donor-behind-senate-republicans-massive-rescue-mission-for-ken-paxton/",
-   "aff": ""
   }
  ],
  "upcoming": [
-  {
-   "date": "2026-10-21",
-   "time": "7:00 PM",
-   "title": "Rogers, El-Sayed hold second Michigan Senate debate",
-   "what": "WXYZ-TV hosts the second debate between Republican Mike Rogers and Democrat Abdul El-Sayed at 7 p.m. from its Broadcast House studios in Detroit, airing statewide and streaming on WXYZ Channel 7 and WXMI Fox 17.",
-   "why": "It comes three days before statewide early voting begins in Michigan.",
-   "races": [
-    "MI-SEN"
-   ],
-   "src": "WXYZ Detroit, updated Oct 13",
-   "url": "https://www.wxyz.com/news/national-politics/america-votes/wxyz-tv-to-host-u-s-senate-debate-between-mike-rogers-and-abdul-el-sayed"
-  },
-  {
-   "date": "2026-10-21",
-   "time": "7:00 PM",
-   "title": "Vermont Public hosts governor debate",
-   "what": "Vermont Public's gubernatorial debate airs live at 7 p.m. from its Winooski studios, hosted by Mikaela Lefrak, on its radio and television channels, streams and YouTube, with rebroadcasts Oct. 22.",
-   "why": "Cook moved the Vermont governor race from Solid to Likely Republican on Oct. 13, one of the Republican-held governorships Democrats would need for a majority.",
-   "races": [
-    "VT-GOV"
-   ],
-   "src": "Vermont Public, Sep 14",
-   "url": "https://www.vermontpublic.org/about-us/2026-09-14/vermont-public-2026-general-election-debates"
-  },
-  {
-   "date": "2026-10-21",
-   "time": "8:00 PM",
-   "title": "Marshall, Hamilton debate on Kansas Nexstar stations",
-   "what": "Sen. Roger Marshall and Democrat Adam Hamilton debate from 7 to 8 p.m. Central, originating at WDAF-TV in Kansas City and airing on Nexstar stations in Kansas City, Topeka, Wichita and Joplin; Libertarian David Graham is not included.",
-   "why": "Cook rates the race a Toss Up, and both parties' main Senate super PACs are now spending on it.",
-   "races": [
-    "KS-SEN"
-   ],
-   "src": "FOX4 Kansas City, Sep 29; Kansas Reflector, Oct 19",
-   "url": "https://fox4kc.com/politics/your-local-election-headquarters/nexstars-kansas-television-stations-to-air-live-debate-between-candidates-for-u-s-senate/amp/"
-  },
-  {
-   "date": "2026-10-21",
-   "time": "8:00 PM",
-   "title": "Crowley, Tiffany hold Wisconsin governor debate",
-   "what": "WISN-12 hosts a one-hour debate between Democrat David Crowley and Republican Tom Tiffany at Marquette University at 7 p.m. local time, also carried by partner stations in Green Bay, Madison, Wausau, Eau Claire and La Crosse.",
-   "why": "Tiffany has said one debate is sufficient, making this likely the only televised matchup in the open governor race.",
-   "races": [
-    "WI-GOV"
-   ],
-   "src": "Civic Media, Sep 2",
-   "url": "https://civicmedia.us/news/2026/09/02/debate-between-candidates-for-wisconsin-governor-scheduled-for-oct-21"
-  },
-  {
-   "date": "2026-10-21",
-   "time": "8:00 PM",
-   "title": "Klobuchar, Demuth debate for Minnesota governor",
-   "what": "Amy Klobuchar and Lisa Demuth meet for a 60-minute debate at 7 p.m. Central, live from KTTC/KXLT in Rochester, co-produced by FOX 9 and Gray Media stations and streamed on FOX9.com, the FOX LOCAL app and FOX 9's YouTube channel.",
-   "why": "It is the first scheduled debate in the open governor race, where Klobuchar led Demuth 50-41 in the Mason-Dixon poll ending Oct. 7.",
-   "races": [
-    "MN-GOV"
-   ],
-   "src": "FOX 9, Sep 29",
-   "url": "https://www.fox9.com/news/minnesota-gubernatorial-debate-klobuchar-demuth-oct-21-air-fox-9"
-  },
   {
    "date": "2026-10-22",
    "time": "",
@@ -384,6 +329,20 @@
    "url": "https://www.nj.gov/state/elections/vote-early-voting.shtml"
   },
   {
+   "date": "2026-10-24",
+   "time": "",
+   "title": "Harris campaigns in New Hampshire for Pappas",
+   "what": "Former Vice President Kamala Harris campaigns in New Hampshire for Senate nominee Chris Pappas on Oct. 24, part of a five-state swing that also takes her to Wisconsin for David Crowley on Oct. 26 and to Georgia for three days from Oct. 28 for Sen. Jon Ossoff.",
+   "why": "New Hampshire is one of the two Democratic-held Senate seats rated Lean Democratic, and the swing puts a 2024 nominee into the final-week closing argument in three battlegrounds.",
+   "races": [
+    "NH-SEN",
+    "WI-GOV",
+    "GA-SEN"
+   ],
+   "src": "iHeart/WWNC, Oct 22",
+   "url": "https://wwnc.iheart.com/content/2026-10-22-kamala-harris-hits-campaign-trail-ahead-of-midterms/"
+  },
+  {
    "date": "2026-10-27",
    "time": "",
    "title": "Pennsylvania mail ballot application deadline",
@@ -422,6 +381,18 @@
    ],
    "src": "Radio Iowa, Oct 19",
    "url": "https://www.radioiowa.com/2026/10/19/iowa-candidates-for-governor-will-not-debate-this-week-event-may-be-rescheduled/"
+  },
+  {
+   "date": "2026-10-27",
+   "time": "",
+   "title": "Talarico counter-rally at Texas Tech as Trump visits Lubbock",
+   "what": "Democrat James Talarico holds an evening rally at Texas Tech in Lubbock on Oct. 27, the day Trump campaigns for Ken Paxton at the Lubbock Memorial Civic Center (program 1 p.m., Trump 2:30 p.m. Central).",
+   "why": "Texas is a Cook Toss Up where Republican super PACs have spent at presidential scale; dueling events in a Republican stronghold test each side's closing turnout push.",
+   "races": [
+    "TX-SEN"
+   ],
+   "src": "Lubbock Lights, Oct 21",
+   "url": "https://lubbocklights.com/confirmed-trumps-lubbock-rally-set-for-civic-center/"
   },
   {
    "date": "2026-10-27",
@@ -1432,13 +1403,17 @@
     {
      "name": "Sheri Biggs",
      "race": "SC-03"
+    },
+    {
+     "name": "Russell Fry",
+     "race": "SC-07"
     }
    ],
-   "status": "announced",
-   "src": "RNC event page, accessed Oct 21; WRDW, Oct 19",
-   "url": "https://events.gop.com/events/midterm-rally-in-clemson-sc-president-donald-j-trump-djt47",
+   "status": "held",
+   "src": "FOX Carolina (Anisa Snipes), Oct 21; The Journal/Upstate Today, Oct 22",
+   "url": "https://www.foxcarolina.com/2026/10/21/live-coverage-pres-trump-upstate-midterm-rally/",
    "aff": "",
-   "note": "Trump 47 Committee rally for Graham 'and all Republican candidates'; doors 3:30, Trump 7 p.m. ET."
+   "note": "Spoke over 90 minutes from 7:08 p.m.; Graham, Scott, McMaster, Biggs and Fry spoke; hecklers removed."
   },
   {
    "date": "2026-10-21",
@@ -1455,13 +1430,17 @@
     {
      "name": "Jon Husted",
      "race": "OH-SEN"
+    },
+    {
+     "name": "Eric Conroy",
+     "race": "OH-01"
     }
    ],
-   "status": "announced",
-   "src": "WCPO, Oct 21; FOX19, Oct 18",
-   "url": "https://www.wcpo.com/news/local-news/vice-president-jd-vance-and-vivek-ramaswamy-set-to-campaign-at-sharonville-convention-center-wednesday-morning",
+   "status": "held",
+   "src": "American Presidency Project (VP pool reports), Oct 21; WCPO, Oct 21",
+   "url": "https://www.presidency.ucsb.edu/documents/vice-presidential-pool-reports-october-21-2026",
    "aff": "",
-   "note": "Ohio Republican Party rally with Ramaswamy; doors 9:30 a.m., Vance about 11:30 a.m."
+   "note": "Spoke 1:02-1:41 p.m. to a few hundred; opened for Conroy; defended Ramaswamy's ad."
   },
   {
    "date": "2026-10-22",
@@ -1480,15 +1459,27 @@
      "race": "IA-GOV"
     },
     {
+     "name": "Mariannette Miller-Meeks",
+     "race": "IA-01"
+    },
+    {
      "name": "Joe Mitchell",
      "race": "IA-02"
+    },
+    {
+     "name": "Zach Nunn",
+     "race": "IA-03"
+    },
+    {
+     "name": "Chris McGowan",
+     "race": "IA-04"
     }
    ],
    "status": "announced",
-   "src": "KTIV, Oct 19; KMPH, Oct 16",
-   "url": "https://www.ktiv.com/2026/10/19/president-donald-trump-hold-rally-sioux-gateway-airport/",
+   "src": "KTIV, Oct 21",
+   "url": "https://www.ktiv.com/2026/10/21/how-watch-president-trumps-rally-sioux-city-thursday-oct-22/",
    "aff": "",
-   "note": "Airport rally, Trump at 6 p.m. Central; Hinson, Lahn and IA-02 nominee Mitchell expected to speak."
+   "note": "Doors 2:30, speakers from 4 p.m., Trump in the 6 p.m. hour Central; Truth Social post named all six."
   },
   {
    "date": "2026-10-22",
@@ -1505,13 +1496,17 @@
     {
      "name": "Jim Pillen",
      "race": "NE-GOV"
+    },
+    {
+     "name": "Adrian Smith",
+     "race": "NE-03"
     }
    ],
    "status": "announced",
-   "src": "WOWT, Oct 19",
-   "url": "https://www.wowt.com/2026/10/19/how-watch-vice-president-jd-vance-midterm-rally-north-platte/",
+   "src": "KNOP/KOLN, Oct 22",
+   "url": "https://www.1011now.com/2026/10/22/live-coverage-9am-midterm-rally-featuring-jd-vance-north-platte/",
    "aff": "",
-   "note": "Doors 8:30 a.m., Vance about 12:05 p.m. Central; Ricketts and Pillen expected; livestream only."
+   "note": "Revised schedule: doors 7:30 a.m., program 9:30 a.m., ends noon Central; Rep. Smith attending, Sen. Fischer not."
   },
   {
    "date": "2026-10-23",
@@ -1536,10 +1531,10 @@
    "venue": "Guardian Centers",
    "boosting": [],
    "status": "announced",
-   "src": "WALB (Destin Howard), Oct 20",
-   "url": "https://www.walb.com/2026/10/21/trump-moves-georgia-midterm-rally-macon-perry/",
+   "src": "WPGA via WCTV (Destin Howard), Oct 21",
+   "url": "https://www.wctv.tv/2026/10/21/trump-moves-georgia-midterm-rally-macon-perry/",
    "aff": "",
-   "note": "Moved from Macon to Perry, reason not stated; doors 3:30, Trump 7 p.m. ET."
+   "note": "Moved from Macon to Perry; Guardian Centers, 600 Perry Parkway; doors 3:30, program 5:30, Trump 7 p.m. ET."
   },
   {
    "date": "2026-10-25",
@@ -1556,12 +1551,31 @@
    "note": "Day after Obama's Detroit rally; doors 11:30 a.m., Trump at 3 p.m. ET."
   },
   {
+   "date": "2026-10-26",
+   "who": "Trump",
+   "kind": "rally",
+   "city": "Corinth",
+   "st": "MS",
+   "venue": "Crossroads Arena",
+   "boosting": [
+    {
+     "name": "Cindy Hyde-Smith",
+     "race": "MS-SEN"
+    }
+   ],
+   "status": "announced",
+   "src": "WLBT (Mississippi Today report), Oct 21; Magnolia State Live, Oct 22",
+   "url": "https://www.wlbt.com/2026/10/21/trump-rallying-mississippi-monday-support-hyde-smith/",
+   "aff": "",
+   "note": "Doors 2:30, program 4:30, Trump about 6 p.m. Central; first reported by Mississippi Today."
+  },
+  {
    "date": "2026-10-27",
    "who": "Trump",
    "kind": "rally",
    "city": "Lubbock",
    "st": "TX",
-   "venue": "",
+   "venue": "Lubbock Memorial Civic Center",
    "boosting": [
     {
      "name": "Ken Paxton",
@@ -1569,10 +1583,10 @@
     }
    ],
    "status": "announced",
-   "src": "Scripps News (via News 5 Cleveland), Oct 19",
-   "url": "https://www.news5cleveland.com/politics/the-president/first-on-scripps-news-trump-is-headed-back-to-texas-to-campaign-for-ken-paxton",
+   "src": "Lubbock Lights (Benji Snead), Oct 21",
+   "url": "https://lubbocklights.com/confirmed-trumps-lubbock-rally-set-for-civic-center/",
    "aff": "",
-   "note": "Afternoon rally for Paxton confirmed by an RNC official; Trump's fifth Texas trip this year."
+   "note": "Doors 11 a.m., program 1 p.m., Trump 2:30 p.m. Central; Talarico holds a Texas Tech rally that evening."
   },
   {
    "date": "2026-10-27",
@@ -1592,6 +1606,20 @@
    "url": "https://www.kbtx.com/2026/10/19/pres-trump-visit-waco-next-tuesday/",
    "aff": "",
    "note": "Evening rally; doors 2:30, Trump 6 p.m. Central; location to be announced."
+  },
+  {
+   "date": "2026-10-28",
+   "who": "Trump",
+   "kind": "rally",
+   "city": "Chillicothe",
+   "st": "OH",
+   "venue": "",
+   "boosting": [],
+   "status": "announced",
+   "src": "ABC6/WSYX (Katherine Leone), Oct 21; Scioto Valley Guardian, Oct 21",
+   "url": "https://abc6onyourside.com/news/local/president-trump-to-speak-at-chillicothe-midterm-rally-october-28-vivek-ramaswamy-jon-husted",
+   "aff": "",
+   "note": "Trump 47 Committee rally; venue to be announced; doors 3:30, program 5:30, Trump 7 p.m. ET."
   },
   {
    "date": "2026-11-01",
