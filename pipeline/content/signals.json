@@ -5,12 +5,12 @@
   {
    "key": "sent",
    "label": "Consumer sentiment (University of Michigan)",
-   "value": 46.3,
-   "value_label": "46.3, October preliminary (Oct 9)",
+   "value": 48.0,
+   "value_label": "48.0, October final (Oct 23), revised up from the 46.3 preliminary",
    "compare": "48.1 in September (final); 53.6 in October 2025 (FRED, UMCSENT)",
-   "say": "Near the lowest readings in the survey's history; sentiment has been low under both parties since 2022.",
-   "src": "investingLive, Oct 9",
-   "url": "https://investinglive.com/news/us-october-umich-prelim-consumer-sentiment-vs-47-8-expected/"
+   "say": "Still among the lowest readings in the survey's history; the final October figure was revised up to nearly September's level.",
+   "src": "Trading Economics calendar (University of Michigan Surveys of Consumers), Oct 23",
+   "url": "https://tradingeconomics.com/united-states/consumer-confidence"
   },
   {
    "key": "gasprice",
