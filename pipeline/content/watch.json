@@ -1,7 +1,53 @@
 {
- "asof": "2026-10-22",
+ "asof": "2026-10-23",
  "note": "Maintained daily. Every item links to the page that confirms it.",
  "happened": [
+  {
+   "date": "2026-10-22",
+   "title": "Fox News: Collins and Jackson tied 49-49 in Maine; Saint Anselm has Pappas up 7",
+   "what": "A Fox News poll of 1,514 Maine likely voters taken Oct. 16-20 finds Troy Jackson and Sen. Susan Collins tied 49-49 (Jackson 50-48 among registered voters) and Hannah Pingree leading the governor race 49-39 with independent Rick Bennett at 9; the same week's Fox polls had Paxton and Talarico tied 49-49 in Texas and Brown ahead 52-47 in Ohio. Saint Anselm's Oct. 19-20 survey of 1,672 New Hampshire likely voters has Chris Pappas over John E. Sununu 50-43 and Kelly Ayotte over Cinde Warmington 50-42.",
+   "why": "Maine is one of Cook's seven Senate Toss Ups; a tie with Collins at 49 keeps a Democratic pickup there in doubt while New Hampshire, a Democratic-held seat, looks safer for them.",
+   "races": [
+    "ME-SEN",
+    "ME-GOV",
+    "NH-SEN",
+    "NH-GOV",
+    "TX-SEN",
+    "OH-SEN"
+   ],
+   "src": "Fox News (Beacon Research/Shaw & Co.), Oct 22; Saint Anselm College Survey Center, Oct 22",
+   "url": "https://static.foxnews.com/foxnews.com/content/uploads/2026/10/fox_october-16-20-2026_maine_topline_october-22-release.pdf",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-22",
+   "title": "Judge curbs DHS noncitizen-voting probes in nine states",
+   "what": "Federal Judge Araceli Martínez-Olguín ruled late Oct. 21 that the Department of Homeland Security's 'Unlawful Voter Initiative' may not conduct field operations or interviews likely to involve U.S. citizens in California, Connecticut, Georgia, Missouri, Nevada, New York, Pennsylvania, Washington and Wisconsin, citing 'substantial evidence' of 'intimidating conduct' and a 'high likelihood of error' because no federal database holds citizenship status; DHS said it has 'no plans to question or investigate people we believe to be U.S. citizens.' The suit was brought by nonprofits and local governments, separate from the Democratic leaders' Oct. 21 case over federal 'noncitizen' voter lists.",
+   "why": "The order limits door-to-door federal activity during early voting in five states with competitive Senate or governor races and most of the House battleground.",
+   "races": [
+    "US",
+    "GA-SEN",
+    "NV-GOV",
+    "PA-07",
+    "PA-08",
+    "WI-GOV"
+   ],
+   "src": "Axios (Avery Lotz), Oct 22",
+   "url": "https://www.axios.com/2026/10/22/trump-noncitizen-voting-investigation-restricted-judge",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-22",
+   "title": "Senate Leadership Fund buys its first Mississippi ads",
+   "what": "CNN reports Senate Leadership Fund placed an initial reservation of about $160,000 in Mississippi for Sen. Cindy Hyde-Smith against Democrat Scott Colom, with more expected; Senate Democrats announced about $1 million in ads after Senate Majority PAC's $1.2 million reservation, American Bridge plans $2.1 million, and AdImpact expects about $8 million of spending from October through Election Day, Democrats ahead roughly $5 million to $2.7 million.",
+   "why": "The main Senate Republican super PAC is now spending in a seat no rater had in play a month ago, a further sign that the party is defending rather than expanding the map.",
+   "races": [
+    "MS-SEN"
+   ],
+   "src": "CNN (Sarah Ferris, Manu Raju and David Wright) via KESQ, Oct 22",
+   "url": "https://kesq.com/news/national-politics/cnn-us-politics/2026/10/22/the-latest-sign-of-republican-midterm-problems-a-top-super-pac-is-buying-ads-in-mississippi/",
+   "aff": ""
+  },
   {
    "date": "2026-10-22",
    "title": "Crystal Ball moves Ohio governor to Leans Democratic, Michigan to Likely Democratic",
@@ -82,35 +128,6 @@
   },
   {
    "date": "2026-10-21",
-   "title": "Democratic leaders sue over federal 'noncitizen' voter lists; California case reassigned",
-   "what": "Chuck Schumer, Hakeem Jeffries and the Democratic campaign committees sued the Trump administration in federal court in Washington over federal voter-roll 'noncitizen' lists and the Justice Department's effort to hold California mail ballots, calling the lists 'shoddily compiled' and citing Nevada's figure falling from about 16,000 names to 185; separately, the DOJ's California suit was reassigned from Judge John Holcomb to Judge David O. Carter, who dismissed the department's voter-data suit in January. No hearing dates were reported.",
-   "why": "The rulings will decide whether federal list-matching can hold ballots in the states with the most competitive House seats.",
-   "races": [
-    "US",
-    "CA-13",
-    "CA-22",
-    "CA-48",
-    "NV-GOV"
-   ],
-   "src": "Washington Examiner (Kaelan Deese), Oct 21; Democracy Docket, Oct 21",
-   "url": "https://www.washingtonexaminer.com/news/justice/4774650/democrats-sue-trump-administration-voter-roll-efforts/",
-   "aff": "Washington Examiner is a conservative outlet; Democracy Docket is Democratic-aligned"
-  },
-  {
-   "date": "2026-10-21",
-   "title": "Rogers asks El-Sayed whether he is 'for America' in final Michigan Senate debate",
-   "what": "In the WXYZ debate, Mike Rogers asked Abdul El-Sayed 'are you for America? Or are you for these terrorist groups overseas?', citing a 2012 letter, which El-Sayed called 'beneath' him; El-Sayed labeled Rogers a 'sock puppet' for Trump, and Rogers conceded the Canadian tariffs 'may not have been well thought through.' In Kansas the same night, Adam Hamilton called his ad about Roger Marshall's handling of a 2005 church-camp report 'a mistake on my part.'",
-   "why": "Both are Cook Toss Ups entering their final two weeks; Michigan's statewide early voting opens Oct. 24.",
-   "races": [
-    "MI-SEN",
-    "KS-SEN"
-   ],
-   "src": "WXYZ (Brett Kast and Marlon Falconer), Oct 21; KCUR, Oct 21",
-   "url": "https://www.wxyz.com/news/michigan-senate-debate-recap-rogers-and-el-sayed-clash-on-tariffs-iran-and-trump-ties",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-21",
    "title": "NYT/Siena: Democrats lead the House ballot 52-41 among likely voters",
    "what": "The New York Times/Siena national poll of more than 3,000 voters, released Oct. 21, finds Democrats ahead of Republicans by 10 points on the congressional ballot when every candidate's name is offered (52-41 in the Times' topline, per Fox News and the RealClearPolling table), leading by 5 in the 35 states with Senate races, with Trump's job approval at 36-59.",
    "why": "The highest-rated national poll of the cycle lands two points above the polling average, and its Senate-state figure suggests the map's tilt toward Republicans is being overcome.",
@@ -187,61 +204,9 @@
    "src": "Cook Political Report (Jessica Taylor), Oct 20",
    "url": "https://thecookpoliticalreport.substack.com/p/three-new-senate-moves-south-carolina",
    "aff": ""
-  },
-  {
-   "date": "2026-10-20",
-   "title": "DCCC adds three Republican-held districts; Senate Majority PAC buys in Mississippi",
-   "what": "The DCCC began coordinated television ads in AZ-02, OH-10 and SC-01 as part of a $16 million week, bringing it to 49 districts, about two-thirds held by Republicans; Senate Majority PAC is launching a $1.2 million buy for Scott Colom against Sen. Cindy Hyde-Smith in Mississippi, and the RNC has transferred more than $50 million to the NRCC and NRSC.",
-   "why": "Democratic committees are spending into districts Trump carried comfortably and a Senate seat no rater had in play a month ago, while Republican money shifts toward defense.",
-   "races": [
-    "AZ-02",
-    "OH-10",
-    "SC-01",
-    "MS-SEN",
-    "US"
-   ],
-   "src": "Washington Sun (Elena Schneider), Oct 20; Fox News live blog, Oct 20",
-   "url": "https://www.washingtonsun.com/campaigns/dccc-jumps-into-three-new-house-races",
-   "aff": ""
   }
  ],
  "upcoming": [
-  {
-   "date": "2026-10-22",
-   "time": "",
-   "title": "FEC pre-general reports due",
-   "what": "Pre-general reports covering Oct. 1 through Oct. 14 are due to the FEC.",
-   "why": "They provide the last full look at campaign and committee cash and spending before Election Day.",
-   "races": [
-    "US"
-   ],
-   "src": "Federal Election Commission, accessed Oct 13",
-   "url": "https://www.fec.gov/updates/october-reporting-reminder-2026/"
-  },
-  {
-   "date": "2026-10-22",
-   "time": "7:00 PM",
-   "title": "Alvarado, Dembo debate in Kentucky's 6th District",
-   "what": "Republican Alvarado and Democrat Dembo, the KY-06 nominees, debate on WDKY (FOX 56) at 7 p.m.",
-   "why": "Inside Elections rates the open KY-06 Lean Republican, one of the Republican-held seats on the edge of the House battlefield.",
-   "races": [
-    "KY-06"
-   ],
-   "src": "WKYT, Oct 14",
-   "url": "https://www.wkyt.com/2026/10/14/alvarado-dembo-agree-6th-district-congressional-debate-not-wkyt-first-time-since-2012/"
-  },
-  {
-   "date": "2026-10-22",
-   "time": "7:00 PM",
-   "title": "Maine Public interviews Dunlap in ME-02 after LePage declines debate",
-   "what": "Maine Public airs a 30-minute live interview with Democrat Matt Dunlap at 7 p.m. in place of a ME-02 debate, which Republican Paul LePage declined.",
-   "why": "The open ME-02, which Inside Elections moved to Lean Republican on Oct. 20, is one of the Republican targets Democrats need to hold or flip for a larger majority.",
-   "races": [
-    "ME-02"
-   ],
-   "src": "Maine Public, Oct 13",
-   "url": "https://www.mainepublic.org/politics/2026-10-13/this-week-is-stacked-with-debates-in-maines-high-stakes-races-for-senate-2nd-district-and-governor"
-  },
   {
    "date": "2026-10-23",
    "time": "",
@@ -1475,11 +1440,11 @@
      "race": "IA-04"
     }
    ],
-   "status": "announced",
-   "src": "KTIV, Oct 21",
-   "url": "https://www.ktiv.com/2026/10/21/how-watch-president-trumps-rally-sioux-city-thursday-oct-22/",
+   "status": "held",
+   "src": "KTIV (Kaylie Dahms and Acacia Killian), Oct 23; Radio Iowa, Oct 22",
+   "url": "https://www.ktiv.com/2026/10/23/trump-rallies-sioux-city-supporters-pushes-gop-ticket-ahead-nov-3-election/",
    "aff": "",
-   "note": "Doors 2:30, speakers from 4 p.m., Trump in the 6 p.m. hour Central; Truth Social post named all six."
+   "note": "Spoke from about 7:15 p.m. for 90-plus minutes; Hinson, Lahn, McGowan and Mitchell spoke; Nunn, Miller-Meeks not reported."
   },
   {
    "date": "2026-10-22",
@@ -1502,11 +1467,11 @@
      "race": "NE-03"
     }
    ],
-   "status": "announced",
-   "src": "KNOP/KOLN, Oct 22",
-   "url": "https://www.1011now.com/2026/10/22/live-coverage-9am-midterm-rally-featuring-jd-vance-north-platte/",
+   "status": "held",
+   "src": "KNOP/WOWT (Tristen Winder), Oct 22; North Platte Bulletin, Oct 22",
+   "url": "https://www.wowt.com/2026/10/23/hundreds-pack-dn-vance-pledges-cheaper-fertilizer-farmers/",
    "aff": "",
-   "note": "Revised schedule: doors 7:30 a.m., program 9:30 a.m., ends noon Central; Rep. Smith attending, Sen. Fischer not."
+   "note": "About 1,200 attended; Ricketts, Pillen and Smith spoke; announced $1.3 billion fertilizer investment."
   },
   {
    "date": "2026-10-23",
@@ -1515,12 +1480,17 @@
    "city": "Fort Myers",
    "st": "FL",
    "venue": "Alico Arena, Florida Gulf Coast University",
-   "boosting": [],
+   "boosting": [
+    {
+     "name": "Byron Donalds",
+     "race": "FL-GOV"
+    }
+   ],
    "status": "announced",
-   "src": "WGCU, Oct 16 (updated Oct 18)",
-   "url": "https://www.wgcu.org/top-story/2026-10-16/trump-to-come-to-fort-myers-oct-23-fgcu-alerts-campus-for-change-in-operations-for-special-private-event-same-day",
+   "src": "WINK News, Oct 22; WGCU, Oct 16",
+   "url": "https://www.winknews.com/news/southwest_florida/president-trump-s-fort-myers-visit-friday-rally-time-location-and-what-to-know/article_80f86e0e-d716-492d-9cef-6791bade75cc.html",
    "aff": "",
-   "note": "RNC-ticketed rally; Trump at 2 p.m. ET per Florida Phoenix; candidates not announced."
+   "note": "Doors 10:30 a.m., remarks expected 2 p.m. ET; billed as supporting governor nominee Byron Donalds."
   },
   {
    "date": "2026-10-24",
@@ -1568,6 +1538,25 @@
    "url": "https://www.wlbt.com/2026/10/21/trump-rallying-mississippi-monday-support-hyde-smith/",
    "aff": "",
    "note": "Doors 2:30, program 4:30, Trump about 6 p.m. Central; first reported by Mississippi Today."
+  },
+  {
+   "date": "2026-10-26",
+   "who": "Vance",
+   "kind": "rally",
+   "city": "Topeka",
+   "st": "KS",
+   "venue": "HME, Inc.",
+   "boosting": [
+    {
+     "name": "Roger Marshall",
+     "race": "KS-SEN"
+    }
+   ],
+   "status": "announced",
+   "src": "KCTV5 (Gabe Swartz), Oct 22",
+   "url": "https://www.kctv5.com/2026/10/22/vice-president-vance-host-midterm-rally-topeka-next-week/",
+   "aff": "",
+   "note": "RNC rally for Marshall; doors 2 p.m., program 4 p.m., Vance 5:15 p.m. Central."
   },
   {
    "date": "2026-10-27",
@@ -1625,7 +1614,7 @@
    "date": "2026-11-01",
    "who": "Trump",
    "kind": "rally",
-   "city": "Site TBA",
+   "city": "Dubuque",
    "st": "IA",
    "venue": "",
    "boosting": [
@@ -1639,10 +1628,10 @@
     }
    ],
    "status": "announced",
-   "src": "The Gazette (Sioux City Journal), Oct 17",
-   "url": "https://www.thegazette.com/news/elections/candidates/president-trump-to-rally-in-sioux-city-thursday/article_498aa17f-4a56-482b-86e2-c4ff73f5bc44.html",
+   "src": "Radio Iowa (O. Kay Henderson), Oct 22",
+   "url": "https://www.radioiowa.com/2026/10/22/trump-headlines-sioux-city-rally-touts-150-million-to-boost-fuel-production/",
    "aff": "",
-   "note": "Second Iowa rally announced on Truth Social; city and site not named."
+   "note": "Radio Iowa reports a Sunday, Nov. 1 return to Iowa for a rally in Dubuque; site not named."
   }
  ],
  "trail_note": "Trump and Vance campaign appearances since Sep 1, 2026, from White House pool reports, Roll Call Factbase and local coverage. Closed-press fundraisers and tele-rallies are rarely reported, so they are undercounted."
