@@ -36,6 +36,12 @@
    "sealed": "2026-10-22T11:30:00-04:00",
    "label": "Oct 22, 11:30 AM ET",
    "sha256": "5d6ee9f5d86fb31543b15172a27bfc5af5aecf6c95791725b7d7374e761be2ee"
+  },
+  {
+   "v": 7,
+   "sealed": "2026-10-25T09:10:00-04:00",
+   "label": "Oct 25, 9:10 AM ET",
+   "sha256": "12db7b0a4e499f6027d92638081ac124c71a86ca362571d796cee5cf61543dfb"
   }
  ]
 }
