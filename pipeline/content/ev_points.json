@@ -1,5 +1,5 @@
 {
- "asof": "2026-10-17",
+ "asof": "2026-10-26",
  "about": "Hand-entered same-point baselines for the official early vote by party registration, from dated official reports and news reports that quoted them. Counts are returned ballots (m='ret': mail only; 'voted': mail plus in-person early). Where only shares or a lead were reported, 'gap' (D minus R as a percent of all ballots) is given directly and counts are derived or left out. Machine-built points (Colorado's releases, Florida's archive, UF Election Lab finals) are in pipeline/static/ev_baselines.json.",
  "notes": {
   "PA": "No in-person early voting, so this is mail ballots returned. Pennsylvania's mail electorate is heavily Democratic whatever the year (about D+53 at 12 days out in 2022, when Republicans won the national House vote by 3), so it says little about direction; the slope fitted for mail-only states is small for that reason. Requests by party are shown for context.",
@@ -536,25 +536,25 @@
   {
    "st": "FL",
    "year": 2022,
-   "date": "2022-10-27",
+   "date": "2022-10-26",
    "m": "voted",
    "all": 1940005,
    "d": 786425,
    "r": 784653,
    "n": 368927,
-   "src": "Floridian Press, Oct 28, 2022 (Division of Elections figures as of Thursday morning)",
+   "src": "Floridian Press, Oct 28, 2022 (Division of Elections figures as of Thursday morning, Oct 27, which carry ballots through Wednesday Oct 26; date moved from Oct 27 to Oct 26 on Oct 26, 2026 to match the data-through dating of the 2026 files)",
    "url": "https://floridianpress.com/2022/10/parties-neck-and-neck-in-ballots-cast-but-republicans-have-the-advantage/"
   },
   {
    "st": "FL",
    "year": 2022,
-   "date": "2022-10-28",
+   "date": "2022-10-27",
    "m": "voted",
    "all": 2172931,
    "d": 865400,
    "r": 895990,
    "n": 411541,
-   "src": "Patch, Oct 28, 2022 (Division of Elections figures as of Friday morning)",
+   "src": "Patch, Oct 28, 2022 (Division of Elections figures as of Friday morning, Oct 28, which carry ballots through Thursday Oct 27; date moved from Oct 28 to Oct 27 on Oct 26, 2026 to match the data-through dating of the 2026 files)",
    "url": "https://patch.com/florida/across-fl/republicans-surpass-dems-combined-early-voting-vote-mail"
   },
   {
@@ -570,13 +570,13 @@
   {
    "st": "FL",
    "year": 2024,
-   "date": "2024-10-28",
+   "date": "2024-10-27",
    "m": "voted",
    "all": 4598924,
    "d": 1565445,
    "r": 2066479,
    "n": 966999,
-   "src": "Florida Politics, late October 2024 (state tracking: 2,508,243 in person and 2,090,681 by mail; date approximate)",
+   "src": "Florida Politics, Oct 28, 2024 (state tracking: 2,508,243 in person and 2,090,681 by mail; the article says the GOP lead stood 'going into Monday's action' and its first comment is 9:38 a.m. Monday Oct 28, so the figures are through Sunday Oct 27; date moved from Oct 28 to Oct 27 on Oct 26, 2026 to match the data-through dating of the 2026 files and the machine-built baselines, which carry the Monday-close figures at Oct 28)",
    "url": "https://floridapolitics.com/archives/703899-gop-early-vote-lead"
   },
   {
@@ -756,6 +756,54 @@
    "n": 59515,
    "src": "KSNV News 3 Las Vegas, Oct 21, 2024, 7:49 PM (Secretary of State figures reported Monday evening, after the first three full days of in-person voting): 245,356 votes, Republicans 96,858, Democrats 88,983, nonpartisan and others 59,515; in-person 104,729, mail more than 140,000",
    "url": "https://news3lv.com/amp/news/local/breaking-down-first-days-early-voting-turnout-nevada-general-election-october-democrats-republicans-presidential-race-ballots-voting-las-vegas-clark-county"
+  },
+  {
+   "st": "FL",
+   "year": 2022,
+   "date": "2022-10-30",
+   "m": "voted",
+   "all": 2774204,
+   "d": 1077000,
+   "r": 1173000,
+   "n": 486000,
+   "src": "CBS Miami/News Service of Florida, Oct 31, 2022, 12:50 PM (Division of Elections figures as of Monday morning, Oct 31, carrying ballots through Sunday Oct 30: 'more than 2.77 million' ballots, 1,907,420 by mail and 866,784 at early voting sites (summed to 2,774,204); Republicans '1.173 million', Democrats 'about 1.077 million', unaffiliated 'about 486,000', the rest third-party; party counts as rounded by the article)",
+   "url": "https://www.cbsnews.com/amp/miami/news/gop-outpaces-democrats-in-casting-florida-ballots"
+  },
+  {
+   "st": "FL",
+   "year": 2022,
+   "date": "2022-11-01",
+   "m": "voted",
+   "all": 3304040,
+   "d": 1249122,
+   "r": 1426017,
+   "n": 628901,
+   "src": "CBS Miami/News Service of Florida, Nov 2, 2022, 2:00 PM (Division of Elections figures as of Wednesday morning, Nov 2, carrying ballots through Tuesday Nov 1: 3,304,040 ballots; 1,426,017 Republicans, 1,249,122 Democrats, 583,663 unaffiliated, 45,238 third-party)",
+   "url": "https://www.cbsnews.com/amp/miami/news/more-than-3-3-million-florida-voting-ballots-cast"
+  },
+  {
+   "st": "FL",
+   "year": 2022,
+   "date": "2022-11-03",
+   "m": "voted",
+   "all": 3887262,
+   "d": 1440584,
+   "r": 1696281,
+   "n": 750397,
+   "src": "CBS Miami/News Service of Florida, Nov 4, 2022, 9:00 PM (Division of Elections data posted online Friday, Nov 4, carrying ballots through Thursday Nov 3: 3,887,262 ballots; 1,696,281 Republicans, 1,440,584 Democrats, 696,547 unaffiliated, 53,850 third-party)",
+   "url": "https://www.cbsnews.com/amp/miami/news/republican-voters-build-big-edge-in-florida-ballots-cast"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-10-28",
+   "m": "voted",
+   "all": 5141915,
+   "d": 1725933,
+   "r": 2318648,
+   "n": 1097334,
+   "src": "Florida Politics, Oct 29, 2024 (state tracking 'as of Monday's close of business', Oct 28: 2,925,439 in person, 1,523,153 Republicans, 790,744 Democrats, 545,864 no-party, 65,678 other; 2,216,476 by mail, 935,189 Democrats, 795,495 Republicans, 440,154 no-party, 45,638 third-party; totals summed)",
+   "url": "https://floridapolitics.com/archives/704191-with-5-million-plus-floridians-having-voted-the-gop-nears-600000-early-vote-edge/"
   }
  ]
 }

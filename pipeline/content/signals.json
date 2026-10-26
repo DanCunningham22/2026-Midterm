@@ -1,5 +1,5 @@
 {
- "asof": "2026-10-23",
+ "asof": "2026-10-26",
  "note": "Current readings for the other-signals panel; the backtest's history comes from pipeline/backtest/data/econ (FRED) and retirements.csv. Each item: what it is, the latest value, the comparison, the source page that states it.",
  "items": [
   {
@@ -55,11 +55,11 @@
   {
    "key": "retire",
    "label": "House members not seeking re-election",
-   "value": 61,
-   "value_label": "37 Republicans, 24 Democrats (plus two Democratic delegates)",
+   "value": 60,
+   "value_label": "36 Republicans, 24 Democrats (plus two Democratic delegates)",
    "compare": "2018: 37 R, 18 D; 2022: 20 R, 29 D",
    "say": "More Republicans leaving, including 20 running for other office; retirements have not tracked the swing in past midterms.",
-   "src": "Wikipedia, 2026 House elections, retirements (Oct 23)",
+   "src": "Wikipedia, 2026 House elections, retirements (Oct 26)",
    "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections"
   }
  ]
