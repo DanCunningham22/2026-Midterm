@@ -1,26 +1,26 @@
 {
  "asof": "2026-10-27",
- "headline": "Florida's early vote turned Republican by registration on the Oct 26 file (R+0.4 on 3.15 million ballots, with Republicans up 126,000 in person and Democrats up 113,000 by mail), still better for Democrats than R+4.4 at eight days out in 2022; the official same-point comparison across five states implies a national vote of about D-1.1 (±1.2) against 2022 and about D+5.0 (±1.6) against 2024, while the polls say D+8.8 and the app's forecast D+6.9. Nevada is D+5.3 against D+3.0 in 2022, Colorado D+7.9 against D+3.8, Iowa's absentee pool D+16.5 against D+23.6 and Pennsylvania's mail D+41.8 against D+51.0. The news comparisons lean Democratic: Jon Ralston's Nevada count reached D+24,395 (5.5 points) on Monday night with Clark's lead at 12.4 points against 7.9 at this stage in 2022, North Carolina is 36% ahead of 2022 with Republicans a quarter of in-person ballots, Texas's early vote is 74% ahead of 2022 with Democratic-primary voters now the larger group, and Wisconsin's returns have closed to 5% behind 2022.",
+ "headline": "Florida's early vote has turned Republican by registration, R+0.3 on 3.18 million ballots in the Oct 27 file (Republicans up 126,000 in person, Democrats up 116,000 by mail), still better for Democrats than R+5.3 at seven days out in 2022; the official same-point comparison across five states implies a national vote of about D-0.7 (±1.2) against 2022 and about D+5.0 (±1.6) against 2024, while the polls say D+8.8 and the app's forecast D+6.9. Nevada is D+5.5 against D+2.2 in 2022, Colorado D+7.9 against D+3.8, Iowa's absentee pool D+13.7 against D+22.4 and Pennsylvania's mail D+41.8 against D+51.0. The news comparisons lean Democratic: Jon Ralston's Nevada count reached D+24,395 (5.5 points) on Monday night with Clark's lead at 12.4 points against 7.9 at this stage in 2022, North Carolina is 36% ahead of 2022 with Republicans a quarter of in-person ballots, Texas's early vote is 74% ahead of 2022 with Democratic-primary voters now the larger group, and Wisconsin's returns have closed to 5% behind 2022.",
  "measures": [
   {
    "st": "FL",
    "label": "Florida: early voters by registration, D-minus-R margin (mail plus in person)",
    "kind": "margin",
-   "v26": -0.4,
-   "v24": -11.5,
-   "src": "Florida Division of Elections daily file via the app's official comparison, Oct 26",
+   "v26": -0.3,
+   "v24": -11.6,
+   "src": "Florida Division of Elections daily file via the app's official comparison, Oct 27",
    "url": "https://countyfilesvbm-ev.floridados.gov/VoteByMailEarlyVotingReports/PublicStats",
-   "aff": "Official data. 3,152,810 ballots through Oct 26 (mail 1,492,246, in person 1,660,564) vs. the state's figures through Oct 28, 2024, eight days out in both years; 2024 is a presidential baseline in which Republicans had moved to in-person voting. Against 2022 the same file reads R+0.4 vs. R+4.4"
+   "aff": "Official data. 3,175,047 ballots in the Oct 27 file (mail 1,505,782, in person 1,669,265) vs. the state's figures at seven days out in 2024; 2024 is a presidential baseline in which Republicans had moved to in-person voting. Against 2022 the same file reads R+0.3 vs. R+5.3"
   },
   {
    "st": "NV",
    "label": "Nevada: early voters by registration, D-minus-R margin (mail plus in person)",
    "kind": "margin",
-   "v26": 5.3,
-   "v24": -5.7,
-   "src": "Nevada Secretary of State daily turnout file via the app's official comparison, Oct 26",
+   "v26": 5.5,
+   "v24": -5.5,
+   "src": "Nevada Secretary of State daily turnout file via the app's official comparison, Oct 27",
    "url": "https://election.lab.ufl.edu/early-vote/2026-early-voting/",
-   "aff": "Official data. 410,049 ballots through Oct 26 (mail 252,842, in person 157,207) vs. Ralston's Oct 28, 2024 count at eight days out (700,000 ballots, Republicans up 5.7); 2022 at the same point was D+3.0"
+   "aff": "Official data. 444,249 ballots through Oct 27's file (mail 263,414, in person 180,835) vs. Ralston's count at seven days out in 2024 (Republicans up 5.5); 2022 at the same point was D+2.2"
   },
   {
    "st": "CO",
@@ -36,11 +36,11 @@
    "st": "IA",
    "label": "Iowa: absentee ballots received by registration, D-minus-R margin",
    "kind": "margin",
-   "v26": 16.5,
-   "v24": 2.6,
-   "src": "Iowa Secretary of State daily absentee report via the app's official comparison, Oct 26",
+   "v26": 13.7,
+   "v24": 1.8,
+   "src": "Iowa Secretary of State daily absentee report via the app's official comparison, Oct 27",
    "url": "https://sos.iowa.gov/elections/absenteeballotstatus/absentee.html",
-   "aff": "Official data. 91,467 ballots received through Oct 26 vs. the state's report at the same point in 2024 (401,760 ballots); 2022 at the same point was D+23.6, and Iowa Democrats vote absentee far more than Republicans in every year"
+   "aff": "Official data. 112,635 ballots received in the Oct 27 report vs. the state's report at the same point in 2024; 2022 at the same point was D+22.4, and Iowa Democrats vote absentee far more than Republicans in every year"
   },
   {
    "st": "PA",
@@ -83,18 +83,18 @@
    "aff": "Nonpartisan outlet; official data"
   }
  ],
- "compare_note": "Registered-party margin among early ballots, 2026 vs. the same point in 2024. Florida, Nevada, Colorado, Iowa and Pennsylvania are computed from the state files by the update job (Florida 3,152,810 ballots through Oct 26 against the state's Oct 28, 2024 figures; Nevada 410,049 against Ralston's 2024 count; Colorado 982,522 through Oct 26; Iowa 91,467 absentees through Oct 26; Pennsylvania 832,250 mail ballots through Oct 26); Maine is Call the Map's reading of the state file (174,765 ballots through Oct 22). Virginia's early voters are 63% Democratic on L2's modeled two-party split, vs. 59% at the same point in 2024 (Morris, Oct 12); Ohio's early voters were 41% Democratic and 28% Republican by last primary ballot as of Oct 13, vs. 26% and 36% at this point in 2024 (News 5 Cleveland, from Secretary of State data). Every state with party registration is more Democratic than at this point in 2024, Florida most of all because 2024's Republicans had moved to in-person early voting; against 2022 the official comparison is narrower and mixed (Florida R+0.4 vs. R+4.4, Nevada D+5.3 vs. D+3.0, Colorado D+7.9 vs. D+3.8, Iowa D+16.5 vs. D+23.6, Pennsylvania D+41.8 vs. D+51.0), and North Carolina's comparison is computed from the State Board's files.",
+ "compare_note": "Registered-party margin among early ballots, 2026 vs. the same point in 2024. Florida, Nevada, Colorado, Iowa and Pennsylvania are computed from the state files by the update job (Florida 3,175,047 ballots in the Oct 27 file against the state's 2024 figures at seven days out; Nevada 444,249 against Ralston's 2024 count; Colorado 982,522 through Oct 26; Iowa 112,635 absentees in the Oct 27 report; Pennsylvania 832,250 mail ballots through Oct 26); Maine is Call the Map's reading of the state file (174,765 ballots through Oct 22). Virginia's early voters are 63% Democratic on L2's modeled two-party split, vs. 59% at the same point in 2024 (Morris, Oct 12); Ohio's early voters were 41% Democratic and 28% Republican by last primary ballot as of Oct 13, vs. 26% and 36% at this point in 2024 (News 5 Cleveland, from Secretary of State data). Every state with party registration is more Democratic than at this point in 2024, Florida most of all because 2024's Republicans had moved to in-person early voting; against 2022 the official comparison is narrower and mixed (Florida R+0.3 vs. R+5.3, Nevada D+5.5 vs. D+2.2, Colorado D+7.9 vs. D+3.8, Iowa D+13.7 vs. D+22.4, Pennsylvania D+41.8 vs. D+51.0), and North Carolina's comparison is computed from the State Board's files.",
  "bullets": [
   {
-   "title": "The official comparison with 2022 covers five states and implies a national vote of about D-1.1; against 2024 it reads about D+5.0.",
-   "html": "By registration, Florida's Oct 26 file counts 3,152,810 ballots at R+0.4 (mail 643,132 Democrats to 529,936 Republicans; in person 601,389 to 727,355), against R+4.4 at eight days out in 2022, interpolated between the state's Oct 30 (R+3.5 on 2.77 million) and Nov 1 (R+5.4 on 3.30 million) figures that year; Nevada's 410,049 ballots are D+5.3 (mail D+26,720, in person R+5,159) against D+3.0 on the same day in 2022; Colorado's 982,522 returned ballots are D+7.9 against D+3.8; Iowa's 91,467 absentees are D+16.5 against D+23.6; and Pennsylvania's 832,250 returned mail ballots are D+41.8 against D+51.0. The app's calibrated slopes turn those into +3.4, +1.9, +3.4, -1.6 and -2.0 points of margin and a pooled implied national vote of about D-1.1 (±1.2), against polls at D+8.8 and the app's forecast at D+6.9; Oct 26's reading on the same five states was D-0.9, the day's change coming from Florida's in-person vote. Against 2024 the same files read better for Democrats: Florida R+0.4 against R+11.5 (worth about +9.4), Nevada D+5.3 against R+5.7 (+9.2) and Colorado D+7.9 against D+2.3 (+4.7) pool to about D+5.0 (±1.6); Pennsylvania's mail at D+41.8 against D+26.5 is worth about +3.4 (±3.4) and Iowa's D+16.5 against D+2.6 about +3.1 (±3.4). Arizona's county compilation reads R+0.4 on 956,224 ballots with no same-point baseline.",
+   "title": "The official comparison with 2022 covers five states and implies a national vote of about D-0.7; against 2024 it reads about D+5.0.",
+   "html": "By registration, Florida's Oct 27 file counts 3,175,047 ballots at R+0.3 (mail 649,785 Democrats to 533,993 Republicans; in person 604,687 to 730,769), against R+5.3 at seven days out in 2022 (the state's Nov 1, 2022 figures); Nevada's 444,249 ballots are D+5.5 (mail D+30,113, in person R+5,719) against D+2.2 on the same day in 2022; Colorado's 982,522 returned ballots (Oct 26) are D+7.9 against D+3.8; Iowa's 112,635 absentees are D+13.7 against D+22.4; and Pennsylvania's 832,250 returned mail ballots (Oct 26) are D+41.8 against D+51.0. The app's calibrated slopes turn those into +4.2, +2.8, +3.4, -1.9 and -2.0 points of margin and a pooled implied national vote of about D-0.7 (±1.2), against polls at D+8.8 and the app's forecast at D+6.9; the Oct 26 files read D-1.1 on the same five states. Against 2024 the same files read better for Democrats: Florida R+0.3 against R+11.6 (worth about +9.5), Nevada D+5.5 against R+5.5 (+9.3) and Colorado D+7.9 against D+2.3 (+4.7) pool to about D+5.0 (±1.6); Pennsylvania's mail at D+41.8 against D+26.5 is worth about +3.4 (±3.4) and Iowa's D+13.7 against D+1.8 about +2.7 (±3.4). Arizona's county compilation reads R+0.7 on 971,184 ballots with no same-point baseline.",
    "sources": [
     [
-     "Florida Division of Elections via the app's official comparison, Oct 26",
+     "Florida Division of Elections via the app's official comparison, Oct 27",
      "https://countyfilesvbm-ev.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
     ],
     [
-     "UF Election Lab daily file (Nevada, Oct 26)",
+     "UF Election Lab daily file (Nevada, Oct 27)",
      "https://election.lab.ufl.edu/early-vote/2026-early-voting/"
     ],
     [
@@ -110,14 +110,14 @@
   },
   {
    "title": "Nevada: Democrats' lead reached 24,395 ballots (5.5 points) Monday night; Clark is 12.4 points Democratic against 7.9 at this stage in 2022.",
-   "html": "Jon Ralston's count at 10 p.m. Oct 26: 'D+24,395 (5.5 points), net D+3,943 so far today versus Sunday's final,' after a late Clark mail batch that ran 'almost 3-to-1 Ds' (5,539 ballots, D+2,940, R+1,073). At 9 p.m. almost 439,000 ballots had been cast, 21% of active voters and about 40% of an expected 1.1 million; 'Democrats lead Republicans in Clark by 36,784 ballots (12.4 points), compared with 20,880 (7.9 points) in 2022'; the in-person vote is D+4,643 'versus R+14,932 in 2022,' and the mail D+32,141 against D+35,812 then. Washoe was D+4,903 (5.8 points) on 84,064 ballots and the rurals R+18,111 (31.4 points) on 57,600. Sunday's final file read D+20,432 (5.2 points) on 395,325 ballots, with Clark 66.5% of the vote (66.8% in 2022's final), Washoe 20.2% (19%) and the rurals 13.3% (14.1%). Ralston writes that a 25,000-ballot statewide lead 'seems like a lock,' that under a 2022-based model Lombardo 'would need almost 51 percent of the votes left' and about 70% of the rurals, and that 'this weekend's Democratic wave has changed everything.' The state's Oct 26 file reads D+5.3 against D+3.0 at this point in 2022 and R+5.7 in 2024.",
+   "html": "Jon Ralston's count at 10 p.m. Oct 26: 'D+24,395 (5.5 points), net D+3,943 so far today versus Sunday's final,' after a late Clark mail batch that ran 'almost 3-to-1 Ds' (5,539 ballots, D+2,940, R+1,073). At 9 p.m. almost 439,000 ballots had been cast, 21% of active voters and about 40% of an expected 1.1 million; 'Democrats lead Republicans in Clark by 36,784 ballots (12.4 points), compared with 20,880 (7.9 points) in 2022'; the in-person vote is D+4,643 'versus R+14,932 in 2022,' and the mail D+32,141 against D+35,812 then. Washoe was D+4,903 (5.8 points) on 84,064 ballots and the rurals R+18,111 (31.4 points) on 57,600. Sunday's final file read D+20,432 (5.2 points) on 395,325 ballots, with Clark 66.5% of the vote (66.8% in 2022's final), Washoe 20.2% (19%) and the rurals 13.3% (14.1%). Ralston writes that a 25,000-ballot statewide lead 'seems like a lock,' that under a 2022-based model Lombardo 'would need almost 51 percent of the votes left' and about 70% of the rurals, and that 'this weekend's Democratic wave has changed everything.' The state's Oct 27 file reads D+5.5 on 444,249 ballots against D+2.2 at this point in 2022 and R+5.5 in 2024.",
    "sources": [
     [
      "Nevada Independent, Oct 26",
      "https://thenevadaindependent.com/article/the-early-voting-blog-2026-general"
     ],
     [
-     "UF Election Lab daily file (Nevada, Oct 26)",
+     "UF Election Lab daily file (Nevada, Oct 27)",
      "https://election.lab.ufl.edu/early-vote/2026-early-voting/"
     ]
    ],
@@ -173,11 +173,11 @@
    "aff": "Nonpartisan outlets; Derek Ryan is a Republican consultant; theoelections is an independent tracker whose affiliation is not stated"
   },
   {
-   "title": "Florida: the combined count turned Republican on the Oct 26 file, R+0.4, with Republicans up 126,000 in person and Democrats up 113,000 by mail.",
-   "html": "The Division of Elections' Oct 26 file (the app's official comparison) has 1,660,564 in-person ballots, 727,355 Republican to 601,389 Democratic (R+125,966), and 1,492,246 mail ballots returned, 643,132 Democratic to 529,936 Republican (D+113,196): 39.9% Republican to 39.5% Democratic on 3,152,810 ballots, the first Republican reading of the year after D+6.7 at twenty days out and D+0.3 the day before. Monday's file (through Oct 25, per SignalData) had the mail at D+103,642 and the in-person vote at R+94,750. Call the Map reads the same file as R+0.5 against R+4.5 on the same day of voting in 2022 and R+6.7 in 2022's final early vote, with ballots 4% ahead of 2022, Democrats up 7% and Republicans down 3%. At nine days out in 2022 the state was R+3.5 (1.173 million Republican ballots to about 1.077 million Democratic of 2.77 million), and at eight days out in 2024 R+11.5.",
+   "title": "Florida: the combined count turned Republican, R+0.3 in the Oct 27 file, with Republicans up 126,000 in person and Democrats up 116,000 by mail.",
+   "html": "The Division of Elections' Oct 27 file (the app's official comparison) has 1,669,265 in-person ballots, 730,769 Republican to 604,687 Democratic (R+126,082), and 1,505,782 mail ballots returned, 649,785 Democratic to 533,993 Republican (D+115,792): 39.9% Republican to 39.5% Democratic on 3,175,047 ballots; the Oct 26 file was the first Republican reading of the year (R+0.4) after D+6.7 at twenty days out and D+0.3 on Oct 25. Monday's file (through Oct 25, per SignalData) had the mail at D+103,642 and the in-person vote at R+94,750. Call the Map reads the Oct 26 file as R+0.5 against R+4.5 on the same day of voting in 2022 and R+6.7 in 2022's final early vote, with ballots 4% ahead of 2022, Democrats up 7% and Republicans down 3%. At seven days out in 2022 the state was R+5.3 (the app's baseline from the state's Nov 1 figures, 3.30 million ballots), and at the same point in 2024 R+11.6.",
    "sources": [
     [
-     "Florida Division of Elections via the app's official comparison, Oct 26",
+     "Florida Division of Elections via the app's official comparison, Oct 27",
      "https://countyfilesvbm-ev.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
     ],
     [
@@ -249,10 +249,10 @@
   ]
  ],
  "calendar_note": "Kentucky's early in-person voting runs Oct 29-31; it is the last battleground opening. Closing dates: Maine's no-excuse absentee period Oct 29; Georgia, Texas, Nevada and Arizona Oct 30; North Carolina Oct 31 (3 p.m.); Michigan Nov 1; Nebraska's in-person early voting Nov 2. Pennsylvania's and Ohio's mail-ballot application deadlines are Oct 27. Pennsylvania and New Hampshire have no early in-person voting.",
- "cast_at": 31465330,
- "cast_at_note": "Ballots counted (UF Election Lab, 49 jurisdictions reporting, state data as of Oct 23-26) when these comparisons were compiled; sets the automatic early-vote weight.",
+ "cast_at": 32211473,
+ "cast_at_note": "Ballots counted (UF Election Lab, 49 jurisdictions reporting, state data as of Oct 23-27) when these comparisons were compiled; sets the automatic early-vote weight.",
  "signals_asof": "2026-10-27",
- "signals_verdict": "The official same-point comparison with 2022 (Florida, Nevada, Colorado, Iowa and Pennsylvania) implies a national vote of about D-1.1 (±1.2): Florida turned R+0.4 by registration on the Oct 26 file against R+4.4 at eight days out in 2022, Nevada is D+5.3 against D+3.0, Colorado D+7.9 against D+3.8, Iowa's absentee pool D+16.5 against D+23.6 and Pennsylvania's mail D+41.8 against D+51.0; against 2024, Florida (R+0.4 vs. R+11.5), Nevada (D+5.3 vs. R+5.7) and Colorado pool to about D+5.0 (±1.6), so the early vote fits a Democratic year without confirming polls at D+8.8. The news comparisons are bluer: Ralston's Nevada count reached D+24,395 (5.5 points) Monday night with Clark 12.4 points Democratic against 7.9 at this stage in 2022, North Carolina runs 36% ahead of 2022 with Republicans a quarter of in-person ballots, Texas's early vote is 74% ahead of 2022 with Democratic-primary voters the larger group for the first time, while Florida's in-person vote is Republican by 126,000, Pennsylvania's mail trails 2022 and Wisconsin's returns are 5% behind. The next tests are how far Florida's Republican margin grows in the final four days of in-person voting, Nevada's last three days before early voting closes Oct 30, Michigan's first full week of in-person voting and Georgia's and Texas's closing surge through Oct 30.",
+ "signals_verdict": "The official same-point comparison with 2022 (Florida, Nevada, Colorado, Iowa and Pennsylvania) implies a national vote of about D-0.7 (±1.2): Florida is R+0.3 by registration in the Oct 27 file against R+5.3 at seven days out in 2022, Nevada D+5.5 against D+2.2, Colorado D+7.9 against D+3.8, Iowa's absentee pool D+13.7 against D+22.4 and Pennsylvania's mail D+41.8 against D+51.0; against 2024, Florida (R+0.3 vs. R+11.6), Nevada (D+5.5 vs. R+5.5) and Colorado pool to about D+5.0 (±1.6), so the early vote fits a Democratic year without confirming polls at D+8.8. The news comparisons are bluer: Ralston's Nevada count reached D+24,395 (5.5 points) Monday night with Clark 12.4 points Democratic against 7.9 at this stage in 2022, North Carolina runs 36% ahead of 2022 with Republicans a quarter of in-person ballots, Texas's early vote is 74% ahead of 2022 with Democratic-primary voters the larger group for the first time, while Florida's in-person vote is Republican by 126,000, Pennsylvania's mail trails 2022 and Wisconsin's returns are 5% behind. The next tests are how far Florida's Republican margin grows in the final four days of in-person voting, Nevada's last three days before early voting closes Oct 30, Michigan's first full week of in-person voting and Georgia's and Texas's closing surge through Oct 30.",
  "signals": [
   {
    "dir": "D",
@@ -260,7 +260,7 @@
    "strength": 2,
    "title": "Nevada Democrats' lead reached 24,395 ballots (5.5 points) Monday night; Clark is 12.4 points Democratic against 7.9 at this stage in 2022",
    "value": "Jon Ralston's count, 10 p.m. Oct 26: 'D+24,395 (5.5 points), net D+3,943 so far today versus Sunday's final,' after a late Clark mail batch 'almost 3-to-1 Ds' (5,539 ballots, D+2,940, R+1,073). At 9 p.m.: almost 439,000 ballots, 21% of active voters, about 40% of an expected 1.1 million; 'Democrats lead Republicans in Clark by 36,784 ballots (12.4 points), compared with 20,880 (7.9 points) in 2022'; in person D+4,643 'versus R+14,932 in 2022,' mail D+32,141 against D+35,812. Washoe D+4,903 (5.8 points) on 84,064 ballots; rurals R+18,111 (31.4 points) on 57,600. A 25,000-ballot lead 'seems like a lock'; under a 2022-based model Lombardo 'would need almost 51 percent of the votes left.'",
-   "catch": "Registration is not vote choice. The Democratic edge is the mail (Clark's mail by 24 points); the in-person vote is close and Republicans won Election Day 2022 by nearly 50,000 ballots. The final two days of early voting are usually the largest, and about 700,000 votes are still to come. The state's own Oct 26 file reads D+5.3 against D+3.0 at this point in 2022 and R+5.7 in 2024 (the app's official panel).",
+   "catch": "Registration is not vote choice. The Democratic edge is the mail (Clark's mail by 24 points); the in-person vote is close and Republicans won Election Day 2022 by nearly 50,000 ballots. The final two days of early voting are usually the largest, and about 700,000 votes are still to come. The state's own Oct 27 file reads D+5.5 on 444,249 ballots against D+2.2 at this point in 2022 and R+5.5 in 2024 (the app's official panel).",
    "src": "Nevada Independent, Oct 26",
    "url": "https://thenevadaindependent.com/article/the-early-voting-blog-2026-general",
    "aff": "Nonpartisan outlet (Jon Ralston); county and Secretary of State data"
@@ -302,10 +302,10 @@
    "dir": "R",
    "st": "FL",
    "strength": 1,
-   "title": "Florida's combined early vote turned Republican by registration on the Oct 26 file, R+0.4, with Republicans up 126,000 in person",
-   "value": "Division of Elections file for Oct 26 (the app's official panel): 1,660,564 in-person ballots, 727,355 Republican to 601,389 Democratic (R+125,966, from R+94,750 the day before); 1,492,246 mail ballots returned, 643,132 Democratic to 529,936 Republican (D+113,196). Combined: 39.9% Republican to 39.5% Democratic on 3,152,810 ballots, after D+6.7 at twenty days out and D+0.3 on Oct 25. Call the Map reads the file as R+0.5, with ballots 4% ahead of 2022, Democrats up 7% and Republicans down 3%.",
-   "catch": "The same-point comparison still favors Democrats: R+4.4 at eight days out in 2022 and R+11.5 in 2024 (the app's official panel), and 2022's final early vote was R+6.7. Republicans won Florida's in-person vote by far more in both years; the question is how far the margin grows in the last four in-person days. Registration is not vote choice.",
-   "src": "Florida Division of Elections daily file via the app's official comparison, Oct 26; Call the Map, Oct 26",
+   "title": "Florida's combined early vote has turned Republican by registration, R+0.3 in the Oct 27 file, with Republicans up 126,000 in person",
+   "value": "Division of Elections file for Oct 27 (the app's official panel): 1,669,265 in-person ballots, 730,769 Republican to 604,687 Democratic (R+126,082, from R+94,750 on Oct 25); 1,505,782 mail ballots returned, 649,785 Democratic to 533,993 Republican (D+115,792). Combined: 39.9% Republican to 39.5% Democratic on 3,175,047 ballots, after D+6.7 at twenty days out and D+0.3 on Oct 25; the Oct 26 file (R+0.4) was the first Republican reading of the year. Call the Map reads the Oct 26 file as R+0.5, with ballots 4% ahead of 2022, Democrats up 7% and Republicans down 3%.",
+   "catch": "The same-point comparison still favors Democrats: R+5.3 at seven days out in 2022 and R+11.6 in 2024 (the app's official panel), and 2022's final early vote was R+6.7. Republicans won Florida's in-person vote by far more in both years; the question is how far the margin grows in the last four in-person days. Registration is not vote choice.",
+   "src": "Florida Division of Elections daily file via the app's official comparison, Oct 27; Call the Map, Oct 26",
    "url": "https://countyfilesvbm-ev.floridados.gov/VoteByMailEarlyVotingReports/PublicStats",
    "aff": "Official data; Call the Map is an independent tracker"
   },
