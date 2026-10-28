@@ -1,7 +1,120 @@
 {
- "asof": "2026-10-27",
+ "asof": "2026-10-28",
  "note": "Maintained daily. Every item links to the page that confirms it.",
  "happened": [
+  {
+   "date": "2026-10-28",
+   "title": "Times/Siena: South Carolina Senate tied 48-48; Moody +6 in Florida, Flanagan +14 in Minnesota",
+   "what": "Siena's final-week polls of likely voters for The New York Times have Annie Andrews and Darline Graham tied 48-48 in South Carolina, with Alan Wilson leading the governor race 51-44; Ashley Moody 50-44 over Angie Nixon and Byron Donalds 48-44 over David Jolly in Florida; and Peggy Flanagan 54-40 over Michele Tafoya and Amy Klobuchar 56-38 in Minnesota.",
+   "why": "A tie in a Republican-held South Carolina seat widens the Democratic Senate map, while Florida and Minnesota look like holds for the incumbent parties.",
+   "races": [
+    "SC-SEN",
+    "SC-GOV",
+    "FL-SEN",
+    "FL-GOV",
+    "MN-SEN",
+    "MN-GOV"
+   ],
+   "src": "Siena Research Institute, Oct 28",
+   "url": "https://sri.siena.edu/2026/10/28/nytimes-siena-poll-of-likely-voters-florida-minnesota-and-south-carolina/",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-28",
+   "title": "Suffolk: Brown 47-44 and Acton 48-44 in Ohio; Echelon has both Ohio races even",
+   "what": "Suffolk University/USA TODAY Network Ohio (Oct 21-26, 500 voters) has Sherrod Brown 47-44 over Jon Husted and Amy Acton 48-44 over Vivek Ramaswamy, unchanged from its Oct 2 Senate reading; Echelon Insights for NetChoice (Oct 16-23, 508 likely voters) has the Senate race 47-47 and Ramaswamy 47-45, with Ossoff 55-40 in Georgia, Turek 45-43 in Iowa, Ricketts 47-46 over Osborn in Nebraska, Jackson 51-44 in Maine and Moody 51-43 in Florida.",
+   "why": "Ohio's Senate seat is the Democrats' likeliest pickup, and the final-week polls keep it inside the margin of error.",
+   "races": [
+    "OH-SEN",
+    "OH-GOV",
+    "GA-SEN",
+    "IA-SEN",
+    "NE-SEN",
+    "ME-SEN",
+    "FL-SEN"
+   ],
+   "src": "Suffolk University Political Research Center, Oct 28; NetChoice (Echelon Insights), Oct 27",
+   "url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/other-states",
+   "aff": "Echelon Insights is a Republican-aligned pollster; NetChoice is a tech trade association"
+  },
+  {
+   "date": "2026-10-28",
+   "title": "Murkowski endorses Democrat Kreiss-Tomkins for Alaska governor",
+   "what": "Sen. Lisa Murkowski endorsed Democrat Jonathan Kreiss-Tomkins over Trump-backed Republican Bernadette Wilson in the ranked-choice race for Alaska's open governorship.",
+   "why": "A cross-party endorsement from Alaska's senior senator in a Republican-held governorship that the raters already lean Democratic.",
+   "races": [
+    "AK-GOV",
+    "AK-SEN"
+   ],
+   "src": "Fox News live blog (Alex Nitzberg), Oct 28",
+   "url": "https://foxnews.com/live-news/midterm-elections-2026-trump-ohio-midterms-october-28",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-27",
+   "title": "Judge Carter orders a special master in DOJ's California ballots case, warns off threats to officials",
+   "what": "At a hearing in Los Angeles, Judge David O. Carter said he will appoint a special master to examine how the Justice Department assembled its list of about 20,000 voters, declined to rule on the restraining order, and said 'any threats to state and county elected employees cease immediately' after DOJ letters to at least 18 other county registrars; the county's sample of 200 names found a high share of U.S.-born citizens.",
+   "why": "It makes a pre-election sequestration of ballots in California's contested House districts unlikely and sets a slower, supervised track for the dispute.",
+   "races": [
+    "US",
+    "CA-13",
+    "CA-22",
+    "CA-45"
+   ],
+   "src": "ABC News (Lissette Rodriguez and Alexander Mallin), Oct 28",
+   "url": "https://abcnews.com/Politics/judge-appoint-special-master-california-voting-case-setback/story?id=137622503",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-27",
+   "title": "Sabato's Crystal Ball: North Carolina Senate to Likely D, South Carolina to Lean R; 225 House seats at least lean D",
+   "what": "Sabato's final-week update moves the open North Carolina Senate seat from Leans to Likely Democratic, South Carolina from Likely to Leans Republican and Florida from Safe to Likely Republican, leaving 49 seats at least leaning Democratic, 46 Republican and 5 toss-ups; in the House, PA-08 and TX-15 move to Leans Democratic and KY-06, MT-01, CO-05, MO-02, PA-01, VA-05 and AL-02 to Toss-up, for 225 seats at least leaning Democratic, 193 Republican and 17 toss-ups; Arizona's governor race moves to Likely Democratic and Vermont's to Leans Republican.",
+   "why": "The raters now have Democrats at a House majority without any toss-up and 'the inside track' to a narrow Senate majority of 51 or 52 seats.",
+   "races": [
+    "NC-SEN",
+    "SC-SEN",
+    "FL-SEN",
+    "PA-08",
+    "TX-15",
+    "KY-06",
+    "MT-01",
+    "CO-05",
+    "MO-02",
+    "PA-01",
+    "VA-05",
+    "AL-02",
+    "AZ-GOV",
+    "VT-GOV"
+   ],
+   "src": "Sabato's Crystal Ball, Oct 27",
+   "url": "https://sabatoscrystalball.substack.com/p/democrats-appear-to-hold-narrow-senate",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-27",
+   "title": "Cook's final governor ratings shift two states toward Democrats, project a 2-4 seat gain",
+   "what": "Cook Political Report's final governors ratings move two states toward Democrats and say 'Democrats are in a prime position to pick up between two and four governor's seats this cycle,' which would give them a majority of governorships for the first time since 2010; Cook's tracker puts Trump's approval at 36.4%.",
+   "why": "Democrats hold 24 governorships and need 26 for a majority; the raters now put that within reach.",
+   "races": [
+    "US"
+   ],
+   "src": "Cook Political Report (CPR In Brief), Oct 27",
+   "url": "https://thecookpoliticalreport.substack.com/p/cpr-in-brief-october-27-2026",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-27",
+   "title": "South Carolina polls split: Citadel has Graham 43-39, Targoz 47-46, as Rep. Norman refuses to campaign for her",
+   "what": "The Citadel Poll (Oct 14-25, 890 likely voters) has Darline Graham 43, Annie Andrews 39 with 15% undecided and Alan Wilson 42-31 for governor; the South Carolina Policy Council's Targoz poll (Oct 16-25, 895 likely voters) has Graham 47-46 and Wilson 51-41; Rep. Ralph Norman said he and his family will not help Graham in the final week and accused Trump of forcing a candidate on voters, days before Trump's Rock Hill rally for her.",
+   "why": "A Republican-held seat that was Solid R in the spring is now polling from tied to Graham +4, and an intra-party split in York County cuts into her base.",
+   "races": [
+    "SC-SEN",
+    "SC-GOV"
+   ],
+   "src": "The Citadel Poll, Oct 27; Fox Carolina, Oct 26; Post and Courier (Ian Grenier), Oct 26",
+   "url": "https://poll.citadel.edu/2026/10/27/sc-voters-look-to-pass-the-torch-in-the-midterms/",
+   "aff": "The South Carolina Policy Council is a conservative think tank"
+  },
   {
    "date": "2026-10-27",
    "title": "Three national polls put Democrats 8 to 9 points ahead among likely voters",
@@ -32,18 +145,6 @@
   },
   {
    "date": "2026-10-26",
-   "title": "Justice Department plans about 1,000 election monitors; parties field observers",
-   "what": "The AP reports DOJ expects about 1,000 staff to observe voting in every state, its largest such effort, after suing California and Alaska over ballot handling, while Common Cause has trained about 16,000 volunteers, state Democratic parties about 10,000, and the RNC says it has election-integrity directors in 22 states and about 22,000 poll workers.",
-   "why": "The scale of federal and partisan monitoring shapes Election Day administration and the odds of post-election disputes in close House and Senate races.",
-   "races": [
-    "US"
-   ],
-   "src": "AP (Steve Peoples and Ali Swenson) via ClickOnDetroit, Oct 26",
-   "url": "https://www.clickondetroit.com/news/politics/2026/10/26/thousands-of-observers-are-expected-to-descend-on-polling-places-to-monitor-the-vote-on-election-day/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-26",
    "title": "9th Circuit dismisses DOJ's emergency bid on 20,000 California ballots",
    "what": "A three-judge panel ruled 2-1 that it lacked jurisdiction over the Justice Department's appeal because DOJ had not given Judge David O. Carter an 'adequate opportunity' to rule on its request that California segregate about 20,000 mail ballots from voters flagged as possible noncitizens, calling the emergency partly 'self-constructed'; Carter hears the request Oct 27.",
    "why": "The ballots stay in the count for now in a state with several House battlegrounds, and the ruling sets a procedural bar for similar last-week federal actions.",
@@ -55,60 +156,6 @@
    ],
    "src": "CBS News (Melissa Quinn), Oct 26",
    "url": "https://www.cbsnews.com/news/appeals-court-dismisses-doj-trump-california-ballots/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-26",
-   "title": "Peltola and the DSCC move to dismiss DOJ's Alaska certification suit",
-   "what": "Mary Peltola's campaign and the Democratic Senatorial Campaign Committee asked Judge Sharon Gleason to throw out the Justice Department's suit seeking to block certification if Sen. Dan Sullivan loses a ranked-choice count in which votes for a similarly named candidate were not transferred to him, calling it 'wholly baseless' and asking for a ruling before Election Day.",
-   "why": "The suit is the first federal attempt to pre-empt a Senate result in a race the model rates Lean Democratic.",
-   "races": [
-    "AK-SEN"
-   ],
-   "src": "Reuters (Luc Cohen) via Spokesman-Review, Oct 26; Forbes (Siladitya Ray), Oct 26",
-   "url": "https://www.spokesman.com/stories/2026/oct/26/alaska-democratic-senate-candidate-peltola-asks-ju/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-26",
-   "title": "House Majority PAC adds $2.5 million in IN-05 and MN-01",
-   "what": "The Democratic House super PAC announced new television buys of $380,000 in Indiana's 5th District and $2.16 million in Minnesota's 1st, saying Democrats are 'expanding the map' eight days out.",
-   "why": "Late Democratic spending in Trump-won seats points to where the committees think the map is moving.",
-   "races": [
-    "IN-05",
-    "MN-01"
-   ],
-   "src": "House Majority PAC, Oct 26",
-   "url": "https://thehousemajoritypac.com/news/hmp-announces-new-buys-in-in-05-and-mn-01",
-   "aff": "D-aligned"
-  },
-  {
-   "date": "2026-10-24",
-   "title": "Obama rallies in Cleveland and Detroit; Harris joins Pappas in New Hampshire",
-   "what": "Barack Obama headlined a Cleveland Public Auditorium rally for Sherrod Brown and Amy Acton and a capacity Cass Tech rally in Detroit with Abdul El-Sayed and Jocelyn Benson on Michigan's first day of in-person voting, blaming the Iran war for prices and saying of the attacks on El-Sayed, 'We have seen this movie before. I starred in it'; Kamala Harris campaigned with Chris Pappas in New Hampshire the same weekend.",
-   "why": "Democrats' top surrogates are concentrated on the Ohio and Michigan Senate and governor races and the New Hampshire Senate seat.",
-   "races": [
-    "OH-SEN",
-    "OH-GOV",
-    "MI-SEN",
-    "MI-GOV",
-    "NH-SEN"
-   ],
-   "src": "WKAR/MPRN (Colin Jackson), Oct 25; Washington Examiner (Emily Hallas), Oct 24; Fox News Radio via WFMD, Oct 25",
-   "url": "https://www.wkar.org/election-2026/2026-10-25/obama-hypes-up-el-sayed-benson-in-detroit",
-   "aff": "D-aligned events"
-  },
-  {
-   "date": "2026-10-23",
-   "title": "Cook moves Ohio governor to Lean Democrat as the Ramaswamy ad backfires",
-   "what": "Cook Political Report shifted the Ohio governor race from Toss Up to Lean Democrat, with Jessica Taylor writing that the race is slipping away from Vivek Ramaswamy after his ad featuring Amy Acton's estranged mother, which Gov. DeWine urged him to pull and Trump and Vance defended; Ramaswamy's campaign says it will spend $4 million on the ad.",
-   "why": "Ohio was Republicans' best hold among the Democratic-targeted governorships, and the ad's fallout could reach Jon Husted's Senate race.",
-   "races": [
-    "OH-GOV",
-    "OH-SEN"
-   ],
-   "src": "Raw Story (David Edwards), Oct 23, citing Cook Political Report; Fox News live blog, Oct 24",
-   "url": "https://rawstory.com/ramaswamy-race-swings-lean-democrat",
    "aff": ""
   },
   {
@@ -144,156 +191,36 @@
    "src": "Cook Political Report (Erin Covey), Oct 23",
    "url": "https://www.cookpolitical.com/analysis/house/house-overview/democrats-projected-majority-grows-19",
    "aff": ""
-  },
-  {
-   "date": "2026-10-22",
-   "title": "MAGA Inc. network commits $277 million to the final weeks",
-   "what": "Reuters reports Trump-aligned super PACs have committed more than $277 million to television and mail over the campaign's final six weeks, with MAGA Inc. routing $225 million through two affiliated groups, including more than $36 million in Texas for Ken Paxton, $30.1 million in Michigan for Mike Rogers and more than $28 million in Ohio for Jon Husted; MAGA Inc. reported $164 million in cash.",
-   "why": "The Trump network is now the largest outside spender in three Toss Up Senate races, outside the FEC totals the app shows for party committees.",
-   "races": [
-    "TX-SEN",
-    "MI-SEN",
-    "OH-SEN",
-    "US"
-   ],
-   "src": "Reuters (Virginia Furness) via Hawaii Tribune-Herald, Oct 22",
-   "url": "https://www.hawaiitribune-herald.com/2026/10/22/nation-world-news/trumps-maga-inc-unleashes-277-million-last-ditch-effort-to-save-republicans-in-key-us-races/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-20",
-   "title": "Inside Elections shifts 30 races toward Democrats, Texas Senate to Toss-up",
-   "what": "Inside Elections moved five Senate races (Texas Tilt R to Toss-up, New Hampshire Toss-up to Tilt D, Kansas Likely to Tilt R, South Carolina Likely to Lean R, Florida Solid to Likely R), 22 House races (NC-01, NC-11, OH-09, IA-02 and TX-15 to Toss-up; AZ-01, PA-07 and PA-08 to Tilt D) and three governor races (Texas Likely to Lean R, Nebraska and Vermont Solid to Likely R), projecting a Democratic Senate gain of three to five seats and a House gain of 10 to 20.",
-   "why": "The rater that had been most favorable to Republicans now puts the four-seat Senate gain Democrats need inside its range and says Democrats have no defensive Senate seat rated Toss-up or worse.",
-   "races": [
-    "TX-SEN",
-    "NH-SEN",
-    "KS-SEN",
-    "SC-SEN",
-    "FL-SEN",
-    "NC-01",
-    "NC-11",
-    "OH-09",
-    "IA-02",
-    "TX-15",
-    "AZ-01",
-    "PA-07",
-    "PA-08",
-    "TX-GOV",
-    "NE-GOV",
-    "VT-GOV"
-   ],
-   "src": "Roll Call (Nathan L. Gonzales), Oct 20",
-   "url": "https://rollcall.com/2026/10/20/rating-changes-democrats-inside-elections/",
-   "aff": ""
   }
  ],
  "upcoming": [
   {
-   "date": "2026-10-27",
+   "date": "2026-10-28",
    "time": "",
-   "title": "Pennsylvania mail ballot application deadline",
-   "what": "Oct. 27 is the deadline to apply for a mail-in or absentee ballot in Pennsylvania, and completed ballots must reach county election offices by 8 p.m. on Nov. 3.",
-   "why": "Pennsylvania's House battlegrounds, including PA-01, PA-07 and PA-08, could help decide House control.",
+   "title": "Obama rallies in Morrow, Ga., for Ossoff, Bottoms",
+   "what": "Former President Barack Obama headlines a Wednesday-afternoon rally at the Arena at Southlake in Morrow for Sen. Jon Ossoff and governor nominee Keisha Lance Bottoms.",
+   "why": "It comes in the last days of Georgia's early voting, with a Toss Up governor race on the ballot and Senate super PACs on both sides off Georgia broadcast TV.",
    "races": [
-    "PA-GOV",
-    "PA-01",
-    "PA-07",
-    "PA-08"
+    "GA-SEN",
+    "GA-GOV"
    ],
-   "src": "Pennsylvania Department of State, accessed Oct 13",
-   "url": "https://www.pa.gov/agencies/dos/programs/voting-and-elections/upcoming-elections"
+   "src": "WRDW (Tim Darnell), Oct 28",
+   "url": "https://www.wrdw.com/2026/10/28/ossoff-bottoms-aim-obama-boost-georgia-midterms-go-national/"
   },
   {
-   "date": "2026-10-27",
+   "date": "2026-10-28",
    "time": "",
-   "title": "Ohio absentee application deadline",
-   "what": "Absentee ballot applications must reach county boards by 8:30 p.m. on Oct. 27; early in-person voting runs extended hours Oct. 26-30, and mail ballots must arrive by 7:30 p.m. on Nov. 3.",
-   "why": "Ohio's Senate race between Jon Husted and Sherrod Brown and its open governor race are both Cook Toss Ups.",
-   "races": [
-    "OH-SEN",
-    "OH-GOV"
-   ],
-   "src": "Ohio Secretary of State, accessed Oct 14",
-   "url": "https://www.ohiosos.gov/elections/voting-schedule-text-only"
-  },
-  {
-   "date": "2026-10-27",
-   "time": "",
-   "title": "Talarico counter-rally at Texas Tech as Trump visits Lubbock",
-   "what": "Democrat James Talarico holds an evening rally at Texas Tech in Lubbock on Oct. 27, the day Trump campaigns for Ken Paxton at the Lubbock Memorial Civic Center (program 1 p.m., Trump 2:30 p.m. Central).",
-   "why": "Texas is a Cook Toss Up where Republican super PACs have spent at presidential scale; dueling events in a Republican stronghold test each side's closing turnout push.",
-   "races": [
-    "TX-SEN"
-   ],
-   "src": "Lubbock Lights, Oct 21",
-   "url": "https://lubbocklights.com/confirmed-trumps-lubbock-rally-set-for-civic-center/"
-  },
-  {
-   "date": "2026-10-27",
-   "time": "10:00 PM",
-   "title": "Nunn, Trone Garriott debate in Iowa's 3rd District",
-   "what": "Rep. Zach Nunn and Democrat Sarah Trone Garriott debate on KCCI at 9 p.m. Central.",
-   "why": "It is the only scheduled debate in a Republican-held Des Moines seat the DCCC has targeted with coordinated ads.",
-   "races": [
-    "IA-03"
-   ],
-   "src": "KCRG, Oct 15",
-   "url": "https://www.kcrg.com/2026/10/16/nunn-trone-garriott-agree-3rd-district-debate-oct-27/"
-  },
-  {
-   "date": "2026-10-27",
-   "time": "4:00 PM",
-   "title": "Judge Carter hears DOJ bid on 20,000 California ballots",
-   "what": "After a 9th Circuit panel dismissed the Justice Department's emergency appeal 2-1 on Oct 26 for lack of jurisdiction, saying DOJ had not given the district court an 'adequate opportunity' to rule, Judge David O. Carter hears DOJ's request for a temporary restraining order requiring California to segregate about 20,000 mail ballots from voters flagged as possible noncitizens, at 1 p.m. Pacific.",
-   "why": "A ruling for DOJ would change ballot handling in California's House battlegrounds in the final week and set a template for similar actions elsewhere.",
+   "title": "Judge Carter's scheduling order in the California ballots case",
+   "what": "Judge David O. Carter said at Tuesday's hearing that he will appoint a special master to examine how the Justice Department built its list of about 20,000 Los Angeles County ballots and would issue a scheduling order by Wednesday, without ruling on the restraining order.",
+   "why": "A special-master process makes it unlikely that any ballots in the California House seats central to the majority are set aside before Election Day.",
    "races": [
     "US",
     "CA-13",
     "CA-22",
     "CA-45"
    ],
-   "src": "CBS News (Melissa Quinn), Oct 26",
-   "url": "https://www.cbsnews.com/news/appeals-court-dismisses-doj-trump-california-ballots/"
-  },
-  {
-   "date": "2026-10-27",
-   "time": "7:30 PM",
-   "title": "Sand, Lahn debate on KCRG in Cedar Rapids",
-   "what": "Rob Sand and Zach Lahn meet in the KCRG/Gazette debate in Cedar Rapids at 6:30 p.m. CT, their last scheduled meeting after Iowa PBS declined to reschedule its Oct 21 debate.",
-   "why": "Iowa's open governorship is one of the competitive governor races, with Sand leading in the Marist and co/efficient polls.",
-   "races": [
-    "IA-GOV"
-   ],
-   "src": "The Gazette (Hailey Peck), Oct 23",
-   "url": "https://www.thegazette.com/news/elections/iowa-s-candidates-for-governor-won-t-reschedule-third-debate/article_6efa0835-d0ae-4b75-954b-16aa2f03bb0f.html"
-  },
-  {
-   "date": "2026-10-28",
-   "time": "",
-   "title": "Obama rallies in Atlanta for Ossoff, Bottoms",
-   "what": "Former President Barack Obama headlines a rally in Atlanta for Sen. Jon Ossoff and governor nominee Keisha Lance Bottoms; the location is to be emailed to RSVPs 24 hours ahead.",
-   "why": "It comes in the last days of Georgia's early voting, with a Toss Up governor race on the ballot and Senate super PACs on both sides off Georgia broadcast TV.",
-   "races": [
-    "GA-SEN",
-    "GA-GOV"
-   ],
-   "src": "CBS Atlanta, Oct 19",
-   "url": "https://www.cbsnews.com/atlanta/news/obama-heads-to-atlanta-to-rally-voters-for-jon-ossoff-and-keisha-lance-bottoms/"
-  },
-  {
-   "date": "2026-10-28",
-   "time": "",
-   "title": "Harris begins three-day Georgia swing with Ossoff",
-   "what": "Kamala Harris campaigns in Georgia Oct 28-30 with Jon Ossoff and at voter-protection events, closing with the Fulton County Democratic Party gala in Atlanta on Oct 30, and joins a virtual Florida event with Angie Nixon during the swing.",
-   "why": "Georgia's Senate and governor races are both on the Democratic path to control, and early voting there ends Oct 30.",
-   "races": [
-    "GA-SEN",
-    "GA-GOV",
-    "FL-SEN"
-   ],
-   "src": "AP via WTOC, Oct 14",
-   "url": "https://www.wtoc.com/2026/10/14/with-georgia-her-list-kamala-harris-adds-stops-her-midterm-campaign-stretch/"
+   "src": "ABC News (Lissette Rodriguez and Alexander Mallin), Oct 28",
+   "url": "https://abcnews.com/Politics/judge-appoint-special-master-california-voting-case-setback/story?id=137622503"
   },
   {
    "date": "2026-10-28",
@@ -352,7 +279,7 @@
    "time": "",
    "title": "Wisconsin mail absentee request deadline",
    "what": "Requests for mailed absentee ballots are due to clerks by 5 p.m. CT; in-person absentee voting continues through about Nov 1, varying by municipality.",
-   "why": "Wisconsin's absentee returns trail 2022, and the last days of in-person absentee voting decide how much of that gap closes.",
+   "why": "Wisconsin's absentee returns have caught up with 2022, and the last days of in-person absentee voting through Nov 1 decide the final early total.",
    "races": [
     "WI-GOV",
     "WI-03",
@@ -376,14 +303,28 @@
   {
    "date": "2026-10-29",
    "time": "7:00 PM",
-   "title": "Bresnahan debates Democratic challenger on WVIA in PA-08",
-   "what": "WVIA hosts a PA-08 debate in Pittston at 7 p.m. between Rep. Rob Bresnahan and his Democratic challenger.",
+   "title": "Bresnahan, Cognetti debate on WVIA in PA-08",
+   "what": "WVIA hosts a 55-minute PA-08 debate at 7 p.m. between Rep. Rob Bresnahan and Scranton Mayor Paige Cognetti, moderated by Tracey Matisak, live on WVIA-TV, radio, WVIA.org and YouTube.",
    "why": "Cook rates PA-08 a Toss Up and Inside Elections moved it to Tilt Democratic on Oct. 20; it is one of the Republican-held seats Democrats need for a majority.",
    "races": [
     "PA-08"
    ],
-   "src": "PoliticsPA debate schedule, accessed Oct 21",
-   "url": "https://politicspa.com/debate-forum-schedule/153601/"
+   "src": "WVIA News, Sept 22",
+   "url": "https://www.wvia.org/news/local/2026-09-22/meuser-declines-to-participate-in-wvia-9th-district-house-debate-8th-district-debate-set-for-oct-29"
+  },
+  {
+   "date": "2026-10-30",
+   "time": "",
+   "title": "Harris holds NAACP town hall, Fulton Democrats fundraiser",
+   "what": "Kamala Harris follows Obama's rally with a community town hall with NAACP president Derrick Johnson and a Fulton County Democrats fundraiser on Friday, the last day of Georgia's early voting.",
+   "why": "Georgia's Senate and governor races are both on the Democratic path to control, and early voting there ends Oct 30.",
+   "races": [
+    "GA-SEN",
+    "GA-GOV",
+    "FL-SEN"
+   ],
+   "src": "WRDW (Tim Darnell), Oct 28",
+   "url": "https://www.wrdw.com/2026/10/28/ossoff-bottoms-aim-obama-boost-georgia-midterms-go-national/"
   },
   {
    "date": "2026-10-30",
@@ -405,7 +346,7 @@
    "time": "",
    "title": "Nevada in-person early voting ends",
    "what": "Clark County's early-voting sites close after Oct 30 (some are closed that day for Nevada Day); mail ballots can still be returned through Election Day.",
-   "why": "Democrats lead Nevada's early vote by about 5 points, and Election Day's Republican turnout decides the governor race.",
+   "why": "Democrats lead Nevada's early vote by about 6 points, and Election Day's Republican turnout decides the governor race.",
    "races": [
     "NV-GOV",
     "NV-03",
@@ -1633,11 +1574,11 @@
      "race": "TX-34"
     }
    ],
-   "status": "announced",
-   "src": "KSAT (Max Dutton and Adam Barraza), Oct 27; Roll Call Factbase calendar, Oct 27",
-   "url": "https://www.ksat.com/news/local/2026/10/27/president-trumps-planned-corpus-christi-rally-draws-mixed-reaction-from-texas-voters/",
+   "status": "held",
+   "src": "KXXV 25 News (Erin Delahunty), Oct 27; KRIS-TV, Oct 27",
+   "url": "https://www.kxxv.com/news/local-news/trump-highlights-oil-shipments-backs-paxton-at-corpus-christi-rally",
    "aff": "",
-   "note": "Remarks 2 p.m. CT; moved from the canceled Waco stop."
+   "note": "Port of Corpus Christi; backed Paxton; Flores spoke; moved from Waco."
   },
   {
    "date": "2026-10-27",
@@ -1652,11 +1593,11 @@
      "race": "TX-SEN"
     }
    ],
-   "status": "announced",
-   "src": "KCBD (Bobby Benally), Oct 27; Roll Call Factbase calendar, Oct 27",
-   "url": "https://www.kcbd.com/2026/10/19/president-trump-visit-lubbock-next-tuesday/",
+   "status": "held",
+   "src": "KWES NewsWest 9 (Steven Pepper) via Yahoo, Oct 28",
+   "url": "https://www.yahoo.com/news/politics/articles/trump-rallies-lubbock-last-campaign-050712689.html",
    "aff": "",
-   "note": "Lubbock Memorial Civic Center; remarks 6 p.m. CT; Talarico counter-rally at Texas Tech."
+   "note": "Civic Center; Paxton spoke; fourth Texas trip since September; Talarico rallied separately."
   },
   {
    "date": "2026-10-27",
@@ -1692,13 +1633,17 @@
     {
      "name": "John James",
      "race": "MI-GOV"
+    },
+    {
+     "name": "Tom Barrett",
+     "race": "MI-07"
     }
    ],
-   "status": "announced",
-   "src": "WXYZ (Simon Shaykhet), Oct 27; The Livingston Post, Oct 24",
-   "url": "https://www.wxyz.com/news/national-politics/america-votes/vance-to-campaign-for-rogers-in-howell-as-michigans-senate-candidates-pursue-different-turnout-strategies",
+   "status": "held",
+   "src": "WEMU/Michigan Public Radio Network (Russ McNamara), Oct 28",
+   "url": "https://www.wemu.org/michigan-news/2026-10-28/vance-focuses-on-rogers-el-sayed-at-howell-republican-rally",
    "aff": "",
-   "note": "Noon; for Rogers; James not named in the previews."
+   "note": "Hangar rally; Rogers and James spoke; Barrett appeared; Vance focused on the Senate race."
   },
   {
    "date": "2026-10-28",
@@ -1709,10 +1654,10 @@
    "venue": "",
    "boosting": [],
    "status": "announced",
-   "src": "WSYX/ABC6 (Katherine Leone), Oct 21",
+   "src": "WSYX/ABC6 (Katherine Leone), Oct 21; Fox News, Oct 28",
    "url": "https://abc6onyourside.com/news/local/president-trump-to-speak-at-chillicothe-midterm-rally-october-28-vivek-ramaswamy-jon-husted",
    "aff": "",
-   "note": "Remarks set for 7 p.m. ET; venue not announced."
+   "note": "Doors 3:30 p.m., program 5:30, remarks about 7 p.m. ET; venue not confirmed."
   },
   {
    "date": "2026-10-28",
@@ -1720,7 +1665,7 @@
    "kind": "rally",
    "city": "Kinston",
    "st": "NC",
-   "venue": "To be announced",
+   "venue": "Kinston Regional Jetport",
    "boosting": [
     {
      "name": "Michael Whatley",
@@ -1728,10 +1673,10 @@
     }
    ],
    "status": "announced",
-   "src": "WFAE (Woody Cain), Oct 27; Carolina Journal (Andrew Pomeranz), Oct 27",
-   "url": "https://www.wfae.org/politics/2026-10-27/vance-to-campaign-in-kinston-for-whatley-senate-bid",
+   "src": "Public Radio East (Annette Weston), Oct 28; Carolina Journal (Andrew Pomeranz), Oct 27",
+   "url": "https://www.publicradioeast.org/2026-10-28/vice-president-jd-vance-to-hold-a-campaign-rally-at-kinston-regional-jetport-wednesday",
    "aff": "",
-   "note": "Trump 47 Committee event; doors 11 a.m., Vance about 2 p.m.; his third NC stop."
+   "note": "Trump 47 Committee event at the jetport; program 12:30, Vance 2 p.m.; third NC stop."
   },
   {
    "date": "2026-10-29",
@@ -1740,12 +1685,17 @@
    "city": "Rock Hill",
    "st": "SC",
    "venue": "To be announced",
-   "boosting": [],
+   "boosting": [
+    {
+     "name": "Darline Graham",
+     "race": "SC-SEN"
+    }
+   ],
    "status": "announced",
-   "src": "WBTV/WIS, Oct 26; WLOS, Oct 27",
-   "url": "https://www.wbtv.com/2026/10/26/president-trump-hold-another-midterm-rally-south-carolina/",
+   "src": "Post and Courier (Ian Grenier), Oct 26; WLOS, Oct 27",
+   "url": "https://www.postandcourier.com/politics/trump-rally-south-carolina-rock-hill-darline-graham/article_9e1cb903-22cb-4690-b1a5-03a92b657545.html",
    "aff": "",
-   "note": "Remarks 12:30 p.m. ET; second South Carolina rally in eight days."
+   "note": "Speakers 11 a.m., Trump 12:30 p.m. ET; for Graham; Rep. Norman says he will not campaign for her."
   },
   {
    "date": "2026-10-29",
@@ -1761,10 +1711,10 @@
     }
    ],
    "status": "announced",
-   "src": "CBS Texas (S.E. Jenkins), Oct 25; KRLD (Joe Kelley), Oct 26",
-   "url": "https://www.cbsnews.com/texas/news/jd-vance-midterm-rally-weatherford-texas-paxton-talarico-senate-race-oct-2026/",
+   "src": "FOX 4 (Joseph J. Rowe) via AOL, Oct 26; CBS Texas (S.E. Jenkins), Oct 25",
+   "url": "https://www.aol.com/articles/texas-gop-announces-jd-vance-004159000.html",
    "aff": "",
-   "note": "Texas GOP rally; remarks set for 1:50 p.m. CT."
+   "note": "Texas GOP rally at JRJ Construction; doors 10 a.m., Vance 1:50 p.m. CT."
   },
   {
    "date": "2026-10-30",
@@ -1772,13 +1722,13 @@
    "kind": "rally",
    "city": "Daytona Beach",
    "st": "FL",
-   "venue": "",
+   "venue": "Ocean Center",
    "boosting": [],
    "status": "announced",
-   "src": "FOX 35 Orlando (Josh Frigerio) via Yahoo, Oct 24",
-   "url": "https://www.yahoo.com/news/politics/articles/president-donald-trump-attend-midterm-145125001.html",
+   "src": "WFTV (Angel Green), Oct 27",
+   "url": "https://www.wftv.com/news/local/volusia-county/president-trump-hold-rally-daytona-beach-days-before-election-day/LQ7DQX3GTVCZXGREJUZIVHONYE/",
    "aff": "",
-   "note": "RNC-announced; remarks set for 7 p.m. ET, venue not announced."
+   "note": "Republican Party of Florida rally at the Ocean Center; doors 3:30 p.m.; no candidates named."
   },
   {
    "date": "2026-10-31",
@@ -1786,7 +1736,7 @@
    "kind": "rally",
    "city": "Salina",
    "st": "KS",
-   "venue": "To be announced",
+   "venue": "Salina Regional Airport, Hangar 509",
    "boosting": [
     {
      "name": "Roger Marshall",
@@ -1794,10 +1744,10 @@
     }
    ],
    "status": "announced",
-   "src": "WIBW (Aja Carter), Oct 26; KSAL, Oct 26",
-   "url": "https://www.wibw.com/2026/10/27/president-donald-trump-visit-kansas-again/",
+   "src": "WIBW (Aja Carter), Oct 27",
+   "url": "https://www.wibw.com/2026/10/27/president-donald-trump-return-kansas-saturday/",
    "aff": "",
-   "note": "Remarks noon CT; second Kansas rally in twelve days."
+   "note": "For Marshall; doors 8:30 a.m., program 10:30, Trump noon CT; second Kansas rally this month."
   },
   {
    "date": "2026-11-01",
@@ -1805,7 +1755,7 @@
    "kind": "rally",
    "city": "Dubuque",
    "st": "IA",
-   "venue": "",
+   "venue": "Five Flags Event Center",
    "boosting": [
     {
      "name": "Ashley Hinson",
@@ -1817,10 +1767,10 @@
     }
    ],
    "status": "announced",
-   "src": "Radio Iowa (O. Kay Henderson), Oct 22",
-   "url": "https://www.radioiowa.com/2026/10/22/trump-headlines-sioux-city-rally-touts-150-million-to-boost-fuel-production/",
+   "src": "KWQC (Jayla Louis), Oct 26; Radio Iowa (O. Kay Henderson), Oct 22",
+   "url": "https://www.kwqc.com/2026/10/27/location-announced-trumps-dubuque-rally/",
    "aff": "",
-   "note": "Radio Iowa reports a Sunday, Nov. 1 return to Iowa for a rally in Dubuque; site not named."
+   "note": "RNC rally at Five Flags; doors 11:30 a.m., program 1:30, Trump 3 p.m. CT."
   }
  ],
  "trail_note": "Trump and Vance campaign appearances since Sep 1, 2026, from White House pool reports, Roll Call Factbase and local coverage. Closed-press fundraisers and tele-rallies are rarely reported, so they are undercounted."

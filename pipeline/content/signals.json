@@ -1,5 +1,5 @@
 {
- "asof": "2026-10-27",
+ "asof": "2026-10-28",
  "note": "Current readings for the other-signals panel; the backtest's history comes from pipeline/backtest/data/econ (FRED) and retirements.csv. Each item: what it is, the latest value, the comparison, the source page that states it.",
  "items": [
   {
@@ -15,11 +15,11 @@
   {
    "key": "gasprice",
    "label": "Gasoline, national average (AAA)",
-   "value": 4.29,
-   "value_label": "$4.286 a gallon (Oct 26)",
-   "compare": "$3.053 a year ago; $4.295 a week ago; $4.487 a month ago",
-   "say": "Up about 40% in a year, though a cent lower than a week ago and 20 cents below a month ago.",
-   "src": "AAA, Oct 27",
+   "value": 4.27,
+   "value_label": "$4.266 a gallon (Oct 27)",
+   "compare": "$3.052 a year ago; $4.279 a week ago; $4.480 a month ago",
+   "say": "Up about 40% in a year, though a cent lower than a week ago and 21 cents below a month ago.",
+   "src": "AAA, Oct 28",
    "url": "https://gasprices.aaa.com/?state=US"
   },
   {
@@ -37,29 +37,29 @@
    "label": "Prediction markets: Democratic House",
    "value": 91,
    "value_label": "91% (Kalshi 90.6¢, Polymarket 92¢)",
-   "compare": "Senate: about 65% Democratic from the balance-of-power contracts (Democrats win both 63.5¢ on Kalshi and 65.5¢ on Polymarket; Democratic House with Republican Senate 28.5¢ and 26.5¢; Republican House with Democratic Senate under 1¢; Republicans win both 9.3¢ and 7.5¢)",
-   "say": "Markets sit between the polls-only model and the expert raters; the Senate price has drifted down from about 68% a week ago.",
-   "src": "DeFi Rate, Oct 27",
-   "url": "https://defirate.com/odds/house/"
+   "compare": "Senate: about 65% Democratic from the balance-of-power contracts (Democrats win both 62.5¢ on Kalshi and 65.5¢ on Polymarket; Democratic House with Republican Senate 28.5¢ and 27¢; Republican House with Democratic Senate under 1¢; Republicans win both 9.1¢ and 7.5¢)",
+   "say": "Markets sit between the polls-only model and the expert raters; the Senate price has held near 65% for a week after drifting down from about 68%.",
+   "src": "DeFi Rate, Oct 28 (8:22 a.m. ET)",
+   "url": "https://defirate.com/odds/2026-midterms/house-control-odds/"
   },
   {
    "key": "cook",
    "label": "Cook Political Report House ratings",
    "value": 17,
    "value_label": "17 toss-ups: 12 Republican-held, 5 Democratic-held (Oct 23)",
-   "compare": "Cook's projection (Oct 23): Democrats gain 12-22 seats, 227-237; after 19 more moves toward Democrats on Oct 23: Solid/Likely/Lean D 220, Toss Up 17, Lean/Likely/Solid R 198. Senate (Oct 20): 7 Toss Ups, 6 Republican-held, after South Carolina and Mississippi moved toward Democrats and Minnesota toward Republicans",
+   "compare": "Cook's projection (Oct 23): Democrats gain 12-22 seats, 227-237; after 19 more moves toward Democrats on Oct 23: Solid/Likely/Lean D 220, Toss Up 17, Lean/Likely/Solid R 198. Senate (Oct 20): 7 Toss Ups, 6 Republican-held. Sabato's Crystal Ball (Oct 27): House 225 at least Lean D, 17 Toss-ups, 193 R; Senate 49-46 with 5 Toss-ups",
    "say": "Democrats need none of the toss-ups for a majority if the seats leaning their way hold.",
-   "src": "Cook Political Report, Oct 23 (House), Oct 20 (Senate)",
+   "src": "Cook Political Report, Oct 23 (House), Oct 20 (Senate); Sabato's Crystal Ball, Oct 27",
    "url": "https://www.cookpolitical.com/analysis/house/house-overview/democrats-projected-majority-grows-19"
   },
   {
    "key": "retire",
    "label": "House members not seeking re-election",
    "value": 60,
-   "value_label": "36 Republicans, 24 Democrats (plus two Democratic delegates)",
+   "value_label": "36 Republicans, 24 Democrats (plus two Democratic delegates); 29 are running for other office",
    "compare": "2018: 37 R, 18 D; 2022: 20 R, 29 D",
    "say": "More Republicans leaving, including 20 running for other office; retirements have not tracked the swing in past midterms.",
-   "src": "Wikipedia, 2026 House elections, retirements (Oct 27)",
+   "src": "Wikipedia, 2026 House elections, retirements (Oct 28)",
    "url": "https://en.wikipedia.org/wiki/2026_United_States_House_of_Representatives_elections"
   }
  ]

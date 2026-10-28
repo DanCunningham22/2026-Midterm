@@ -1,11 +1,11 @@
 {
- "asof": "2026-10-27",
+ "asof": "2026-10-28",
  "approval": {
   "net": -23.0,
-  "note": "Trump job approval, net (approve minus disapprove): average of the RealClearPolling (-22.1) and Silver Bulletin (-24.3) nets as of Oct 25-26, 2026 (-23.2, rounded to the nearest 0.5: -23.0). FiftyPlusOne's Oct 26 average (35.0/62.1) is a check.",
+  "note": "Trump job approval, net (approve minus disapprove): average of the RealClearPolling (-22.1) and Silver Bulletin (-24.3) nets as of Oct 26-28, 2026 (-23.2, rounded to the nearest 0.5: -23.0); unchanged from Oct 27. FiftyPlusOne's Oct 27 average (35.2/62.0) and Cook's tracker (36.4% approve, Oct 27) are checks.",
   "sources": [
    [
-    "RealClearPolling average, Oct 27 (polls 10/9-10/25): 38.2/60.3, net -22.1",
+    "RealClearPolling average, Oct 28 (polls 10/9-10/25): 38.2/60.3, net -22.1",
     "https://www.realclearpolling.com/polls/approval/donald-trump/approval-rating"
    ],
    [
@@ -13,12 +13,12 @@
     "https://www.natesilver.net/p/trump-approval-ratings-nate-silver-bulletin"
    ],
    [
-    "FiftyPlusOne average, Oct 26: 35.0/62.1",
+    "FiftyPlusOne average, Oct 27: 35.2/62.0",
     "https://fiftyplusone.news/polls/approval/president"
    ],
    [
-    "Ballotpedia index, end of September: 39/60",
-    "https://news.ballotpedia.org/2026/10/01/trump-saw-lowest-average-approval-rating-of-his-second-term-in-september/"
+    "Cook Political Report PollTracker, Oct 27: 36.4% approve",
+    "https://thecookpoliticalreport.substack.com/p/cpr-in-brief-october-27-2026"
    ]
   ]
  },
@@ -28,7 +28,7 @@
   "asof": "2026-08-19",
   "recent": 10.4,
   "recent_label": "the 43 held in 2026",
-  "note": "Average Democratic improvement on the 2024 presidential margin across D-vs-R special elections since January 2025. The Downballot's Oct 20, 2026 update ('Special elections show Democrats headed for a year as good as 2018, if not better') remains paywalled with no tally visible (last checked Oct 27), so the Aug 19 tally stays; MultiState's 2026-only median (+10.4 across 42 contested specials) is a different measure and is not used",
+  "note": "Average Democratic improvement on the 2024 presidential margin across D-vs-R special elections since January 2025. The Downballot's Oct 20, 2026 update ('Special elections show Democrats headed for a year as good as 2018, if not better') remains paywalled with no tally visible (last checked Oct 28), so the Aug 19 tally stays; MultiState's 2026-only median (+10.4 across 37 contested specials through April) is a different measure and is not used",
   "source": [
    "The Downballot, Aug 19, 2026",
    "https://www.the-downballot.com/p/100-specials-since-trumps-return"
