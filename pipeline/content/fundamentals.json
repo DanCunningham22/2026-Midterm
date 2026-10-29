@@ -1,24 +1,20 @@
 {
- "asof": "2026-10-28",
+ "asof": "2026-10-29",
  "approval": {
-  "net": -23.0,
-  "note": "Trump job approval, net (approve minus disapprove): average of the RealClearPolling (-22.1) and Silver Bulletin (-24.3) nets as of Oct 26-28, 2026 (-23.2, rounded to the nearest 0.5: -23.0); unchanged from Oct 27. FiftyPlusOne's Oct 27 average (35.2/62.0) and Cook's tracker (36.4% approve, Oct 27) are checks.",
+  "net": -22.5,
+  "note": "Trump job approval, net (approve minus disapprove): average of the RealClearPolling (-22.1) and Silver Bulletin (about -22.6) nets as of Oct 28-29, 2026 (-22.35, rounded to the nearest 0.5: -22.5), from -23.0 on Oct 28. Silver Bulletin's Oct 28 page prints approve 37.4% (up about a point from an all-time low of 36.3%) and disapprove only as 'about 60 percent', so its net is approximate; RealClearPolling's average is unchanged from Oct 28. FiftyPlusOne's Oct 28 average (35.2/61.7) is a check.",
   "sources": [
    [
-    "RealClearPolling average, Oct 28 (polls 10/9-10/25): 38.2/60.3, net -22.1",
+    "RealClearPolling average, Oct 29 (polls 10/9-10/25): 38.2/60.3, net -22.1",
     "https://www.realclearpolling.com/polls/approval/donald-trump/approval-rating"
    ],
    [
-    "Silver Bulletin average, updated Oct 26: net -24.3 ('a new all-time net approval low')",
+    "Silver Bulletin average, updated Oct 28: approve 37.4%, disapprove 'about 60 percent' (net about -22.6); 'recently hit an all time low of 36.3 percent' and 'has since rebounded about a point'",
     "https://www.natesilver.net/p/trump-approval-ratings-nate-silver-bulletin"
    ],
    [
-    "FiftyPlusOne average, Oct 27: 35.2/62.0",
+    "FiftyPlusOne average, Oct 28: 35.2/61.7",
     "https://fiftyplusone.news/polls/approval/president"
-   ],
-   [
-    "Cook Political Report PollTracker, Oct 27: 36.4% approve",
-    "https://thecookpoliticalreport.substack.com/p/cpr-in-brief-october-27-2026"
    ]
   ]
  },

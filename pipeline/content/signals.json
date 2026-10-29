@@ -1,5 +1,5 @@
 {
- "asof": "2026-10-28",
+ "asof": "2026-10-29",
  "note": "Current readings for the other-signals panel; the backtest's history comes from pipeline/backtest/data/econ (FRED) and retirements.csv. Each item: what it is, the latest value, the comparison, the source page that states it.",
  "items": [
   {
@@ -15,12 +15,12 @@
   {
    "key": "gasprice",
    "label": "Gasoline, national average (AAA)",
-   "value": 4.27,
-   "value_label": "$4.266 a gallon (Oct 27)",
-   "compare": "$3.052 a year ago; $4.279 a week ago; $4.480 a month ago",
-   "say": "Up about 40% in a year, though a cent lower than a week ago and 21 cents below a month ago.",
-   "src": "AAA, Oct 28",
-   "url": "https://gasprices.aaa.com/?state=US"
+   "value": 4.25,
+   "value_label": "$4.247 a gallon (Oct 28)",
+   "compare": "$3.044 a year ago; $4.264 a week ago; $4.477 a month ago",
+   "say": "Up about 40% in a year, though 2 cents lower than a week ago and 23 cents below a month ago.",
+   "src": "AAA, Oct 29",
+   "url": "https://gasprices.aaa.com/"
   },
   {
    "key": "chipotle",
@@ -36,11 +36,11 @@
    "key": "markets",
    "label": "Prediction markets: Democratic House",
    "value": 91,
-   "value_label": "91% (Kalshi 90.6¢, Polymarket 92¢)",
-   "compare": "Senate: about 65% Democratic from the balance-of-power contracts (Democrats win both 62.5¢ on Kalshi and 65.5¢ on Polymarket; Democratic House with Republican Senate 28.5¢ and 27¢; Republican House with Democratic Senate under 1¢; Republicans win both 9.1¢ and 7.5¢)",
-   "say": "Markets sit between the polls-only model and the expert raters; the Senate price has held near 65% for a week after drifting down from about 68%.",
-   "src": "DeFi Rate, Oct 28 (8:22 a.m. ET)",
-   "url": "https://defirate.com/odds/2026-midterms/house-control-odds/"
+   "value_label": "91% (Kalshi 91.1¢, Polymarket 92¢)",
+   "compare": "Senate: about 65% Democratic from the balance-of-power contracts (Democrats win both 62.5¢ on Kalshi and 66.5¢ on Polymarket; Democratic House with Republican Senate 28.5¢ and 26.5¢; Republican House with Democratic Senate under 1¢; Republicans win both 8.9¢ and 7.5¢); DeFi Rate's Senate page puts the Democrats' chance at 67% on Oct 29",
+   "say": "Markets sit between the polls-only model and the expert raters; the Senate price has held near 65% for a week, with Iowa (47% Democratic) and Kansas (46%) the closest contracts.",
+   "src": "DeFi Rate, Oct 28 (10:55 a.m. ET) and Oct 29",
+   "url": "https://defirate.com/odds/house/"
   },
   {
    "key": "cook",
