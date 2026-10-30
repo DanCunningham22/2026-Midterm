@@ -1,5 +1,5 @@
 {
- "asof": "2026-10-26",
+ "asof": "2026-10-30",
  "about": "Hand-entered same-point baselines for the official early vote by party registration, from dated official reports and news reports that quoted them. Counts are returned ballots (m='ret': mail only; 'voted': mail plus in-person early). Where only shares or a lead were reported, 'gap' (D minus R as a percent of all ballots) is given directly and counts are derived or left out. Machine-built points (Colorado's releases, Florida's archive, UF Election Lab finals) are in pipeline/static/ev_baselines.json.",
  "notes": {
   "PA": "No in-person early voting, so this is mail ballots returned. Pennsylvania's mail electorate is heavily Democratic whatever the year (about D+53 at 12 days out in 2022, when Republicans won the national House vote by 3), so it says little about direction; the slope fitted for mail-only states is small for that reason. Requests by party are shown for context.",
@@ -804,6 +804,18 @@
    "n": 1097334,
    "src": "Florida Politics, Oct 29, 2024 (state tracking 'as of Monday's close of business', Oct 28: 2,925,439 in person, 1,523,153 Republicans, 790,744 Democrats, 545,864 no-party, 65,678 other; 2,216,476 by mail, 935,189 Democrats, 795,495 Republicans, 440,154 no-party, 45,638 third-party; totals summed)",
    "url": "https://floridapolitics.com/archives/704191-with-5-million-plus-floridians-having-voted-the-gop-nears-600000-early-vote-edge/"
+  },
+  {
+   "st": "FL",
+   "year": 2024,
+   "date": "2024-10-23",
+   "m": "voted",
+   "all": 2818199,
+   "d": 1023492,
+   "r": 1226379,
+   "n": 510344,
+   "src": "Tampa Free Press, Oct 24, 2024, 4:15 PM (Division of Elections figures as of Thursday morning, Oct 24, carrying ballots through Wednesday Oct 23: 'nearly 2.82 million' ballots cast by mail and at early-voting sites; Republicans 1,226,379, Democrats 1,023,492, unaffiliated 510,344, other third parties 57,984; total summed)",
+   "url": "https://www.tampafp.com/?p=245236"
   }
  ]
 }

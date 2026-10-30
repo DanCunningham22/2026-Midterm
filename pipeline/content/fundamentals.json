@@ -1,19 +1,19 @@
 {
- "asof": "2026-10-29",
+ "asof": "2026-10-30",
  "approval": {
   "net": -22.5,
-  "note": "Trump job approval, net (approve minus disapprove): average of the RealClearPolling (-22.1) and Silver Bulletin (about -22.6) nets as of Oct 28-29, 2026 (-22.35, rounded to the nearest 0.5: -22.5), from -23.0 on Oct 28. Silver Bulletin's Oct 28 page prints approve 37.4% (up about a point from an all-time low of 36.3%) and disapprove only as 'about 60 percent', so its net is approximate; RealClearPolling's average is unchanged from Oct 28. FiftyPlusOne's Oct 28 average (35.2/61.7) is a check.",
+  "note": "Trump job approval, net (approve minus disapprove): average of the RealClearPolling (-22.1) and Silver Bulletin (about -22.6) nets as of Oct 29-30, 2026 (-22.35, rounded to the nearest 0.5: -22.5), unchanged from Oct 29. RealClearPolling's page as opened on Oct 30 still showed the 10/9-10/25 average (38.2/60.3); a separate fetch during the same run showed a 10/9-10/29 average of 38.3/59.8 (net -21.5) that includes Rasmussen 41/57 and Emerson 37/57, which would round the blend to -22.0. Silver Bulletin's Oct 29 page prints approve 37.4% and disapprove only as 'about 60 percent', so its net is approximate. FiftyPlusOne's Oct 29 average (35.2/61.7) is a check.",
   "sources": [
    [
-    "RealClearPolling average, Oct 29 (polls 10/9-10/25): 38.2/60.3, net -22.1",
+    "RealClearPolling average, Oct 30 (polls 10/9-10/25 as opened; a later-dated 10/9-10/29 average read 38.3/59.8, net -21.5): 38.2/60.3, net -22.1",
     "https://www.realclearpolling.com/polls/approval/donald-trump/approval-rating"
    ],
    [
-    "Silver Bulletin average, updated Oct 28: approve 37.4%, disapprove 'about 60 percent' (net about -22.6); 'recently hit an all time low of 36.3 percent' and 'has since rebounded about a point'",
+    "Silver Bulletin average, updated Oct 29: approve 37.4%, disapprove 'about 60 percent' (net about -22.6)",
     "https://www.natesilver.net/p/trump-approval-ratings-nate-silver-bulletin"
    ],
    [
-    "FiftyPlusOne average, Oct 28: 35.2/61.7",
+    "FiftyPlusOne average, Oct 29: 35.2/61.7",
     "https://fiftyplusone.news/polls/approval/president"
    ]
   ]
@@ -24,7 +24,7 @@
   "asof": "2026-08-19",
   "recent": 10.4,
   "recent_label": "the 43 held in 2026",
-  "note": "Average Democratic improvement on the 2024 presidential margin across D-vs-R special elections since January 2025. The Downballot's Oct 20, 2026 update ('Special elections show Democrats headed for a year as good as 2018, if not better') remains paywalled with no tally visible (last checked Oct 28), so the Aug 19 tally stays; MultiState's 2026-only median (+10.4 across 37 contested specials through April) is a different measure and is not used",
+  "note": "Average Democratic improvement on the 2024 presidential margin across D-vs-R special elections since January 2025. The Downballot's Oct 20, 2026 update ('Special elections show Democrats headed for a year as good as 2018, if not better') remains paywalled with no tally visible (last checked Oct 30), so the Aug 19 tally stays; MultiState's 2026-only median (+10.4 across 37 contested specials through April) is a different measure and is not used",
   "source": [
    "The Downballot, Aug 19, 2026",
    "https://www.the-downballot.com/p/100-specials-since-trumps-return"
