@@ -1,6 +1,6 @@
 """Temporary probe (run in GitHub Actions): checks which official election-night result files answer, and prints
 their layout, so the live election-night job can parse them. Writes pipeline/scratch/live_probe/_log.txt."""
-import io, sys, urllib.request, zipfile, collections
+import io, os, sys, urllib.request, zipfile, collections
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else 'pipeline/scratch/live_probe/_log.txt'
 log = []
@@ -83,5 +83,6 @@ for u in URLS:
                     p('    REP row |', l[:400]); break
         elif text.strip().startswith('[') or text.strip().startswith('{'):
             p('  json head', text[:1500])
+os.makedirs(os.path.dirname(OUT), exist_ok=True)
 open(OUT, 'w').write('\n'.join(log) + '\n')
 print('\n'.join(log)[:20000])
