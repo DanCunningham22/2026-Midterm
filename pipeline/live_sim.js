@@ -43,7 +43,7 @@ const pack = (r) => ({
   nat: r1(r.national.mean), natsd: r1(r.national.sd),
 });
 // the no-evidence forecast is recomputed only when the data file changes
-let pre = prev.pre && prev.pre_from === (data.meta && data.meta.generated) ? prev.pre : null;
+let pre = prev.pre && prev.test === test && prev.pre_from === (data.meta && data.meta.generated) ? prev.pre : null;   // same snapshot all night
 let preRace = prev.pre_race && pre ? prev.pre_race : null;
 if (!pre) {
   const r0 = m.simulateLive(sc, {}, { n: NSIM });

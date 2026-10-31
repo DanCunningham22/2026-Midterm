@@ -15,6 +15,14 @@ else
   git worktree add -q --detach "$WT"
   (cd "$WT" && git checkout -q --orphan "$BRANCH" && git rm -rfq . && printf 'Election-night data for the 2026 midterm map (written by .github/workflows/live.yml).\n' > README.md && git add README.md && git commit -qm "Start the $BRANCH branch" && git push -q origin "$BRANCH")
 fi
+# a test run starts its replay from scratch
+if [ "$TEST" = "1" ]; then rm -f "$WT/live.json" "$WT/data_snapshot.json"; fi
+# the whole night runs on the forecast as it stood when the first shift started (later shifts reuse that snapshot)
+if [ ! -f "$WT/data_snapshot.json" ]; then
+  cp site/data.json "$WT/data_snapshot.json"
+  (cd "$WT" && git add data_snapshot.json && git commit -qm "Forecast snapshot for the night" && git push -q origin "$BRANCH") || echo "snapshot push failed"
+fi
+DATA="$WT/data_snapshot.json"
 end=$((SECONDS + MINUTES * 60))
 i=0
 while [ $SECONDS -lt $end ]; do
@@ -31,7 +39,7 @@ while [ $SECONDS -lt $end ]; do
   git fetch -q origin main && git show origin/main:pipeline/content/calls.json > calls.json 2>/dev/null || echo '{}' > calls.json
   if [ "$TEST" = "1" ] && [ -f pipeline/scratch/live_test_calls.json ]; then cp pipeline/scratch/live_test_calls.json calls.json; fi
   cp "$WT/live.json" live.json 2>/dev/null || true
-  if node pipeline/live_sim.js site/data.json calls.json live_feeds.json live.json; then
+  if node pipeline/live_sim.js "$DATA" calls.json live_feeds.json live.json; then
     cp live.json "$WT/live.json"
     (cd "$WT" && git add live.json && git commit -qm "Live $(date -u +'%H:%M:%S UTC')" && (git push -q origin "$BRANCH" || (git pull -q --rebase origin "$BRANCH" && git push -q origin "$BRANCH"))) || echo "push failed"
   else
