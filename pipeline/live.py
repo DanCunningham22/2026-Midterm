@@ -52,6 +52,20 @@ def done_by_hash(key, progress):
     return h < progress
 
 
+CACHE_FILE = 'live_base_cache.json'   # the 2024 baselines never change: read them once per run
+
+
+def cached(key, fn):
+    try:
+        c = json.load(open(CACHE_FILE))
+    except Exception:
+        c = {}
+    if key not in c:
+        c[key] = fn()
+        json.dump(c, open(CACHE_FILE, 'w'))
+    return c[key]
+
+
 # ----------------------------------------------------------------------------- North Carolina
 def nc_contest_id(name):
     n = re.sub(r'\s*\(VOTE FOR \d+\)', '', name).strip().upper()
@@ -101,7 +115,8 @@ def fetch_nc(test, progress):
     state = nc_tally(nc_rows(date, 0), test)
     with cf.ThreadPoolExecutor(12) as ex:
         counties = dict(zip(range(1, 101), ex.map(lambda c: nc_tally(nc_rows(date, c), test), range(1, 101))))
-        base = dict(zip(range(1, 101), ex.map(lambda c: nc_tally(nc_rows(DATE24, c)), range(1, 101))))
+        base = cached('nc24', lambda: {str(c): t for c, t in zip(range(1, 101), ex.map(lambda c: nc_tally(nc_rows(DATE24, c)), range(1, 101)))})
+        base = {int(c): t for c, t in base.items()}
     if test:   # pretend only part of the state has finished: unfinished counties report a fraction of their votes
         for c, races in counties.items():
             if not done_by_hash('NC%d' % c, progress):
@@ -168,7 +183,7 @@ def fl_parse(text, test=False):
 
 def fetch_fl(test, progress):
     cur = fl_parse(get(FL_URL.format(date=DATE24 if test else DATE26)))
-    base = fl_parse(get(FL_URL.format(date=DATE24)))
+    base = cached('fl24', lambda: fl_parse(get(FL_URL.format(date=DATE24))))
     if test:   # FL 2024's Senate race (Scott vs. Mucarsel-Powell) stands in for FL-SEN; unfinished counties partly in
         for c, races in cur.items():
             if not done_by_hash('FL' + c, progress):

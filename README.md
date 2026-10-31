@@ -98,6 +98,26 @@ each state's in-person voting begins.
 python3 pipeline/evreg.py baseline pipeline/static/ev_baselines.json   # rebuild the baselines (needs internet, openpyxl, pypdf)
 ```
 
+## Election night, live
+
+From 6 PM ET on Nov 3 the Outlook opens with an "Election night, live" panel that refreshes every 90 seconds:
+the chances of a Democratic House, Senate and 26+ governors given what is known so far, how they have moved through
+the night, the implied national House vote, called-seat tallies, and the races still in doubt with their counts.
+
+- **Evidence.** Race calls (`pipeline/content/calls.json`: the AP's calls, or two of ABC, CBS, CNN, Fox, NBC and
+  Decision Desk HQ where the AP's can't be read; updated hourly) and the official results files of North Carolina
+  (`er.ncsbe.gov`, per county) and Florida (`flelectionfiles.floridados.gov`, per county), read every two minutes.
+- **Model.** `simulateLive` in `site/model.js` reweights 20,000 draws of the forecast toward the ones that fit the
+  evidence: a call by Phi(margin / tau) with tau 1.5 points (wider if the weights would collapse), a counted race by a
+  normal likelihood. A statewide count enters through the swing from the 2024 presidential vote in counties that have
+  finished counting (once they hold 15% of the 2024 vote; SD 1 + 6 x sqrt(share outstanding)); a House count only
+  once 95% of its precincts are in. Called races count for the winner. Because the draws share national, state and
+  demographic errors, a surprise in one race moves similar races everywhere.
+- **Plumbing.** `.github/workflows/live.yml` runs `pipeline/live_loop.sh` (two six-hour shifts from 6 PM ET; the
+  hourly race-call task restarts it if needed): `pipeline/live.py` reads the files, `pipeline/live_sim.js` runs the
+  model and writes `live.json` to the `live` branch, which the page reads through the GitHub API (raw file as a
+  fallback). `?livetest=1` shows a replay of 2024 written to the `live-test` branch.
+
 ## Model in brief
 
 - **House:** each district's 2024 presidential margin on its 2026 lines, moved by the national House vote

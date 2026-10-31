@@ -275,6 +275,113 @@
       '<p class="chart-cap">Recorded by the update job after each day\'s last run, with every setting at its default; earlier days re-run today\'s model on that day\'s inputs. Odds move with the polls and the early vote, not with anything you change on this page.</p>';
   }
 
+  // ---------------------------------------------------------------- election night, live (live.json from the "live" branch)
+  // pipeline/live_loop.sh (GitHub Actions) rewrites live.json every two minutes on election night: the forecast
+  // conditioned on race calls and on counted votes in North Carolina and Florida. The page polls it; nothing is computed here.
+  const LIVE_REPO = 'DanCunningham22/2026-Midterm';
+  let LIVE = null, liveTimer = null, liveFails = 0;
+  function liveBranch() {
+    const q = new URLSearchParams(location.search);
+    if (q.has('livetest')) return 'live-test';
+    if (q.has('live')) return 'live';
+    const t = Date.now();
+    return t >= Date.parse('2026-11-03T22:00:00Z') && t < Date.parse('2026-11-12T00:00:00Z') ? 'live' : null;
+  }
+  function fetchLive(branch) {
+    const api = 'https://api.github.com/repos/' + LIVE_REPO + '/contents/live.json?ref=' + branch;
+    const raw = 'https://raw.githubusercontent.com/' + LIVE_REPO + '/' + branch + '/live.json?t=' + Date.now();
+    return fetch(api, { cache: 'no-store', headers: { Accept: 'application/vnd.github.raw' } })
+      .then((r) => { if (!r.ok) throw new Error('api ' + r.status); return r.json(); })
+      .catch(() => fetch(raw, { cache: 'no-store' }).then((r) => { if (!r.ok) throw new Error('raw ' + r.status); return r.json(); }));
+  }
+  function startLive() {
+    const branch = liveBranch();
+    const box = $('livePanel');
+    if (!branch || !box) return;
+    const tick = () => {
+      if (document.visibilityState === 'hidden') return;
+      fetchLive(branch).then((L) => { liveFails = 0; if (L && L.now) { LIVE = L; renderLive(); } })
+        .catch(() => { liveFails++; if (LIVE) renderLive(); });
+    };
+    tick();
+    liveTimer = setInterval(tick, 90000);
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') tick(); });
+    box.addEventListener('click', (e) => { const chip = e.target.closest('[data-race]'); if (chip) goRace(chip.dataset.race); });
+  }
+  function renderLive() {
+    const box = $('livePanel'), L = LIVE;
+    if (!box || !L) return;
+    box.hidden = false;
+    const pre = L.pre, now = L.now;
+    const ago = Math.max(0, Math.round((Date.now() - Date.parse(L.updated)) / 60000));
+    const stale = ago > 10;
+    const timeET = (iso) => new Date(iso).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: ET });
+    const arrow = (a, b) => { const d = Math.round((a - b) * 100); return d === 0 ? '<span class="muted">no change</span>' : '<span class="' + (d > 0 ? 'lv-up' : 'lv-dn') + '">' + (d > 0 ? '▲ ' : '▼ ') + Math.abs(d) + ' pts</span>'; };
+    const ctl = (L.calls && L.calls.control) || {};
+    const item = (lab, p, p0, sub, called) => '<div class="fc-item"><span class="fc-lab">' + lab + '</span>' +
+      (called ? '<span class="fc-v ' + (called === 'D' ? 'd' : 'r') + '">' + (called === 'D' ? 'Democrats' : 'Republicans') + '</span><span class="fc-sub">called' + (L.calls.src ? ' (' + esc(L.calls.src) + ')' : '') + '</span>'
+        : '<span class="fc-v d">D ' + fp(p) + '</span><span class="fc-sub">' + sub + '</span><span class="fc-polls">Before tonight ' + fp(p0) + ' · ' + arrow(p, p0) + '</span>') + '</div>';
+    // odds through the night
+    const T = (L.timeline || []).slice();
+    let chart = '';
+    if (T.length >= 2) {
+      const pts = [{ t: T[0].t, h: pre.h, s: pre.s, g: pre.g, pre: true }].concat(T);
+      const t0 = Date.parse(pts[0].t), t1 = Math.max(Date.parse(pts[pts.length - 1].t), t0 + 30 * 60000);
+      const W = Math.round(Math.max(300, Math.min(900, (box.clientWidth || 900) - 30))), HT = 170, Lm = 40, Rm = 70, Tm = 10, Bm = 24;
+      const x = (t) => Lm + (Date.parse(t) - t0) / (t1 - t0) * (W - Lm - Rm);
+      const y = (p) => Tm + (1 - p) * (HT - Tm - Bm);
+      let s = '<g class="axis">';
+      [0, 0.25, 0.5, 0.75, 1].forEach((g) => { s += '<line class="grid-line" x1="' + Lm + '" x2="' + (W - Rm) + '" y1="' + y(g).toFixed(1) + '" y2="' + y(g).toFixed(1) + '"/><text x="' + (Lm - 5) + '" y="' + (y(g) + 4).toFixed(1) + '" text-anchor="end">' + Math.round(g * 100) + '%</text>'; });
+      const step = 30 * 60000;
+      for (let tt = Math.ceil(t0 / step) * step; tt <= t1; tt += step) {
+        const xx = Lm + (tt - t0) / (t1 - t0) * (W - Lm - Rm);
+        s += '<text x="' + xx.toFixed(1) + '" y="' + (HT - 6) + '" text-anchor="middle">' + new Date(tt).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: ET }).replace(':00', '') + '</text>';
+      }
+      s += '</g>';
+      [['House', 'h', 'var(--mark)', 2.6], ['Senate', 's', 'var(--ink)', 2], ['Governors', 'g', 'var(--ink-3)', 1.6]].forEach(([name, k, col, w]) => {
+        s += '<polyline fill="none" stroke="' + col + '" stroke-width="' + w + '" stroke-linejoin="round" points="' + pts.map((p) => x(p.t).toFixed(1) + ',' + y(p[k]).toFixed(1)).join(' ') + '"/>';
+        const lp = pts[pts.length - 1];
+        s += '<text class="ev-val" x="' + (x(lp.t) + 6).toFixed(1) + '" y="' + (y(lp[k]) + 4).toFixed(1) + '" style="fill:' + col + ';font-weight:700">' + name + ' ' + Math.round(lp[k] * 100) + '%</text>';
+      });
+      chart = '<div class="chart"><svg viewBox="0 0 ' + W + ' ' + HT + '" role="img" aria-label="Democratic chances through the night">' + s + '</svg></div><p class="chart-cap">Democratic chances through the night (ET); the first point is the forecast before any results.</p>';
+    }
+    // tallies
+    const tl = L.calls && L.calls.tally;
+    const tally = tl && (tl.house || tl.senate) ? '<p class="small"><b>Called so far</b>' + (tl.src ? ' (' + esc(tl.src) + ')' : '') + ': ' +
+      [tl.house ? 'House D ' + tl.house.D + ', R ' + tl.house.R + ' (218 to win)' : '', tl.senate ? 'Senate D ' + tl.senate.D + ', R ' + tl.senate.R + (tl.senate.I ? ', I ' + tl.senate.I : '') + ' (incl. seats not up)' : '', tl.gov ? 'Governors D ' + tl.gov.D + ', R ' + tl.gov.R : ''].filter(Boolean).join(' · ') + '.</p>' : '';
+    // races
+    const kindLab = { senate: 'Senate', gov: 'Governor', house: 'House' };
+    const rows = (L.races || []).slice().sort((a, b) => {
+      const ord = { senate: 0, gov: 1, house: 2 };
+      if (ord[a.kind] !== ord[b.kind]) return ord[a.kind] - ord[b.kind];
+      if (!!a.call !== !!b.call) return a.call ? 1 : -1;
+      return Math.abs(a.now - 0.5) - Math.abs(b.now - 0.5);
+    });
+    // the races still in doubt (15-85% before tonight or now), anything called among them, at most 20 House races
+    let shownHouse = 0;
+    const inPlay = (r) => (r.pre > 0.15 && r.pre < 0.85) || (!r.call && r.now > 0.15 && r.now < 0.85);
+    const tr = rows.filter((r) => inPlay(r) && (r.kind !== 'house' || shownHouse++ < 20)).map((r) => {
+      const who = esc(lastName(r.dn)) + ' vs. ' + esc(lastName(r.rn));
+      const callTxt = r.call ? '<span class="pill ' + (r.call === 'R' ? 'sr' : 'sd') + '">' + (r.call === 'R' ? lastName(r.rn) : lastName(r.dn)) + ' wins</span>' : '';
+      const c = r.count;
+      const cnt = c ? (Math.round(c.frac * 100) + '% of precincts · ' + (c.margin != null ? fm(c.margin) : '—') + (c.proj ? ' · projected ' + fm(c.proj.margin) + ' ±' + c.proj.sd.toFixed(1) : '')) : '';
+      return '<tr><td><button class="rchip" data-race="' + r.id + '">' + r.id + '</button> <span class="lv-who">' + who + '</span></td>' +
+        '<td class="n">' + chanceText(r.pre, { dp: r.dp }) + '</td><td class="n"><b>' + (r.call ? '—' : chanceText(r.now, { dp: r.dp })) + '</b></td><td>' + callTxt + '</td><td class="small lv-count">' + cnt + '</td></tr>';
+    }).join('');
+    const src = L.feeds && L.feeds.sources || {};
+    const srcTxt = ['nc', 'fl'].map((k) => (k === 'nc' ? 'North Carolina' : 'Florida') + ' ' + (src[k] ? (src[k].ok ? 'read' : 'unavailable') : 'not read')).join(', ');
+    box.innerHTML = '<div class="fc-head"><span class="fc-k">Election night, live</span>' + (L.test ? '<span class="chip-warn">Test replay of 2024 data</span>' : '') +
+      '<span class="fc-s">updated ' + timeET(L.updated) + ' ET' + (stale ? ' · <b>' + ago + ' minutes ago</b>' : '') + (liveFails > 2 ? ' · can\'t reach the live feed right now' : '') + '</span></div>' +
+      '<div class="fc-grid">' + item('House majority', now.h, pre.h, Math.round(now.hs) + ' seats (80%: ' + now.hlo + '–' + now.hhi + ')', ctl.house) +
+      item('Senate control', now.s, pre.s, now.ss.toFixed(1) + ' seats (80%: ' + now.slo + '–' + now.shi + ')', ctl.senate) +
+      item('26+ governors', now.g, pre.g, now.gs.toFixed(1) + ' governors', null) + '</div>' +
+      '<p class="small" style="margin:8px 0 4px">National House vote implied by tonight\'s evidence: <b>' + fm(now.nat) + '</b> ±' + now.natsd.toFixed(1) + ' (before tonight ' + fm(pre.nat) + ' ±' + pre.natsd.toFixed(1) + '). ' +
+      now.calls + ' race call' + (now.calls === 1 ? '' : 's') + ' and ' + now.obs + ' vote count' + (now.obs === 1 ? '' : 's') + ' in the model.</p>' + tally + chart +
+      '<div class="table-scroll"><table class="nc-table lv-table"><thead><tr><th>Race</th><th class="n">Before</th><th class="n">Now</th><th>Called</th><th class="lv-count">Counted</th></tr></thead><tbody>' + tr + '</tbody></table></div>' +
+      '<p class="chart-cap">How it works: the same simulations as the forecast, reweighted toward the ones that fit what is known: race calls' + (L.calls && L.calls.asof ? ' (as of ' + timeET(L.calls.asof) + ' ET' + (L.calls.src ? ', ' + esc(L.calls.src) : '') + ')' : '') +
+      ', and counted votes from the official North Carolina and Florida files (' + srcTxt + '). A statewide count enters through the swing from 2024 in counties that have finished counting; a House count only once 95% of precincts are in, because early returns lean whichever way the first-counted ballots lean. A call in one race moves similar races everywhere. Other partial counts are shown but not used.</p>';
+  }
+
   // ---------------------------------------------------------------- scenario bar
   function buildPresets() {
     const box = $('presets');
@@ -2017,6 +2124,7 @@
   wireWatch();
   initLens();
   showFreshness(D);
+  startLive();
   }
 
   // ---------------------------------------------------------------- dates and freshness (outside startApp)

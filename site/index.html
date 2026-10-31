@@ -311,6 +311,11 @@ th.n { text-align: right; }
 .sig-catch { font-size: 12px; margin: 5px 0 0; color: var(--ink-2); }
 .sig-catch span { font-weight: 700; }
 .sig-src { font-size: 12px; margin: 5px 0 0; color: var(--ink-3); }
+.live-panel { border-color: var(--mark); border-width: 2px; }
+.live-panel .fc-head .chip-warn { margin-left: 8px; }
+.lv-up { color: var(--ld); font-weight: 700; } .lv-dn { color: var(--lr); font-weight: 700; }
+.lv-table td { vertical-align: middle; } .lv-table .rchip { white-space: nowrap; padding: 1px 8px; } .lv-who { font-size: 12px; color: var(--ink-2); }
+@media (max-width: 760px) { .lv-table .lv-count, .lv-who { display: none; } .lv-table td, .lv-table th { padding: 5px 5px; } }
 .auto-tag { display: inline-block; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mark); border: 1px solid var(--mark); border-radius: 4px; padding: 0 5px; margin-left: 6px; vertical-align: 2px; font-weight: 700; }
 .nc-table td, .nc-table th { padding: 5px 8px; }
 .evreg td { vertical-align: top; }
@@ -628,6 +633,7 @@ body.tabbed .banner { bottom: calc(var(--dock-h, 150px) + 10px); }
       </section>
     </aside>
       <section class="card area-res" data-screen="outlook" aria-label="Results">
+        <div class="fc-card live-panel" id="livePanel" hidden></div>
         <div class="fc-card" id="fcCard"></div>
         <div class="fc-trend" id="fcTrend" hidden></div>
         <div class="res-grid">
