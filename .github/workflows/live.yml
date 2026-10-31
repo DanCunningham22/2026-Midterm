@@ -1,0 +1,48 @@
+name: Election night live results
+
+# Election night: reads the official North Carolina and Florida results files and the latest race calls
+# (pipeline/content/calls.json) every two minutes, reruns the forecast conditioned on them and pushes live.json to the
+# "live" branch, which the app polls. A GitHub-hosted job can run 6 hours, so the night is two shifts: the first starts
+# at 6 PM ET, the second is queued at 11:45 PM ET and takes over when the first ends (same concurrency group, nothing is
+# cancelled). GitHub's schedule can start late, so the hourly race-call task also starts this workflow if it isn't running.
+on:
+  schedule:
+    - cron: '0 23 3 11 *'     # Nov 3, 6:00 PM EST
+    - cron: '45 4 4 11 *'     # Nov 3, 11:45 PM EST (second shift)
+  workflow_dispatch:
+    inputs:
+      test:
+        description: 'Replay 2024 to the live-test branch'
+        type: boolean
+        default: false
+      minutes:
+        description: 'Minutes to run (max 350)'
+        default: '345'
+      interval:
+        description: 'Seconds between updates'
+        default: '120'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: live-night-${{ inputs.test && 'test' || 'real' }}
+  cancel-in-progress: false
+
+jobs:
+  live:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 358
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Run the loop
+        env:
+          BRANCH: ${{ inputs.test && 'live-test' || 'live' }}
+          TEST: ${{ inputs.test && '1' || '0' }}
+          MINUTES: ${{ inputs.minutes || '345' }}
+          INTERVAL: ${{ inputs.interval || '120' }}
+          STOP_UTC: ${{ inputs.test && '' || '2026-11-04T11:00:00Z' }}
+        run: bash pipeline/live_loop.sh
