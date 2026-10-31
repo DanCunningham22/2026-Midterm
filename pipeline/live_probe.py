@@ -13,15 +13,14 @@ def get(url, timeout=60):
         return r.status, dict(r.headers), r.read()
 
 URLS = [
-    'https://fldoselectionfiles.elections.myflorida.com/enightfilespublic/20241105_ElecResultsFL.txt',
-    'https://flelectionfiles.floridados.gov/enightfilespublic/20241105_ElecResultsFL.txt',
-    'https://fldoselectionfiles.elections.myflorida.com/enightfilespublic/20260818_ElecResultsFL.txt',
-    'https://fldoselectionfiles.elections.myflorida.com/enightfilespublic/20261103_ElecResultsFL.txt',
-    'https://s3.amazonaws.com/dl.ncsbe.gov/ENRS/2024_11_05/results_pct_20241105.zip',
-    'https://s3.amazonaws.com/dl.ncsbe.gov/ENRS/2026_03_03/results_pct_20260303.zip',
-    'https://s3.amazonaws.com/dl.ncsbe.gov/ENRS/2026_11_03/results_pct_20261103.zip',
-    'https://er.ncsbe.gov/enr/20241105/data/results_0.txt',
-    'https://er.ncsbe.gov/enr/20261103/data/results_0.txt',
+    'https://flelectionfiles.floridados.gov/enightfilespublic/20261103_ElecResultsFL.txt',
+    'https://flelectionfiles.floridados.gov/enightfilespublic/20260818_ElecResultsFL.txt',
+    'https://flelectionfiles.floridados.gov/enightfilespublic/20221108_ElecResultsFL.txt',
+    'https://er.ncsbe.gov/enr/20261103/data/results_1.txt',
+    'https://er.ncsbe.gov/enr/20261103/data/results_92.txt',
+    'https://er.ncsbe.gov/enr/20241105/data/results_92.txt',
+    'https://er.ncsbe.gov/enr/20261103/data/county_list.txt',
+    'https://er.ncsbe.gov/enr/20261103/data/timestamp.txt',
 ]
 for u in URLS:
     p('=' * 100); p('URL', u)
