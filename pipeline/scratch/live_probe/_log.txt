@@ -1,0 +1,215 @@
+====================================================================================================
+URL https://fldoselectionfiles.elections.myflorida.com/enightfilespublic/20241105_ElecResultsFL.txt
+  ERROR URLError(gaierror(-2, 'Name or service not known'))
+====================================================================================================
+URL https://flelectionfiles.floridados.gov/enightfilespublic/20241105_ElecResultsFL.txt
+  status 200 bytes 392733 type application/octet-stream last-modified Mon, 18 Nov 2024 18:02:43 GMT cache None
+  lines 3322
+    | ElectionDate	PartyCode	PartyName	RaceCode	RaceName	CountyCode	CountyName	Juris1num	Juris2num	Precincts	PrecinctsReporting	CanNameLast	CanNameFirst	CanNameMiddle	CanVotes
+    | 11/05/2024	REP	Republican Party	PRE	President and Vice President	ALA	Alachua	   	 	63	63	Vance	Trump	 / 	52939
+    | 11/05/2024	REP	Republican Party	PRE	President and Vice President	BAK	Baker	   	 	9	9	Vance	Trump	 / 	12926
+    | 11/05/2024	REP	Republican Party	PRE	President and Vice President	BAY	Bay	   	 	29	29	Vance	Trump	 / 	71497
+    | 11/05/2024	REP	Republican Party	PRE	President and Vice President	BRA	Bradford	   	 	13	13	Vance	Trump	 / 	10920
+    | 11/05/2024	REP	Republican Party	PRE	President and Vice President	BRE	Brevard	   	 	151	151	Vance	Trump	 / 	216533
+    | 11/05/2024	REP	Republican Party	PRE	President and Vice President	BRO	Broward	   	 	358	358	Vance	Trump	 / 	358952
+    | 11/05/2024	REP	Republican Party	PRE	President and Vice President	CAL	Calhoun	   	 	14	14	Vance	Trump	 / 	5367
+  races ( 192 ): [('President and Vice President', 603), ('United States Senator', 402), ('Representative in Congress, District 1', 8), ('Representative in Congress, District 2', 32), ('Representative in Congress, District 3', 24), ('Representative in Congress, District 4', 9), ('Representative in Congress, District 5', 6), ('Representative in Congress, District 6', 18), ('Representative in Congress, District 7', 4), ('Representative in Congress, District 8', 6), ('Representative in Congress, District 9', 9), ('Representative in Congress, District 10', 2), ('Representative in Congress, District 11', 8), ('Representative in Congress, District 12', 6), ('Representative in Congress, District 13', 3), ('Representative in Congress, District 14', 8), ('Representative in Congress, District 15', 6), ('Representative in Congress, District 16', 4), ('Representative in Congress, District 17', 9), ('Representative in Congress, District 18', 16), ('Representative in Congress, District 19', 4), ('Representative in Congress, District 21', 9), ('Representative in Congress, District 22', 2), ('Representative in Congress, District 23', 4), ('Representative in Congress, District 24', 6), ('Representative in Congress, District 25', 3), ('Representative in Congress, District 26', 4), ('Representative in Congress, District 27', 2), ('Representative in Congress, District 28', 4), ('State Attorney, 8th Judicial Circuit', 12), ('State Attorney, 9th Judicial Circuit', 4), ('State Attorney, 13th Judicial Circuit', 2), ('State Attorney, 15th Judicial Circuit', 3), ('State Senator, District 1', 6), ('State Senator, District 3', 26), ('State Senator, District 5', 2), ('State Senator, District 7', 8), ('State Senator, District 9', 6), ('State Senator, District 11', 8), ('State Senator, District 13', 4)]
+    PRES Alachua | 11/05/2024	REP	Republican Party	PRE	President and Vice President	ALA	Alachua	   	 	63	63	Vance	Trump	 / 	52939
+    PRES Alachua | 11/05/2024	DEM	Democratic Party	PRE	President and Vice President	ALA	Alachua	   	 	63	63	Walz	Harris	 / 	81578
+    PRES Alachua | 11/05/2024	LPF	Libertarian Party	PRE	President and Vice President	ALA	Alachua	   	 	63	63	ter Maat	Oliver	 / 	619
+    PRES Alachua | 11/05/2024	PSL	Party for Socialism and Liberation	PRE	President and Vice President	ALA	Alachua	   	 	63	63	Garcia	De la Cruz	 / 	293
+    PRES Alachua | 11/05/2024	CPF	Constitution Party	PRE	President and Vice President	ALA	Alachua	   	 	63	63	Broden	Terry	 / 	82
+    PRES Alachua | 11/05/2024	ASP	American Solidarity Party of Florida 	PRE	President and Vice President	ALA	Alachua	   	 	63	63	Onak	Sonski	 / 	150
+    PRES Alachua | 11/05/2024	GRE	Green Party	PRE	President and Vice President	ALA	Alachua	   	 	63	63	Ware	Stein	 / 	887
+    PRES Alachua | 11/05/2024	WRI	Write-in	PRE	President and Vice President	ALA	Alachua	   	 	63	63	Ellis	Ayyadurai	 / 	0
+    PRES Alachua | 11/05/2024	WRI	Write-in	PRE	President and Vice President	ALA	Alachua	   	 	63	63	McVay	Fox	 / 	0
+    REP row | 11/05/2024	REP	Republican Party	USR	Representative in Congress, District 1	ESC	Escambia	001	 	80	80	Gaetz	Matt		91609
+====================================================================================================
+URL https://fldoselectionfiles.elections.myflorida.com/enightfilespublic/20260818_ElecResultsFL.txt
+  ERROR URLError(gaierror(-2, 'Name or service not known'))
+====================================================================================================
+URL https://fldoselectionfiles.elections.myflorida.com/enightfilespublic/20261103_ElecResultsFL.txt
+  ERROR URLError(gaierror(-2, 'Name or service not known'))
+====================================================================================================
+URL https://s3.amazonaws.com/dl.ncsbe.gov/ENRS/2024_11_05/results_pct_20241105.zip
+  status 200 bytes 3741131 type application/x-zip-compressed last-modified Tue, 03 Dec 2024 18:32:58 GMT cache None
+  member results_pct_20241105.txt 23861000
+    | County	Election Date	Precinct	Contest Group ID	Contest Type	Contest Name	Choice	Choice Party	Vote For	Election Day	Early Voting	Absentee by Mail	Provisional	Total Votes	Real Precinct	
+    | BUNCOMBE	11/05/2024	01.1	7	C	CITY OF ASHEVILLE CITY COUNCIL	Write-In (Miscellaneous)		3	6	14	1	0	21	Y	
+    | BUNCOMBE	11/05/2024	01.1	22	C	CITY OF ASHEVILLE TRANSPORTATION BONDS REFERENDUM	No	 	1	62	215	20	1	298	Y	
+    | BUNCOMBE	11/05/2024	01.1	1301	S	NC LIEUTENANT GOVERNOR	Shannon W. Bray	LIB	1	14	21	4	0	39	Y	
+    | BUNCOMBE	11/05/2024	01.1	1351	S	NC STATE SENATE DISTRICT 49	Kristie Tincher Sluder	REP	1	50	123	19	2	194	Y	
+    | BUNCOMBE	11/05/2024	01.1	1393	S	US PRESIDENT	Claudia De la Cruz (Write-In)		1	0	0	0	0	0	Y	
+  contests (top 40 of 1216 ):
+      23236 US PRESIDENT
+      14540 NC GOVERNOR
+      11632 NC LIEUTENANT GOVERNOR
+      8724 NC COMMISSIONER OF AGRICULTURE
+      8724 NC AUDITOR
+      8058 WAKE SOIL AND WATER CONSERVATION DISTRICT SUPERVISOR
+      5816 NC ATTORNEY GENERAL
+      5816 NC COURT OF APPEALS JUDGE SEAT 14
+      5816 NC COMMISSIONER OF LABOR
+      5816 NC SUPREME COURT ASSOCIATE JUSTICE SEAT 06
+      5816 NC SUPERINTENDENT OF PUBLIC INSTRUCTION
+      5816 NC SECRETARY OF STATE
+      5816 CONSTITUTIONAL AMENDMENT - CITIZENS-ONLY VOTING
+      5816 NC COURT OF APPEALS JUDGE SEAT 15
+      5816 NC COURT OF APPEALS JUDGE SEAT 12
+      5816 NC COMMISSIONER OF INSURANCE
+      5816 NC TREASURER
+      3352 CITY OF RALEIGH CITY COUNCIL AT-LARGE
+      1892 CITY OF WINSTON-SALEM MAYOR
+      1174 CITY OF RALEIGH MAYOR
+      1029 NEW HANOVER SOIL AND WATER CONSERVATION DISTRICT SUPERVISOR
+      978 US HOUSE OF REPRESENTATIVES DISTRICT 01
+      950 PITT SOIL AND WATER CONSERVATION DISTRICT SUPERVISOR
+      864 BRUNSWICK SOIL AND WATER CONSERVATION DISTRICT SUPERVISOR
+      845 GUILFORD SOIL AND WATER CONSERVATION DISTRICT SUPERVISOR
+      828 BERTIE COUNTY BOARD OF EDUCATION DISTRICT 05
+      799 DAVIDSON COUNTY SCHOOLS BOARD OF EDUCATION
+      792 MECKLENBURG SOIL AND WATER CONSERVATION DISTRICT SUPERVISOR
+      764 US HOUSE OF REPRESENTATIVES DISTRICT 10
+      756 FORSYTH SOIL AND WATER CONSERVATION DISTRICT SUPERVISOR
+      748 BUNCOMBE COUNTY SCHOOLS BOARD OF EDUCATION AT-LARGE
+      693 CUMBERLAND SOIL AND WATER CONSERVATION DISTRICT SUPERVISOR
+      630 BERTIE SOIL AND WATER CONSERVATION DISTRICT SUPERVISOR
+      612 BERTIE COUNTY BOARD OF EDUCATION DISTRICT 01
+      598 US HOUSE OF REPRESENTATIVES DISTRICT 11
+      594 MECKLENBURG COUNTY BOARD OF COMMISSIONERS AT-LARGE
+      570 US HOUSE OF REPRESENTATIVES DISTRICT 04
+      552 US HOUSE OF REPRESENTATIVES DISTRICT 09
+      544 US HOUSE OF REPRESENTATIVES DISTRICT 05
+      540 US HOUSE OF REPRESENTATIVES DISTRICT 02
+    PRES WAKE row | WAKE	11/05/2024	04-12	1393	S	US PRESIDENT	Kamala D. Harris	DEM	1	255	0	0	0	255	Y	
+    US row | BUNCOMBE	11/05/2024	06.1	1389	S	US HOUSE OF REPRESENTATIVES DISTRICT 11	Caleb Rudow	DEM	1	107	723	80	0	910	Y	
+====================================================================================================
+URL https://s3.amazonaws.com/dl.ncsbe.gov/ENRS/2026_03_03/results_pct_20260303.zip
+  status 200 bytes 1427371 type application/x-zip-compressed last-modified Thu, 16 Apr 2026 16:31:56 GMT cache None
+  member results_pct_20260303.txt 10571078
+    | County	Election Date	Precinct	Contest Group ID	Contest Type	Contest Name	Choice	Choice Party	Vote For	Election Day	Early Voting	Absentee by Mail	Provisional	Total Votes	Real Precinct	
+    | BUNCOMBE	03/03/2026	19.1	2137	S	US HOUSE OF REPRESENTATIVES DISTRICT 11 (REP)	Chuck Edwards	REP	1	13	17	3	0	33	Y	
+    | BUNCOMBE	03/03/2026	20.1	20	C	CITY OF ASHEVILLE CITY COUNCIL	Nina Ireland	 	3	19	31	0	0	50	Y	
+    | BUNCOMBE	03/03/2026	20.1	1124	S	NC COURT OF APPEALS JUDGE SEAT 03 (DEM)	Christine Marie Walczyk	DEM	1	73	151	1	0	225	Y	
+    | BUNCOMBE	03/03/2026	20.1	2135	S	US HOUSE OF REPRESENTATIVES DISTRICT 11 (DEM)	Jamie Ager	DEM	1	99	199	1	1	300	Y	
+    | BUNCOMBE	03/03/2026	20.1	2149	S	US SENATE (REP)	Elizabeth A. Temple	REP	1	0	1	0	0	1	Y	
+  contests (top 40 of 472 ):
+      19978 US SENATE (REP)
+      17124 US SENATE (DEM)
+      5708 NC COURT OF APPEALS JUDGE SEAT 03 (DEM)
+      5708 NC COURT OF APPEALS JUDGE SEAT 01 (REP)
+      1980 MECKLENBURG COUNTY BOARD OF COMMISSIONERS AT-LARGE (DEM)
+      1735 US HOUSE OF REPRESENTATIVES DISTRICT 01 (REP)
+      1617 WAKE COUNTY BOARD OF COMMISSIONERS AT-LARGE (DEM)
+      1520 US HOUSE OF REPRESENTATIVES DISTRICT 11 (DEM)
+      1194 US HOUSE OF REPRESENTATIVES DISTRICT 10 (DEM)
+      1080 FORSYTH COUNTY BOARD OF EDUCATION AT-LARGE (DEM)
+      1056 US HOUSE OF REPRESENTATIVES DISTRICT 05 (REP)
+      824 US HOUSE OF REPRESENTATIVES DISTRICT 06 (DEM)
+      822 CITY OF RALEIGH CITY COUNCIL AT-LARGE
+      800 CITY OF ASHEVILLE CITY COUNCIL
+      792 MECKLENBURG COUNTY SHERIFF (DEM)
+      712 US HOUSE OF REPRESENTATIVES DISTRICT 09 (DEM)
+      710 FORSYTH COUNTY BOARD OF EDUCATION DISTRICT 02 (REP)
+      693 DISTRICT ATTORNEY DISTRICT 10 (DEM)
+      645 US HOUSE OF REPRESENTATIVES DISTRICT 08 (DEM)
+      608 US HOUSE OF REPRESENTATIVES DISTRICT 11 (REP)
+      568 FORSYTH COUNTY BOARD OF EDUCATION DISTRICT 02 (DEM)
+      531 US HOUSE OF REPRESENTATIVES DISTRICT 04 (DEM)
+      528 US HOUSE OF REPRESENTATIVES DISTRICT 05 (DEM)
+      516 DAVIDSON COUNTY BOARD OF COMMISSIONERS (REP)
+      507 GUILFORD COUNTY BOARD OF COMMISSIONERS AT-LARGE (DEM)
+      495 US HOUSE OF REPRESENTATIVES DISTRICT 13 (DEM)
+      484 NC STATE SENATE DISTRICT 01 (REP)
+      468 US HOUSE OF REPRESENTATIVES DISTRICT 14 (DEM)
+      462 CUMBERLAND COUNTY BOARD OF COMMISSIONERS AT-LARGE (DEM)
+      451 ROWAN COUNTY BOARD OF COMMISSIONERS (REP)
+      424 US HOUSE OF REPRESENTATIVES DISTRICT 03 (DEM)
+      410 US HOUSE OF REPRESENTATIVES DISTRICT 07 (REP)
+      398 US HOUSE OF REPRESENTATIVES DISTRICT 10 (REP)
+      396 NC DISTRICT COURT JUDGE DISTRICT 26 SEAT 18 (DEM)
+      344 CABARRUS COUNTY BOARD OF COMMISSIONERS (REP)
+      338 GUILFORD COUNTY SHERIFF (REP)
+      338 GUILFORD COUNTY CLERK OF SUPERIOR COURT (DEM)
+      330 US HOUSE OF REPRESENTATIVES DISTRICT 13 (REP)
+      324 UNION COUNTY BOARD OF COMMISSIONERS (REP)
+      312 US HOUSE OF REPRESENTATIVES DISTRICT 14 (REP)
+    US row | BUNCOMBE	03/03/2026	19.1	2137	S	US HOUSE OF REPRESENTATIVES DISTRICT 11 (REP)	Chuck Edwards	REP	1	13	17	3	0	33	Y	
+====================================================================================================
+URL https://s3.amazonaws.com/dl.ncsbe.gov/ENRS/2026_11_03/results_pct_20261103.zip
+  status 200 bytes 636927 type application/x-zip-compressed last-modified Mon, 05 Oct 2026 14:57:45 GMT cache None
+  member results_pct_20261103.txt 14585382
+    | County	Election Date	Precinct	Contest Group ID	Contest Type	Contest Name	Choice	Choice Party	Vote For	Election Day	Early Voting	Absentee by Mail	Provisional	Total Votes	Real Precinct
+    | ALAMANCE	11/03/2026	01	1	C	ALAMANCE COUNTY BOARD OF COMMISSIONERS	Kelly Allen	REP	2	0	0	0	0	0	Y
+    | ALAMANCE	11/03/2026	01	1	C	ALAMANCE COUNTY BOARD OF COMMISSIONERS	Ramona Allen	DEM	2	0	0	0	0	0	Y
+    | ALAMANCE	11/03/2026	01	1	C	ALAMANCE COUNTY BOARD OF COMMISSIONERS	Sean C. Ewing	DEM	2	0	0	0	0	0	Y
+    | ALAMANCE	11/03/2026	01	1	C	ALAMANCE COUNTY BOARD OF COMMISSIONERS	Steve Carter	REP	2	0	0	0	0	0	Y
+    | ALAMANCE	11/03/2026	01	2	C	ALAMANCE COUNTY CLERK OF SUPERIOR COURT	Kristie Miller Culler	REP	1	0	0	0	0	0	Y
+  contests (top 40 of 1380 ):
+      11368 US SENATE
+      5684 NC COURT OF APPEALS JUDGE SEAT 01
+      5684 NC COURT OF APPEALS JUDGE SEAT 02
+      5684 NC COURT OF APPEALS JUDGE SEAT 03
+      5684 NC SUPREME COURT ASSOCIATE JUSTICE SEAT 01
+      5684 CONSTITUTIONAL AMENDMENT - REQUIRE PHOTO ID FOR VOTING
+      5684 CONSTITUTIONAL AMENDMENT - MAXIMUM INCOME TAX RATE OF 3.5%
+      5684 CONSTITUTIONAL AMENDMENT - PROPERTY TAX LEVY LIMIT
+      1659 WAKE SOIL AND WATER CONSERVATION DISTRICT SUPERVISOR
+      1309 CUMBERLAND COUNTY BOARD OF EDUCATION AT-LARGE
+      1188 MECKLENBURG SOIL AND WATER CONSERVATION DISTRICT SUPERVISOR
+      1050 US HOUSE OF REPRESENTATIVES DISTRICT 01
+      1014 GUILFORD SOIL AND WATER CONSERVATION DISTRICT SUPERVISOR
+      948 WAKE COUNTY BOARD OF COMMISSIONERS AT-LARGE
+      894 US HOUSE OF REPRESENTATIVES DISTRICT 11
+      810 US HOUSE OF REPRESENTATIVES DISTRICT 05
+      725 CITY OF RALEIGH CITY COUNCIL AT-LARGE
+      708 US HOUSE OF REPRESENTATIVES DISTRICT 02
+      648 FORSYTH SOIL AND WATER CONSERVATION DISTRICT SUPERVISOR
+      627 US HOUSE OF REPRESENTATIVES DISTRICT 03
+      618 US HOUSE OF REPRESENTATIVES DISTRICT 08
+      616 CUMBERLAND SOIL AND WATER CONSERVATION DISTRICT SUPERVISOR
+      594 MECKLENBURG COUNTY BOARD OF COMMISSIONERS AT-LARGE
+      573 US HOUSE OF REPRESENTATIVES DISTRICT 07
+      573 US HOUSE OF REPRESENTATIVES DISTRICT 10
+      568 FORSYTH COUNTY BOARD OF EDUCATION DISTRICT 02
+      555 US HOUSE OF REPRESENTATIVES DISTRICT 04
+      540 FORSYTH COUNTY BOARD OF EDUCATION AT-LARGE
+      510 US HOUSE OF REPRESENTATIVES DISTRICT 13
+      474 WAKE COUNTY CLERK OF SUPERIOR COURT
+      474 WAKE COUNTY SHERIFF
+      474 WAKE COUNTY SCHOOL BONDS REFERENDUM
+      474 WAKE COUNTY COMMUNITY COLLEGE BONDS REFERENDUM
+      435 CITY OF RALEIGH MAYOR
+      430 JOHNSTON SOIL AND WATER CONSERVATION DISTRICT SUPERVISOR
+      418 US HOUSE OF REPRESENTATIVES DISTRICT 06
+      400 BUNCOMBE SOIL AND WATER CONSERVATION DISTRICT SUPERVISOR
+      392 NEW HANOVER COUNTY BOARD OF EDUCATION
+      358 US HOUSE OF REPRESENTATIVES DISTRICT 09
+      344 CITY OF CHARLOTTE TRANSPORTATION BONDS REFERENDUM
+    US row | ALAMANCE	11/03/2026	01	1377	S	US HOUSE OF REPRESENTATIVES DISTRICT 09	Richard Hudson	REP	1	0	0	0	0	0	Y
+====================================================================================================
+URL https://er.ncsbe.gov/enr/20241105/data/results_0.txt
+  status 200 bytes 216378 type text/plain last-modified None cache None
+  lines 738
+    | [{"cid":"0","cnm":"US PRESIDENT (VOTE FOR 1)","vfr":"1","gid":"1393","lid":"1393","bnm":"Donald J. Trump","dtx":"","pty":"REP","vct":"2898423","pct":"0.5086","prt":"2658","ptl":"2658","evc":"642726","ovc":"2137785","avc":"105704","pvc":"12208","col":"EB2326","ogl":"FED","ref":"0"},
+    | {"cid":"0","cnm":"US PRESIDENT (VOTE FOR 1)","vfr":"1","gid":"1393","lid":"1393","bnm":"Kamala D. Harris","dtx":"","pty":"DEM","vct":"2715375","pct":"0.4765","prt":"2658","ptl":"2658","evc":"495441","ovc":"2021954","avc":"185098","pvc":"12882","col":"1171B9","ogl":"FED","ref":"0"},
+    | {"cid":"0","cnm":"US PRESIDENT (VOTE FOR 1)","vfr":"1","gid":"1393","lid":"1393","bnm":"Jill Stein","dtx":"","pty":"GRE","vct":"24762","pct":"0.0043","prt":"2658","ptl":"2658","evc":"8810","ovc":"14330","avc":"1464","pvc":"158","col":"51BF11","ogl":"FED","ref":"0"},
+    | {"cid":"0","cnm":"US PRESIDENT (VOTE FOR 1)","vfr":"1","gid":"1393","lid":"1393","bnm":"Chase Oliver","dtx":"","pty":"LIB","vct":"22125","pct":"0.0039","prt":"2658","ptl":"2658","evc":"8482","ovc":"12218","avc":"1297","pvc":"128","col":"FDCD0C","ogl":"FED","ref":"0"},
+    | {"cid":"0","cnm":"US PRESIDENT (VOTE FOR 1)","vfr":"1","gid":"1393","lid":"1393","bnm":"Write-In (Miscellaneous)","dtx":"","pty":"","vct":"18936","pct":"0.0033","prt":"2658","ptl":"2658","evc":"6608","ovc":"11149","avc":"1099","pvc":"80","col":"FA6900","ogl":"FED","ref":"0"},
+    | {"cid":"0","cnm":"US PRESIDENT (VOTE FOR 1)","vfr":"1","gid":"1393","lid":"1393","bnm":"Cornel West","dtx":"","pty":"JFA","vct":"12099","pct":"0.0021","prt":"2658","ptl":"2658","evc":"4387","ovc":"7053","avc":"536","pvc":"123","col":"AF4D25","ogl":"FED","ref":"0"},
+    | {"cid":"0","cnm":"US PRESIDENT (VOTE FOR 1)","vfr":"1","gid":"1393","lid":"1393","bnm":"Randall Terry","dtx":"","pty":"CST","vct":"6863","pct":"0.0012","prt":"2658","ptl":"2658","evc":"2438","ovc":"4026","avc":"366","pvc":"33","col":"E0E4CC","ogl":"FED","ref":"0"},
+    | {"cid":"0","cnm":"US PRESIDENT (VOTE FOR 1)","vfr":"1","gid":"1393","lid":"1393","bnm":"Claudia De la Cruz (Write-In)","dtx":"(Write-In)","pty":"","vct":"528","pct":"0.0001","prt":"2658","ptl":"2658","evc":"183","ovc":"309","avc":"36","pvc":"0","col":"E0E4CC","ogl":"FED","ref":"0"},
+  json head [{"cid":"0","cnm":"US PRESIDENT (VOTE FOR 1)","vfr":"1","gid":"1393","lid":"1393","bnm":"Donald J. Trump","dtx":"","pty":"REP","vct":"2898423","pct":"0.5086","prt":"2658","ptl":"2658","evc":"642726","ovc":"2137785","avc":"105704","pvc":"12208","col":"EB2326","ogl":"FED","ref":"0"},{"cid":"0","cnm":"US PRESIDENT (VOTE FOR 1)","vfr":"1","gid":"1393","lid":"1393","bnm":"Kamala D. Harris","dtx":"","pty":"DEM","vct":"2715375","pct":"0.4765","prt":"2658","ptl":"2658","evc":"495441","ovc":"2021954","avc":"185098","pvc":"12882","col":"1171B9","ogl":"FED","ref":"0"},{"cid":"0","cnm":"US PRESIDENT (VOTE FOR 1)","vfr":"1","gid":"1393","lid":"1393","bnm":"Jill Stein","dtx":"","pty":"GRE","vct":"24762","pct":"0.0043","prt":"2658","ptl":"2658","evc":"8810","ovc":"14330","avc":"1464","pvc":"158","col":"51BF11","ogl":"FED","ref":"0"},{"cid":"0","cnm":"US PRESIDENT (VOTE FOR 1)","vfr":"1","gid":"1393","lid":"1393","bnm":"Chase Oliver","dtx":"","pty":"LIB","vct":"22125","pct":"0.0039","prt":"2658","ptl":"2658","evc":"8482","ovc":"12218","avc":"1297","pvc":"128","col":"FDCD0C","ogl":"FED","ref":"0"},{"cid":"0","cnm":"US PRESIDENT (VOTE FOR 1)","vfr":"1","gid":"1393","lid":"1393","bnm":"Write-In (Miscellaneous)","dtx":"","pty":"","vct":"18936","pct":"0.0033","prt":"2658","ptl":"2658","evc":"6608","ovc":"11149","avc":"1099","pvc":"80","col":"FA6900","ogl":"FED","ref":"0"},{"cid":"0","cnm":"US PRESIDENT (VOTE FOR 1)","vfr":"1","gid":"1393","lid":"1393","bnm":"Cornel West","dtx":"","pty":"JFA"
+====================================================================================================
+URL https://er.ncsbe.gov/enr/20261103/data/results_0.txt
+  status 200 bytes 182090 type text/plain last-modified None cache None
+  lines 660
+    | [{"cid":"0","cnm":"US SENATE (VOTE FOR 1)","vfr":"1","gid":"1383","lid":"1383","bnm":"Michael Dublin","dtx":"","pty":"GRE","vct":"0","pct":"0.0000","prt":"0","ptl":"2626","evc":"0","ovc":"0","avc":"0","pvc":"0","col":"51BF11","ogl":"FED","ref":"0"},
+    | {"cid":"0","cnm":"US SENATE (VOTE FOR 1)","vfr":"1","gid":"1383","lid":"1383","bnm":"Roy Cooper","dtx":"","pty":"DEM","vct":"0","pct":"0.0000","prt":"0","ptl":"2626","evc":"0","ovc":"0","avc":"0","pvc":"0","col":"1171B9","ogl":"FED","ref":"0"},
+    | {"cid":"0","cnm":"US SENATE (VOTE FOR 1)","vfr":"1","gid":"1383","lid":"1383","bnm":"Shannon W. Bray","dtx":"","pty":"LIB","vct":"0","pct":"0.0000","prt":"0","ptl":"2626","evc":"0","ovc":"0","avc":"0","pvc":"0","col":"FDCD0C","ogl":"FED","ref":"0"},
+    | {"cid":"0","cnm":"US SENATE (VOTE FOR 1)","vfr":"1","gid":"1383","lid":"1383","bnm":"Michael Whatley","dtx":"","pty":"REP","vct":"0","pct":"0.0000","prt":"0","ptl":"2626","evc":"0","ovc":"0","avc":"0","pvc":"0","col":"EB2326","ogl":"FED","ref":"0"},
+    | {"cid":"0","cnm":"US HOUSE OF REPRESENTATIVES DISTRICT 01 (VOTE FOR 1)","vfr":"1","gid":"1369","lid":"1369","bnm":"Don Davis","dtx":"","pty":"DEM","vct":"0","pct":"0.0000","prt":"0","ptl":"290","evc":"0","ovc":"0","avc":"0","pvc":"0","col":"1171B9","ogl":"FED","ref":"0"},
+    | {"cid":"0","cnm":"US HOUSE OF REPRESENTATIVES DISTRICT 01 (VOTE FOR 1)","vfr":"1","gid":"1369","lid":"1369","bnm":"Laurie Buckhout","dtx":"","pty":"REP","vct":"0","pct":"0.0000","prt":"0","ptl":"290","evc":"0","ovc":"0","avc":"0","pvc":"0","col":"EB2326","ogl":"FED","ref":"0"},
+    | {"cid":"0","cnm":"US HOUSE OF REPRESENTATIVES DISTRICT 01 (VOTE FOR 1)","vfr":"1","gid":"1369","lid":"1369","bnm":"Tom Bailey","dtx":"","pty":"LIB","vct":"0","pct":"0.0000","prt":"0","ptl":"290","evc":"0","ovc":"0","avc":"0","pvc":"0","col":"FDCD0C","ogl":"FED","ref":"0"},
+    | {"cid":"0","cnm":"US HOUSE OF REPRESENTATIVES DISTRICT 02 (VOTE FOR 1)","vfr":"1","gid":"1370","lid":"1370","bnm":"Eugene F. Douglass","dtx":"","pty":"REP","vct":"0","pct":"0.0000","prt":"0","ptl":"156","evc":"0","ovc":"0","avc":"0","pvc":"0","col":"EB2326","ogl":"FED","ref":"0"},
+  json head [{"cid":"0","cnm":"US SENATE (VOTE FOR 1)","vfr":"1","gid":"1383","lid":"1383","bnm":"Michael Dublin","dtx":"","pty":"GRE","vct":"0","pct":"0.0000","prt":"0","ptl":"2626","evc":"0","ovc":"0","avc":"0","pvc":"0","col":"51BF11","ogl":"FED","ref":"0"},{"cid":"0","cnm":"US SENATE (VOTE FOR 1)","vfr":"1","gid":"1383","lid":"1383","bnm":"Roy Cooper","dtx":"","pty":"DEM","vct":"0","pct":"0.0000","prt":"0","ptl":"2626","evc":"0","ovc":"0","avc":"0","pvc":"0","col":"1171B9","ogl":"FED","ref":"0"},{"cid":"0","cnm":"US SENATE (VOTE FOR 1)","vfr":"1","gid":"1383","lid":"1383","bnm":"Shannon W. Bray","dtx":"","pty":"LIB","vct":"0","pct":"0.0000","prt":"0","ptl":"2626","evc":"0","ovc":"0","avc":"0","pvc":"0","col":"FDCD0C","ogl":"FED","ref":"0"},{"cid":"0","cnm":"US SENATE (VOTE FOR 1)","vfr":"1","gid":"1383","lid":"1383","bnm":"Michael Whatley","dtx":"","pty":"REP","vct":"0","pct":"0.0000","prt":"0","ptl":"2626","evc":"0","ovc":"0","avc":"0","pvc":"0","col":"EB2326","ogl":"FED","ref":"0"},{"cid":"0","cnm":"US HOUSE OF REPRESENTATIVES DISTRICT 01 (VOTE FOR 1)","vfr":"1","gid":"1369","lid":"1369","bnm":"Don Davis","dtx":"","pty":"DEM","vct":"0","pct":"0.0000","prt":"0","ptl":"290","evc":"0","ovc":"0","avc":"0","pvc":"0","col":"1171B9","ogl":"FED","ref":"0"},{"cid":"0","cnm":"US HOUSE OF REPRESENTATIVES DISTRICT 01 (VOTE FOR 1)","vfr":"1","gid":"1369","lid":"1369","bnm":"Laurie Buckhout","dtx":"","pty":"REP","vct":"0","pct":"0.0000","prt":"0","ptl":"290","evc":"0","ovc":"0","avc":"0","p
