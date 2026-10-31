@@ -338,10 +338,15 @@
         s += '<text x="' + xx.toFixed(1) + '" y="' + (HT - 6) + '" text-anchor="middle">' + new Date(tt).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: ET }).replace(':00', '') + '</text>';
       }
       s += '</g>';
-      [['House', 'h', 'var(--mark)', 2.6], ['Senate', 's', 'var(--ink)', 2], ['Governors', 'g', 'var(--ink-3)', 1.6]].forEach(([name, k, col, w]) => {
+      const lp = pts[pts.length - 1];
+      const series = [['House', 'h', 'var(--mark)', 2.6], ['Senate', 's', 'var(--ink)', 2], ['Governors', 'g', 'var(--ink-3)', 1.6]];
+      // end labels, nudged apart so they never overlap
+      const labY = series.map(([, k]) => y(lp[k]) + 4).map((v, i) => ({ v, i })).sort((a, b) => a.v - b.v);
+      for (let j = 1; j < labY.length; j++) if (labY[j].v - labY[j - 1].v < 13) labY[j].v = labY[j - 1].v + 13;
+      const yLab = {}; labY.forEach((o) => { yLab[o.i] = o.v; });
+      series.forEach(([name, k, col, w], si) => {
         s += '<polyline fill="none" stroke="' + col + '" stroke-width="' + w + '" stroke-linejoin="round" points="' + pts.map((p) => x(p.t).toFixed(1) + ',' + y(p[k]).toFixed(1)).join(' ') + '"/>';
-        const lp = pts[pts.length - 1];
-        s += '<text class="ev-val" x="' + (x(lp.t) + 6).toFixed(1) + '" y="' + (y(lp[k]) + 4).toFixed(1) + '" style="fill:' + col + ';font-weight:700">' + name + ' ' + Math.round(lp[k] * 100) + '%</text>';
+        s += '<text class="ev-val" x="' + (x(lp.t) + 6).toFixed(1) + '" y="' + yLab[si].toFixed(1) + '" style="fill:' + col + ';font-weight:700">' + name + ' ' + Math.round(lp[k] * 100) + '%</text>';
       });
       chart = '<div class="chart"><svg viewBox="0 0 ' + W + ' ' + HT + '" role="img" aria-label="Democratic chances through the night">' + s + '</svg></div><p class="chart-cap">Democratic chances through the night (ET); the first point is the forecast before any results.</p>';
     }
@@ -357,10 +362,10 @@
       if (!!a.call !== !!b.call) return a.call ? 1 : -1;
       return Math.abs(a.now - 0.5) - Math.abs(b.now - 0.5);
     });
-    // the races still in doubt (15-85% before tonight or now), anything called among them, at most 20 House races
+    // the races still in doubt (15-85% before tonight or now), anything called or counted among them, and at most 20 other House races
     let shownHouse = 0;
     const inPlay = (r) => (r.pre > 0.15 && r.pre < 0.85) || (!r.call && r.now > 0.15 && r.now < 0.85);
-    const tr = rows.filter((r) => inPlay(r) && (r.kind !== 'house' || shownHouse++ < 20)).map((r) => {
+    const tr = rows.filter((r) => inPlay(r) && (r.kind !== 'house' || r.call || r.count || shownHouse++ < 20)).map((r) => {
       const who = esc(lastName(r.dn)) + ' vs. ' + esc(lastName(r.rn));
       const callTxt = r.call ? '<span class="pill ' + (r.call === 'R' ? 'sr' : 'sd') + '">' + (r.call === 'R' ? lastName(r.rn) : lastName(r.dn)) + ' wins</span>' : '';
       const c = r.count;
