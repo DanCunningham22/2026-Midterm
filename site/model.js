@@ -325,11 +325,13 @@
   // ---------- election night: the forecast conditioned on what is known so far
   // ev.calls: { raceId: 'D' | 'R' | 'I' } races called (raceId as in data: 'PA-07', 'NC-SEN', 'GA-GOV'; 'I' = Osborn in NE).
   // ev.obs:   [{ id, margin, sd }] a projected final margin (D minus R, pts) for a race from counted votes, with its SD.
-  // Each simulation is weighted by how well it fits: a call by Phi(sign x margin / tau) (soft, so the weights don't
-  // collapse onto a handful of draws), an observed margin by a normal likelihood. Called races are then counted for the
-  // winner. Everything correlated with the evidence (the national error, state errors, the demographic errors) moves:
-  // a Republican-leaning surprise in Florida lowers Democratic chances in similar places everywhere.
-  // Uses its own, larger set of draws (n, seeded), so it never disturbs the page's 4,000.
+  // Each simulation draws the shared errors (national, state, demographic) and is weighted by how well they fit the
+  // evidence, with each race's own error integrated out (so a hundred calls don't collapse the weights onto one draw):
+  // a call by Phi(sign x (expected margin + shared error) / race SD), a counted race by a normal likelihood with SD
+  // sqrt(race SD^2 + count SD^2). The race's own error is then drawn given its count; a called race counts for its winner.
+  // Everything correlated with the evidence moves: a Republican surprise in Florida lowers Democratic chances in similar
+  // places everywhere. If the weights would still collapse (fewer than minEss effective draws), the evidence is
+  // softened by widening those SDs (factor 1.5, 2.5, 4; reported as tau). Own draws (n, seeded); the page's are untouched.
   Model.prototype.simulateLive = function (sc, ev, opts) {
     opts = opts || {};
     const n = opts.n || 20000;
@@ -346,7 +348,6 @@
     const rSideIsR = D.districts.map((d) => d.rp !== 'I');
     const osbornIdx = D.senate.findIndex((r) => r.st === 'NE');
     const SEN_FIXED_D = 34, GOV_FIXED_D = 6;
-    // calls and observations by race index; +1 = the D (or independent) side won
     const cH = new Int8Array(nd), cS = new Int8Array(nsen), cG = new Int8Array(ngov);
     const idx = {};
     D.districts.forEach((d, i) => { idx[d.id] = ['h', i]; });
@@ -356,20 +357,16 @@
     Object.keys(calls).forEach((id) => {
       const w = String(calls[id]).toUpperCase(), at = idx[id];
       if (!at || !/^[DRI]$/.test(w)) return;
-      const sgn = w === 'R' ? -1 : 1;
-      (at[0] === 'h' ? cH : at[0] === 's' ? cS : cG)[at[1]] = sgn;
+      (at[0] === 'h' ? cH : at[0] === 's' ? cS : cG)[at[1]] = w === 'R' ? -1 : 1;
       nCalls++;
     });
     const oList = obs.map((o) => ({ at: idx[o.id], margin: +o.margin, sd: Math.max(0.3, +o.sd || 3) })).filter((o) => o.at && isFinite(o.margin));
     const oH = {}, oS = {}, oG = {};
     oList.forEach((o) => { (o.at[0] === 'h' ? oH : o.at[0] === 's' ? oS : oG)[o.at[1]] = o; });
-    // log of the normal CDF, accurate in the far tail
     const logPhi = (x) => (x > -5 ? Math.log(Math.max(Phi(x), 1e-300)) : -0.5 * x * x - Math.log(-x) - 0.9189385);
-    // one pass: draw everything, compute the log weight and the outcomes; outcomes are kept compactly for reweighting
     const rand = rng(opts.seed || 1103202611);
     const g = () => { const u = Math.max(rand(), 1e-12), v = rand(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
-    const tauList = opts.tau ? [opts.tau] : [1.5, 2.5, 4, 6];
-    // per draw: log-weight parts (calls at each tau, observations), seat counts and race wins
+    const tauList = opts.tau ? [opts.tau] : [1, 1.5, 2.5, 4];
     const callLL = tauList.map(() => new Float64Array(n)), obsLL = new Float64Array(n), natErr = new Float32Array(n);
     const hSeats = new Int16Array(n), hrSeats = new Int16Array(n), sSeats = new Int8Array(n), sOsb = new Uint8Array(n), gSeats = new Int8Array(n);
     const hW = new Uint8Array(n * nd), sW = new Uint8Array(n * nsen), gW = new Uint8Array(n * ngov);
@@ -384,39 +381,44 @@
         for (let i = 0; i < nd; i++) { const c = dCoef[i]; let v = 0; for (let q = 0; q < 9; q++) v += c[q] * zg[q]; dDemo[i] = v; }
         for (let j = 0; j < ns; j++) { const c = stCoef[j]; let v = 0; for (let q = 0; q < 9; q++) v += c[q] * zg[q]; stDemo[j] = v; }
       }
-      let ll = 0;
       const cll = tauList.map(() => 0);
-      const callHit = (sgn, v) => { for (let t = 0; t < tauList.length; t++) cll[t] += logPhi(sgn * v / tauList[t]); };
+      const oll = tauList.map(() => 0);
+      // one race: expected margin + shared error, its own SD, call and count; returns the simulated margin
+      const race = (mu, sr, call, ob) => {
+        const z = g();
+        if (ob) {
+          const so = ob.sd, r = ob.margin - mu;
+          for (let t = 0; t < tauList.length; t++) { const tot = Math.sqrt(sr * sr + so * so) * tauList[t]; oll[t] -= 0.5 * (r / tot) * (r / tot) + Math.log(tauList[t]); }
+          const kgain = sr * sr / (sr * sr + so * so);
+          return mu + kgain * r + Math.sqrt(kgain) * so * z;
+        }
+        if (call) for (let t = 0; t < tauList.length; t++) cll[t] += logPhi(call * mu / (sr * tauList[t]));
+        return mu + z * sr;
+      };
       let hd = 0, hr = 0;
       for (let i = 0; i < nd; i++) {
         const base = m.house[i];
-        const v = (base > 90 || base < -90) ? base : base + eN + zS[dSt[i]] * sS + g() * SIG.house + dDemo[i];
-        if (oH[i]) { const z = (v - oH[i].margin) / oH[i].sd; ll -= 0.5 * z * z; }
-        let win = v > 0;
-        if (cH[i]) { if (!(base > 90 || base < -90)) callHit(cH[i], v); win = cH[i] > 0; }
+        const fixed = base > 90 || base < -90;
+        const v = fixed ? base : race(base + eN + zS[dSt[i]] * sS + dDemo[i], SIG.house, cH[i], oH[i]);
+        const win = cH[i] ? cH[i] > 0 : v > 0;
         if (win) { hd++; hW[k * nd + i] = 1; } else if (rSideIsR[i]) hr++;
       }
       hSeats[k] = hd; hrSeats[k] = hr;
       let sd = 0, osb = false;
       for (let i = 0; i < nsen; i++) {
-        const v = m.senate[i] + eN + zS[senSt[i]] * sS + g() * SIG.sen + stDemo[senSt[i]];
-        if (oS[i]) { const z = (v - oS[i].margin) / oS[i].sd; ll -= 0.5 * z * z; }
-        let win = v > 0;
-        if (cS[i]) { callHit(cS[i], v); win = cS[i] > 0; }
+        const v = race(m.senate[i] + eN + zS[senSt[i]] * sS + stDemo[senSt[i]], SIG.sen, cS[i], oS[i]);
+        const win = cS[i] ? cS[i] > 0 : v > 0;
         if (win) { sW[k * nsen + i] = 1; if (i === osbornIdx) osb = true; else sd++; }
       }
       sSeats[k] = SEN_FIXED_D + sd; sOsb[k] = osb ? 1 : 0;
       let gd = 0;
       for (let i = 0; i < ngov; i++) {
-        const v = m.gov[i] + eN + zS[govSt[i]] * sS + g() * SIG.gov + stDemo[govSt[i]];
-        if (oG[i]) { const z = (v - oG[i].margin) / oG[i].sd; ll -= 0.5 * z * z; }
-        let win = v > 0;
-        if (cG[i]) { callHit(cG[i], v); win = cG[i] > 0; }
+        const v = race(m.gov[i] + eN + zS[govSt[i]] * sS + stDemo[govSt[i]], SIG.gov, cG[i], oG[i]);
+        const win = cG[i] ? cG[i] > 0 : v > 0;
         if (win) { gd++; gW[k * ngov + i] = 1; }
       }
       gSeats[k] = GOV_FIXED_D + gd;
-      obsLL[k] = ll;
-      for (let t = 0; t < tauList.length; t++) callLL[t][k] = cll[t];
+      for (let t = 0; t < tauList.length; t++) callLL[t][k] = cll[t] + oll[t];
     }
     // pick the sharpest tau whose weights keep at least minEss effective draws
     const minEss = opts.minEss || Math.min(400, n / 10);
