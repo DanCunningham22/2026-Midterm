@@ -1,37 +1,37 @@
 {
- "asof": "2026-10-25",
- "source": "Senate polling model, re-run Oct 25 on every public poll since Aug 1 in the 14 competitive races (247 polls through Oct 22: the ElectIndex poll feed plus hand-added releases; pollsters the feed bans are excluded, including Wedgewood Polls, which said on Oct 20 that its polls were fabricated): house effects estimated against other pollsters and shrunk, likely-voter adjustment, 14-day half-life. First run Oct 9; re-run Oct 21 and Oct 25.",
+ "asof": "2026-11-01",
+ "source": "Senate polling model, re-run Nov 1 on every public poll since Aug 1 in the 14 competitive races (297 polls through Oct 30: the ElectIndex poll feed plus hand-added releases; pollsters the feed bans are excluded, including Wedgewood Polls, which said on Oct 20 that its polls were fabricated, and ActiVote): house effects estimated against other pollsters and shrunk, likely-voter adjustment, 14-day half-life. First run Oct 9; re-run Oct 21, Oct 25 and Nov 1.",
  "averages": {
-  "NC": 10.0,
-  "GA": 8.4,
-  "NH": 6.2,
-  "OH": 3.2,
-  "MI": 2.4,
-  "TX": 2.0,
-  "MN": 4.1,
+  "NC": 10.4,
+  "GA": 10.1,
+  "NH": 6.7,
+  "OH": 3.0,
+  "MI": 4.1,
+  "TX": 2.6,
+  "MN": 6.0,
   "AK": 3.5,
-  "ME": 1.6,
-  "KS": 1.1,
-  "IA": 0.1,
-  "NE": -1.3,
-  "SC": -0.6,
-  "FL": -6.4
+  "ME": 2.1,
+  "KS": 3.1,
+  "IA": 0.4,
+  "NE": -1.9,
+  "SC": -0.5,
+  "FL": -5.9
  },
  "p_oct9": {
   "NC": 97,
-  "GA": 93,
-  "NH": 88,
-  "OH": 73,
-  "MI": 67,
-  "TX": 65,
-  "MN": 78,
-  "AK": 74,
-  "ME": 62,
-  "KS": 58,
-  "IA": 51,
-  "NE": 41,
+  "GA": 97,
+  "NH": 90,
+  "OH": 72,
+  "MI": 79,
+  "TX": 69,
+  "MN": 87,
+  "AK": 75,
+  "ME": 66,
+  "KS": 72,
+  "IA": 53,
+  "NE": 36,
   "SC": 46,
-  "FL": 12
+  "FL": 13
  },
  "notes": {
   "ID": "Treated as safe R, as in the Oct 9 model. The two polls conflict: Advanced Targeting Research (Sept 16) had Achilles (I) ahead; Peak Insights (R-leaning, Sept 30) had Risch up 25.",
@@ -147,6 +147,41 @@
     "FL": 12
    },
    "p_control_d": 69
+  },
+  "2026-11-01": {
+   "averages": {
+    "NC": 10.4,
+    "GA": 10.1,
+    "NH": 6.7,
+    "OH": 3.0,
+    "MI": 4.1,
+    "TX": 2.6,
+    "MN": 6.0,
+    "AK": 3.5,
+    "ME": 2.1,
+    "KS": 3.1,
+    "IA": 0.4,
+    "NE": -1.9,
+    "SC": -0.5,
+    "FL": -5.9
+   },
+   "p": {
+    "NC": 97,
+    "GA": 97,
+    "NH": 90,
+    "OH": 72,
+    "MI": 79,
+    "TX": 69,
+    "MN": 87,
+    "AK": 75,
+    "ME": 66,
+    "KS": 72,
+    "IA": 53,
+    "NE": 36,
+    "SC": 46,
+    "FL": 13
+   },
+   "p_control_d": 76
   }
  }
 }
