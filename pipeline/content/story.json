@@ -1,56 +1,56 @@
 {
- "asof": "2026-10-30",
- "headline": "Florida's early vote is R+1.8 by registration on 4.27 million ballots in the Oct 29 file (Republicans up 215,000 in person, Democrats up 139,000 by mail), still better for Democrats than R+6.6 at five days out in 2022; the official same-point comparison across five states implies a national vote of about D-0.8 (±1.2) against 2022, little changed from the Oct 28 files, and about D+4.2 (±1.3) against 2024 now that Arizona has a 2024 baseline (R+1.1 against R+8.2), while the polls say D+8.6 and the app's forecast D+6.8. Nevada is D+5.5 against D+1.5 in 2022, Colorado D+7.1 against D+3.2, Iowa's absentee pool D+11.3 against D+21.1 and Pennsylvania's mail D+40.0 against D+49.7. The news comparisons lean Democratic but the closing days are Republican: Jon Ralston has Nevada at D+35,000 (5.7 points) with Clark County's firewall above 54,000 and Democrats leading Clark's in-person vote where Republicans led it by 19,439 at this point in 2022, North Carolina is at 2.15 million ballots, 36% ahead of 2022's same point, Georgia set a midterm in-person record on Thursday, and in Texas, where 6.28 million have voted, Republican-primary voters lead Democratic-primary voters among in-person ballots by 81,526 on theoelections' count.",
+ "asof": "2026-11-02",
+ "headline": "With in-person early voting over nearly everywhere, the official same-point comparison across five states still implies a national vote of about D-0.8 (±1.2) against 2022 and about D+3.9 (±1.3) against 2024 (four states), while the polls say D+8.9 and the app's forecast D+6.9: in the Nov 1 files Florida is R+2.5 by registration on 5.40 million ballots against R+6.2 at two days out in 2022, Nevada D+6.3 against D+1.3, Colorado D+6.7 against D+3.2, Iowa's absentee pool D+9.7 against D+19.8 and Pennsylvania's mail D+39.5 against D+48.6. The finals elsewhere lean Democratic: Jon Ralston has Nevada's Democrats up just over 43,000 ballots (just under 6 points) with a record midterm Clark County firewall near 66,000, North Carolina closed at 2,816,821 early ballots (35.7% of registered voters, D 38%, unaffiliated 35%, R 26%, against R 31% in 2022), Georgia at 2,810,170 (+13% on 2022, with 883,000 Democratic-primary voters to 644,000 Republican-primary voters), and Texas at a record 7.7 million; but Republicans won the closing days in Florida and Texas, Pennsylvania's mail returns trail 2022 by 5%, and Arizona's ballots are R+12,335 on Go Right Strategies' count.",
  "measures": [
   {
    "st": "FL",
    "label": "Florida: early voters by registration, D-minus-R margin (mail plus in person)",
    "kind": "margin",
-   "v26": -1.8,
-   "v24": -11.5,
-   "src": "Florida Division of Elections daily file via the app's official comparison, Oct 29",
+   "v26": -2.5,
+   "v24": -10.6,
+   "src": "Florida Division of Elections daily file via the app's official comparison, Nov 1",
    "url": "https://countyfilesvbm-ev.floridados.gov/VoteByMailEarlyVotingReports/PublicStats",
-   "aff": "Official data. 4,266,000 ballots in the Oct 29 file (mail 1,767,532, in person 2,498,468) vs. the state's figures at five days out in 2024; 2024 is a presidential baseline in which Republicans had moved to in-person voting. Against 2022 the same file reads R+1.8 vs. R+6.6"
+   "aff": "Official data. 5,402,758 ballots in the Nov 1 file (mail 1,937,212, in person 3,465,546) vs. the state's figures at two days out in 2024; 2024 is a presidential baseline in which Republicans had moved to in-person voting. Against 2022 the same file reads R+2.5 vs. R+6.2"
   },
   {
    "st": "NV",
    "label": "Nevada: early voters by registration, D-minus-R margin (mail plus in person)",
    "kind": "margin",
-   "v26": 5.5,
-   "v24": -5.1,
-   "src": "Nevada Secretary of State daily turnout file via the app's official comparison, Oct 29",
+   "v26": 6.3,
+   "v24": -4.0,
+   "src": "Nevada Secretary of State daily turnout file via the app's official comparison, Oct 31",
    "url": "https://election.lab.ufl.edu/early-vote/2026-early-voting/",
-   "aff": "Official data. 603,613 ballots through Oct 29's file (mail 348,483, in person 255,130) vs. Ralston's count at five days out in 2024 (Republicans up 5.1); 2022 at the same point was D+1.5"
+   "aff": "Official data. 718,903 ballots through Oct 31's file (mail 410,884, in person 308,019) vs. Ralston's count at three days out in 2024 (Republicans up 4.0); 2022 at the same point was D+1.3"
   },
   {
    "st": "CO",
    "label": "Colorado: returned ballots by registration, D-minus-R margin",
    "kind": "margin",
-   "v26": 7.1,
+   "v26": 6.7,
    "v24": 1.9,
-   "src": "Colorado Secretary of State daily ballot-return release via the app's official comparison, Oct 29",
+   "src": "Colorado Secretary of State daily ballot-return release via the app's official comparison, Nov 1",
    "url": "https://www.sos.state.co.us/pubs/elections/VoterRegNumbers/VoterRegNumbers.html",
-   "aff": "Official data. 1,319,994 ballots through Oct 29 vs. 1,731,171 at five days out in 2024; 2022 at the same point was D+3.2"
+   "aff": "Official data. 1,591,323 ballots through Nov 1 vs. 2,092,035 at two days out in 2024; 2022 at the same point was D+3.2"
   },
   {
    "st": "IA",
    "label": "Iowa: absentee ballots received by registration, D-minus-R margin",
    "kind": "margin",
-   "v26": 11.3,
-   "v24": 0.4,
-   "src": "Iowa Secretary of State daily absentee report via the app's official comparison, Oct 29",
+   "v26": 9.7,
+   "v24": -1.2,
+   "src": "Iowa Secretary of State daily absentee report via the app's official comparison, Oct 31",
    "url": "https://sos.iowa.gov/elections/absenteeballotstatus/absentee.html",
-   "aff": "Official data. 133,704 absentee ballots received in the Oct 29 report vs. the state's report at the same point in 2024; 2022 at the same point was D+21.1, and Iowa Democrats vote absentee far more than Republicans in every year"
+   "aff": "Official data. 147,027 absentee ballots received in the Oct 31 report vs. the state's report at the same point in 2024; 2022 at the same point was D+19.8, and Iowa Democrats vote absentee far more than Republicans in every year"
   },
   {
    "st": "PA",
    "label": "Pennsylvania: returned mail ballots by registration, D-minus-R margin",
    "kind": "margin",
-   "v26": 40.0,
-   "v24": 24.0,
-   "src": "Pennsylvania Department of State daily mail-ballot report via the app's official comparison, Oct 29",
+   "v26": 39.5,
+   "v24": 23.0,
+   "src": "Pennsylvania Department of State daily mail-ballot report via the app's official comparison, Nov 1",
    "url": "https://www.pavoterservices.pa.gov/2026%20General%20Daily%20Mail%20Ballot%20Report.xlsx",
-   "aff": "Official data. 966,863 ballots returned through Oct 29 vs. 1,613,287 at five days out in 2024; no in-person early voting, and the mail pool is lopsidedly Democratic every year (D+49.7 at this point in 2022)"
+   "aff": "Official data. 1,056,549 ballots returned through Nov 1 (of 1,297,730 requested) vs. 1,739,606 at two days out in 2024; no in-person early voting, and the mail pool is lopsidedly Democratic every year (D+48.6 at this point in 2022)"
   },
   {
    "st": "ME",
@@ -83,22 +83,22 @@
    "aff": "Nonpartisan outlet; official data"
   }
  ],
- "compare_note": "Registered-party margin among early ballots, 2026 vs. the same point in 2024. Florida, Nevada, Colorado, Iowa and Pennsylvania are computed from the state files by the update job (Florida 4,266,000 ballots in the Oct 29 file against the state's 2024 figures at five days out; Nevada 603,613 against Ralston's 2024 count; Colorado 1,319,994 through Oct 29; Iowa 133,704 absentees in the Oct 29 report; Pennsylvania 966,863 mail ballots through Oct 29); Maine is Call the Map's reading of the state file (211,791 ballots through Oct 26). Virginia's early voters are 63% Democratic on L2's modeled two-party split, vs. 59% at the same point in 2024 (Morris, Oct 12); Ohio's early voters were 41% Democratic and 28% Republican by last primary ballot as of Oct 13, vs. 26% and 36% at this point in 2024 (News 5 Cleveland, from Secretary of State data). Every state with party registration is more Democratic than at this point in 2024, Florida most of all because 2024's Republicans had moved to in-person early voting; against 2022 the official comparison is narrower and mixed (Florida R+1.8 vs. R+6.6, Nevada D+5.5 vs. D+1.5, Colorado D+7.1 vs. D+3.2, Iowa D+11.3 vs. D+21.1, Pennsylvania D+40.0 vs. D+49.7), and North Carolina's comparison is computed from the State Board's files.",
+ "compare_note": "Registered-party margin among early ballots, 2026 vs. the same point in 2024. Florida, Nevada, Colorado, Iowa and Pennsylvania are computed from the state files by the update job (Florida 5,402,758 ballots in the Nov 1 file against the state's 2024 figures at two days out; Nevada 718,903 through Oct 31 against Ralston's 2024 count; Colorado 1,591,323 through Nov 1; Iowa 147,027 absentees in the Oct 31 report; Pennsylvania 1,056,549 mail ballots through Nov 1); Maine is Call the Map's reading of the state file (211,791 ballots through Oct 26). Virginia's early voters are 63% Democratic on L2's modeled two-party split, vs. 59% at the same point in 2024 (Morris, Oct 12); Ohio's early voters were 41% Democratic and 28% Republican by last primary ballot as of Oct 13, vs. 26% and 36% at this point in 2024 (News 5 Cleveland, from Secretary of State data). Every state with party registration is more Democratic than at this point in 2024, Florida most of all because 2024's Republicans had moved to in-person early voting; against 2022 the official comparison is narrower and mixed (Florida R+2.5 vs. R+6.2, Nevada D+6.3 vs. D+1.3, Colorado D+6.7 vs. D+3.2, Iowa D+9.7 vs. D+19.8, Pennsylvania D+39.5 vs. D+48.6), and North Carolina's comparison is computed from the State Board's files.",
  "bullets": [
   {
-   "title": "The official comparison with 2022 covers five states and implies a national vote of about D-0.8, little changed from the Oct 28 files; against 2024 it reads about D+4.2 on four states.",
-   "html": "By registration, Florida's Oct 29 file counts 4,266,000 ballots at R+1.8 (mail 761,118 Democrats to 622,309 Republicans; in person 884,353 to 1,099,061), against R+6.6 at five days out in 2022; Nevada's 603,613 ballots are D+5.5 (mail D+41,112, in person R+7,813) against D+1.5 on the same day in 2022; Colorado's 1,319,994 returned ballots are D+7.1 against D+3.2; Iowa's 133,704 absentees are D+11.3 against D+21.1; and Pennsylvania's 966,863 returned mail ballots are D+40.0 against D+49.7. The app's calibrated slopes turn those into +4.0, +3.4, +3.2, -2.2 and -2.2 points of margin and a pooled implied national vote of about D-0.8 (±1.2), against polls at D+8.6 and the app's forecast at D+6.8. Against 2024 the same files read better for Democrats: Florida R+1.8 against R+11.5 (worth about +8.2), Nevada D+5.5 against R+5.1 (+8.9) and Colorado D+7.1 against D+1.9 (+4.4) and Arizona's county compilation at R+1.1 against R+8.2 (+6.0) pool to about D+4.2 (±1.3); Pennsylvania's mail at D+40.0 against D+24.0 is worth about +3.5 (±3.5) and Iowa's D+11.3 against D+0.4 about +2.4 (±3.3). Arizona's county compilation reads R+1.1 on 1,457,053 ballots in the Oct 30 file; it has a 2024 baseline from four days out but none for 2022.",
+   "title": "The official comparison with 2022 covers five states and implies a national vote of about D-0.8, unchanged through the final week; against 2024 it reads about D+3.9 on four states.",
+   "html": "By registration, Florida's Nov 1 file counts 5,402,758 ballots at R+2.5 (mail 830,632 Democrats to 677,817 Republicans; in person 1,209,843 to 1,497,201), against R+6.2 at two days out in 2022; Nevada's 718,903 ballots in the Oct 31 file are D+6.3 (mail D+54,099, in person R+8,674) against D+1.3 at the same point in 2022; Colorado's 1,591,323 returned ballots are D+6.7 against D+3.2; Iowa's 147,027 absentees are D+9.7 against D+19.8; and Pennsylvania's 1,056,549 returned mail ballots are D+39.5 against D+48.6. The app's calibrated slopes turn those into +3.1, +4.2, +3.0, -2.2 and -2.0 points of margin and a pooled implied national vote of about D-0.8 (±1.2), against polls at D+8.9 and the app's forecast at D+6.9. Against 2024 the same files read better for Democrats: Florida R+2.5 against R+10.6 (worth about +6.8), Nevada D+6.3 against R+4.0 (+8.7), Colorado D+6.7 against D+1.9 (+4.1) and Arizona's county compilation at R+0.8 on 1,602,837 ballots against R+8.4 (+6.4) pool to about D+3.9 (±1.3); Pennsylvania's mail at D+39.5 against D+23.0 is worth about +3.7 (±3.5) and Iowa's D+9.7 against R+1.2 about +2.4 (±3.3). Arizona has a 2024 baseline but none for 2022.",
    "sources": [
     [
-     "Florida Division of Elections via the app's official comparison, Oct 29",
+     "Florida Division of Elections via the app's official comparison, Nov 1",
      "https://countyfilesvbm-ev.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
     ],
     [
-     "UF Election Lab daily file (Nevada, Oct 29)",
+     "UF Election Lab daily file (Nevada, Oct 31)",
      "https://election.lab.ufl.edu/early-vote/2026-early-voting/"
     ],
     [
-     "Pennsylvania Department of State daily mail-ballot report via the app's official comparison, Oct 29",
+     "Pennsylvania Department of State daily mail-ballot report via the app's official comparison, Nov 1",
      "https://www.pavoterservices.pa.gov/2026%20General%20Daily%20Mail%20Ballot%20Report.xlsx"
     ],
     [
@@ -109,88 +109,88 @@
    "aff": "Official data"
   },
   {
-   "title": "Nevada: D+35,000 (5.7 points) after Thursday, with Clark County's firewall above 54,000 and Democrats leading Clark's in-person vote by 6,751 where Republicans led it by 19,439 at this point in 2022.",
-   "html": "Jon Ralston's 9 p.m. Oct 29 entry: Democrats 'increase their statewide lead to 35,000, or 5.7 percent,' the Clark edge is 'more than 54,000' and should reach 'almost 57,000' once remaining returns post; 'Turnout, if the final number is 1 million, is now at 632,000, or about 63 percent of the vote'; Clark's Thursday turnout was 23,422, 'and the Ds won by 900 ballots,' against 19,454 on the penultimate day in 2022. His 6:30 a.m. entry (through Wednesday, day 12): the statewide lead was 'just under 34,000 ballots, or 6 percent,' Clark had 383,674 ballots, 17.3% more than the 327,160 at the same point in 2022, and a combined Democratic lead of 51,348 against 23,994; 'In person, Democrats lead by 6,751 ballots, while at this point in 2022 Republicans led by 19,439,' and 'On mail, Democrats lead by 44,597, versus 43,433 in 2022'; 'Overall turnout is about what it was in 2022, but the Dem ballot margins in Clark are much larger.' Republicans won Election Day 2022 by about 47,000 ballots. The state's Oct 29 file reads D+5.5 on 603,613 ballots against D+1.5 at this point in 2022 and R+5.1 in 2024.",
+   "title": "Nevada: Democrats lead by just over 43,000 ballots (just under 6 points) after early voting, with a record midterm Clark County firewall near 66,000 and Washoe County D+5; Ralston says Republicans would need a 2022-style Election Day to erase it.",
+   "html": "Jon Ralston's 9 a.m. Nov 1 entry: Democrats are ahead by 'just over 43,000 ballots,' just under 6 percent, with about 500 more in unaccepted mail; the Clark firewall is 'a few ballots under 66,000,' almost 13.5 percent; Washoe, a Republican county by 3 points in registration, has a 5-point Democratic ballot advantage; the rurals are R+30,000; mail is 58 percent of the statewide total; turnout is just under 730,000, about 35 percent of active voters, with 300,000 to 350,000 ballots still to come. Republicans would need about 194,097 Election Day ballots breaking like 2022's (R+22.2) to erase the lead, against 215,517 Election Day ballots cast in 2022, and 'at least 30,000 and maybe more' extra Election Day ballots to save the governor's race. His Oct 31 entry called the 65,000 Clark firewall a midterm record, above 2012's 71,000 and 2016's 73,000 presidential-year levels in proportion but short of 2020's roughly 81,000. The state's Oct 31 file reads D+6.3 on 718,903 ballots against D+1.3 at this point in 2022 and R+4.0 in 2024.",
    "sources": [
     [
-     "Nevada Independent, Oct 29",
+     "Nevada Independent, Nov 1",
      "https://thenevadaindependent.com/article/the-early-voting-blog-2026-general"
     ],
     [
-     "UF Election Lab daily file (Nevada, Oct 29)",
+     "UF Election Lab daily file (Nevada, Oct 31)",
      "https://election.lab.ufl.edu/early-vote/2026-early-voting/"
     ]
    ],
    "aff": "Nonpartisan outlet; county and Secretary of State data"
   },
   {
-   "title": "North Carolina is at 2.15 million ballots through Wednesday, 36% ahead of 2022 at the same point, with a D+14.6 registration gap against D+7.1 and Black voters 22.6% of ballots against 19.5%.",
-   "html": "Call the Map's reading of the State Board's Oct 29 file (ballots through Oct 28, day 55): 2,150,024 ballots, 185,098 that day, 36% ahead of the same day of voting in 2022; Democrats 856,353 (39.8%, up 40% on 2022), Republicans 543,173 (25.3%, up 9%), unaffiliated and other 750,498 (34.9%, up 58%); D+14.6 against D+7.1 at the same point in 2022; Black voters 22.6% of ballots against 19.5% in 2022's early vote, Hispanic 3.3% against 1.7%, voters 65 and over 45.2%. CBS 17 (Oct 29): more than 2.1 million ballots, 27.3% of registered voters, Democrats 39.8%, Republicans 25.2%, unaffiliated 34.6%, from 43%, 22.5% and 34.2% on Oct 22, so 'the edge Democrats had in early voting is shrinking'; WRAL (Oct 30): early voting 'up about 36%' on 2022's same period, with 370 sites closing Saturday at 3 p.m. The app's own file carries the official comparison (2,353,234 accepted ballots through Oct 29).",
+   "title": "North Carolina closed early voting at a record 2,816,821 ballots, 35.7% of registered voters, with Republicans 26% of them against 31% in 2022 and Black voters' ballots 1.5 times 2022's.",
+   "html": "WBTV's reading of the NC FreeEnterprise Foundation tracker (Nov 1): 2,816,821 early ballots, 35.7% of registered voters against 29.0% turnout in 2022's early period; Democrats 38% ('steady'), unaffiliated 35% (30% in 2022), Republicans 26% (31% in 2022); turnout above 2022 in 97 of 100 counties; Black voters nearly 600,000 ballots, '1.5x' 2022; voters 18-25 more than 200,000, nearly double. Michael Bitzer (Nov 1): 2.8 million early ballots, about 36% of registered voters; mail accepted 92,395, about 3.3%; 46% of registered Democrats have voted, 32% ahead of their 2022 numbers, unaffiliated voters nearly 1 million, up 52%, Republicans up 9% on 2022; on his assumptions the early vote is about 55% Democratic to 38% Republican, Republicans would need about 58% of the remaining registrants for a tie, and the electorate looks 'more like 2018 than 2022.' Call the Map: D+12.2 against D+6.8 at the same point in 2022, ballots up 31%. The app's own file carries the official comparison (2,819,922 accepted ballots through Nov 1).",
    "sources": [
     [
-     "Call the Map (NC State Board of Elections file of Oct 29), Oct 29",
-     "https://www.callthemap.com/early-vote/north-carolina"
+     "WBTV (Alianna Kendall-Brooks), Nov 1",
+     "https://www.wbtv.com/2026/11/01/record-28m-early-ballots-cast-north-carolina-driven-by-unaffiliated-voters-steady-democrats/"
     ],
     [
-     "CBS 17 (Rodney Overton) via Yahoo, Oct 29",
-     "https://www.yahoo.com/news/politics/articles/nc-early-voting-numbers-top-172218864.html"
+     "Michael Bitzer, Center for NC Politics, Nov 1",
+     "https://ncpoliticscenter.substack.com/p/ncs-last-day-of-early-voting-a-record"
     ],
     [
-     "WRAL, Oct 30",
-     "https://www.wral.com/news/nccapitol/27-percent-of-nc-voters-have-already-cast-ballots-how-to-vote-early-in-north-carolina-october-2026/"
+     "Call the Map, Nov 1",
+     "https://www.callthemap.com/early-vote"
     ]
    ],
-   "aff": "Official data via nonpartisan outlets; Call the Map is an independent tracker"
+   "aff": "Official data via a nonpartisan outlet; Bitzer is a nonpartisan academic; Call the Map is an independent tracker"
   },
   {
-   "title": "Georgia broke its 2022 midterm record for in-person early votes on Thursday, 2,294,275 with a day left, and passed 2.5 million ballots in all.",
-   "html": "Secretary of State figures as of 1:35 p.m. Thursday Oct 29 (WSB-TV): 2,294,275 in-person early votes, past the 2,289,951 of the whole 2022 early period, plus 108,251 accepted absentee ballots; 'Accounting for mail absentee ballots, overall turnout as a share of active registered voters remains on pace with total 2022 turnout'; Raffensperger: 'Georgians continue to head to the polls in record numbers because they trust the system.' Atlanta News First: more than 30% of 7.5 million active voters; women 56%, white about 50%, Black about 30%, Hispanic about 3%, Asian about 2%. FOX 5 (Oct 30): turnout 'topped 2.5 million ballots' with one day remaining, mail absentees 'down by about half,' and Raffensperger earlier in the week put turnout 'about 5% to 7% higher than in 2022' despite one fewer day. Georgia has no party registration; the comparison is to 2022's final in-person total, not the same point.",
+   "title": "Georgia finished at 2,810,170 ballots, 13% above 2022's early vote, with Democratic-primary voters outnumbering Republican-primary voters 883,000 to 644,000 and the Black share up to 32.4%.",
+   "html": "Secretary of State figures (Atlanta News First, Oct 30): 2,810,170 ballots, 2,691,841 in person and 118,329 absentee, 37.3% of registered voters; 2022's in-person midterm record was nearly 2.3 million and its overall early record about 2.5 million. The AJC (Oct 31): more than 2.8 million, up 13% on the 2022 midterm; mail and electronic ballots 4.2% of the early vote against nearly 9% in 2022; white voters 52.6% of ballots against 58.2% 'at this point in 2022,' Black voters 32.4% against 30.2% (and 26.8% at the same stage of 2024), Hispanic 3.7% against 2%; voters 18-29 11%, voters 50 and over nearly 65%; 883,000-plus Democratic-primary voters against about 644,000 Republican-primary voters; Harris-strong precincts cast about 60,000 more early ballots than Trump-strong precincts, where 2022's gap was about 1,000; more than 630,000 early voters skipped 2022 and more than 435,000 2022 Election Day voters voted early; about 1.9 million registered voters in Trump strongholds and 1.8 million in Harris strongholds had not voted.",
    "sources": [
     [
-     "WSB-TV (Secretary of State data), Oct 29",
-     "https://www.wsbtv.com/news/local/georgia-election-2026-early-voting-keeps-breaking-midterm-record/PHLPERVNVFDAZFUUX2BRGJV6XY/"
+     "Atlanta Journal-Constitution (Greg Bluestein and Charles Minshew), Oct 31",
+     "https://www.ajc.com/politics/2026/10/georgia-early-vote-midterm-elections-record/"
     ],
     [
-     "Atlanta News First (Tim Darnell), Oct 29",
-     "https://www.atlantanewsfirst.com/2026/10/29/georgia-breaks-midterm-record-early-in-person-voting-turnout-nears-23-million/"
-    ],
-    [
-     "FOX 5 Atlanta (Marc Teichner), Oct 30",
-     "https://www.fox5atlanta.com/news/early-voting-ends-today-georgia-after-record-turnout"
+     "Atlanta News First, Oct 30",
+     "https://www.atlantanewsfirst.com/2026/10/31/early-voting-wraps-georgia-with-record-28m-ballots-what-happens-next/"
     ]
    ],
-   "aff": "Official data via nonpartisan outlets"
+   "aff": "Official data via nonpartisan outlets; Georgia has no party registration, so party is primary history"
   },
   {
-   "title": "Texas: 6.28 million have voted, and Republican-primary voters now lead Democratic-primary voters among in-person ballots by 81,526; Derek Ryan's Democratic edge fell to 57,000 through Wednesday.",
-   "html": "theoelections (through Oct 29): 6,282,318 early ballots, 6,022,477 in person and 259,841 by mail; in-person ballots from Republican-primary-only voters 1,905,771 (31.6%) against Democratic-primary-only voters' 1,824,245 (30.3%), both 167,378 (2.8%), no primary 2,125,083 (35.3%); the mail runs 34.0% Democratic-only (88,233) to 26.5% Republican-only (68,834). Ryan Data & Research via CBS Texas (Oct 29): through Tuesday about 71,000 more early voters had Democratic-primary history than Republican, and 'through Wednesday's early vote, that gap narrowed to nearly 57,000'; more than 800,000 voters with a Republican primary history in the past four primaries had not voted through Tuesday; Comptroller Don Huffines told the Vance rally in Weatherford that Republican early turnout 'is not going well.' BBC (Oct 30, UF Election Lab): Texas is 'about 1.75 million voters above its 2022 numbers,' with border counties surging. Early voting ends Oct 30.",
+   "title": "Texas: a record 7.7 million early votes, 40.5% of registered voters, against 5.5 million in 2022; Republican-primary voters finished ahead of Democratic-primary voters among in-person ballots, 2,238,247 to 2,100,396.",
+   "html": "The Texas Tribune (Nov 1, preliminary): more than 7.7 million early votes, 40.5% turnout, past 2018's record; 2022's early vote was 5.5 million (31%) and 2024's 9 million (49%); registration above 19 million, up 2.2% on November 2024. The Secretary of State's count as of Friday Oct 30 was 7,410,631, 38.92% of 19,041,684 registered voters (CBS Texas). theoelections (as of Oct 30): 7,744,549 early ballots, 7,463,553 in person and 280,996 by mail; in-person ballots from Republican-primary-only voters 2,238,247 (30.0%) against Democratic-primary-only voters' 2,100,396 (28.1%), both 185,982 (2.5%), no primary 2,938,928 (39.4%); the mail runs 32.8% Democratic-only (92,275) to 26.2% Republican-only (73,688). At the same point in 2022 Republican-primary voters led by 400,000 on Derek Ryan's count (NBC 5, Oct 27). Mark Jones: 'We're not going to hit presidential levels, but this is definitely high turnout'; Democratic strategist Matt Angle: 'That doesn't mean Democrats are going to win.'",
    "sources": [
     [
-     "theoelections, Oct 29",
+     "Texas Tribune (Colleen Deguzman) via KSAT, Nov 1",
+     "https://ksat.com/news/texas/2026/10/31/more-than-74-million-texans-voted-early-in-2026-election-nearly-matching-2018-pace"
+    ],
+    [
+     "CBS Texas (Matthew Ablon), Oct 31",
+     "https://cbsnews.com/texas/news/texas-early-voting-record-10-31-2026"
+    ],
+    [
+     "theoelections, Oct 30",
      "https://theoelections.com/early-vote"
     ],
     [
-     "CBS Texas (Jack Fink), Oct 29",
-     "https://www.cbsnews.com/texas/news/jd-vance-weatherford-rally-republican-early-voting-turnout-texas-october-2026/"
-    ],
-    [
-     "BBC (Max Matza) via Yahoo, Oct 30",
-     "https://ca.news.yahoo.com/more-43-million-ballots-cast-195653475.html"
+     "NBC 5 DFW (Phil Prazan), Oct 27",
+     "https://www.nbcdfw.com/news/local/record-texas-turnout-possible-as-early-voting-points-to-a-close-election/4096611/"
     ]
    ],
-   "aff": "theoelections is an independent tracker; Derek Ryan is a Republican consultant; the BBC is a nonpartisan outlet"
+   "aff": "Official data via nonpartisan outlets; theoelections is an independent tracker; Derek Ryan is a Republican consultant"
   },
   {
-   "title": "Florida: R+1.8 in the Oct 29 file, with Republicans up 215,000 in person and Democrats up 139,000 by mail; the Republican lead grew by about 24,000 on the day.",
-   "html": "The Division of Elections' Oct 29 file (the app's official comparison) has 2,498,468 in-person ballots, 1,099,061 Republican to 884,353 Democratic (R+214,708), and 1,767,532 mail ballots returned, 761,118 Democratic to 622,309 Republican (D+138,809): 40.4% Republican to 38.6% Democratic on 4,266,000 ballots, from R+1.3 on 3,896,546 in the Oct 28 file, R+1.0 on Oct 27 and D+6.7 at twenty days out; the combined Republican lead went from about 51,500 to 75,899. The News Service of Florida (Oct 30): 'approaching 4 million' on Thursday's state report, Republicans nearly 1.57 million, Democrats more than 1.51 million, no-party voters more than 700,000; in 2022 Republicans cast nearly 1.17 million in-person early votes, almost 500,000 more than Democrats, and Democrats about 1.2 million mail ballots, about 200,000 more than Republicans (final totals). Mandatory early voting ends Saturday; 16 counties including Miami-Dade, Hillsborough, Orange, Palm Beach and Pinellas stay open Sunday. At five days out in 2022 the state was R+6.6, and at the same point in 2024 R+11.5.",
+   "title": "Florida: R+2.5 in the Nov 1 file after nearly 1.4 million weekend ballots, with Republicans up 287,000 in person and Democrats up 153,000 by mail; turnout is about 300,000 ahead of 2022's same point.",
+   "html": "The Division of Elections' Nov 1 file (the app's official comparison) has 3,465,546 in-person ballots, 1,497,201 Republican to 1,209,843 Democratic (R+287,358), and 1,937,212 mail ballots returned, 830,632 Democratic to 677,817 Republican (D+152,815): 40.3% Republican to 37.8% Democratic on 5,402,758 ballots, from R+1.8 on Oct 29, R+1.0 on Oct 27 and D+6.7 at twenty days out. Bay News 9 (Nov 2): 'just under 5.2 million' ballots at Sunday's close, 'nearly 300,000 more votes than at the same point during the 2022 midterms,' with almost 1.4 million cast Friday through Sunday; Republicans more than 1.4 million in person and just over 668,000 by mail, Democrats just over 1.1 million in person and more than 800,000 by mail, no-party voters nearly 700,000. At two days out in 2022 the state was R+6.2, and at the same point in 2024 R+10.6.",
    "sources": [
     [
-     "Florida Division of Elections via the app's official comparison, Oct 29",
+     "Florida Division of Elections via the app's official comparison, Nov 1",
      "https://countyfilesvbm-ev.floridados.gov/VoteByMailEarlyVotingReports/PublicStats"
     ],
     [
-     "News Service of Florida via WUSF, Oct 30",
-     "https://wusf.org/politics-issues/2026-10-30/nearly-4-million-florida-votes-have-been-cast-for-the-midterm-election"
+     "Bay News 9 (Jason Lanning), Nov 2",
+     "https://baynews9.com/fl/tampa/news/2026/11/02/florida-early-voting-ends-with-turnout-ahead-of-0-midterm-pace"
     ],
     [
      "CBS Miami/News Service of Florida, Nov 4, 2022 (the 2022 Florida baseline)",
@@ -200,75 +200,71 @@
    "aff": "Official data via a nonpartisan outlet"
   },
   {
-   "title": "Turnout without party: Michigan has 1.70 million ballots, Maine's absentees are 36% ahead of 2022's same point, Virginia is 29% past 2022's final, Colorado is 25% ahead and Pennsylvania's mail is 4% behind.",
-   "html": "Michigan: 1,704,715 ballots returned as of Thursday Oct 29, 23% of 7,412,507 active voters, 1,346,372 absentee and 358,343 early in person, from 18.8% on Tuesday (CBS Detroit, Secretary of State data). Maine: the Secretary of State's Thursday figures have 313,611 absentee ballots requested and 275,563 returned, 'more than 276,000' against 'more than 202,000' at this point in 2022, a return rate above 88% against about 81%, with more than 152,000 cast in the presence of a clerk (WGME). Virginia: 1,256,823 early ballots through Tuesday per VPAP, nearly 30% above 2022's whole early period of 976,558 (FOX 5 DC). Colorado: 1,227,635 returned through Oct 28, 25% ahead of the same point in 2022, Democrats up 22%, Republicans up 5%, unaffiliated up 43% (Call the Map). Pennsylvania: 963,799 mail ballots returned through Oct 28, 4% below the same point in 2022, Democrats 628,025 (down 11%), Republicans 242,594 (up 17%), D+40.0 against D+49.7; the last seven days ran 12% behind 2022's (Call the Map). Wisconsin: the Elections Commission's Oct 27 file had 513,602 absentee ballots returned, 2.1% above the same point in 2022, with in-person absentees up 57% and mail returns down 23% (Dairyland Sentinel).",
+   "title": "Turnout without party: Wisconsin's absentees are about 50,000 ahead of 2022's same point with mail down and in-person up, Michigan passed 1.8 million, Pennsylvania's mail is 5% behind 2022 and Arizona is R+12,335.",
+   "html": "Wisconsin (WPR, Elections Commission data as of Oct 30): 693,334 absentee ballots returned, 'about 50,000 more than at the same point in 2022'; mail about 300,000 against about 384,000 in 2022, in-person about 394,000 against about 259,000; Milwaukee's mail down more than 25% and in-person up 45%, Dane's mail down more than 30% and in-person up about 50%, Washington's in-person up about 75%, Waukesha's up more than 40%. Michigan: more than 1.8 million had voted as of Friday Oct 30 (AP), after 1.3 million absentee and 358,000 early in-person ballots on Friday's dashboard (CBS Detroit). Pennsylvania (Call the Map, state file through Oct 31): 1,053,168 mail ballots returned, 5% below the same point in 2022, Democrats 681,934 (down 12% from 771,898), Republicans 265,272 (up 14% from 233,284), D+39.6 against D+48.6; the state's Nov 1 file has 1,056,549 returned of 1,297,730 requested. Arizona (Go Right Strategies' county compilation, Nov 1): 1,602,707 ballots, Republicans 609,283 (38.0%), Democrats 596,948 (37.2%), other 396,476, R+12,335; Maricopa R+5,314, Pima D+55,007. Colorado: 1,591,323 ballots through Nov 1 at D+6.7 (the app's panel). Maine: 275,563 absentees returned by Oct 29 against more than 202,000 at the same point in 2022 (WGME).",
    "sources": [
     [
-     "CBS News Detroit (Paula Wethington), Oct 29",
-     "https://www.cbsnews.com/detroit/news/nearly-1-in-4-michigan-voters-ballots-submitted/"
+     "WPR (Avery Martinez) via Urban Milwaukee, Oct 31",
+     "https://urbanmilwaukee.com/2026/10/31/as-election-nears-wisconsins-in-person-absentee-ballots-have-surged/"
     ],
     [
-     "WGME (Allyson LaPierre), Oct 29",
-     "https://fox23maine.com/newsletter-daily/the-deadline-to-request-a-maine-absentee-ballot-is-today-maine-election-voting-absentee"
+     "AP via PBS NewsHour, Nov 1",
+     "https://www.pbs.org/newshour/politics/democrat-haley-stevens-endorses-gops-mike-rogers-in-michigan-senate-race-2-days-before-election"
     ],
     [
-     "FOX 5 DC (Josh Rosenthal) via Yahoo, Oct 29",
-     "https://www.yahoo.com/news/politics/articles/early-voting-virginia-surges-past-024655621.html"
-    ],
-    [
-     "Call the Map (Colorado), Oct 29",
-     "https://www.callthemap.com/early-vote/colorado"
-    ],
-    [
-     "Call the Map (Pennsylvania), Oct 29",
+     "Call the Map (Pennsylvania), Nov 1",
      "https://www.callthemap.com/early-vote/pennsylvania"
     ],
     [
-     "Dairyland Sentinel (Joe Handrick), Oct 27",
-     "https://dairylandsentinel.com/wisconsin-absentee-returns-pass-2022-pace-for-first-time-this-fall/"
+     "Go Right Strategies, Nov 1",
+     "https://gorightstrategies.com/arizona-early-vote-tracker/"
+    ],
+    [
+     "WGME (Allyson LaPierre), Oct 29",
+     "https://wgme.com/news/local/the-deadline-to-request-a-maine-absentee-ballot-is-today-maine-election-voting-absentee"
     ]
    ],
-   "aff": "Official data via nonpartisan outlets and an independent tracker; the Wisconsin analysis is on a conservative-leaning site by a former Republican legislator"
+   "aff": "Official data via nonpartisan outlets and an independent tracker; Go Right Strategies is a Republican consulting firm"
   },
   {
-   "title": "Nationally, 44.8 million have voted; McDonald says Republican early numbers look like 2022's while Hispanic and Black turnout is up, and TargetSmart's Bonier says Hispanic turnout is booming.",
-   "html": "UF Election Lab counted 44,778,349 ballots across 49 reporting jurisdictions in the app's Oct 30 file. The BBC (Oct 30, from UF Election Lab's Thursday figures): 'More than 43 million Americans have already voted,' 4-5 million a day; in the roughly half of states with party registration, Democrats 44%, Republicans 31.2%, no affiliation 24.7%; Republican early numbers are 'generally similar to 2022'; in North Carolina, Georgia and Florida, Hispanic and Black turnout is up while white turnout is about on par with 2022's early figures, and McDonald notes that 'communities of colour are more frequently part of the Democratic coalition.' Tom Bonier (TargetSmart, Oct 29): the Hispanic share of the early vote exceeds its 2022 same-point level in 96% of counties, Hispanic Democrats lead Hispanic Republicans in all 17 party-registration states where Republicans led in 10 at this point in 2024, and North Carolina shows a 14-point swing in the turnout party margin toward Democrats against 2024. Call the Map (Oct 29): 39.4 million in 46 states; five of seven day-aligned states ahead of 2022's pace, Maine furthest ahead (+40%), Pennsylvania furthest behind (-4%), and the registered-party gap 'moved toward Republicans in four of seven compared states, most in Pennsylvania.'",
+   "title": "Nationally, 54.5 million have voted, past 2022's 45.9 million; registered Democrats are 43% of ballots in the party-registration states and Republicans 32%, and the party gap moved toward Republicans in three of Call the Map's five compared states.",
+   "html": "UF Election Lab counted 54,467,368 ballots across 49 reporting jurisdictions in the app's Nov 2 file (24,429,766 by mail, 30,147,504 in person), against 45,920,446 early votes in all of 2022. Newsweek (Oct 31, from UF Election Lab's Friday figures): about 49.6 million early votes, 22.9 million by mail and 26.8 million in person; in the states that report party registration, Democrats 43%, Republicans 32%, others 25%; the AP found 50% more Texans voted early than in 2022 and South Carolina's early vote up 83%. Call the Map (Nov 1): 51,430,902 ballots in 47 states; the five states comparable day by day with 2022 (North Carolina, Pennsylvania, Maine, Nevada and Florida) are up 14% together, four of five ahead of 2022's pace, and 'the registered party gap moved toward Republicans' in three of the five (Pennsylvania, Maine and Nevada's Clark mail) and toward Democrats in North Carolina and Florida. DDHQ's Geoffrey Skelley (Nov 1): North Carolina's registration margin among early voters swung about 13 points toward Democrats against the same point in 2024, but 'we must be careful not to divine with certainty winners and losers from the entrails of AB/EV data.'",
    "sources": [
     [
-     "UF Election Lab, Oct 30",
+     "UF Election Lab, Nov 2",
      "https://election.lab.ufl.edu/early-vote/2026-early-voting/"
     ],
     [
-     "BBC (Max Matza) via Yahoo, Oct 30",
-     "https://ca.news.yahoo.com/more-43-million-ballots-cast-195653475.html"
+     "Newsweek (Hugh Cameron), Oct 31",
+     "https://www.newsweek.com/democrats-leading-in-ballots-as-early-voting-surges-to-midterms-record-12644588"
     ],
     [
-     "Tom Bonier (TargetSmart), The Data Dive, Oct 29",
-     "https://tombonier.substack.com/p/hispanic-turnout-is-booming"
-    ],
-    [
-     "Call the Map, Oct 29",
+     "Call the Map, Nov 1",
      "https://www.callthemap.com/early-vote"
+    ],
+    [
+     "Decision Desk HQ, The Bellwether (Geoffrey Skelley), Nov 1",
+     "https://decisiondeskhq.substack.com/p/early-mail-vote-2026-midterms-senate-control-analysis-trends"
     ]
    ],
-   "aff": "McDonald is a nonpartisan academic; TargetSmart is a Democratic-aligned vendor (modeled race outside NC, LA and FL); Call the Map is an independent tracker"
+   "aff": "McDonald's lab is nonpartisan; Call the Map is an independent tracker; Decision Desk HQ is a nonpartisan firm"
   }
  ],
  "calendar": [],
- "calendar_note": "Closing dates: Georgia, Texas, Nevada and Arizona end in-person early voting Oct 30; North Carolina, South Carolina, Florida (16 counties through Nov 1) and Kentucky Oct 31 (North Carolina at 3 p.m.); Michigan, Wisconsin and Ohio Nov 1; Iowa, Kansas, Minnesota and Nebraska Nov 2. Maine's in-person absentee voting ended Oct 29. Pennsylvania and New Hampshire have no early in-person voting; Pennsylvania's mail ballots must reach county offices by 8 p.m. Nov 3.",
- "cast_at": 44778349,
- "cast_at_note": "Ballots counted (UF Election Lab, 49 jurisdictions reporting, state data as of Oct 23-29) when these comparisons were compiled; sets the automatic early-vote weight.",
- "signals_asof": "2026-10-30",
- "signals_verdict": "The official same-point comparison with 2022 (Florida, Nevada, Colorado, Iowa and Pennsylvania) implies a national vote of about D-0.8 (±1.2), little changed from the Oct 28 files: Florida is R+1.8 by registration in the Oct 29 file against R+6.6 at five days out in 2022, Nevada D+5.5 against D+1.5, Colorado D+7.1 against D+3.2, Iowa's absentee pool D+11.3 against D+21.1 and Pennsylvania's mail D+40.0 against D+49.7; against 2024, Florida (R+1.8 vs. R+11.5), Nevada (D+5.5 vs. R+5.1) and Colorado (D+7.1 vs. D+1.9) pool with Arizona (R+1.1 vs. R+8.2, now that its 2024 baseline is in range) to about D+4.2 (±1.3), so the early vote fits a Democratic year without confirming polls at D+8.6. The news comparisons are bluer where the states lack party registration: Ralston has Clark County's in-person vote D+6,751 where Republicans led it by 19,439 at this point in 2022 and the county's Democratic lead above 54,000 ballots against 23,994, North Carolina is 36% ahead of 2022 at the same point with a D+14.6 registration gap against D+7.1, and Georgia broke its 2022 in-person early-vote record with a day to spare; but the closing days are running Republican, with Florida's in-person vote R+215,000 and the Republican lead growing about 24,000 a day, Texas's Republican-primary voters ahead of Democratic-primary voters by 81,526 among in-person ballots and the Democratic-primary edge on Derek Ryan's count down to 57,000, and Pennsylvania's mail returns 4% behind 2022. The next tests are the final in-person day in Florida, Nevada, Georgia and Texas (Oct 30-31), North Carolina's close at 3 p.m. Oct 31, and whether Pennsylvania's remaining 330,000 outstanding mail ballots (1,297,152 requested, 966,863 returned in the state file) come back.",
+ "calendar_note": "In-person early voting has ended in Georgia, Texas, Nevada and Arizona (Oct 30), North Carolina, South Carolina and Kentucky (Oct 31), Florida, Michigan, Wisconsin and Ohio (Nov 1); Iowa, Kansas, Minnesota and Nebraska close Nov 2. Pennsylvania and New Hampshire have no early in-person voting; Pennsylvania's mail ballots must reach county offices by 8 p.m. Nov 3. Polls close Nov 3 from 6 p.m. ET (Indiana, Kentucky) to midnight (Alaska).",
+ "cast_at": 54467368,
+ "cast_at_note": "Ballots counted (UF Election Lab, 49 jurisdictions reporting, state data as of Oct 26-Nov 1) when these comparisons were compiled; sets the automatic early-vote weight.",
+ "signals_asof": "2026-11-02",
+ "signals_verdict": "The official same-point comparison with 2022 (Florida, Nevada, Colorado, Iowa and Pennsylvania) implies a national vote of about D-0.8 (±1.2), unchanged through the final week: in the Nov 1 files Florida is R+2.5 by registration against R+6.2 at two days out in 2022, Nevada D+6.3 against D+1.3, Colorado D+6.7 against D+3.2, Iowa's absentee pool D+9.7 against D+19.8 and Pennsylvania's mail D+39.5 against D+48.6; against 2024, Florida (R+2.5 vs. R+10.6), Nevada (D+6.3 vs. R+4.0), Colorado (D+6.7 vs. D+1.9) and Arizona (R+0.8 vs. R+8.4) pool to about D+3.9 (±1.3), so the early vote fits a Democratic year without confirming polls that have moved to D+8.9. The final tallies in the states without party registration lean Democratic: Ralston has Nevada's Democrats up just over 43,000 ballots with a record midterm Clark firewall near 66,000 and Washoe D+5, North Carolina closed at 2,816,821 ballots with Republicans 26% of them against 31% in 2022, and Georgia's 2,810,170 ballots include 883,000 Democratic-primary voters to 644,000 Republican-primary voters; but Republicans won the closing days in Florida (R+2.5 from R+1.0 on Oct 27) and Texas (Republican-primary voters 2,238,247 to 2,100,396 among in-person ballots), Pennsylvania's mail is 5% behind 2022 with Democratic returns down 12%, and Arizona is R+12,335. The remaining tests are Election Day itself: whether Republicans' Election Day margins match 2022's (Ralston says they would need about 194,000 Election Day ballots breaking R+22 to erase Nevada's lead; Bitzer says they would need about 58% of North Carolina's remaining registrants), and how many of Pennsylvania's 241,000 outstanding mail ballots arrive by 8 p.m.",
  "signals": [
   {
    "dir": "D",
    "st": "NV",
    "strength": 2,
-   "title": "Nevada is D+35,000 (5.7 points) after Thursday, Clark County's firewall is above 54,000, and Democrats lead Clark's in-person vote by 6,751 where Republicans led by 19,439 at this point in 2022",
-   "value": "Jon Ralston, 9 p.m. Oct 29: Democrats 'increase their statewide lead to 35,000, or 5.7 percent,' the Clark edge is 'more than 54,000' (heading for 'almost 57,000'), turnout is '632,000, or about 63 percent of the vote' on a 1 million model, and Clark's 23,422 Thursday ballots went D+900 against 19,454 ballots on the penultimate day of 2022. 6:30 a.m. (through Wednesday, day 12): Clark 383,674 ballots, 17.3% above 327,160 in 2022; combined Clark lead 51,348 against 23,994; 'In person, Democrats lead by 6,751 ballots, while at this point in 2022 Republicans led by 19,439'; mail D+44,597 against 43,433; 'Overall turnout is about what it was in 2022, but the Dem ballot margins in Clark are much larger.'",
-   "catch": "Registration is not vote choice. Republicans won Election Day 2022 by about 47,000 ballots and he expects the rurals to end near R+55,000; about 370,000 to 470,000 votes are still to come on his 1.0-1.1 million turnout models. The state's Oct 29 file reads D+5.5 on 603,613 ballots against D+1.5 at this point in 2022 and R+5.1 in 2024 (the app's official panel).",
-   "src": "Nevada Independent, Oct 29",
+   "title": "Nevada's Democrats finished early voting up just over 43,000 ballots (just under 6 points), with a record midterm Clark County firewall near 66,000 and Washoe County D+5",
+   "value": "Jon Ralston, 9 a.m. Nov 1: Democrats lead by 'just over 43,000 ballots,' just under 6 percent, plus about 500 in unaccepted mail; Clark's firewall is 'a few ballots under 66,000' (almost 13.5 percent); Washoe, R+3 in registration, is D+5 in ballots; rurals R+30,000; mail 58 percent of the total; turnout just under 730,000 (about 35 percent of actives), with 300,000-350,000 to come. Oct 31: the 65,000 Clark firewall is a midterm record; 75.1% of 2022's Democratic voters, 58.9% of its Republicans and 51.6% of its nonpartisans had voted, with about 135,800 Republican 2022 voters outstanding.",
+   "catch": "Registration is not vote choice. Republicans would need about 194,097 Election Day ballots breaking like 2022's R+22.2 to erase the lead (2022 had 215,517 Election Day ballots), and 'at least 30,000 and maybe more' extra Election Day ballots to save the governor's race; the rurals usually give Republicans 55,000-60,000. The state's Oct 31 file reads D+6.3 on 718,903 ballots against D+1.3 at this point in 2022 and R+4.0 in 2024 (the app's official panel).",
+   "src": "Nevada Independent, Nov 1",
    "url": "https://thenevadaindependent.com/article/the-early-voting-blog-2026-general",
    "aff": "Nonpartisan outlet (Jon Ralston); county and Secretary of State data"
   },
@@ -276,43 +272,43 @@
    "dir": "D",
    "st": "NC",
    "strength": 2,
-   "title": "North Carolina's 2.15 million ballots through Wednesday are 36% ahead of 2022 at the same point, with a D+14.6 registration gap against D+7.1 and Black voters 22.6% of ballots",
-   "value": "Call the Map's reading of the State Board's Oct 29 file (through Oct 28, day 55): 2,150,024 ballots, +36% on the same day of voting in 2022; Democrats 856,353 (39.8%, +40%), Republicans 543,173 (25.3%, +9%), unaffiliated and other 750,498 (+58%); D+14.6 vs. D+7.1; Black share 22.6% vs. 19.5%, Hispanic 3.3% vs. 1.7%. CBS 17 (Oct 29): more than 2.1 million, 27.3% of registered voters, Democrats 39.8%, Republicans 25.2%, from 43% and 22.5% on Oct 22. WRAL (Oct 30): 'up about 36%' on 2022's same period.",
-   "catch": "Registration is not vote choice, the Democratic share is falling as the period ends (43% on Oct 22 to 39.8%), and much of the surge is 2022 Election Day voters moving earlier; Republicans outvoted Democrats on Election Day 2022. Early voting ends Oct 31 at 3 p.m. The app's own file carries the official comparison.",
-   "src": "Call the Map, Oct 29; CBS 17, Oct 29; WRAL, Oct 30",
-   "url": "https://www.callthemap.com/early-vote/north-carolina",
-   "aff": "Official data via nonpartisan outlets; Call the Map is an independent tracker"
+   "title": "North Carolina's final early vote is 2,816,821 ballots, 35.7% of registered voters, with Republicans 26% of them against 31% in 2022, Democrats 38% and Black voters' ballots 1.5 times 2022's",
+   "value": "WBTV (Nov 1, NC FreeEnterprise Foundation tracker): 2,816,821 early ballots, 35.7% of registered voters against 29.0% in 2022; Democrats 38%, unaffiliated 35% (30% in 2022), Republicans 26% (31%); turnout above 2022 in 97 of 100 counties; Black voters nearly 600,000, '1.5x' 2022; 18-25 more than 200,000, nearly double. Bitzer (Nov 1): 46% of registered Democrats have voted, 32% ahead of 2022; unaffiliated nearly 1 million, up 52%; Republicans up 9%; mail 92,395 (3.3%). Call the Map: D+12.2 against D+6.8 at the same point in 2022, ballots up 31%.",
+   "catch": "Registration is not vote choice; much of the surge is 2022 Election Day voters moving earlier, and Republicans outvoted Democrats on Election Day 2022. Bitzer's 55-38 modeled split rests on his assumptions (D 95/5, R 90/10, UNA 50/39), and he expects about 1.5 million more votes. The app's own file carries the official comparison.",
+   "src": "WBTV, Nov 1; Center for NC Politics (Michael Bitzer), Nov 1; Call the Map, Nov 1",
+   "url": "https://www.wbtv.com/2026/11/01/record-28m-early-ballots-cast-north-carolina-driven-by-unaffiliated-voters-steady-democrats/",
+   "aff": "Official data via a nonpartisan outlet; Bitzer is a nonpartisan academic; Call the Map is an independent tracker"
   },
   {
    "dir": "D",
    "st": "GA",
    "strength": 1,
-   "title": "Georgia broke its 2022 record for in-person early votes with a day to spare, 2,294,275 against 2,289,951, and is past 2.5 million ballots",
-   "value": "Secretary of State figures as of 1:35 p.m. Oct 29 (WSB-TV): 2,294,275 in-person early votes, a midterm record, plus 108,251 accepted absentee ballots; overall turnout as a share of active voters 'remains on pace with total 2022 turnout.' Atlanta News First: more than 30% of 7.5 million active voters; Black voters about 30% of the early vote, white about 50%. FOX 5 (Oct 30): 'topped 2.5 million ballots' with one day left; Raffensperger earlier put turnout 5% to 7% above 2022 despite one fewer day.",
-   "catch": "Georgia has no party registration and no same-point party split is published: the record is in-person votes against 2022's final, and mail absentees are down by about half, so total turnout is roughly even with 2022. The electorate is old (georgiavotes.com has 65-plus voters at 38.7%). Early voting ends Oct 30.",
-   "src": "WSB-TV, Oct 29; Atlanta News First, Oct 29; FOX 5 Atlanta, Oct 30",
-   "url": "https://www.wsbtv.com/news/local/georgia-election-2026-early-voting-keeps-breaking-midterm-record/PHLPERVNVFDAZFUUX2BRGJV6XY/",
+   "title": "Georgia's 2,810,170 early ballots are 13% above 2022's, with Democratic-primary voters ahead of Republican-primary voters 883,000 to 644,000 and the Black share 32.4% against 30.2% at this point in 2022",
+   "value": "Secretary of State figures (Atlanta News First, Oct 30): 2,810,170 ballots, 2,691,841 in person and 118,329 absentee, 37.3% of registered voters; 2022's overall early record was about 2.5 million. AJC (Oct 31): up 13% on 2022; white voters 52.6% against 58.2% 'at this point in 2022,' Black 32.4% against 30.2% (26.8% at the same stage of 2024), Hispanic 3.7% against 2%; 883,000-plus Democratic-primary voters to about 644,000 Republican-primary voters; Harris-strong precincts cast about 60,000 more ballots than Trump-strong precincts, against a gap of about 1,000 in 2022; more than 630,000 early voters skipped 2022.",
+   "catch": "Georgia has no party registration: primary history covers only some voters and the precinct comparison is to 2024's presidential vote. The electorate is old (voters 50 and over nearly 65%), mail is down to 4.2% of the early vote, and about 1.9 million registered voters in Trump strongholds had not voted against 1.8 million in Harris strongholds.",
+   "src": "Atlanta Journal-Constitution, Oct 31; Atlanta News First, Oct 30",
+   "url": "https://www.ajc.com/politics/2026/10/georgia-early-vote-midterm-elections-record/",
    "aff": "Official data via nonpartisan outlets"
   },
   {
    "dir": "D",
    "st": "TX",
-   "strength": 2,
-   "title": "Texas: 6.28 million have voted, about 1.75 million above 2022, and Democratic-primary voters still lead Republican-primary voters on Derek Ryan's count where Republicans led by 400,000 at this point in 2022",
-   "value": "theoelections (through Oct 29): 6,282,318 early ballots, 6,022,477 in person and 259,841 by mail. BBC (Oct 30, UF Election Lab): Texas is 'about 1.75 million voters above its 2022 numbers,' the largest gain over its average of any state, with border counties above 90% Hispanic surging. Ryan Data & Research via CBS Texas (Oct 29): about 71,000 more early voters with Democratic-primary history than Republican through Tuesday, 'nearly 57,000' through Wednesday; Ryan via NBC 5 (Oct 27): Republicans had 'a 400,000-vote advantage' at the same point in the last midterm. Mail ballots run 34.0% Democratic-only to 26.5% Republican-only (theoelections).",
-   "catch": "No party registration: 'party' is primary history, a third of voters have none, and 2022's electorate was unusually Republican. The lead has shrunk every day since Sunday (115,000 after day 7) and Republican-primary voters now lead in person (the separate signal). Ryan expects about 10 million votes. Early voting ends Oct 30.",
-   "src": "theoelections, Oct 29; CBS Texas (Jack Fink), Oct 29; BBC, Oct 30; NBC 5 DFW, Oct 27",
-   "url": "https://www.cbsnews.com/texas/news/jd-vance-weatherford-rally-republican-early-voting-turnout-texas-october-2026/",
-   "aff": "theoelections is an independent tracker; Derek Ryan is a Republican consultant; the BBC is nonpartisan"
+   "strength": 1,
+   "title": "Texas's record 7.7 million early votes (40.5% of registered voters) are 2.2 million above 2022's, and Democratic-primary voters are far closer to Republican-primary voters than 2022's 400,000 Republican lead",
+   "value": "Texas Tribune (Nov 1, preliminary): more than 7.7 million early votes, 40.5% turnout, past 2018's record; 2022's early vote was 5.5 million (31%), 2024's 9 million (49%). Secretary of State count as of Oct 30: 7,410,631, 38.92% of 19,041,684 registered (CBS Texas). theoelections (Oct 30): 7,744,549 ballots, 7,463,553 in person and 280,996 by mail; Democratic-primary-only voters 2,100,396 (28.1%) of in-person ballots, Republican-primary-only 2,238,247 (30.0%), no primary 2,938,928 (39.4%); mail 32.8% Democratic-only to 26.2% Republican-only. At the same point in 2022 Republican-primary voters led by 400,000 (Derek Ryan via NBC 5, Oct 27).",
+   "catch": "No party registration: 'party' is primary history, 39% of in-person voters have none, and 2022's electorate was unusually Republican. Republican-primary voters won the closing days and finished ahead in person (the separate signal). Mark Jones: 'definitely high turnout'; Matt Angle (Democratic strategist): 'That doesn't mean Democrats are going to win.'",
+   "src": "Texas Tribune via KSAT, Nov 1; CBS Texas, Oct 31; theoelections, Oct 30; NBC 5 DFW, Oct 27",
+   "url": "https://ksat.com/news/texas/2026/10/31/more-than-74-million-texans-voted-early-in-2026-election-nearly-matching-2018-pace",
+   "aff": "Nonpartisan outlets and official data; theoelections is an independent tracker; Derek Ryan is a Republican consultant"
   },
   {
    "dir": "R",
    "st": "TX",
    "strength": 1,
-   "title": "Texas's Republican closing surge: Republican-primary voters lead Democratic-primary voters among in-person ballots by 81,526 on theoelections' Oct 29 count, up from 57,420 a day earlier",
-   "value": "theoelections (as of Oct 29): in-person ballots from Republican-primary-only voters 1,905,771 (31.6%) against Democratic-primary-only 1,824,245 (30.3%), both 167,378 (2.8%), no primary 2,125,083 (35.3%), on 6,022,477 in-person ballots; the Oct 28 count had the lead at 1,757,395 to 1,699,975. Mail: 88,233 Democratic-only (34.0%) to 68,834 Republican-only (26.5%). Ryan's statewide Democratic-primary edge fell from about 71,000 through Tuesday to nearly 57,000 through Wednesday (CBS Texas); Comptroller Don Huffines told the Weatherford rally that Republican early turnout 'is not going well,' with more than 800,000 recent Republican primary voters still out.",
-   "catch": "Primary history is not vote choice, and about a third of voters have none. Against 2022, when Republican-primary voters led by 400,000 at this point, the electorate is still far more Democratic; the signal is the direction of the final days, which Ryan predicted with 20-30% of the vote expected in the last three days.",
-   "src": "theoelections, Oct 29; CBS Texas, Oct 29",
+   "title": "Texas's Republican close: Republican-primary voters finished ahead of Democratic-primary voters among in-person ballots, 2,238,247 to 2,100,396, after trailing through the first week",
+   "value": "theoelections (as of Oct 30, the final day): in-person ballots from Republican-primary-only voters 2,238,247 (30.0%) against Democratic-primary-only 2,100,396 (28.1%), both 185,982 (2.5%), no primary 2,938,928 (39.4%), on 7,463,553 in-person ballots; the Oct 28 count had Republicans ahead 1,757,395 to 1,699,975 and the Oct 29 count 1,905,771 to 1,824,245. Mail: 92,275 Democratic-only (32.8%) to 73,688 Republican-only (26.2%). Ryan's statewide Democratic-primary edge had fallen from about 115,000 after the first week to nearly 57,000 through Oct 28 (NBC 5; CBS Texas).",
+   "catch": "Primary history is not vote choice, and 39% of in-person voters have none. Against 2022, when Republican-primary voters led by 400,000 at this point, the electorate is still far more Democratic; the signal is the direction of the final days.",
+   "src": "theoelections, Oct 30; CBS Texas, Oct 29; NBC 5 DFW, Oct 27",
    "url": "https://theoelections.com/early-vote",
    "aff": "theoelections is an independent tracker whose affiliation is not stated; Derek Ryan is a Republican consultant"
   },
@@ -320,56 +316,56 @@
    "dir": "R",
    "st": "FL",
    "strength": 1,
-   "title": "Florida's combined early vote is R+1.8 in the Oct 29 file, with Republicans up 215,000 in person and the lead growing by about 24,000 a day",
-   "value": "Division of Elections file for Oct 29 (the app's official panel): 2,498,468 in-person ballots, 1,099,061 Republican to 884,353 Democratic (R+214,708); 1,767,532 mail ballots returned, 761,118 Democratic to 622,309 Republican (D+138,809); combined 40.4% Republican to 38.6% Democratic on 4,266,000 ballots, R+75,899, from R+1.3 (about R+51,500) on Oct 28, R+1.0 on Oct 27 and D+6.7 at twenty days out. News Service of Florida (Oct 30): Republicans nearly 1.57 million, Democrats more than 1.51 million on Thursday's report; in 2022 Republicans cast nearly 1.17 million in-person early votes, almost 500,000 more than Democrats.",
-   "catch": "The same-point comparison still favors Democrats: R+6.6 at five days out in 2022 and R+11.5 in 2024 (the app's official panel), and 2022's final early vote was R+6.4. Republicans won Florida's in-person vote by far more in both years; the outstanding mail is Democratic-leaning. Registration is not vote choice.",
-   "src": "Florida Division of Elections daily file via the app's official comparison, Oct 29; News Service of Florida via WUSF, Oct 30",
+   "title": "Florida's early vote ended R+2.5 in the Nov 1 file, with Republicans up 287,000 in person and the lead growing every day of the final week",
+   "value": "Division of Elections file for Nov 1 (the app's official panel): 3,465,546 in-person ballots, 1,497,201 Republican to 1,209,843 Democratic (R+287,358); 1,937,212 mail ballots returned, 830,632 Democratic to 677,817 Republican (D+152,815); combined 40.3% Republican to 37.8% Democratic on 5,402,758 ballots, from R+1.8 on Oct 29, R+1.0 on Oct 27 and D+6.7 at twenty days out. Bay News 9 (Nov 2): just under 5.2 million ballots at Sunday's close, nearly 300,000 more than 2022's same point, almost 1.4 million of them Friday through Sunday; Republicans more than 1.4 million in person and just over 668,000 by mail, Democrats just over 1.1 million in person and more than 800,000 by mail.",
+   "catch": "The same-point comparison still favors Democrats: R+6.2 at two days out in 2022 and R+10.6 in 2024 (the app's official panel), and 2022's final early vote was R+6.4. Republicans won Florida's in-person vote by far more in both years; the outstanding mail is Democratic-leaning. Registration is not vote choice.",
+   "src": "Florida Division of Elections daily file via the app's official comparison, Nov 1; Bay News 9, Nov 2",
    "url": "https://countyfilesvbm-ev.floridados.gov/VoteByMailEarlyVotingReports/PublicStats",
-   "aff": "Official data; the News Service of Florida is nonpartisan"
+   "aff": "Official data; Bay News 9 is a nonpartisan outlet"
   },
   {
    "dir": "R",
    "st": "PA",
    "strength": 2,
-   "title": "Pennsylvania's mail returns trail 2022 by 4%, with Democrats' returns down 11% and Republicans' up 17%, and the last seven days ran 12% behind",
-   "value": "Call the Map (state file of Oct 29, ballots through Oct 28, day 45): 963,799 mail ballots returned, 31,561 that day, 4% fewer than the same day of voting in 2022; Democrats 628,025 (65%, down 11% from 707,275), Republicans 242,594 (25%, up 17% from 207,905), unaffiliated and other 93,180 (up 5%); D+40.0 vs. D+49.7 at the same point in 2022 and D+23.6 in 2024; the last seven days 242,000 against 274,000 in 2022. The Keystone (Oct 29): 1,314,012 ballots requested by the Oct 27 deadline (Democrats 841,155, Republicans 325,188), 965,837 returned by 9 a.m. Thursday. The state's Oct 29 file: 966,863 returned; the app's official panel reads D+40.0 against D+49.7 in 2022 and D+24.0 in 2024.",
-   "catch": "Pennsylvania's mail vote is lopsidedly Democratic every year (D+49.7 at this point in 2022, when Republicans won the national vote), and Democrats are shifting to Election Day voting; the state has no in-person early voting, so there is no in-person count to offset it. Call the Map notes 2022's file counted every ballot with a return date, including ballots later set aside. The official comparison is on the app's panel, so this signal is the turnout picture only. About 330,000 approved ballots were still outstanding.",
-   "src": "Call the Map, Oct 29; The Keystone, Oct 29",
+   "title": "Pennsylvania's mail returns finished early voting 5% behind 2022's same point, with Democrats' returns down 12% and Republicans' up 14%",
+   "value": "Call the Map (state file through Oct 31): 1,053,168 mail ballots returned, 13,545 that day, 5% fewer than the same point in 2022; Democrats 681,934 (about 65%, down 12% from 771,898), Republicans 265,272 (about 25%, up 14% from 233,284), unaffiliated and other 105,962 (up 4%); D+39.6 against D+48.6 at the same point in 2022 and D+22.7 in 2024. Philadelphia 95,108 (D+80.5), Allegheny 129,648 (D+56.0), Montgomery 94,771 (D+47.5), Bucks 85,926 (D+28.9). The state's Nov 1 file: 1,056,549 returned of 1,297,730 requested; the app's official panel reads D+39.5 against D+48.6 in 2022 and D+23.0 in 2024.",
+   "catch": "Pennsylvania's mail vote is lopsidedly Democratic every year (D+48.6 at this point in 2022, when Republicans won the national vote), and Democrats are shifting to Election Day voting; the state has no in-person early voting, so there is no in-person count to offset it. Call the Map notes 2022's file counted every ballot with a return date. The official comparison is on the app's panel, so this signal is the turnout picture only. About 241,000 approved ballots were still outstanding.",
+   "src": "Call the Map, Nov 1",
    "url": "https://www.callthemap.com/early-vote/pennsylvania",
-   "aff": "Independent tracker of the official file; The Keystone is a Democratic-aligned outlet"
+   "aff": "Independent tracker of the official file"
   },
   {
    "dir": "R",
    "st": "AZ",
    "strength": 1,
-   "title": "Arizona's early ballots are R+13,526 (0.9 points) by registration on 1.44 million through Oct 29, and the Republican lead has held near 11,000-14,000 all week",
-   "value": "Go Right Strategies' county compilation (Oct 29, 11:36 a.m. ET): 1,441,186 ballots returned, Republicans 552,120 (38.3%), Democrats 538,594 (37.4%), other 350,472 (24.3%), R+13,526; Maricopa 875,268 at R+7,783; the lead was R+11,514 on Oct 27 and R+10,950 on Oct 28. Arizona Mirror (Oct 29, from Democratic consultant Sam Almy's tracking): Republicans led by 16,600 ballots through Oct 28, with 43% of registered Democrats having returned ballots against 36% of Republicans; on a private Republican call, Senate President Warren Petersen said 'we're at an R+1.2' and Rep. Alexander Kolodin said the party needs 'an R+10' to sweep the statewide offices. The app's panel reads R+1.1 on 1,295,955 ballots in the Oct 29 file.",
-   "catch": "Registration is not vote choice: Republicans have a registration edge near 300,000, so a lead this small means Democrats are returning ballots at a higher rate; there is no official statewide daily file, so the compilation is from county reports with some counties stale, and the app has no 2022 same-point baseline (2024 at four days out was R+8.2). The tracker is a Republican consulting firm; the Mirror's figures are a Democratic consultant's.",
-   "src": "Go Right Strategies, Oct 29; Arizona Mirror (Jerod MacDonald-Evoy) via Yahoo, Oct 29",
+   "title": "Arizona's early ballots are R+12,335 (0.8 points) by registration on 1.60 million through Nov 1, with Maricopa R+5,314 and Pima D+55,007",
+   "value": "Go Right Strategies' county compilation (Nov 1, 11:52 a.m. ET): 1,602,707 ballots returned, Republicans 609,283 (38.0%), Democrats 596,948 (37.2%), other 396,476 (24.7%), R+12,335; Maricopa (updated Oct 30) 930,818 at R+5,314; Pima 279,920 at D+55,007; the lead was R+13,526 on Oct 29 and R+11,514 on Oct 27. Call the Map: R+0.8 on about 1.60 million. The app's panel reads R+0.8 on 1,602,837 ballots in the Nov 1 file against R+8.4 at the same point in 2024.",
+   "catch": "Registration is not vote choice: Republicans have a registration edge near 300,000, so a lead this small means Democrats are returning ballots at a higher rate; there is no official statewide daily file, the compilation is from county reports with Maricopa two days stale, and the app has no 2022 same-point baseline. The tracker is a Republican consulting firm.",
+   "src": "Go Right Strategies, Nov 1; Call the Map, Nov 1",
    "url": "https://gorightstrategies.com/arizona-early-vote-tracker/",
-   "aff": "Go Right Strategies is a Republican consulting firm; Sam Almy is a Democratic consultant; the Arizona Mirror is a nonpartisan outlet"
+   "aff": "Go Right Strategies is a Republican consulting firm; Call the Map is an independent tracker"
   },
   {
    "dir": "R",
    "st": "WI",
    "strength": 1,
-   "title": "Wisconsin's absentee returns passed 2022's pace a week out (2.1% ahead), with Milwaukee and Dane still below their 2022 returns and Waukesha and Washington above",
-   "value": "Dairyland Sentinel's reading of the Elections Commission's Oct 27 file against its Nov 1, 2022 file: 513,602 ballots returned against 503,180 (+2.1%); in-person absentees 251,092, up 57% and 48.9% of returns against 31.8%; other (mail) returns down 23.5%; applications down 1.3%; return rate 80.4% against 78%; Tuesday added 72,461 against 58,304 on the same day in 2022. Milwaukee 81,243 (down 1.9%, in person up 55%), Dane 72,021 (down 6.9%), Waukesha 55,556 (up 7.9%), Washington 17,421 (up 30%), Racine 18,146 (up 13.5%). Handrick: 'While the early returns are encouraging for the GOP, they are not predictive.'",
-   "catch": "No party registration, so this is turnout only, and both parties pushed voters away from mail; in-person absentee voting runs through Nov 1 and the Democratic counties' gap has been closing (Milwaukee was down 10% on Oct 23). The analysis is by Joe Handrick, a former Republican legislator, on a conservative-leaning site.",
-   "src": "Dairyland Sentinel (Joe Handrick), Oct 27",
-   "url": "https://dairylandsentinel.com/wisconsin-absentee-returns-pass-2022-pace-for-first-time-this-fall/",
-   "aff": "Official data; the analysis is on a conservative-leaning site by a former Republican legislator"
+   "title": "Wisconsin's absentee returns are about 50,000 ahead of 2022's same point, but mail returns are down more than 20% while in-person absentees are up more than 50%, most in Republican Washington and Waukesha counties",
+   "value": "WPR (Oct 31, Elections Commission data as of Oct 30): 693,334 absentee ballots returned, 'about 50,000 more than at the same point in 2022'; mail about 300,000 against about 384,000 in 2022 (down more than 20%), in-person about 394,000 against about 259,000 (up more than 50%); Milwaukee's mail down more than 25% and in-person up 45%, Dane's mail down more than 30% and in-person up about 50%, Washington's in-person up about 75%, Waukesha's up more than 40%. Dairyland Sentinel (Oct 27 file): 513,602 against 503,180 (+2.1%), with Milwaukee down 1.9% and Dane down 6.9% while Waukesha was up 7.9% and Washington 30%.",
+   "catch": "No party registration, so this is turnout only, and both parties pushed voters away from mail; the Democratic counties' totals have been closing the gap as in-person voting ran through Nov 1. Handrick: 'While the early returns are encouraging for the GOP, they are not predictive.'",
+   "src": "WPR (Avery Martinez) via Urban Milwaukee, Oct 31; Dairyland Sentinel (Joe Handrick), Oct 27",
+   "url": "https://urbanmilwaukee.com/2026/10/31/as-election-nears-wisconsins-in-person-absentee-ballots-have-surged/",
+   "aff": "Official data via a nonpartisan outlet; the Dairyland Sentinel analysis is on a conservative-leaning site by a former Republican legislator"
   },
   {
    "dir": "D",
    "st": "MI",
    "strength": 1,
-   "title": "Michigan has 1.70 million ballots in, 23% of active voters, with 358,000 early in-person votes that did not exist in 2022 and absentee returns already past 2022's same-point figure",
-   "value": "CBS News Detroit (Oct 29, Secretary of State data): 1,704,715 ballots returned as of Thursday, 23% of 7,412,507 active registered voters, 1,346,372 absentee and 358,343 early in person, from 18.8% on Tuesday and 16.4% on Monday. The Secretary of State's Oct 27 release: 1,176,375 absentee ballots returned of 2,154,870 requested, against 1,126,246 returned and 1,899,273 requested a week before Election Day 2022.",
-   "catch": "Michigan has no party registration, so this measures turnout, not direction, and the department cautions that higher early numbers 'do not necessarily mean' higher overall turnout. About 94% of requests come from the permanent list. Early in-person voting runs through Nov 1.",
-   "src": "CBS News Detroit (Paula Wethington), Oct 29; Michigan Secretary of State, Oct 27",
-   "url": "https://www.cbsnews.com/detroit/news/nearly-1-in-4-michigan-voters-ballots-submitted/",
-   "aff": "Official data via a nonpartisan outlet"
+   "title": "Michigan passed 1.8 million ballots by Friday, with 358,000 early in-person votes that did not exist in 2022 and absentee returns past 2022's same-point figure",
+   "value": "AP (Nov 1): more than 1.8 million Michiganders had voted as of Friday Oct 30. CBS News Detroit (Oct 30, Secretary of State dashboard): more than 1.3 million absentee ballots returned and more than 358,000 early in-person ballots, of more than 7.4 million active registered voters; Detroit's clerk projects 40-45% turnout against 34% in 2022. The Secretary of State's Oct 27 release: 1,176,375 absentee ballots returned against 1,126,246 a week before Election Day 2022.",
+   "catch": "Michigan has no party registration, so this measures turnout, not direction, and the department cautions that higher early numbers 'do not necessarily mean' higher overall turnout. Early in-person voting ended Nov 1; the final count was not published by Monday morning.",
+   "src": "AP via PBS NewsHour, Nov 1; CBS News Detroit (Hannah McIlree), Oct 30; Michigan Secretary of State, Oct 27",
+   "url": "https://www.cbsnews.com/detroit/news/what-to-know-the-final-weekend-for-early-voting-michigan/",
+   "aff": "Official data via nonpartisan outlets"
   },
   {
    "dir": "D",
@@ -386,34 +382,34 @@
    "dir": "R",
    "st": "NV",
    "strength": 2,
-   "title": "Nevada's statewide in-person vote is Republican (R+7,813 in the Oct 29 file), and Clark's mail lead is only about even with 2022's",
-   "value": "The state's Oct 29 file (the app's official panel): in-person ballots statewide 102,164 Republican to 94,351 Democratic (R+7,813) on 255,130, mail 145,918 Democratic to 104,806 Republican (D+41,112) on 348,483. Ralston (Oct 29, through Wednesday): Clark's mail ballots are D+44,597 'versus 43,433 in 2022,' while the county's in-person vote is D+6,751. David Calvert's model (data as of 7 a.m. Oct 29): statewide early in-person R+6,348 (37.3% Democratic, 40.0% Republican), Wednesday's record 27,057 in-person voters R+446, the 2nd District R+12,307.",
-   "catch": "Democrats are shifting from mail to in person, which the county-wide figures absorb (Clark overall is above D+54,000 against 23,994 in 2022); mail is about 58% of the vote this year against about half in 2022. Registration is not vote choice. Calvert is an independent modeler.",
-   "src": "UF Election Lab daily file (Nevada, Oct 29); Nevada Independent, Oct 29; David Calvert (Substack), Oct 29",
+   "title": "Nevada's statewide in-person vote finished Republican (R+8,674 in the Oct 31 file), and mail is 58% of the total",
+   "value": "The state's Oct 31 file (the app's official panel): in-person ballots statewide 121,631 Republican to 112,957 Democratic (R+8,674) on 308,019, mail 173,201 Democratic to 119,102 Republican (D+54,099) on 410,884. Ralston (Nov 1): mail is 58 percent of the statewide total and Clark's mail margin is 'close to 2-to-1'; rurals R+30,000. Erik Jimenez's count (Oct 31): about 135,800 Republican 2022 voters had not yet voted, against 75.1% of 2022's Democrats already in.",
+   "catch": "Democrats are shifting from mail to in person, which the county-wide figures absorb (Clark overall is near D+66,000 against about 24,000 at this point in 2022); the in-person lead is small on 308,000 ballots. Registration is not vote choice.",
+   "src": "UF Election Lab daily file (Nevada, Oct 31); Nevada Independent, Nov 1",
    "url": "https://thenevadaindependent.com/article/the-early-voting-blog-2026-general",
-   "aff": "Secretary of State data; Ralston is a nonpartisan journalist; Calvert is an independent modeler"
+   "aff": "Secretary of State data; Ralston is a nonpartisan journalist"
   },
   {
    "dir": "R",
    "st": "US",
    "strength": 1,
-   "title": "McDonald and L2: Republicans' early numbers look like 2022's, and the registered-party gap has moved toward Republicans in four of Call the Map's seven compared states",
-   "value": "BBC (Oct 30, UF Election Lab's Thursday figures): 'More than 43 million Americans have already voted'; in the states with party registration, Democrats 44%, Republicans 31.2%, no affiliation 24.7%; Republican early numbers are 'generally similar to 2022.' Call the Map (Oct 29): 'the registered party gap moved toward Republicans in four of seven compared states, most in Pennsylvania (D+49.7 in 2022 to D+40.0 now)'; five of seven day-aligned states are ahead of 2022's pace. Pluribus News (Oct 23): L2's Paul Westcott: 'The best comparison is 2022, and 2022 was not a blue wave.' UF Election Lab's Oct 30 count is 44,778,349 ballots.",
-   "catch": "The 2022 comparison is a characterization, not a published same-point table, and the four-of-seven figure includes Pennsylvania's mail-only count. Democrats' 2022 early-vote edge preceded a national vote they lost by about 3 points, which is why the edge alone says little; the turnout gains are concentrated in states whose Election Day vote was Republican in 2022.",
-   "src": "BBC (Max Matza), Oct 30; Call the Map, Oct 29; Pluribus News, Oct 23",
-   "url": "https://ca.news.yahoo.com/more-43-million-ballots-cast-195653475.html",
-   "aff": "McDonald is a nonpartisan academic; L2 is a nonpartisan commercial vendor (modeled party); Call the Map is an independent tracker"
+   "title": "Call the Map: the registered-party gap moved toward Republicans in three of the five states comparable day by day with 2022, and Republican turnout has run near 2022's",
+   "value": "Call the Map (Nov 1): 51,430,902 ballots in 47 states; the five states comparable with 2022 by day (North Carolina, Pennsylvania, Maine, Nevada and Florida) are up 14% together, four of five ahead of 2022's pace, and 'the registered party gap moved toward Republicans' in Pennsylvania (D+48.6 to D+39.6), Maine (D+25.9 to D+24.3) and Nevada's Clark mail (D+23.5 to D+20.6), toward Democrats in North Carolina (D+6.8 to D+12.2) and Florida (R+6.7 to R+2.8). Newsweek (Oct 31, UF Election Lab): in the party-registration states, Democrats 43%, Republicans 32%, others 25%.",
+   "catch": "Three of the five moves are in mail-only or mail-heavy counts where Democrats are shifting to in person, and the national 43-32 split covers only the 27 states with party registration. Democrats' 2022 early-vote edge preceded a national vote they lost by about 3 points, which is why the edge alone says little.",
+   "src": "Call the Map, Nov 1; Newsweek (Hugh Cameron), Oct 31",
+   "url": "https://www.callthemap.com/early-vote",
+   "aff": "Call the Map is an independent tracker; UF Election Lab is nonpartisan"
   },
   {
    "dir": "D",
    "st": "US",
    "strength": 1,
-   "title": "TargetSmart's Bonier: the Hispanic share of the early vote is above its 2022 same-point level in 96% of counties, and Hispanic Democrats lead Hispanic Republicans in all 17 party-registration states",
-   "value": "Tom Bonier, The Data Dive (Oct 29): with the early vote 'approaching 40 million,' the Hispanic share exceeds its 2022 same-point level in 96% of counties; Hispanic voters under 30 in Texas have 'almost doubled' their same-point 2024 total; Hispanic Democratic turnout leads Hispanic Republican turnout in all 17 party-registration states, where Hispanic Republicans led in 10 of 17 at the same point in 2024; North Carolina shows a 14-point swing in the turnout party margin toward Democrats against 2024, then Florida and Nevada.",
-   "catch": "TargetSmart is a Democratic-aligned vendor, race is modeled from commercial data and surnames outside North Carolina, Louisiana and Florida, and most of the comparisons are to 2024, a presidential year in which Republicans had moved to early voting. Turnout share is not vote choice.",
-   "src": "Tom Bonier (TargetSmart), The Data Dive, Oct 29",
-   "url": "https://tombonier.substack.com/p/hispanic-turnout-is-booming",
-   "aff": "Democratic-aligned vendor (modeled race)"
+   "title": "A record 54.5 million have voted, past 2022's 45.9 million, with turnout gains concentrated among Black, Hispanic and young voters and voters who skipped 2022",
+   "value": "UF Election Lab: 54,467,368 ballots in the app's Nov 2 file (49 jurisdictions; 24.4 million by mail, 30.1 million in person) against 45,920,446 in all of 2022. Newsweek (Oct 31): about 49.6 million by Friday, Democrats 43% and Republicans 32% of ballots in party-registration states; the AP found Texas's early vote up 50% on 2022 and South Carolina's up 83%. Georgia's Black share is 32.4% against 30.2% at this point in 2022 (AJC); North Carolina's Black voters cast 1.5 times 2022's ballots and voters 18-25 nearly doubled (WBTV); G. Elliott Morris (L2 data, Oct 30): North Carolina Democrats cast 74.6% of two-party early ballots among voters with no 2022 vote, against 58.0% at the same point in 2022.",
+   "catch": "Turnout is not vote choice, and Election Day was Republican in 2022; the national party split covers only the registration states, and Morris's figures are L2's modeled two-party split in a state that does register party. DDHQ's Skelley: 'we must be careful not to divine with certainty winners and losers from the entrails of AB/EV data.'",
+   "src": "UF Election Lab, Nov 2; Newsweek, Oct 31; AJC, Oct 31; WBTV, Nov 1; G. Elliott Morris, Oct 30",
+   "url": "https://www.newsweek.com/democrats-leading-in-ballots-as-early-voting-surges-to-midterms-record-12644588",
+   "aff": "UF Election Lab is nonpartisan; L2 is a nonpartisan commercial vendor; Morris is an independent analyst"
   }
  ]
 }

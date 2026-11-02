@@ -1,7 +1,135 @@
 {
- "asof": "2026-10-30",
+ "asof": "2026-11-02",
  "note": "Maintained daily. Every item links to the page that confirms it.",
  "happened": [
+  {
+   "date": "2026-11-01",
+   "title": "Haley Stevens endorses Republican Mike Rogers for Senate two days before the election; Schumer calls it 'a despicable betrayal'",
+   "what": "Rep. Haley Stevens, who narrowly lost August's Democratic Senate primary, endorsed Mike Rogers after a Detroit church service with him: 'Our Democratic nominee for Senate said I was no longer welcome in his campaign and that I should stay away... And he's right. And that's why I am endorsing Mike Rogers for the United States Senate today.' Her chief of staff resigned; Michigan Democratic chair Curtis Hertel said she 'is not a current member of the Michigan Democratic Party, nor will she be in the future'; Abdul El-Sayed said 'None of this matters'; Trump praised her on Truth Social. More than 1.8 million Michiganders had already voted as of Friday.",
+   "why": "Michigan is the Democrats' most exposed open Senate seat, and a sitting Democratic congresswoman's defection is the biggest late shock in any Senate race.",
+   "races": [
+    "MI-SEN",
+    "MI-11"
+   ],
+   "src": "AP (Joey Cappelletti, Corey Williams and Mike Householder) via PBS NewsHour, Nov 1",
+   "url": "https://www.pbs.org/newshour/politics/democrat-haley-stevens-endorses-gops-mike-rogers-in-michigan-senate-race-2-days-before-election",
+   "aff": ""
+  },
+  {
+   "date": "2026-11-01",
+   "title": "Judge Gleason dismisses DOJ's Alaska suit seeking to block certification over the second 'Dan Sullivan'",
+   "what": "U.S. District Judge Sharon Gleason dismissed the Justice Department's Oct 22 lawsuit, which sought to bar certification of any result affected by voter confusion between Sen. Dan S. Sullivan and the unaffiliated Daniel J. Sullivan Jr., finding DOJ offered 'no workable plan as to how it proposes to segregate ballots' or protect ballot secrecy. U.S. Attorney Michael Heyman said the FBI and his office added resources to a criminal probe, and FBI agents visited at least two Daniel J. Sullivan donors in Sitka and Petersburg.",
+   "why": "The ruling removes the main legal path to delaying an Alaska Senate result that could decide the majority, though the criminal probe and a possible appeal continue.",
+   "races": [
+    "AK-SEN",
+    "AK-GOV"
+   ],
+   "src": "Alaska Public Media (Liz Ruskin), Nov 1",
+   "url": "https://alaskapublic.org/news/politics/elections/2026-11-01/judge-tosses-doj-lawsuit-that-sought-to-block-election-results-if-republican-sen-dan-sullivan-loses",
+   "aff": ""
+  },
+  {
+   "date": "2026-11-01",
+   "title": "Final Times/Siena polls: Democrats lead in Michigan, Texas, Maine, Ohio and Kansas, narrowly in Alaska; Iowa tied",
+   "what": "The New York Times/Siena likely-voter polls (Oct 23-Nov 1): El-Sayed 53-42 in Michigan, Talarico 50-43 in Texas, Jackson 51-45 in Maine, Brown 49-44 in Ohio, Hamilton 49-44 in Kansas (Graham 4), Peltola 48-46 in Alaska, Turek 48-47 in Iowa; governors: Benson 52-39, Hinojosa 48-47 over Abbott, Pingree 49-37 (Bennett 8), Acton 49-43, Holscher 48-47, Kreiss-Tomkins 54-46 after ranked-choice transfers, Sand 51-43. Samples 610 (Alaska) to 1,215 (Texas); margins of error 3.4 to 5.0 points.",
+   "why": "The last major battery before Election Day puts Democrats ahead or even in every Republican-held Senate target the polls can reach, including Texas and Iowa.",
+   "races": [
+    "MI-SEN",
+    "TX-SEN",
+    "ME-SEN",
+    "OH-SEN",
+    "KS-SEN",
+    "AK-SEN",
+    "IA-SEN",
+    "MI-GOV",
+    "TX-GOV",
+    "ME-GOV",
+    "OH-GOV",
+    "KS-GOV",
+    "AK-GOV",
+    "IA-GOV"
+   ],
+   "src": "Siena Research Institute, Nov 1; Newsweek (Hugh Cameron), Nov 2",
+   "url": "https://sri.siena.edu/2026/11/01/nytimes-siena-poll-of-likely-voters-alaska-iowa-kansas-maine-michigan-ohio-and-texas/",
+   "aff": ""
+  },
+  {
+   "date": "2026-11-01",
+   "title": "Silver Bulletin puts Democrats at 80.1% for the Senate; Silver says the polls point to 'a really big year for Democrats' but warns of another systematic error",
+   "what": "Nate Silver's Nov 1 post gave Democrats an 80.1% chance of Senate control, calling the Times/Siena results 'fantastic numbers for Democrats' and saying Republicans 'are in for a long night on Tuesday' if Democrats come home in blue states and Republicans don't in red ones, 'two very, very big ifs'; he warned of 'another embarrassing systematic polling error.' RacetotheWH projects 53 Democratic seats (79.4%). AtlasIntel's national poll (Oct 28-Nov 1, 3,566 adults) has the generic ballot 55.5-41.4.",
+   "why": "The forecasters have converged near four-in-five odds of a Democratic Senate going into Election Day.",
+   "races": [
+    "US"
+   ],
+   "src": "Newsweek (Hugh Cameron), Nov 2; Silver Bulletin, Nov 1",
+   "url": "https://www.newsweek.com/nate-silver-says-gop-could-be-in-for-long-night-as-final-polls-drop-12648643",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-31",
+   "title": "Inside Elections' final ratings move 63 races toward Democrats, project a 20-30 seat House gain and 4-6 Senate seats",
+   "what": "Nathan Gonzales made 64 changes (45 House, 9 Senate, 10 governor), all but Oregon's governor race toward Democrats: Senate Georgia to Likely D, Ohio and Texas to Tilt D, Iowa and Kansas to Toss-up, Nebraska and South Carolina to Tilt R, Louisiana and Mississippi to Likely R; governors Alaska, Georgia, Ohio and Wisconsin to Tilt D, Nevada to Toss-up, Texas to Tilt R; House moves include CO-05, FL-22, KY-06, MI-04, MT-01, PA-01 and TX-35 to Toss-up and AZ-06, CO-08, FL-14, FL-25, NC-01, NC-11, OH-07, OH-09, PA-10, TX-15, VA-02 and WI-03 to Tilt D. 'Democrats appear well on their way to winning the House majority.'",
+   "why": "The most bullish Inside Elections projection of the cycle puts the Democratic House range above the app's seat count and makes the Senate a Democratic pickup of four to six.",
+   "races": [
+    "US",
+    "GA-SEN",
+    "OH-SEN",
+    "TX-SEN",
+    "IA-SEN",
+    "KS-SEN",
+    "NE-SEN",
+    "SC-SEN",
+    "LA-SEN",
+    "MS-SEN",
+    "AK-GOV",
+    "GA-GOV",
+    "OH-GOV",
+    "WI-GOV",
+    "NV-GOV",
+    "TX-GOV",
+    "OR-GOV",
+    "CO-05",
+    "FL-22",
+    "KY-06",
+    "MI-04",
+    "MT-01",
+    "PA-01",
+    "TX-35"
+   ],
+   "src": "Roll Call (Nathan L. Gonzales), Oct 31",
+   "url": "https://rollcall.com/2026/10/31/midterm-elections-race-rating-changes/",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-30",
+   "title": "9th Circuit refuses DOJ's bid to set aside about 20,000 California mail ballots; DOJ says it will go to the Supreme Court",
+   "what": "A 2-1 panel (Judges Mark Bennett and Gabriel Sanchez, Patrick Bumatay dissenting) found no clear error in the district court's finding that 'there is no feasible way to identify and segregate the ballots of specific individuals.' Separately, Judge Trina Thompson barred DOJ from threatening election workers or demanding ballots be segregated, another panel put federal noncitizen-voting investigations in nine states on hold until after Election Day, and at least three Los Angeles County election officials were subpoenaed to a grand jury for Nov 4.",
+   "why": "The rulings keep California's full count in place for its competitive House seats while the Justice Department's challenges move to after the election.",
+   "races": [
+    "US",
+    "CA-13",
+    "CA-22",
+    "CA-45"
+   ],
+   "src": "AP (Safiyah Riddle) via KSAT, Oct 30",
+   "url": "https://www.ksat.com/news/politics/2026/10/30/federal-appeals-court-rejects-justice-department-demand-for-california-to-set-aside-disputed-ballots/",
+   "aff": ""
+  },
+  {
+   "date": "2026-10-30",
+   "title": "Trump revives his Dubuque and Salina rallies a day after canceling them, then holds both Sunday",
+   "what": "After the RNC canceled the Saturday Salina and Sunday Dubuque rallies Thursday night in favor of tele-rallies in nearly 20 states, both were back on by Friday morning, moved to Sunday Nov 1: Dubuque at Five Flags Center at 2 p.m. and Salina Regional Airport at 6 p.m. Trump spoke about two hours in Dubuque and about 90 minutes in Salina, where Sen. Roger Marshall spoke and Trump said 'This is our last stop. We're closing it down tonight'; AP counted more than two dozen Trump rallies in 19 states since Oct 1.",
+   "why": "Iowa and Kansas are the two Republican-held Senate seats the final polls call even, and the reversal put the president in both on the last day of early voting.",
+   "races": [
+    "IA-SEN",
+    "KS-SEN",
+    "IA-GOV",
+    "KS-GOV"
+   ],
+   "src": "AP via KCRG, Oct 30; AP via KCTV5, Nov 1",
+   "url": "https://www.kctv5.com/2026/11/02/trump-rallies-iowa-kansas-republicans-fight-keep-senate-house-control/",
+   "aff": ""
+  },
   {
    "date": "2026-10-30",
    "title": "Cook moves Nebraska to Lean R and Florida to Likely R, shifts 12 House seats toward Democrats, projects a 12-25 seat gain",
@@ -47,51 +175,6 @@
   },
   {
    "date": "2026-10-29",
-   "title": "Trump cancels his Salina and Dubuque rallies and a Michigan stop, switching to tele-rallies in 19 states; Vance drops a Minnesota trip",
-   "what": "The White House canceled Trump's Oct 31 rally at Salina Regional Airport for Sen. Roger Marshall and his Nov 1 rally at Dubuque's Five Flags Center for Ashley Hinson, saying he 'will instead engage with Americans through over 20 telerallies before Election Day' in Alabama, Alaska, Arizona, Colorado, Florida, Iowa, Kansas, Louisiana, Michigan, Montana, Nebraska, Nevada, New Mexico, New York, Ohio, Pennsylvania, South Carolina, Texas and Virginia; Trump said he skipped Kansas because Marshall is 'doing very well,' Marshall said he did not know why, and a planned Nov 2 Michigan rally was scrapped per the Detroit News. Vance canceled his Oct 30 'War on Fraud' event in St. Cloud, Minn. Trump is expected to spend Election Day at the White House, and Friday's Daytona Beach rally is reported as his last in-person rally of the cycle.",
-   "why": "The president's in-person closing argument ends four days early in two of the Republican-held Senate seats the raters list as closest, Kansas and Iowa.",
-   "races": [
-    "KS-SEN",
-    "IA-SEN",
-    "MI-SEN",
-    "US"
-   ],
-   "src": "Spectrum News Kansas City (David Neilson), Oct 29; KCRG via KTIV, Oct 29; CBS News live blog (Kathryn Krupnik and Caitlin Yilek), Oct 29; Detroit News via Yahoo (Craig Mauger), Oct 30; KNSI, Oct 30",
-   "url": "https://www.ktiv.com/2026/10/29/president-trump-cancels-dubuque-rally/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-29",
-   "title": "Ramaswamy stops airing the ad featuring Amy Acton's estranged mother after bipartisan criticism",
-   "what": "Vivek Ramaswamy's campaign stopped running the ad in which Amy Acton's estranged mother attacks her, after about $1 million of a pledged $4 million buy had aired (AP and AdImpact); Gov. Mike DeWine and Jon Husted criticized the ad while Trump and Vance defended Ramaswamy.",
-   "why": "Ohio's governorship is one of the Democrats' likeliest pickups, with the final independent polls inside the margin of error, and the ad became the closing story of the race.",
-   "races": [
-    "OH-GOV",
-    "OH-SEN"
-   ],
-   "src": "Forbes (Siladitya Ray), Oct 30",
-   "url": "https://www.forbes.com/sites/siladityaray/2026/10/30/ramaswamy-stops-airing-controversial-amy-acton-ad-amid-bipartisan-backlash/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-29",
-   "title": "Silver Bulletin puts Democrats near 79% for the Senate after a Montana model fix; the generic ballot there is D+8.9",
-   "what": "Nate Silver said his model had treated Montana independent Seth Bodnar as a pure third-party entrant and, corrected, gives Democrats about 79% for the Senate, likely 77-78% after an Alaska update; the Silver Bulletin page updated Oct 29 lists Texas (D+2.5), Ohio (D+3.0), Alaska (D+3.6) and Maine (D+2.4) as the battlegrounds within normal polling error, with its generic-ballot average at Democrats 50.6, Republicans 41.7.",
-   "why": "The model most often cited against the app's call is now well above the markets (about 69%) on the Senate, with Democrats favored in every tipping-point race.",
-   "races": [
-    "US",
-    "MT-SEN",
-    "AK-SEN",
-    "TX-SEN",
-    "OH-SEN",
-    "ME-SEN"
-   ],
-   "src": "Daily Beast (Leigh Kimmins), Oct 30; Silver Bulletin, Oct 29; Forbes (Sara Dorn), Oct 29",
-   "url": "https://www.thedailybeast.com/nate-silver-makes-bold-senate-call-days-before-election",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-29",
    "title": "CNN polls: El-Sayed +7 in Michigan, Talarico +6 in Texas, Jackson +4 in Maine, Hamilton +4 in Kansas",
    "what": "CNN polls by SSRS of likely voters (Oct 20-27) have Abdul El-Sayed 49-42 over Mike Rogers in Michigan and James Talarico 49-43 over Ken Paxton in Texas; in Oct 20-26 surveys, Troy Jackson leads Susan Collins 49-45 in Maine and Adam Hamilton leads Sen. Roger Marshall 49-45 in Kansas, where Hamilton draws about 12% of Republicans. Collins' unfavorable rating is 54%; the Texas governor race had no clear leader.",
    "why": "Democrats leading in all four, including two Republican-held seats Cook rates Toss Up, is the path to a Senate majority; at least one in eight likely voters in every state but Maine said they could still switch.",
@@ -120,37 +203,6 @@
    "aff": ""
   },
   {
-   "date": "2026-10-29",
-   "title": "Judge Carter refuses to segregate 20,000 California mail ballots; DOJ renews its 9th Circuit appeal and sets a Nov 13 hearing",
-   "what": "In a 26-page order, U.S. District Judge David O. Carter denied the Justice Department's request to make California set aside about 20,000 mail ballots from voters the administration called likely noncitizens, writing that the relief would 'wreak havoc' on the midterms; DOJ renewed its appeal to the Ninth Circuit, which had dismissed an earlier emergency application 2-1 on Oct 26, and Carter set an expedited evidentiary hearing for Nov 13, before California's Dec 3 certification deadline. DOJ also issued grand jury subpoenas to California officials over alleged noncitizen registrations.",
-   "why": "The ruling leaves California's count untouched for now in three Toss Up House seats, with the appeal the remaining route to disrupt it before Election Day.",
-   "races": [
-    "US",
-    "CA-13",
-    "CA-22",
-    "CA-45"
-   ],
-   "src": "MyNewsLA, Oct 29; ABC7 Los Angeles, Oct 29; CBS News live blog (Nicole Sganga), Oct 29",
-   "url": "https://mynewsla.com/crime/2026/10/29/doj-renews-appeal-to-9th-circuit-for-order-purging-20000-suspect-ballots/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-28",
-   "title": "Final-week state polls: Marquette has Crowley +7 in Wisconsin; Mitchell, UMass Lowell and High Point give Democrats 7 to 14 points in Michigan, New Hampshire and North Carolina",
-   "what": "Marquette Law School's final Wisconsin poll (Oct 14-22) has David Crowley 51-44 over Tom Tiffany among likely voters, his largest lead of the cycle, with Trump at 37% approve, 61% disapprove in the state. Mitchell Research for CBS Detroit (Oct 26-27) has Abdul El-Sayed 51-44 over Mike Rogers; UMass Lowell (Oct 2-19) has Chris Pappas 48-41 over John E. Sununu and Kelly Ayotte 48-42 over Cinde Warmington; High Point University (Oct 1-20) has Roy Cooper 54-40 over Michael Whatley.",
-   "why": "The Republican-held Wisconsin governorship, Michigan's open Senate seat and North Carolina's Senate seat all look Democratic in the final independent polls.",
-   "races": [
-    "WI-GOV",
-    "MI-SEN",
-    "NH-SEN",
-    "NH-GOV",
-    "NC-SEN"
-   ],
-   "src": "Marquette Law School, Oct 28; WPR (Rich Kremer), Oct 28; CBS Detroit, Oct 28; UMass Lowell, Oct 28; High Point University, Oct 28",
-   "url": "https://law.marquette.edu/poll/2026/10/28/mlsp92-press-release/",
-   "aff": ""
-  },
-  {
    "date": "2026-10-28",
    "title": "Times/Siena: South Carolina Senate tied 48-48; Moody +6 in Florida, Flanagan +14 in Minnesota",
    "what": "Siena's final-week polls of likely voters for The New York Times have Annie Andrews and Darline Graham tied 48-48 in South Carolina, with Alan Wilson leading the governor race 51-44; Ashley Moody 50-44 over Angie Nixon and Byron Donalds 48-44 over David Jolly in Florida; and Peggy Flanagan 54-40 over Michele Tafoya and Amy Klobuchar 56-38 in Minnesota.",
@@ -166,224 +218,9 @@
    "src": "Siena Research Institute, Oct 28",
    "url": "https://sri.siena.edu/2026/10/28/nytimes-siena-poll-of-likely-voters-florida-minnesota-and-south-carolina/",
    "aff": ""
-  },
-  {
-   "date": "2026-10-27",
-   "title": "Sabato's Crystal Ball: North Carolina Senate to Likely D, South Carolina to Lean R; 225 House seats at least lean D",
-   "what": "Sabato's final-week update moves the open North Carolina Senate seat from Leans to Likely Democratic, South Carolina from Likely to Leans Republican and Florida from Safe to Likely Republican, leaving 49 seats at least leaning Democratic, 46 Republican and 5 toss-ups; in the House, PA-08 and TX-15 move to Leans Democratic and KY-06, MT-01, CO-05, MO-02, PA-01, VA-05 and AL-02 to Toss-up, for 225 seats at least leaning Democratic, 193 Republican and 17 toss-ups; Arizona's governor race moves to Likely Democratic and Vermont's to Leans Republican.",
-   "why": "The raters now have Democrats at a House majority without any toss-up and 'the inside track' to a narrow Senate majority of 51 or 52 seats.",
-   "races": [
-    "NC-SEN",
-    "SC-SEN",
-    "FL-SEN",
-    "PA-08",
-    "TX-15",
-    "KY-06",
-    "MT-01",
-    "CO-05",
-    "MO-02",
-    "PA-01",
-    "VA-05",
-    "AL-02",
-    "AZ-GOV",
-    "VT-GOV"
-   ],
-   "src": "Sabato's Crystal Ball, Oct 27",
-   "url": "https://sabatoscrystalball.substack.com/p/democrats-appear-to-hold-narrow-senate",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-27",
-   "title": "Cook's final governor ratings shift two states toward Democrats, project a 2-4 seat gain",
-   "what": "Cook Political Report's final governors ratings move two states toward Democrats and say 'Democrats are in a prime position to pick up between two and four governor's seats this cycle,' which would give them a majority of governorships for the first time since 2010; Cook's tracker puts Trump's approval at 36.4%.",
-   "why": "Democrats hold 24 governorships and need 26 for a majority; the raters now put that within reach.",
-   "races": [
-    "US"
-   ],
-   "src": "Cook Political Report (CPR In Brief), Oct 27",
-   "url": "https://thecookpoliticalreport.substack.com/p/cpr-in-brief-october-27-2026",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-23",
-   "title": "SLF launches ads in eight Senate states and Mississippi; Democrats pull from North Carolina",
-   "what": "Senate Leadership Fund released new ads against Peltola, Turek, Hamilton, Jackson, El-Sayed, Osborn, Pappas and Brown and placed a low-seven-figure buy defending Cindy Hyde-Smith after Senate Majority PAC's $1.2 million Mississippi campaign; Legis1's Oct 21-22 filings tally had Democratic super PACs adding $6.7 million to Republicans' $4.1 million, with WinSenate adding $2.2 million in Ohio but cutting $525,000 in North Carolina and SLF withdrawing $239,000 in Georgia.",
-   "why": "Republican money defending a Solid R seat and Democrats trimming North Carolina show where each side thinks the map has moved.",
-   "races": [
-    "MS-SEN",
-    "NC-SEN",
-    "OH-SEN",
-    "IA-SEN",
-    "GA-SEN",
-    "AK-SEN",
-    "KS-SEN",
-    "ME-SEN",
-    "MI-SEN",
-    "NE-SEN",
-    "NH-SEN"
-   ],
-   "src": "Senate Leadership Fund, Oct 23; Semafor (Burgess Everett), Oct 22; Legis1, Oct 22",
-   "url": "https://legis1.com/news/super-pac-ad-spending-dems-push-gop-pulls-back-as",
-   "aff": "SLF is R-aligned"
   }
  ],
  "upcoming": [
-  {
-   "date": "2026-10-30",
-   "time": "",
-   "title": "Georgia and Texas in-person early voting ends",
-   "what": "Friday, Oct. 30, is the last day of in-person early voting in Georgia and in Texas.",
-   "why": "The final early-vote totals in two Senate battlegrounds and the Georgia and Texas governor races set the Election Day math for both parties.",
-   "races": [
-    "GA-SEN",
-    "GA-GOV",
-    "TX-SEN",
-    "TX-GOV"
-   ],
-   "src": "Axios Atlanta, Oct 19; FOX 7 Austin, Oct 12",
-   "url": "https://www.axios.com/local/atlanta/2026/10/19/obama-atlanta-rally-georgia-2026-election-democrats"
-  },
-  {
-   "date": "2026-10-30",
-   "time": "",
-   "title": "Nevada in-person early voting ends",
-   "what": "Clark County's early-voting sites close after Oct 30 (some are closed that day for Nevada Day); mail ballots can still be returned through Election Day.",
-   "why": "Democrats lead Nevada's early vote by 5.7 points on Ralston's count, and Election Day's Republican turnout decides the governor race.",
-   "races": [
-    "NV-GOV",
-    "NV-03",
-    "NV-04"
-   ],
-   "src": "Clark County Election Department notice, accessed Oct 26",
-   "url": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:c2100fbb-1623-416e-aa6e-9b092cbb5910/original/as/Notice-EV-26G.pdf"
-  },
-  {
-   "date": "2026-10-30",
-   "time": "",
-   "title": "Harris headlines Fulton County Democrats fundraiser",
-   "what": "Harris closes her Georgia swing at a Fulton County Democratic Party fundraiser in Atlanta on the last day of in-person early voting.",
-   "why": "Fulton is the Democrats' largest vote source in a state with a Toss Up governor race.",
-   "races": [
-    "GA-GOV",
-    "GA-SEN"
-   ],
-   "src": "Atlanta News First (Tim Darnell), Oct 29",
-   "url": "https://www.atlantanewsfirst.com/2026/10/29/hfr-1029-obama-then-harris-democrats-deploy-star-power-georgias-final-stretch/"
-  },
-  {
-   "date": "2026-10-30",
-   "time": "",
-   "title": "Arizona in-person early voting ends",
-   "what": "Arizona's in-person early voting closes Friday; emergency voting runs through Monday and mail ballots must be returned by 7 p.m. Election Day.",
-   "why": "Arizona's early ballots are running R+0.9 by registration with the Hobbs-Biggs governor race on the ballot.",
-   "races": [
-    "AZ-GOV",
-    "AZ-01",
-    "AZ-06"
-   ],
-   "src": "Ballotpedia, accessed Oct 29",
-   "url": "https://ballotpedia.org/Early_voting_dates,_2026"
-  },
-  {
-   "date": "2026-10-30",
-   "time": "5:00 PM",
-   "title": "Replies due in DOJ's Alaska certification suit",
-   "what": "Replies from the Peltola campaign, the DSCC and voting-rights intervenors on the motions to dismiss are due at 5 p.m. Alaska time before U.S. District Judge Sharon Gleason, who has been asked by the state's elections director to rule by Nov 2.",
-   "why": "The suit is the vehicle for any challenge to certifying Alaska's Senate result, a Toss-up seat Democrats need.",
-   "races": [
-    "AK-SEN"
-   ],
-   "src": "Juneau Independent (Mark Sabbatini), Oct 29; Democracy Docket (Jacob Knutson), Oct 27",
-   "url": "https://www.juneauindependent.com/post/trump-ordered-lawsuit-in-alaska-s-us-senate-race-gains-intensity-after-peltola-campaign-revelations"
-  },
-  {
-   "date": "2026-10-31",
-   "time": "",
-   "title": "South Carolina early voting ends",
-   "what": "South Carolina's two-week early-voting period closes Saturday.",
-   "why": "The Graham-Andrews Senate race tied in the Times/Siena poll is the Democrats' outside shot at a sixth pickup.",
-   "races": [
-    "SC-SEN",
-    "SC-GOV"
-   ],
-   "src": "Ballotpedia, accessed Oct 29",
-   "url": "https://ballotpedia.org/Early_voting_dates,_2026"
-  },
-  {
-   "date": "2026-10-31",
-   "time": "3:00 PM",
-   "title": "North Carolina early voting ends",
-   "what": "One-stop early voting closes at 3 p.m.; Michael Bitzer projects a little under 3 million early ballots, against 2.1 million in 2022.",
-   "why": "How much of the Democratic early-vote surge is new turnout rather than shifted Election Day voters shows in the final count.",
-   "races": [
-    "NC-SEN",
-    "NC-01",
-    "NC-11"
-   ],
-   "src": "WUNC (Daneen Khan), Oct 14",
-   "url": "https://www.wunc.org/politics/2026-10-14/elections-101-your-guide-to-early-voting-in-north-carolina"
-  },
-  {
-   "date": "2026-10-31",
-   "time": "",
-   "title": "Florida's mandatory early-voting period ends; 16 counties stay open Sunday",
-   "what": "Early voting ends statewide Saturday Oct 31, with 16 counties including Miami-Dade, Hillsborough, Orange, Palm Beach, Pinellas and Duval keeping sites open through Sunday Nov 1.",
-   "why": "Republicans lead Florida's early vote by 1.8 points by registration after a Republican in-person surge; the last two days set the Election Day math in the Senate and governor races and three redrawn House seats.",
-   "races": [
-    "FL-SEN",
-    "FL-GOV",
-    "FL-14",
-    "FL-25",
-    "FL-22"
-   ],
-   "src": "News Service of Florida via WUSF, Oct 30",
-   "url": "https://wusf.org/politics-issues/2026-10-30/nearly-4-million-florida-votes-have-been-cast-for-the-midterm-election"
-  },
-  {
-   "date": "2026-10-31",
-   "time": "",
-   "title": "Kentucky's three days of early in-person voting end",
-   "what": "Kentucky's no-excuse early in-person voting, which began Thursday Oct 29, closes Saturday.",
-   "why": "Early votes close in the open KY-06, rated a Toss-up by Crystal Ball, and the Barr-Booker Senate race.",
-   "races": [
-    "KY-06",
-    "KY-SEN"
-   ],
-   "src": "Kentucky Lantern, Oct 20",
-   "url": "https://kentuckylantern.com/2026/10/20/iran-gas-ai-barr-and-booker-spar-in-the-only-tv-debate-for-kentucky-senate-this-year/"
-  },
-  {
-   "date": "2026-11-01",
-   "time": "",
-   "title": "Michigan early in-person voting ends",
-   "what": "The statewide nine-day early-voting period that opened Oct 24 ends Nov 1.",
-   "why": "Michigan's Senate race is the closest of the Democratic-leaning seats, and its early vote has no party registration to read.",
-   "races": [
-    "MI-SEN",
-    "MI-GOV",
-    "MI-04",
-    "MI-07",
-    "MI-10"
-   ],
-   "src": "Bridge Michigan voter guide, accessed Oct 26",
-   "url": "https://bridgemi.com/michigan-government/2026-bridge-michigan-voter-guide/"
-  },
-  {
-   "date": "2026-11-01",
-   "time": "",
-   "title": "Wisconsin and Ohio early in-person voting ends",
-   "what": "In-person absentee voting in Wisconsin and early in-person voting in Ohio close Sunday Nov 1.",
-   "why": "Wisconsin's governor race and Ohio's Senate and governor races are among the closest on the map; Ohio's early vote has run Democratic by last primary ballot.",
-   "races": [
-    "WI-GOV",
-    "WI-03",
-    "OH-SEN",
-    "OH-GOV",
-    "OH-09"
-   ],
-   "src": "Ballotpedia, accessed Oct 29",
-   "url": "https://ballotpedia.org/Early_voting_dates,_2026"
-  },
   {
    "date": "2026-11-02",
    "time": "",
@@ -414,6 +251,57 @@
    ],
    "src": "Ballotpedia, accessed Oct 29",
    "url": "https://ballotpedia.org/Early_voting_dates,_2026"
+  },
+  {
+   "date": "2026-11-02",
+   "time": "",
+   "title": "Vance rally at Toledo Express Airport",
+   "what": "Toledo Mayor Wade Kapszukiewicz said Vice President Vance will visit the Toledo area Monday ahead of Election Day for a rally at Toledo Express Airport.",
+   "why": "Ohio's Senate special (Husted-Brown) and governor's race (Ramaswamy-Acton) are the Republicans' most exposed statewide seats in the final polls.",
+   "races": [
+    "OH-SEN",
+    "OH-GOV",
+    "OH-09"
+   ],
+   "src": "Toledo Blade, Oct 29",
+   "url": "https://www.toledoblade.com/local/politics/2026/10/29/jd-vance-rally-express-airport/stories/20261029100"
+  },
+  {
+   "date": "2026-11-02",
+   "time": "",
+   "title": "Trump's closing speech at the Lincoln Memorial Reflecting Pool",
+   "what": "The White House announced an afternoon speech by President Trump at the Reflecting Pool, which has been closed for repairs; he skipped travel to battleground states Monday for the Washington event and plans telephone rallies.",
+   "why": "The president's final midterm message comes as his rallies ended Sunday in Iowa and Kansas and Republicans trail in most Senate battleground polls.",
+   "races": [
+    "US"
+   ],
+   "src": "AP (Will Weissert) via Live 5 News, Nov 1",
+   "url": "https://www.live5news.com/2026/11/02/trump-is-giving-his-closing-midterm-pitch-problem-plagued-lincoln-memorial-reflecting-pool/"
+  },
+  {
+   "date": "2026-11-02",
+   "time": "",
+   "title": "Trump tele-rally for Julia Letlow in Louisiana",
+   "what": "President Trump, Rep. Julia Letlow and Speaker Mike Johnson speak on a call-in tele-rally Monday night, the eve of the election, in Letlow's Senate race against Democrat Jamie Davis.",
+   "why": "Inside Elections moved Louisiana to Likely Republican and neither Sen. Bill Cassidy nor John Fleming has endorsed Letlow, so the seat is a late Republican worry.",
+   "races": [
+    "LA-SEN"
+   ],
+   "src": "The Advocate (Tyler Bridges), Oct 30",
+   "url": "https://www.theadvocate.com/baton_rouge/news/politics/trump-to-hold-rally-for-julia-letlow-on-eve-of-election-day/article_37e534b6-6755-5c79-b0f2-2ada05453a8b.html"
+  },
+  {
+   "date": "2026-11-02",
+   "time": "9:15 AM",
+   "title": "Vance rallies for Constantino and Buller in Rome, N.Y.",
+   "what": "Vice President Vance headlines a get-out-the-vote rally at Griffiss park in Rome for Republicans Anthony Constantino (NY-21, against Democrat Blake Gendebien) and Kailee Buller (NY-22, against Rep. John Mannion); Indivisible Mohawk Valley plans a protest.",
+   "why": "The administration's last in-person stop is in two upstate New York House seats Republicans need to hold to limit Democratic gains.",
+   "races": [
+    "NY-21",
+    "NY-22"
+   ],
+   "src": "WAMC (Randy Gorbman), Nov 2; WWNY, Nov 2",
+   "url": "https://www.wamc.org/2026-11-02/vice-president-jd-vance-heads-to-rome-to-rally-for-congressional-candidates-in-d-21-and-d-22"
   },
   {
    "date": "2026-11-03",
@@ -512,6 +400,21 @@
    "src": "The Green Papers, accessed Oct 13",
    "url": "https://www.thegreenpapers.com/G26/PollingHours.phtml",
    "group": "election-night"
+  },
+  {
+   "date": "2026-11-04",
+   "time": "",
+   "title": "Los Angeles County election officials before a federal grand jury",
+   "what": "At least three Los Angeles County election officials were subpoenaed to appear before a federal grand jury the day after the election, as the Justice Department pursues its noncitizen-voting claims after the 9th Circuit refused to segregate about 20,000 ballots.",
+   "why": "The dispute over California ballots could shape challenges to close House counts in the state after Election Day.",
+   "races": [
+    "US",
+    "CA-13",
+    "CA-22",
+    "CA-45"
+   ],
+   "src": "AP (Safiyah Riddle) via KSAT, Oct 30",
+   "url": "https://www.ksat.com/news/politics/2026/10/30/federal-appeals-court-rejects-justice-department-demand-for-california-to-set-aside-disputed-ballots/"
   }
  ],
  "trail": [
@@ -1770,11 +1673,11 @@
      "race": "FL-SEN"
     }
    ],
-   "status": "announced",
-   "src": "Spectrum News 13, Oct 29; Daytona Times, Oct 27; WFTV (Angel Green), Oct 27",
-   "url": "https://mynews13.com/fl/orlando/news/2026/10/29/president-donald-trump-to-hold-midterm-rally-in-daytona-beach-on-friday",
-   "aff": "",
-   "note": "Doors 3:30 p.m., remarks about 7 p.m.; Donalds expected; reported as the last in-person rally."
+   "status": "held",
+   "src": "WFTV (Jake Jordan), Oct 30; Epoch Times (Troy Myers), Oct 31",
+   "url": "https://www.wftv.com/news/local/live-updates-thousands-gather-president-donald-trumps-daytona-beach-rally/GSJRCQWM2BHQ7OCNRD6PKW5FRM/",
+   "aff": "The Epoch Times is a conservative-leaning outlet",
+   "note": "About 90 minutes; Donalds, Moody, Fine, Collins, Uthmeier and Rick Scott spoke."
   },
   {
    "date": "2026-10-30",
@@ -1807,7 +1710,7 @@
    "src": "Spectrum News Kansas City (David Neilson), Oct 29; WIBW (Aja Carter), Oct 27",
    "url": "https://spectrumlocalnews.com/mo/kansas-city/news/2026/10/29/president-trump-cancels-rally-in-salina--ks-",
    "aff": "",
-   "note": "Canceled Oct 29; White House says Trump will hold over 20 tele-rallies instead."
+   "note": "Canceled Oct 29, then revived Oct 30 and moved to Sunday Nov 1."
   },
   {
    "date": "2026-11-01",
@@ -1815,7 +1718,7 @@
    "kind": "rally",
    "city": "Dubuque",
    "st": "IA",
-   "venue": "Five Flags Event Center",
+   "venue": "Five Flags Center",
    "boosting": [
     {
      "name": "Ashley Hinson",
@@ -1826,11 +1729,30 @@
      "race": "IA-GOV"
     }
    ],
-   "status": "canceled",
-   "src": "KCRG via KTIV, Oct 29; KWQC (Jayla Louis), Oct 26",
-   "url": "https://www.ktiv.com/2026/10/29/president-trump-cancels-dubuque-rally/",
+   "status": "held",
+   "src": "AP via KCTV5, Nov 1; AP via KCRG, Oct 30",
+   "url": "https://www.kctv5.com/2026/11/02/trump-rallies-iowa-kansas-republicans-fight-keep-senate-house-control/",
    "aff": "",
-   "note": "Canceled Oct 29; replaced by tele-rallies in 19 states including Iowa."
+   "note": "Revived Oct 30 after Thursday’s cancellation; about two hours."
+  },
+  {
+   "date": "2026-11-01",
+   "who": "Trump",
+   "kind": "rally",
+   "city": "Salina",
+   "st": "KS",
+   "venue": "Salina Regional Airport",
+   "boosting": [
+    {
+     "name": "Roger Marshall",
+     "race": "KS-SEN"
+    }
+   ],
+   "status": "held",
+   "src": "AP via KCTV5, Nov 1",
+   "url": "https://www.kctv5.com/2026/11/02/trump-rallies-iowa-kansas-republicans-fight-keep-senate-house-control/",
+   "aff": "",
+   "note": "Rescheduled from Oct 31; about 90 minutes; Marshall spoke; 'our last stop.'"
   },
   {
    "date": "2026-11-02",
@@ -1846,10 +1768,24 @@
     }
    ],
    "status": "announced",
-   "src": "WVUE via KSLA (Judy Black), Oct 28",
-   "url": "https://www.ksla.com/2026/10/29/trump-says-he-will-host-major-tele-rally-julia-letlow/",
+   "src": "The Advocate (Tyler Bridges), Oct 30; WVUE via KSLA, Oct 28",
+   "url": "https://www.theadvocate.com/baton_rouge/news/politics/trump-to-hold-rally-for-julia-letlow-on-eve-of-election-day/article_37e534b6-6755-5c79-b0f2-2ada05453a8b.html",
    "aff": "",
-   "note": "Announced on Truth Social for Monday evening, with Speaker Mike Johnson."
+   "note": "Call-in rally Monday night with Letlow and Speaker Mike Johnson."
+  },
+  {
+   "date": "2026-11-02",
+   "who": "Trump",
+   "kind": "official",
+   "city": "Washington",
+   "st": "DC",
+   "venue": "Lincoln Memorial Reflecting Pool",
+   "boosting": [],
+   "status": "announced",
+   "src": "AP (Will Weissert) via Live 5 News, Nov 1",
+   "url": "https://www.live5news.com/2026/11/02/trump-is-giving-his-closing-midterm-pitch-problem-plagued-lincoln-memorial-reflecting-pool/",
+   "aff": "",
+   "note": "Afternoon closing midterm speech announced by the White House."
   },
   {
    "date": "2026-11-02",
@@ -1857,18 +1793,36 @@
    "kind": "rally",
    "city": "Rome",
    "st": "NY",
-   "venue": "Skydome",
+   "venue": "Griffiss Business and Technology Park (Skydome)",
    "boosting": [
     {
      "name": "Anthony Constantino",
      "race": "NY-21"
+    },
+    {
+     "name": "Kailee Buller",
+     "race": "NY-22"
     }
    ],
    "status": "announced",
-   "src": "Utica Observer-Dispatch (Amy Neff Roth) via Yahoo, Oct 30",
-   "url": "https://www.yahoo.com/news/politics/articles/vp-jd-vance-coming-rome-011007357.html",
+   "src": "WAMC (Randy Gorbman), Nov 2; Utica Observer-Dispatch via Yahoo, Oct 30",
+   "url": "https://www.wamc.org/2026-11-02/vice-president-jd-vance-heads-to-rome-to-rally-for-congressional-candidates-in-d-21-and-d-22",
    "aff": "",
-   "note": "Get-out-the-vote rally at 9:15 a.m., confirmed by the Constantino campaign."
+   "note": "Monday morning get-out-the-vote rally; Indivisible Mohawk Valley plans a protest."
+  },
+  {
+   "date": "2026-11-02",
+   "who": "Vance",
+   "kind": "rally",
+   "city": "Toledo",
+   "st": "OH",
+   "venue": "Toledo Express Airport",
+   "boosting": [],
+   "status": "announced",
+   "src": "Toledo Blade, Oct 29",
+   "url": "https://www.toledoblade.com/local/politics/2026/10/29/jd-vance-rally-express-airport/stories/20261029100",
+   "aff": "",
+   "note": "Mayor Kapszukiewicz said Vance would visit Monday ahead of Election Day."
   }
  ],
  "trail_note": "Trump and Vance campaign appearances since Sep 1, 2026, from White House pool reports, Roll Call Factbase and local coverage. Closed-press fundraisers and tele-rallies are rarely reported, so they are undercounted."
