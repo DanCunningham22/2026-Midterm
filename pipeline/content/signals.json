@@ -1,5 +1,5 @@
 {
- "asof": "2026-11-02",
+ "asof": "2026-11-03",
  "note": "Current readings for the other-signals panel; the backtest's history comes from pipeline/backtest/data/econ (FRED) and retirements.csv. Each item: what it is, the latest value, the comparison, the source page that states it.",
  "items": [
   {
@@ -16,7 +16,7 @@
    "key": "gasprice",
    "label": "Gasoline, national average (AAA)",
    "value": 4.17,
-   "value_label": "$4.169 a gallon (Nov 2)",
+   "value_label": "$4.169 a gallon (Nov 2; AAA's page still showed Nov 2 on the morning of Nov 3)",
    "compare": "$3.036 a year ago; $4.286 a week ago; $4.396 a month ago",
    "say": "Up about 37% in a year, though 12 cents lower than a week ago and 23 cents below a month ago.",
    "src": "AAA, Nov 2",
@@ -36,21 +36,21 @@
    "key": "markets",
    "label": "Prediction markets: Democratic House",
    "value": 94,
-   "value_label": "94% (Kalshi 93.9¢, Polymarket 95¢)",
-   "compare": "Senate: about 72-73% Democratic from the balance-of-power contracts (Democrats win both 72.5¢ on Kalshi and 71.5¢ on Polymarket; Democratic House with Republican Senate 23.5¢ and 22.5¢; Republican House with Democratic Senate under 1¢; Republicans win both 6.7¢ and 5.5¢)",
-   "say": "Markets kept moving toward Democrats on the eve of the election: the House price is up about a point and the Senate about three to four since Oct 30.",
-   "src": "DeFi Rate, Nov 2 (9:18 a.m. ET)",
+   "value_label": "94% (Kalshi 93.8¢, Polymarket 95¢)",
+   "compare": "Senate: about 74% Democratic from the balance-of-power contracts (Democrats win both 73.5¢ on Kalshi and 74.5¢ on Polymarket; Democratic House with Republican Senate 19.5¢ and 18.5¢; Republican House with Democratic Senate about 0.5¢; Republicans win both 5.9¢ and 4.5¢)",
+   "say": "Markets ended the campaign at their most Democratic: the House price is steady at about 94 and the Senate up a point or two since Nov 2 to about 74.",
+   "src": "DeFi Rate, Nov 2 (7:04 p.m. ET), checked Nov 3",
    "url": "https://defirate.com/prediction-markets/2026-midterms/house-control-odds/"
   },
   {
    "key": "cook",
    "label": "Cook Political Report House ratings",
    "value": 18,
-   "value_label": "18 toss-ups after 12 more moves toward Democrats (Oct 30)",
-   "compare": "Cook's projection (Oct 30): Democrats flip 12-25 seats, up to 240; Oct 23's table (Solid/Likely/Lean D 220, Toss Up 17, Lean/Likely/Solid R 198) moved Oct 30 by PA-08 and OH-09 to Lean D, CO-05, PA-01 and SC-01 to Toss Up, FL-07, FL-09 and IN-05 to Lean R, and NC-05, NC-09, NJ-02 and WA-05 to Likely R. Senate (Oct 30): Nebraska to Lean R and Florida to Likely R; 7 Toss Ups, 6 Republican-held. Inside Elections' final ratings (Oct 31): Democrats gain 20-30 House seats and 4-6 Senate seats, with Iowa and Kansas Toss-ups and Ohio and Texas Tilt D. Sabato's Crystal Ball (Oct 27): House 225 at least Lean D, 17 Toss-ups, 193 R; Senate 49-46 with 5 Toss-ups",
-   "say": "Democrats need none of Cook's toss-ups for a majority if the seats leaning their way hold; Inside Elections' final call is a 20-30 seat gain.",
-   "src": "Cook Political Report, Oct 30; Inside Elections (Roll Call), Oct 31; Sabato's Crystal Ball, Oct 27",
-   "url": "https://thecookpoliticalreport.substack.com/p/two-senate-and-a-dozen-house-moves"
+   "value_label": "18 toss-ups in Cook's last House table (Oct 30); final Senate ratings Nov 2 move Michigan to Lean D and leave six toss-ups",
+   "compare": "Cook's projection (Oct 30): Democrats flip 12-25 seats, up to 240; its final Senate ratings (Nov 2) move Michigan from Toss Up to Lean D, leaving Alaska, Iowa, Kansas, Maine, Ohio and Texas as toss-ups. Sabato's Crystal Ball's final ratings (Nov 2): House 239 at least Lean D to 196 at least Lean R after the last toss-ups broke 14-3 to Lean D; Senate 53-47 with no toss-ups; governors 28-22, with Georgia and Nevada to Lean D, Alaska to Likely D and New Hampshire to Lean R. Inside Elections' final ratings (Oct 31): Democrats gain 20-30 House seats and 4-6 Senate seats",
+   "say": "All three raters finished with Democrats favored for both chambers; Sabato's final map has no Senate toss-ups and Cook's has six.",
+   "src": "Cook Political Report, Oct 30 and Nov 2 (via FiftyPlusOne, Nov 3); Sabato's Crystal Ball, Nov 2; Inside Elections (Roll Call), Oct 31",
+   "url": "https://sabatoscrystalball.substack.com/p/the-final-2026-ratings-democrats"
   },
   {
    "key": "retire",

@@ -1,7 +1,67 @@
 {
- "asof": "2026-11-02",
+ "asof": "2026-11-03",
  "note": "Maintained daily. Every item links to the page that confirms it.",
  "happened": [
+  {
+   "date": "2026-11-02",
+   "title": "Supreme Court refuses DOJ's bid to set aside about 20,000 California mail ballots; Boasberg rejects Democrats' suit over voter-roll pressure",
+   "what": "In an unsigned one-line order with no noted dissents, the Supreme Court denied the administration's emergency request to make California segregate about 20,000 mail ballots from alleged noncitizens; the same evening Judge Boasberg denied Democratic groups' request to block DOJ from pressing election officials to remove alleged noncitizens, finding they lacked standing, and a 9th Circuit panel paused an order restricting DOJ contact with election workers.",
+   "why": "The disputed ballots are counted in California's competitive House seats, and the rulings close the last pre-election court fights over who is counted.",
+   "races": [
+    "US",
+    "CA-13",
+    "CA-22",
+    "CA-45"
+   ],
+   "src": "CBS News live updates, Nov 2",
+   "url": "https://www.cbsnews.com/live-updates/2026-elections-monday-november-2/",
+   "aff": ""
+  },
+  {
+   "date": "2026-11-02",
+   "title": "Final ratings: Sabato's Crystal Ball calls 53 Senate seats, 239 House seats and 28 governors at least Lean D; Cook moves Michigan to Lean D and leaves six Senate toss-ups",
+   "what": "Kondik and Coleman's final ratings have no Senate toss-ups (53 at least Lean D, 47 at least Lean R), 239-196 in the House after the last toss-ups broke 14-3 to Lean D, and 28-22 among governors, moving Georgia and Nevada to Lean D, Alaska to Likely D and New Hampshire to Lean R; Cook's final Senate ratings move Michigan from Toss Up to Lean D and keep Alaska, Iowa, Kansas, Maine, Ohio and Texas as toss-ups.",
+   "why": "Both raters now have Democrats favored for the Senate as well as the House, with Iowa the one Senate race Sabato gives Republicans an edge in among the closest contests.",
+   "races": [
+    "US",
+    "MI-SEN",
+    "AK-SEN",
+    "IA-SEN",
+    "KS-SEN",
+    "ME-SEN",
+    "OH-SEN",
+    "TX-SEN",
+    "GA-GOV",
+    "NV-GOV",
+    "AK-GOV",
+    "NH-GOV"
+   ],
+   "src": "Sabato's Crystal Ball (Kyle Kondik and J. Miles Coleman), Nov 2; FiftyPlusOne (Cook's Nov 2 map), Nov 3",
+   "url": "https://sabatoscrystalball.substack.com/p/the-final-2026-ratings-democrats",
+   "aff": ""
+  },
+  {
+   "date": "2026-11-02",
+   "title": "Election-eve polls: AtlasIntel has Democrats ahead in every Senate race it polled; Emerson has Collins +2, Husted +2 and Abbott +1; Rasmussen has Ohio tied and Hinson +1",
+   "what": "On RealClearPolling's Nov 2 list, AtlasIntel shows Talarico +6, El-Sayed +8, Jackson +9, Brown +7, Hamilton +7, Turek +5, Peltola +5 and Flanagan +2; Emerson's final polls show Collins 51-49, Husted 48-46, Abbott 50-49, Talarico +2 and El-Sayed +6; Rasmussen's Oct 27-31 polls have Brown and Husted tied 46-46, Jackson +3 in Maine, Hinson +1 in Iowa, Sand +5 and Acton +4; the Times/Siena finals released Nov 1 have Democrats ahead in Michigan, Texas, Maine, Ohio and Kansas, Iowa within a point.",
+   "why": "The closing polls agree on a Democratic Senate map but disagree by several points in Ohio, Maine, Texas and Iowa, the races that decide how large the majority is.",
+   "races": [
+    "TX-SEN",
+    "MI-SEN",
+    "ME-SEN",
+    "OH-SEN",
+    "KS-SEN",
+    "IA-SEN",
+    "AK-SEN",
+    "MN-SEN",
+    "TX-GOV",
+    "OH-GOV",
+    "IA-GOV"
+   ],
+   "src": "RealClearPolling latest polls, Nov 2; Rasmussen Reports, Nov 2",
+   "url": "https://realclearpolling.com/latest-polls/election",
+   "aff": "Rasmussen Reports is R-aligned in ElectIndex's ratings"
+  },
   {
    "date": "2026-11-01",
    "title": "Haley Stevens endorses Republican Mike Rogers for Senate two days before the election; Schumer calls it 'a despicable betrayal'",
@@ -172,137 +232,9 @@
    "src": "Emerson College Polling, Oct 30; co/efficient, Oct 29; RealClearPolling latest polls, Oct 30; San Angelo LIVE (TSU poll), Oct 29",
    "url": "https://emersoncollegepolling.com/october-2026-kansas-poll-hamilton-maintains-edge-over-marshall/",
    "aff": "co/efficient and Quantus Insights are Republican-leaning pollsters"
-  },
-  {
-   "date": "2026-10-29",
-   "title": "CNN polls: El-Sayed +7 in Michigan, Talarico +6 in Texas, Jackson +4 in Maine, Hamilton +4 in Kansas",
-   "what": "CNN polls by SSRS of likely voters (Oct 20-27) have Abdul El-Sayed 49-42 over Mike Rogers in Michigan and James Talarico 49-43 over Ken Paxton in Texas; in Oct 20-26 surveys, Troy Jackson leads Susan Collins 49-45 in Maine and Adam Hamilton leads Sen. Roger Marshall 49-45 in Kansas, where Hamilton draws about 12% of Republicans. Collins' unfavorable rating is 54%; the Texas governor race had no clear leader.",
-   "why": "Democrats leading in all four, including two Republican-held seats Cook rates Toss Up, is the path to a Senate majority; at least one in eight likely voters in every state but Maine said they could still switch.",
-   "races": [
-    "MI-SEN",
-    "TX-SEN",
-    "ME-SEN",
-    "KS-SEN",
-    "TX-GOV"
-   ],
-   "src": "CNN (Jennifer Agiesta, Ariel Edwards-Levy and Jennifer Wu), Oct 29",
-   "url": "https://www.cnn.com/2026/10/29/politics/cnn-polls-michigan-maine-texas-kansas-senate-races-midterms-vis",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-29",
-   "title": "Alaska: Dunleavy orders a state probe of the second 'Dan Sullivan'; DOJ subpoenas Democrats and amends its suit; Comer opens an inquiry",
-   "what": "After a New York Times report that an operative who worked with Mary Peltola's campaign helped encourage retired teacher Daniel J. Sullivan Jr. to run against Sen. Dan Sullivan, Gov. Mike Dunleavy ordered the Department of Public Safety to investigate and said the probe could bear on whether the winner is seated; the Justice Department issued new subpoenas to Democratic officials and amended its certification suit to allege a 'conspiracy' (no one has been charged), House Oversight Chair James Comer opened an inquiry, and Trump said Peltola 'shouldn't be allowed to run' and 'should be prosecuted.' Peltola said in Juneau she 'knew nothing about' the other Sullivan. In the DOJ suit before Judge Sharon Gleason, intervenor replies are due 5 p.m. Friday and the state's elections director has asked for a ruling by Nov 2.",
-   "why": "Alaska is one of the Democrats' five likeliest Senate pickups, and the ballot-stacking story and the DOJ suit now hang over the final days and the certification.",
-   "races": [
-    "AK-SEN",
-    "AK-GOV"
-   ],
-   "src": "CBS News (Joe Walsh), Oct 29; AP via NBC4 Washington (Meg Kinnard), Oct 29; Juneau Independent (Mark Sabbatini), Oct 29; Roll Call (At the Races), Oct 29",
-   "url": "https://www.cbsnews.com/news/trump-peltola-dan-sullivan-alaska-senate/",
-   "aff": ""
-  },
-  {
-   "date": "2026-10-28",
-   "title": "Times/Siena: South Carolina Senate tied 48-48; Moody +6 in Florida, Flanagan +14 in Minnesota",
-   "what": "Siena's final-week polls of likely voters for The New York Times have Annie Andrews and Darline Graham tied 48-48 in South Carolina, with Alan Wilson leading the governor race 51-44; Ashley Moody 50-44 over Angie Nixon and Byron Donalds 48-44 over David Jolly in Florida; and Peggy Flanagan 54-40 over Michele Tafoya and Amy Klobuchar 56-38 in Minnesota.",
-   "why": "A tie in a Republican-held South Carolina seat widens the Democratic Senate map, while Florida and Minnesota look like holds for the incumbent parties.",
-   "races": [
-    "SC-SEN",
-    "SC-GOV",
-    "FL-SEN",
-    "FL-GOV",
-    "MN-SEN",
-    "MN-GOV"
-   ],
-   "src": "Siena Research Institute, Oct 28",
-   "url": "https://sri.siena.edu/2026/10/28/nytimes-siena-poll-of-likely-voters-florida-minnesota-and-south-carolina/",
-   "aff": ""
   }
  ],
  "upcoming": [
-  {
-   "date": "2026-11-02",
-   "time": "",
-   "title": "Nebraska in-person early voting ends",
-   "what": "Nebraska's in-person early voting at county election offices ends the day before Election Day.",
-   "why": "Last early ballots in the Osborn-Ricketts Senate race and the governor race.",
-   "races": [
-    "NE-SEN",
-    "NE-GOV",
-    "NE-02"
-   ],
-   "src": "Civic Nebraska election calendar, accessed Oct 27",
-   "url": "https://civicnebraska.org/election-2026/cal/"
-  },
-  {
-   "date": "2026-11-02",
-   "time": "",
-   "title": "Iowa, Kansas and Minnesota early voting ends",
-   "what": "In-person early voting closes Monday Nov 2 in Iowa, Kansas and Minnesota.",
-   "why": "Iowa and Kansas hold the two Senate races the prediction markets rate closest (47% and 46% Democratic), plus Toss Up governor races.",
-   "races": [
-    "IA-SEN",
-    "IA-GOV",
-    "KS-SEN",
-    "KS-GOV",
-    "MN-SEN",
-    "MN-GOV"
-   ],
-   "src": "Ballotpedia, accessed Oct 29",
-   "url": "https://ballotpedia.org/Early_voting_dates,_2026"
-  },
-  {
-   "date": "2026-11-02",
-   "time": "",
-   "title": "Vance rally at Toledo Express Airport",
-   "what": "Toledo Mayor Wade Kapszukiewicz said Vice President Vance will visit the Toledo area Monday ahead of Election Day for a rally at Toledo Express Airport.",
-   "why": "Ohio's Senate special (Husted-Brown) and governor's race (Ramaswamy-Acton) are the Republicans' most exposed statewide seats in the final polls.",
-   "races": [
-    "OH-SEN",
-    "OH-GOV",
-    "OH-09"
-   ],
-   "src": "Toledo Blade, Oct 29",
-   "url": "https://www.toledoblade.com/local/politics/2026/10/29/jd-vance-rally-express-airport/stories/20261029100"
-  },
-  {
-   "date": "2026-11-02",
-   "time": "",
-   "title": "Trump's closing speech at the Lincoln Memorial Reflecting Pool",
-   "what": "The White House announced an afternoon speech by President Trump at the Reflecting Pool, which has been closed for repairs; he skipped travel to battleground states Monday for the Washington event and plans telephone rallies.",
-   "why": "The president's final midterm message comes as his rallies ended Sunday in Iowa and Kansas and Republicans trail in most Senate battleground polls.",
-   "races": [
-    "US"
-   ],
-   "src": "AP (Will Weissert) via Live 5 News, Nov 1",
-   "url": "https://www.live5news.com/2026/11/02/trump-is-giving-his-closing-midterm-pitch-problem-plagued-lincoln-memorial-reflecting-pool/"
-  },
-  {
-   "date": "2026-11-02",
-   "time": "",
-   "title": "Trump tele-rally for Julia Letlow in Louisiana",
-   "what": "President Trump, Rep. Julia Letlow and Speaker Mike Johnson speak on a call-in tele-rally Monday night, the eve of the election, in Letlow's Senate race against Democrat Jamie Davis.",
-   "why": "Inside Elections moved Louisiana to Likely Republican and neither Sen. Bill Cassidy nor John Fleming has endorsed Letlow, so the seat is a late Republican worry.",
-   "races": [
-    "LA-SEN"
-   ],
-   "src": "The Advocate (Tyler Bridges), Oct 30",
-   "url": "https://www.theadvocate.com/baton_rouge/news/politics/trump-to-hold-rally-for-julia-letlow-on-eve-of-election-day/article_37e534b6-6755-5c79-b0f2-2ada05453a8b.html"
-  },
-  {
-   "date": "2026-11-02",
-   "time": "9:15 AM",
-   "title": "Vance rallies for Constantino and Buller in Rome, N.Y.",
-   "what": "Vice President Vance headlines a get-out-the-vote rally at Griffiss park in Rome for Republicans Anthony Constantino (NY-21, against Democrat Blake Gendebien) and Kailee Buller (NY-22, against Rep. John Mannion); Indivisible Mohawk Valley plans a protest.",
-   "why": "The administration's last in-person stop is in two upstate New York House seats Republicans need to hold to limit Democratic gains.",
-   "races": [
-    "NY-21",
-    "NY-22"
-   ],
-   "src": "WAMC (Randy Gorbman), Nov 2; WWNY, Nov 2",
-   "url": "https://www.wamc.org/2026-11-02/vice-president-jd-vance-heads-to-rome-to-rally-for-congressional-candidates-in-d-21-and-d-22"
-  },
   {
    "date": "2026-11-03",
    "time": "10:00 PM",
@@ -348,6 +280,24 @@
    ],
    "src": "The Green Papers, accessed Oct 13",
    "url": "https://www.thegreenpapers.com/G26/PollingHours.phtml",
+   "group": "election-night"
+  },
+  {
+   "date": "2026-11-03",
+   "time": "7:00 PM",
+   "title": "Mail-ballot deadlines: Florida 7 p.m., Pennsylvania 8 p.m.",
+   "what": "Florida mail ballots must reach supervisors by 7 p.m. and Pennsylvania's county offices by 8 p.m.; Pennsylvania cannot start counting mail ballots until Election Day.",
+   "why": "Florida's outstanding mail leans Democratic and Pennsylvania had about 235,000 approved mail ballots unreturned, so late arrivals shape the first counts in both states' House races.",
+   "races": [
+    "FL-SEN",
+    "FL-GOV",
+    "PA-01",
+    "PA-07",
+    "PA-08",
+    "PA-10"
+   ],
+   "src": "WFLA via Yahoo, Nov 2; Pennsylvania Department of State mail-ballot report, Nov 2",
+   "url": "https://www.yahoo.com/news/politics/articles/republicans-hold-smaller-lead-florida-180007796.html",
    "group": "election-night"
   },
   {
@@ -1781,11 +1731,11 @@
    "st": "DC",
    "venue": "Lincoln Memorial Reflecting Pool",
    "boosting": [],
-   "status": "announced",
-   "src": "AP (Will Weissert) via Live 5 News, Nov 1",
-   "url": "https://www.live5news.com/2026/11/02/trump-is-giving-his-closing-midterm-pitch-problem-plagued-lincoln-memorial-reflecting-pool/",
+   "status": "held",
+   "src": "CBS News live updates, Nov 2; TIME, Nov 3",
+   "url": "https://www.cbsnews.com/live-updates/2026-elections-monday-november-2/",
    "aff": "",
-   "note": "Afternoon closing midterm speech announced by the White House."
+   "note": "Closing speech at 2 p.m.; said Republicans 'gave this a very strong shot.'"
   },
   {
    "date": "2026-11-02",
@@ -1793,7 +1743,7 @@
    "kind": "rally",
    "city": "Rome",
    "st": "NY",
-   "venue": "Griffiss Business and Technology Park (Skydome)",
+   "venue": "Skydome Hangar, Griffiss International Airport",
    "boosting": [
     {
      "name": "Anthony Constantino",
@@ -1804,25 +1754,95 @@
      "race": "NY-22"
     }
    ],
-   "status": "announced",
-   "src": "WAMC (Randy Gorbman), Nov 2; Utica Observer-Dispatch via Yahoo, Oct 30",
-   "url": "https://www.wamc.org/2026-11-02/vice-president-jd-vance-heads-to-rome-to-rally-for-congressional-candidates-in-d-21-and-d-22",
+   "status": "held",
+   "src": "CNY Central, Nov 2; WWNY, Nov 2",
+   "url": "https://cnycentral.com/news/local/vance-rallies-gop-in-central-new-york-backing-constantino-and-buller-ahead-of-nov-3-donald-trump-jr-anthony-kailee-governor-kathy-hochul-senator-chuck-schumer-politics-election-day-polling",
    "aff": "",
-   "note": "Monday morning get-out-the-vote rally; Indivisible Mohawk Valley plans a protest."
+   "note": "Morning rally with Donald Trump Jr.; Vance apologized for vulgar language about Gendebien."
   },
   {
    "date": "2026-11-02",
    "who": "Vance",
    "kind": "rally",
-   "city": "Toledo",
+   "city": "Swanton",
    "st": "OH",
-   "venue": "Toledo Express Airport",
-   "boosting": [],
-   "status": "announced",
-   "src": "Toledo Blade, Oct 29",
-   "url": "https://www.toledoblade.com/local/politics/2026/10/29/jd-vance-rally-express-airport/stories/20261029100",
+   "venue": "GA Terminal Hangar, Eugene F. Kranz Toledo Express Airport",
+   "boosting": [
+    {
+     "name": "Jon Husted",
+     "race": "OH-SEN"
+    },
+    {
+     "name": "Vivek Ramaswamy",
+     "race": "OH-GOV"
+    }
+   ],
+   "status": "held",
+   "src": "USA TODAY via Yahoo, Nov 2",
+   "url": "https://www.yahoo.com/news/politics/articles/vp-jd-vance-says-fight-124027611.html",
    "aff": "",
-   "note": "Mayor Kapszukiewicz said Vance would visit Monday ahead of Election Day."
+   "note": "Afternoon rally closing Vance's campaign swing; Husted and Ramaswamy spoke."
+  },
+  {
+   "date": "2026-11-02",
+   "who": "Trump",
+   "kind": "tele-rally",
+   "city": "Washington",
+   "st": "DC",
+   "venue": "White House (virtual)",
+   "boosting": [
+    {
+     "name": "Mike Lawler",
+     "race": "NY-17"
+    },
+    {
+     "name": "Bruce Blakeman",
+     "race": "NY-GOV"
+    }
+   ],
+   "status": "held",
+   "src": "CBS News live updates, Nov 2",
+   "url": "https://www.cbsnews.com/live-updates/2026-elections-monday-november-2/",
+   "aff": "",
+   "note": "5:50 p.m. tele-rally for New York Republicans; called it the most important midterm ever."
+  },
+  {
+   "date": "2026-11-02",
+   "who": "Trump",
+   "kind": "tele-rally",
+   "city": "Washington",
+   "st": "DC",
+   "venue": "White House (virtual)",
+   "boosting": [
+    {
+     "name": "Darline Graham",
+     "race": "SC-SEN"
+    }
+   ],
+   "status": "held",
+   "src": "CBS News live updates, Nov 2",
+   "url": "https://www.cbsnews.com/live-updates/2026-elections-monday-november-2/",
+   "aff": "",
+   "note": "6:54 p.m. tele-rally; said he 'got her into this' and must make sure she wins."
+  },
+  {
+   "date": "2026-11-02",
+   "who": "Trump",
+   "kind": "tele-rally",
+   "city": "Washington",
+   "st": "DC",
+   "venue": "White House (virtual)",
+   "boosting": [
+    {
+     "name": "Dan Sullivan",
+     "race": "AK-SEN"
+    }
+   ],
+   "status": "held",
+   "src": "CBS News live updates, Nov 2",
+   "url": "https://www.cbsnews.com/live-updates/2026-elections-monday-november-2/",
+   "aff": "",
+   "note": "9:22 p.m. tele-rally for Alaska Republicans; criticized the second 'Dan Sullivan' and ranked-choice voting."
   }
  ],
  "trail_note": "Trump and Vance campaign appearances since Sep 1, 2026, from White House pool reports, Roll Call Factbase and local coverage. Closed-press fundraisers and tele-rallies are rarely reported, so they are undercounted."

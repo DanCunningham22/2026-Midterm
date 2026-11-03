@@ -1,20 +1,20 @@
 {
- "asof": "2026-11-02",
+ "asof": "2026-11-03",
  "approval": {
-  "net": -22.5,
-  "note": "Trump job approval, net (approve minus disapprove): average of the RealClearPolling (-22.1) and Silver Bulletin (about -22.7) nets as of Oct 30-Nov 2, 2026 (-22.4, rounded to the nearest 0.5: -22.5), unchanged since Oct 29. RealClearPolling's page as opened on Nov 2 still showed the 10/9-10/25 average (38.2/60.3). Silver Bulletin's page (updated Oct 30) prints approve 37.3% and disapprove only as 'about 60 percent', so its net is approximate. FiftyPlusOne's Nov 1 average (35.4/61.6, net -26) is a check.",
+  "net": -20.0,
+  "note": "Trump job approval, net (approve minus disapprove): average of the RealClearPolling (-20.0) and Silver Bulletin (-20.4) nets as of Nov 2-3, 2026 (-20.2, rounded to the nearest 0.5: -20.0), up from -22.5 on Nov 2. RealClearPolling's page as opened on Nov 3 shows 39.1/59.1 for polls 10/14-11/1 (its page had shown a stale 10/9-10/25 average, 38.2/60.3, on Nov 2). Silver Bulletin's page (updated Nov 2) prints approve 38.4% and disapprove 'about 59 percent'; The Hill's Nov 2 report of the same average gives 38.4/58.8, which is used for its net. The New York Times average (37/60, net -23) as reported by The Hill is a check; FiftyPlusOne's page could not be opened on Nov 3.",
   "sources": [
    [
-    "RealClearPolling average, Nov 2 (polls 10/9-10/25 as opened): 38.2/60.3, net -22.1",
+    "RealClearPolling average, Nov 3 (polls 10/14-11/1): 39.1/59.1, net -20.0",
     "https://www.realclearpolling.com/polls/approval/donald-trump/approval-rating"
    ],
    [
-    "Silver Bulletin average, updated Oct 30: approve 37.3%, disapprove 'about 60 percent' (net about -22.7)",
+    "Silver Bulletin average, updated Nov 2: approve 38.4%, disapprove 'about 59 percent' (58.8 per The Hill; net -20.4)",
     "https://www.natesilver.net/p/trump-approval-ratings-nate-silver-bulletin"
    ],
    [
-    "FiftyPlusOne average, Nov 1: 35.4/61.6, net -26",
-    "https://fiftyplusone.news/polls"
+    "The Hill (via Yahoo), Nov 2: RCP 39.3/58.8, Silver Bulletin 38.4/58.8, New York Times 37/60",
+    "https://www.yahoo.com/news/politics/articles/trump-approval-nears-record-low-221826662.html"
    ]
   ]
  },
@@ -24,7 +24,7 @@
   "asof": "2026-08-19",
   "recent": 10.4,
   "recent_label": "the 43 held in 2026",
-  "note": "Average Democratic improvement on the 2024 presidential margin across D-vs-R special elections since January 2025. The Downballot's Oct 20, 2026 update ('Special elections show Democrats headed for a year as good as 2018, if not better') remains paywalled with no tally visible (last checked Nov 2), so the Aug 19 tally stays; MultiState's 2026-only median (+10.4 across 37 contested specials through April) is a different measure and is not used",
+  "note": "Average Democratic improvement on the 2024 presidential margin across D-vs-R special elections since January 2025. The Downballot's Oct 20, 2026 update ('Special elections show Democrats headed for a year as good as 2018, if not better') remains paywalled with no tally visible (last checked Nov 3), so the Aug 19 tally stays; MultiState's 2026-only median (+10.4 across 37 contested specials through April) is a different measure and is not used",
   "source": [
    "The Downballot, Aug 19, 2026",
    "https://www.the-downballot.com/p/100-specials-since-trumps-return"
