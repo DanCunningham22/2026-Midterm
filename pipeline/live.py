@@ -253,6 +253,47 @@ def project(st, rid, state_t, cty):
                 cov=round(share, 3), counties=n, swing=round(S, 2), p24=round(P24, 2))
 
 
+# ----------------------------------------------------------------------------- Election Day turnout (Florida)
+# FreshTake.Vote republishes the county supervisors' Election Day check-ins by party, refreshed through the day. Read
+# from the Actions runner (fetching tools elsewhere were served stale copies). The "Election Day Ballots on Nov 3"
+# card's statewide row is today's in-person Election Day electorate by party registration.
+FT_URL = 'https://www.freshtake.vote/2026G/dailydata.php'
+BROWSER_UA = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36',
+              'Cache-Control': 'no-cache'}
+
+
+def parse_freshtake(page, day='Nov 3, 2026'):
+    import html as _h
+    text = re.sub(r'\s+', ' ', _h.unescape(re.sub(r'<[^>]+>', ' ', page)))
+    for label, kind in (('Election Day', 'Election Day ballots'), ('Overall', 'all ballots logged that day')):
+        i = text.find('2026 General: %s Ballots on %s' % (label, day))
+        if i < 0:
+            continue
+        m = re.search(r'Statewide ([\d,]+) ([\d,]+) ([\d,]+) ([\d,]+) ', text[i:])
+        u = re.search(r'Last updated: (\d{4}-\d\d-\d\d) (\d\d:\d\d):\d\d', text[i:])
+        if not m or not u:
+            continue
+        r, d, o, tot = (int(x.replace(',', '')) for x in m.groups())
+        if tot <= 0:
+            continue
+        return dict(t='%sT%s:00-05:00' % u.groups(), r=r, d=d, o=o, src='FreshTake.Vote, %s (county supervisors), read live' % kind, url=FT_URL)
+    return None
+
+
+def fetch_turnout():
+    last = None
+    for _ in range(2):
+        try:
+            req = urllib.request.Request(FT_URL + '?t=' + str(int(dt.datetime.now().timestamp())), headers=BROWSER_UA)
+            with urllib.request.urlopen(req, timeout=30) as r:
+                page = r.read().decode('utf-8', 'replace')
+            snap = parse_freshtake(page)
+            return {'FL': snap} if snap else {}
+        except Exception as e:
+            last = e
+    raise last
+
+
 def fetch(args):
     out = dict(fetched_at=dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), test=bool(args.test), sources={}, races={}, obs=[], counties={})
     if args.test:
@@ -285,6 +326,13 @@ def fetch(args):
                 out['obs'].append(dict(id=rid, margin=r['margin'], sd=round(1 + 20 * (1 - frac), 2), why='count'))
             out['races'][rid] = r
         out['sources'][name] = dict(ok=True, detail='%d races, %d with votes' % (len(state) - ('PRES' in state), n_in))
+    if not args.test:   # Election Day turnout only means something on the real night
+        try:
+            out['turnout'] = fetch_turnout()
+            out['sources']['turnout'] = dict(ok=bool(out['turnout']), detail=json.dumps(out['turnout'].get('FL', {}))[:200] or 'no Election Day card')
+        except Exception as e:
+            out['turnout'] = {}
+            out['sources']['turnout'] = dict(ok=False, detail=repr(e)[:300])
     json.dump(out, open(args.out, 'w'), indent=1)
     print(json.dumps(dict(sources=out['sources'], obs=out['obs'])))
 

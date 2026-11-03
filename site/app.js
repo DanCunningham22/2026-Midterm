@@ -2061,7 +2061,7 @@
       const w = Math.min(50, Math.abs(g) / 30 * 50);
       return '<span class="ed-bar"><span class="ed-mid"></span><span class="ed-fill ' + (g > 0 ? 'd' : 'r') + '" style="' + (g > 0 ? 'left:50%' : 'right:50%') + ';width:' + w.toFixed(1) + '%"></span></span>';
     };
-    let h = '<h2>Election Day turnout</h2><p class="sub">Who is showing up today, by party registration, against Election Day in 2024, 2022 and 2018 where a source gives it. Party registration is not a vote, morning voters skew older, and several figures come from partisan accounts on X, so read this as a tilt, not a result. Updated hourly until polls close' +
+    let h = '<h2>Election Day turnout</h2><p class="sub">Who is showing up today, by party registration, against Election Day in 2024, 2022 and 2018 where a source gives it. Party registration is not a vote, morning voters skew older, and several figures come from partisan accounts on X, so read this as a tilt, not a result. Florida is read live every few minutes; other states are updated hourly until polls close' +
       (E.asof ? '; last ' + (function () { try { return new Date(E.asof).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'America/New_York' }); } catch (e) { return ''; } })() + ', ' + tfmt(E.asof) : '') + '. Once a state starts counting, the count replaces this in the live odds.</p><div class="ed-grid">';
     E.states.forEach((st) => {
       if (st.kind === 'party') {

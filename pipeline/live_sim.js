@@ -41,6 +41,21 @@ const eday = edayPath ? readJSON(edayPath, null) : null;
 // 80%+ counted, their average swing against the 2024 presidential result (two-party margin), added to the 2024 statewide
 // result, projects the race (uniform swing). SD 3 + 7/sqrt(k) points for k finished counties: these are bellwethers, not the
 // whole state. Used only for a race with no call and no projection from an official statewide feed.
+// Turnout read live by pipeline/live.py (feeds.turnout, e.g. FL from FreshTake.Vote) joins the state's snapshots in
+// eday.json, along with any read earlier tonight (carried in the previous live.json), newest last.
+if (eday && Array.isArray(eday.states)) {
+  const live = feeds.turnout || {};
+  const prevStates = (prev.eday && prev.eday.states) || [];
+  eday.states.forEach((st) => {
+    if (st.kind !== 'party') return;
+    const ps = prevStates.find((x) => x.st === st.st);
+    const all = (st.eday || []).concat((ps && ps.eday) || [], live[st.st] ? [live[st.st]] : []);
+    const seen = {};
+    st.eday = all.filter((x) => x && x.t && !seen[x.t + (x.src || '')] && (seen[x.t + (x.src || '')] = 1)).sort((a, b) => Date.parse(a.t) - Date.parse(b.t));
+    const lt = st.eday.length ? st.eday[st.eday.length - 1].t : null;
+    if (lt && (!eday.asof || Date.parse(lt) > Date.parse(eday.asof))) eday.asof = lt;
+  });
+}
 const countyNow = {}, countyEv = [];
 const tp = (r, d) => (r + d > 0 ? 100 * (d - r) / (d + r) : null);
 if (eday && Array.isArray(eday.watch_counties)) {
