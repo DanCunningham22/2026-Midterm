@@ -1906,7 +1906,7 @@
   }
  ],
  "house_watch": {
-  "note": "Swing House districts to watch, with where they are and when the main polls close (ET). Districts and candidates from @earlyvotedata's district guide (checked Nov 3); IN-05 added. Earliest closings first.",
+  "note": "Swing House districts to watch, with where they are and when the main polls close (ET). Districts and candidates from @earlyvotedata's district guides (checked Nov 3); IN-05 added. Earliest closings first.",
   "close_et": {
    "IN": "6:00",
    "KY": "6:00",
@@ -1926,7 +1926,13 @@
    "IA": "9:00",
    "AZ": "9:00",
    "KS": "9:00",
-   "CA": "11:00"
+   "CA": "11:00",
+   "NJ": "8:00",
+   "NY": "9:00",
+   "CO": "9:00",
+   "MT": "10:00",
+   "WA": "11:00",
+   "AK": "12:00 AM"
   },
   "races": [
    {
@@ -2018,6 +2024,14 @@
     "where": "San Antonio area"
    },
    {
+    "id": "ME-02",
+    "where": "Northern and western Maine: Bangor, Lewiston"
+   },
+   {
+    "id": "NJ-07",
+    "where": "North-central NJ: Hunterdon, Somerset, Warren counties"
+   },
+   {
     "id": "NE-02",
     "where": "Omaha"
    },
@@ -2054,12 +2068,32 @@
     "where": "Tucson and southeast Arizona"
    },
    {
+    "id": "NY-17",
+    "where": "Lower Hudson Valley: Rockland and northern Westchester"
+   },
+   {
+    "id": "CO-08",
+    "where": "Denver's northern suburbs: Thornton, Brighton, Greeley"
+   },
+   {
+    "id": "MT-01",
+    "where": "Western Montana: Missoula, Bozeman, Kalispell"
+   },
+   {
     "id": "CA-22",
     "where": "Central Valley: Bakersfield area"
    },
    {
     "id": "CA-48",
     "where": "Inland San Diego County"
+   },
+   {
+    "id": "WA-03",
+    "where": "Southwest Washington: Vancouver"
+   },
+   {
+    "id": "AK-01",
+    "where": "Entire state; ranked-choice. The Democratic nominee, Eric Hafner, is in federal prison; independent Bill Hill is Begich's main challenger"
    }
   ]
  }
