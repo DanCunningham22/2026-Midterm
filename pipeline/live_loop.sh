@@ -38,9 +38,10 @@ while [ $SECONDS -lt $end ]; do
   fi
   git fetch -q origin main && git show origin/main:pipeline/content/calls.json > calls.json 2>/dev/null || echo '{}' > calls.json
   git show origin/main:pipeline/content/eday.json > eday.json 2>/dev/null || echo '{}' > eday.json
+  git show origin/main:pipeline/content/counts.json > counts.json 2>/dev/null || echo '{}' > counts.json
   if [ "$TEST" = "1" ] && [ -f pipeline/scratch/live_test_calls.json ]; then cp pipeline/scratch/live_test_calls.json calls.json; fi
   cp "$WT/live.json" live.json 2>/dev/null || true
-  if node pipeline/live_sim.js "$DATA" calls.json live_feeds.json live.json eday.json; then
+  if node pipeline/live_sim.js "$DATA" calls.json live_feeds.json live.json eday.json counts.json; then
     cp live.json "$WT/live.json"
     (cd "$WT" && git add live.json && git commit -qm "Live $(date -u +'%H:%M:%S UTC')" && (git push -q origin "$BRANCH" || (git pull -q --rebase origin "$BRANCH" && git push -q origin "$BRANCH"))) || echo "push failed"
   else

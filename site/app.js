@@ -369,7 +369,7 @@
       const who = esc(lastName(r.dn)) + ' vs. ' + esc(lastName(r.rn));
       const callTxt = r.call ? '<span class="pill ' + (r.call === 'R' ? 'sr' : 'sd') + '">' + (r.call === 'R' ? lastName(r.rn) : lastName(r.dn)) + ' wins</span>' : '';
       const c = r.count;
-      const cnt = c ? (Math.round(c.frac * 100) + '% of precincts · ' + (c.margin != null ? fm(c.margin) : '—') + (c.proj ? ' · projected ' + fm(c.proj.margin) + ' ±' + c.proj.sd.toFixed(1) : '')) : '';
+      const cnt = c ? (Math.round(c.frac * 100) + (c.unit === 'vote' ? '% of expected vote · ' : '% of precincts · ') + (c.margin != null ? fm(c.margin) : '—') + (c.proj ? ' · projected ' + fm(c.proj.margin) + ' ±' + c.proj.sd.toFixed(1) : '')) : '';
       return '<tr><td><button class="rchip" data-race="' + r.id + '">' + r.id + '</button> <span class="lv-who">' + who + '</span></td>' +
         '<td class="n">' + chanceText(r.pre, { dp: r.dp }) + '</td><td class="n"><b>' + (r.call ? '—' : chanceText(r.now, { dp: r.dp })) + '</b></td><td>' + callTxt + '</td><td class="small lv-count">' + cnt + '</td></tr>';
     }).join('');

@@ -56,6 +56,16 @@ if (eday && Array.isArray(eday.states)) {
     if (lt && (!eday.asof || Date.parse(lt) > Date.parse(eday.asof))) eday.asof = lt;
   });
 }
+// Statewide/district counts entered from news results pages (counts.json): a race 60%+ counted enters at its current
+// two-party margin, SD 2 + 30 x (share not yet counted). Official feeds and calls take precedence.
+const countsFile = process.argv[7] ? readJSON(process.argv[7], {}) || {} : {};
+const newsCount = {};
+Object.entries(countsFile.races || {}).forEach(([id, x]) => {
+  if (!x || !isFinite(+x.d) || !isFinite(+x.r) || !isFinite(+x.in) || +x.d + +x.r <= 0) return;
+  const frac = Math.min(1, +x.in / 100), margin = 100 * (+x.d - +x.r) / (+x.d + +x.r);
+  newsCount[id] = { frac, margin: Math.round(margin * 100) / 100, unit: 'vote', t: x.t || null, src: x.src || null };
+  if (frac >= 0.6 && !calls[id] && !obs.some((o) => o.id === id)) obs.push({ id, margin: newsCount[id].margin, sd: Math.round((2 + 30 * (1 - frac)) * 100) / 100, why: 'reported count' });
+});
 const countyNow = {}, countyEv = [];
 const tp = (r, d) => (r + d > 0 ? 100 * (d - r) / (d + r) : null);
 if (eday && Array.isArray(eday.watch_counties)) {
@@ -168,12 +178,12 @@ const add = (kind, x, i, pNow) => {
   const f = (feeds.races || {})[x.id];
   const call = calls[x.id] || null;
   const close = p0 > 0.03 && p0 < 0.97;
-  if (!close && !call && !(f && f.d + f.r > 0)) return;
+  if (!close && !call && !(f && f.d + f.r > 0) && !newsCount[x.id]) return;
   races.push({
     id: x.id, kind, st: x.st,
     dn: kind === 'house' ? x.dn : x.dn, rn: x.rn, dp: x.dp || 'D',
     pre: p0, now: pc(pNow), call,
-    count: f && f.d + f.r > 0 ? { d: f.d, r: f.r, o: f.o, frac: f.frac, margin: f.margin, proj: f.proj && f.proj.margin != null ? { margin: f.proj.margin, sd: f.proj.sd, cov: f.proj.cov, method: f.proj.method } : null } : null,
+    count: !(f && f.d + f.r > 0) && newsCount[x.id] ? newsCount[x.id] : f && f.d + f.r > 0 ? { d: f.d, r: f.r, o: f.o, frac: f.frac, margin: f.margin, proj: f.proj && f.proj.margin != null ? { margin: f.proj.margin, sd: f.proj.sd, cov: f.proj.cov, method: f.proj.method } : null } : null,
   });
 };
 data.senate.forEach((x, i) => add('senate', x, i, r.senate.p[i]));
@@ -185,7 +195,7 @@ houseCand.forEach((o) => add('house', o.d, o.i, r.house.p[o.i]));
 // plus the Election Day tab's House watch list, whatever their odds
 const listed = new Set(races.map((x) => x.id));
 const hw = new Set(((eday && eday.house_watch && eday.house_watch.races) || []).map((x) => x.id));
-data.districts.forEach((d, i) => { if (hw.has(d.id) && !listed.has(d.id)) races.push({ id: d.id, kind: 'house', st: d.st, dn: d.dn, rn: d.rn, dp: d.dp || 'D', pre: preRace[d.id], now: pc(r.house.p[i]), call: calls[d.id] || null, count: null }); });
+data.districts.forEach((d, i) => { if (hw.has(d.id) && !listed.has(d.id)) races.push({ id: d.id, kind: 'house', st: d.st, dn: d.dn, rn: d.rn, dp: d.dp || 'D', pre: preRace[d.id], now: pc(r.house.p[i]), call: calls[d.id] || null, count: newsCount[d.id] || null }); });
 
 // timeline: a point when anything moved half a point, or every 10 minutes
 const stamp = new Date().toISOString().slice(0, 19) + 'Z';
