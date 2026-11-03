@@ -2123,7 +2123,7 @@
       h += '</tbody><tfoot>' + '<tr><th>Statewide</th>' + S.statewide.map((p) => '<td class="' + cls(p[0], p[1]) + '">' + mg(p[0], p[1]) + '</td>').join('') + races.map(() => '<td></td>').join('') + '<td></td></tr></tfoot></table></div>';
       const ce = cev.filter((x) => x.st === S.st);
       if (ce.length) h += '<p class="ed-model">' + ce.map((x) => esc(x.id) + ': ' + x.k + ' watch ' + (x.k === 1 ? 'county' : 'counties') + ' 80%+ counted, average swing ' + (x.swing > 0 ? 'D+' : 'R+') + Math.abs(x.swing).toFixed(1) + ' vs 2024, pointing to ' + (x.margin > 0 ? 'D+' : 'R+') + Math.abs(x.margin).toFixed(1) + ' statewide (±' + x.sd + ')' + (x.used ? ', in the live odds' : x.k < 2 ? ', not used until a second county finishes' : ', shown only: the official count or a call takes precedence')).join('. ') + '.</p>';
-      h += '<p class="ed-src">Margins are the gap between the two parties' shares of all votes cast. The swing compares the first race with results tonight. Benchmarks: ' + esc(S.src) + '. Tonight: official state feed where marked *, otherwise news results pages, entered hourly.</p>';
+      h += '<p class="ed-src">Margins are the gap between the two parties\' shares of all votes cast. The swing compares the first race with results tonight. Benchmarks: ' + esc(S.src) + '. Tonight: official state feed where marked *, otherwise news results pages, entered hourly.</p>';
     }
     box.innerHTML = h;
   }

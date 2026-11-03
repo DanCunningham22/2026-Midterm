@@ -121,6 +121,8 @@ the night, the implied national House vote, called-seat tallies, and the races s
 
 **Election Day turnout tab.** `pipeline/content/eday.json`, refreshed hourly on Election Day, holds Election Day check-ins by party registration (Florida, Nevada, Maricopa County) and county turnout against 2024 (Texas), with 2024, 2022 and 2018 Election Day baselines where a source gives them. In the live odds, a state with a baseline enters as weak evidence: the change in the Election Day party gap against the baseline (a same-time-of-day comparison preferred, then 2022, 2018, 2024), times Election Day's share of the vote and the 0.84 registration-to-margin slope, shifts the state's statewide races from their expected margin with an SD of 10-13 points (about a quarter of the weight of the forecast itself). It steps aside once that race has counted votes or a call.
 
+**Counties to watch.** The same file holds bellwether counties for 11 states (from @earlyvotedata's election-night guides) with their 2022 and 2024 results. Tonight's county results come from the official NC and FL feeds (`pipeline/live.py`) or are entered hourly from news results pages. Once two or more of a state's watch counties are 80% counted, their average two-party swing against 2024 president, added to the 2024 statewide result, projects the statewide race (SD 3 + 7/sqrt(k) points for k counties), unless an official statewide projection or a call already covers it. This takes precedence over the turnout evidence.
+
 ## Model in brief
 
 - **House:** each district's 2024 presidential margin on its 2026 lines, moved by the national House vote
