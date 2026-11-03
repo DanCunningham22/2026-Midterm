@@ -206,6 +206,26 @@ def fetch_fl(test, progress):
 # ----------------------------------------------------------------------------- projections
 STATEWIDE = {'NC-SEN', 'FL-SEN', 'FL-GOV'}
 
+# counties on the Election Day tab's "counties to watch" list (pipeline/content/eday.json): NC by the state board's
+# alphabetical county number, FL by the Division of Elections' county code
+WATCH = {
+    'NC': {11: 'Buncombe', 13: 'Cabarrus', 51: 'Johnston', 60: 'Mecklenburg', 64: 'Nash', 65: 'New Hanover', 78: 'Robeson', 92: 'Wake'},
+    'FL': {'DUV': 'Duval', 'PAS': 'Pasco', 'PIN': 'Pinellas', 'HIL': 'Hillsborough', 'SEM': 'Seminole', 'ORA': 'Orange',
+           'PAL': 'Palm Beach', 'BRO': 'Broward', 'DAD': 'Miami-Dade'},
+}
+
+
+def watch_counties(st, cty):
+    out = {}
+    for key, name in WATCH.get(st, {}).items():
+        c = cty.get(key)
+        if not c:
+            continue
+        races = {rid: {k: t[k] for k in ('d', 'r', 'o', 'prt', 'ptl')} for rid, t in c['races'].items() if rid in STATEWIDE}
+        if races:
+            out[name] = races
+    return out
+
 
 def project(st, rid, state_t, cty):
     """Projected final margin of a statewide race from finished counties' swing vs. 2024."""
@@ -234,7 +254,7 @@ def project(st, rid, state_t, cty):
 
 
 def fetch(args):
-    out = dict(fetched_at=dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), test=bool(args.test), sources={}, races={}, obs=[])
+    out = dict(fetched_at=dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), test=bool(args.test), sources={}, races={}, obs=[], counties={})
     if args.test:
         out['progress'] = args.progress
     for name, fn in (('nc', fetch_nc), ('fl', fetch_fl)):
@@ -243,6 +263,10 @@ def fetch(args):
         except Exception as e:
             out['sources'][name] = dict(ok=False, detail=repr(e)[:300])
             continue
+        try:
+            out['counties'][st] = watch_counties(st, cty)
+        except Exception as e:   # the watch list is display only; never let it stop the feed
+            out['counties'][st] = {}
         n_in = 0
         for rid, t in state.items():
             if rid in ('PRES', 'NC-GOV'):

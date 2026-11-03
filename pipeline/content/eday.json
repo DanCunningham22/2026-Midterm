@@ -1,57 +1,1908 @@
 {
-  "note": "Election Day turnout, Nov 3 2026. Kept hourly on Election Day by a scheduled task. 'gap' is Democrats minus Republicans as a percent of all ballots cast that day (negative = Republican). Baselines: the same snapshot time in an earlier year where a source gives it (same_time), otherwise that year's full Election Day. Party registration is not a vote: a Republican-registered voter can vote for a Democrat, and the morning electorate skews older. In the live odds this is weak evidence (see pipeline/live_sim.js) and steps aside once a state's count arrives.",
-  "asof": "2026-11-03T15:00:00-05:00",
-  "states": [
+ "note": "Election Day turnout, Nov 3 2026. Kept hourly on Election Day by a scheduled task. 'gap' is Democrats minus Republicans as a percent of all ballots cast that day (negative = Republican). Baselines: the same snapshot time in an earlier year where a source gives it (same_time), otherwise that year's full Election Day. Party registration is not a vote: a Republican-registered voter can vote for a Democrat, and the morning electorate skews older. In the live odds this is weak evidence (see pipeline/live_sim.js) and steps aside once a state's count arrives.",
+ "asof": "2026-11-03T15:00:00-05:00",
+ "states": [
+  {
+   "st": "FL",
+   "name": "Florida",
+   "kind": "party",
+   "races": [
+    "FL-GOV",
+    "FL-SEN"
+   ],
+   "eday_share": 0.3,
+   "eday": [
     {
-      "st": "FL", "name": "Florida", "kind": "party", "races": ["FL-GOV", "FL-SEN"], "eday_share": 0.3,
-      "eday": [
-        {"t": "2026-11-03T08:42:00-05:00", "r": 128031, "d": 72361, "o": 62424, "src": "FreshTake.Vote (all ballots logged Nov 3)", "url": "https://www.freshtake.vote/2026G/dailydata.php"}
-      ],
-      "base": {
-        "2024": {"eday_gap": -15, "src": "@OpenSourceZone, quoted by Townhall (a conservative outlet); full Election Day", "url": "https://townhall.com/news/amy-curtis/2026/11/03/fl-republican-turnout-n2685815"},
-        "2022": null,
-        "2018": null
-      },
-      "pre": "Before today: Republicans led the early and mail vote by about 200,000 ballots, R+3.5 (FreshTake.Vote)."
-    },
-    {
-      "st": "NV", "name": "Nevada", "kind": "party", "races": ["NV-GOV"], "eday_share": 0.21,
-      "eday": [
-        {"t": "2026-11-03T13:00:00-05:00", "gap": -8.2, "src": "@OpenSourceZone on X, quoted by Townhall (a conservative outlet); time approximate", "url": "https://townhall.com/news/amy-curtis/2026/11/03/gop-turnout-n2685829"}
-      ],
-      "base": {
-        "2024": {"eday_gap": -0.8, "same_time": true, "src": "@OpenSourceZone, same point of the day in 2024", "url": "https://townhall.com/news/amy-curtis/2026/11/03/gop-turnout-n2685829"},
-        "2022": {"eday_gap": -22.1, "r": 101090, "d": 53368, "o": 59804, "src": "Nevada Independent (full Election Day 2022, 215,517 ballots, 21% of turnout)", "url": "https://thenevadaindependent.com/article/the-early-voting-blog-2026-general"},
-        "2018": null
-      },
-      "pre": "Before today: Democrats led the early and mail vote by about 42,500 of roughly 760,000 ballots; Clark County D+67,500 (Nevada Independent, Nov 2)."
-    },
-    {
-      "st": "AZ", "name": "Arizona: Maricopa County", "kind": "party", "races": ["AZ-GOV"], "use": false,
-      "eday": [
-        {"t": "2026-11-03T10:00:00-05:00", "r": 13831, "d": 7407, "o": 10075, "src": "@OpenSourceZone via Townhall; time approximate", "url": "https://townhall.com/news/amy-curtis/2026/11/03/gop-turnout-n2685829"},
-        {"t": "2026-11-03T11:00:00-05:00", "r": 19861, "d": 10227, "o": 14549, "src": "@OpenSourceZone via Townhall; time approximate", "url": "https://townhall.com/news/amy-curtis/2026/11/03/gop-turnout-n2685829"},
-        {"t": "2026-11-03T12:00:00-05:00", "r": 26348, "d": 13403, "o": 19424, "src": "@OpenSourceZone via Townhall; time approximate", "url": "https://townhall.com/news/amy-curtis/2026/11/03/gop-turnout-n2685829"}
-      ],
-      "base": {"2024": null, "2022": null, "2018": null},
-      "pre": "Shown only: no reliable baseline found yet, so not used in the odds. Election Day in Maricopa is always heavily Republican."
-    },
-    {
-      "st": "TX", "name": "Texas", "kind": "county_pct", "t": "2026-11-03T12:00:00-06:00",
-      "src": "@_fat_ugly_rat_ on X (county Election Day check-ins as a % of the 2024 Election Day total)",
-      "counties": [
-        {"name": "Travis", "lean": "D", "pct": 44.4},
-        {"name": "Bexar", "lean": "D", "pct": 34.4},
-        {"name": "Dallas", "lean": "D", "pct": 30.0},
-        {"name": "Hays", "lean": "D", "pct": 39.0},
-        {"name": "Montgomery", "lean": "R", "pct": 46.0},
-        {"name": "Madison", "lean": "R", "pct": 39.9},
-        {"name": "Ellis", "lean": "R", "pct": 37.0},
-        {"name": "McLennan", "lean": "R", "pct": 36.7},
-        {"name": "Bell", "lean": "R", "pct": 36.4},
-        {"name": "Hockley", "lean": "R", "pct": 33.8}
-      ],
-      "read": "Shown only. At noon, Republican counties were running a little ahead of Democratic ones relative to 2024, except Travis. Without 2022 same-hour figures this is not used in the odds."
+     "t": "2026-11-03T08:42:00-05:00",
+     "r": 128031,
+     "d": 72361,
+     "o": 62424,
+     "src": "FreshTake.Vote (all ballots logged Nov 3)",
+     "url": "https://www.freshtake.vote/2026G/dailydata.php"
     }
-  ]
+   ],
+   "base": {
+    "2024": {
+     "eday_gap": -15,
+     "src": "@OpenSourceZone, quoted by Townhall (a conservative outlet); full Election Day",
+     "url": "https://townhall.com/news/amy-curtis/2026/11/03/fl-republican-turnout-n2685815"
+    },
+    "2022": null,
+    "2018": null
+   },
+   "pre": "Before today: Republicans led the early and mail vote by about 200,000 ballots, R+3.5 (FreshTake.Vote)."
+  },
+  {
+   "st": "NV",
+   "name": "Nevada",
+   "kind": "party",
+   "races": [
+    "NV-GOV"
+   ],
+   "eday_share": 0.21,
+   "eday": [
+    {
+     "t": "2026-11-03T13:00:00-05:00",
+     "gap": -8.2,
+     "src": "@OpenSourceZone on X, quoted by Townhall (a conservative outlet); time approximate",
+     "url": "https://townhall.com/news/amy-curtis/2026/11/03/gop-turnout-n2685829"
+    }
+   ],
+   "base": {
+    "2024": {
+     "eday_gap": -0.8,
+     "same_time": true,
+     "src": "@OpenSourceZone, same point of the day in 2024",
+     "url": "https://townhall.com/news/amy-curtis/2026/11/03/gop-turnout-n2685829"
+    },
+    "2022": {
+     "eday_gap": -22.1,
+     "r": 101090,
+     "d": 53368,
+     "o": 59804,
+     "src": "Nevada Independent (full Election Day 2022, 215,517 ballots, 21% of turnout)",
+     "url": "https://thenevadaindependent.com/article/the-early-voting-blog-2026-general"
+    },
+    "2018": null
+   },
+   "pre": "Before today: Democrats led the early and mail vote by about 42,500 of roughly 760,000 ballots; Clark County D+67,500 (Nevada Independent, Nov 2)."
+  },
+  {
+   "st": "AZ",
+   "name": "Arizona: Maricopa County",
+   "kind": "party",
+   "races": [
+    "AZ-GOV"
+   ],
+   "use": false,
+   "eday": [
+    {
+     "t": "2026-11-03T10:00:00-05:00",
+     "r": 13831,
+     "d": 7407,
+     "o": 10075,
+     "src": "@OpenSourceZone via Townhall; time approximate",
+     "url": "https://townhall.com/news/amy-curtis/2026/11/03/gop-turnout-n2685829"
+    },
+    {
+     "t": "2026-11-03T11:00:00-05:00",
+     "r": 19861,
+     "d": 10227,
+     "o": 14549,
+     "src": "@OpenSourceZone via Townhall; time approximate",
+     "url": "https://townhall.com/news/amy-curtis/2026/11/03/gop-turnout-n2685829"
+    },
+    {
+     "t": "2026-11-03T12:00:00-05:00",
+     "r": 26348,
+     "d": 13403,
+     "o": 19424,
+     "src": "@OpenSourceZone via Townhall; time approximate",
+     "url": "https://townhall.com/news/amy-curtis/2026/11/03/gop-turnout-n2685829"
+    }
+   ],
+   "base": {
+    "2024": null,
+    "2022": null,
+    "2018": null
+   },
+   "pre": "Shown only: no reliable baseline found yet, so not used in the odds. Election Day in Maricopa is always heavily Republican."
+  },
+  {
+   "st": "TX",
+   "name": "Texas",
+   "kind": "county_pct",
+   "t": "2026-11-03T12:00:00-06:00",
+   "src": "@_fat_ugly_rat_ on X (county Election Day check-ins as a % of the 2024 Election Day total)",
+   "counties": [
+    {
+     "name": "Travis",
+     "lean": "D",
+     "pct": 44.4
+    },
+    {
+     "name": "Bexar",
+     "lean": "D",
+     "pct": 34.4
+    },
+    {
+     "name": "Dallas",
+     "lean": "D",
+     "pct": 30.0
+    },
+    {
+     "name": "Hays",
+     "lean": "D",
+     "pct": 39.0
+    },
+    {
+     "name": "Montgomery",
+     "lean": "R",
+     "pct": 46.0
+    },
+    {
+     "name": "Madison",
+     "lean": "R",
+     "pct": 39.9
+    },
+    {
+     "name": "Ellis",
+     "lean": "R",
+     "pct": 37.0
+    },
+    {
+     "name": "McLennan",
+     "lean": "R",
+     "pct": 36.7
+    },
+    {
+     "name": "Bell",
+     "lean": "R",
+     "pct": 36.4
+    },
+    {
+     "name": "Hockley",
+     "lean": "R",
+     "pct": 33.8
+    }
+   ],
+   "read": "Shown only. At noon, Republican counties were running a little ahead of Democratic ones relative to 2024, except Travis. Without 2022 same-hour figures this is not used in the odds."
+  }
+ ],
+ "watch_note": "Counties to watch, from @earlyvotedata's election-night guides. Each value is [Republican %, Democratic %] of all votes in that county. Tonight's results go in a county's 'now': {race id: {\"r\": R %, \"d\": D %, \"pct\": % of expected vote in}} (the hourly task fills these from news results pages; North Carolina and Florida also fill automatically from the official state feeds). In the live odds, a state's finished watch counties (80%+ in) give an average swing against 2024 president, added to the 2024 statewide result.",
+ "watch_counties": [
+  {
+   "st": "TX",
+   "name": "Texas",
+   "races": [
+    "TX-SEN",
+    "TX-GOV"
+   ],
+   "cols": [
+    "2022 Gov",
+    "2024 Pres",
+    "2024 Sen"
+   ],
+   "pres_col": 1,
+   "statewide": [
+    [
+     54.8,
+     43.9
+    ],
+    [
+     56.1,
+     42.5
+    ],
+    [
+     53.1,
+     44.6
+    ]
+   ],
+   "counties": [
+    {
+     "name": "Tarrant",
+     "v": [
+      [
+       51.3,
+       47.3
+      ],
+      [
+       51.8,
+       46.7
+      ],
+      [
+       48.7,
+       48.9
+      ]
+     ]
+    },
+    {
+     "name": "Collin",
+     "v": [
+      [
+       54.3,
+       44.3
+      ],
+      [
+       54.2,
+       43.1
+      ],
+      [
+       51.5,
+       46.3
+      ]
+     ]
+    },
+    {
+     "name": "Denton",
+     "v": [
+      [
+       55.7,
+       42.9
+      ],
+      [
+       55.8,
+       42.6
+      ],
+      [
+       53.1,
+       44.7
+      ]
+     ]
+    },
+    {
+     "name": "Williamson",
+     "v": [
+      [
+       49.4,
+       48.9
+      ],
+      [
+       50.3,
+       47.9
+      ],
+      [
+       47.9,
+       49.4
+      ]
+     ]
+    },
+    {
+     "name": "Harris",
+     "v": [
+      [
+       44.5,
+       54.0
+      ],
+      [
+       46.4,
+       51.9
+      ],
+      [
+       43.0,
+       54.3
+      ]
+     ]
+    },
+    {
+     "name": "Dallas",
+     "v": [
+      [
+       35.9,
+       62.7
+      ],
+      [
+       38.0,
+       60.1
+      ],
+      [
+       34.6,
+       63.1
+      ]
+     ]
+    },
+    {
+     "name": "Bexar",
+     "v": [
+      [
+       41.0,
+       57.5
+      ],
+      [
+       44.5,
+       54.2
+      ],
+      [
+       40.8,
+       56.8
+      ]
+     ]
+    },
+    {
+     "name": "Montgomery",
+     "v": [
+      [
+       73.4,
+       25.3
+      ],
+      [
+       72.2,
+       26.8
+      ],
+      [
+       69.8,
+       28.3
+      ]
+     ]
+    },
+    {
+     "name": "Hidalgo",
+     "v": [
+      [
+       40.2,
+       58.5
+      ],
+      [
+       51.0,
+       48.1
+      ],
+      [
+       45.5,
+       52.0
+      ]
+     ]
+    }
+   ],
+   "src": "@earlyvotedata election-night guide (official county results)"
+  },
+  {
+   "st": "FL",
+   "name": "Florida",
+   "races": [
+    "FL-GOV",
+    "FL-SEN"
+   ],
+   "cols": [
+    "2022 Sen",
+    "2024 Pres",
+    "2024 Sen"
+   ],
+   "pres_col": 1,
+   "statewide": [
+    [
+     57.7,
+     41.3
+    ],
+    [
+     56.1,
+     43.0
+    ],
+    [
+     55.6,
+     42.8
+    ]
+   ],
+   "counties": [
+    {
+     "name": "Duval",
+     "v": [
+      [
+       53.9,
+       44.9
+      ],
+      [
+       50.1,
+       48.7
+      ],
+      [
+       50.1,
+       48.1
+      ]
+     ]
+    },
+    {
+     "name": "Pasco",
+     "v": [
+      [
+       64.1,
+       34.6
+      ],
+      [
+       62.1,
+       36.9
+      ],
+      [
+       59.5,
+       38.1
+      ]
+     ]
+    },
+    {
+     "name": "Pinellas",
+     "v": [
+      [
+       53.0,
+       45.5
+      ],
+      [
+       52.1,
+       46.9
+      ],
+      [
+       50.9,
+       47.3
+      ]
+     ]
+    },
+    {
+     "name": "Hillsborough",
+     "v": [
+      [
+       52.6,
+       46.1
+      ],
+      [
+       50.9,
+       47.8
+      ],
+      [
+       50.6,
+       47.5
+      ]
+     ]
+    },
+    {
+     "name": "Seminole",
+     "v": [
+      [
+       53.4,
+       45.5
+      ],
+      [
+       51.1,
+       47.6
+      ],
+      [
+       50.8,
+       47.2
+      ]
+     ]
+    },
+    {
+     "name": "Orange",
+     "v": [
+      [
+       43.5,
+       55.4
+      ],
+      [
+       42.5,
+       56.1
+      ],
+      [
+       42.8,
+       55.0
+      ]
+     ]
+    },
+    {
+     "name": "Palm Beach",
+     "v": [
+      [
+       49.3,
+       49.7
+      ],
+      [
+       49.2,
+       50.0
+      ],
+      [
+       48.5,
+       50.2
+      ]
+     ]
+    },
+    {
+     "name": "Broward",
+     "v": [
+      [
+       40.0,
+       59.1
+      ],
+      [
+       41.0,
+       58.0
+      ],
+      [
+       39.3,
+       59.4
+      ]
+     ]
+    },
+    {
+     "name": "Miami-Dade",
+     "v": [
+      [
+       54.3,
+       44.8
+      ],
+      [
+       55.4,
+       43.9
+      ],
+      [
+       54.4,
+       44.4
+      ]
+     ]
+    }
+   ],
+   "src": "@earlyvotedata election-night guide (official county results)"
+  },
+  {
+   "st": "NC",
+   "name": "North Carolina",
+   "races": [
+    "NC-SEN"
+   ],
+   "cols": [
+    "2022 Sen",
+    "2024 Pres",
+    "2024 Gov"
+   ],
+   "pres_col": 1,
+   "statewide": [
+    [
+     50.5,
+     47.3
+    ],
+    [
+     50.9,
+     47.6
+    ],
+    [
+     40.1,
+     54.9
+    ]
+   ],
+   "counties": [
+    {
+     "name": "New Hanover",
+     "v": [
+      [
+       47.9,
+       49.8
+      ],
+      [
+       49.0,
+       49.6
+      ],
+      [
+       34.3,
+       59.6
+      ]
+     ]
+    },
+    {
+     "name": "Cabarrus",
+     "v": [
+      [
+       54.8,
+       42.8
+      ],
+      [
+       53.0,
+       45.3
+      ],
+      [
+       42.0,
+       52.3
+      ]
+     ]
+    },
+    {
+     "name": "Nash",
+     "v": [
+      [
+       52.6,
+       45.9
+      ],
+      [
+       50.4,
+       48.6
+      ],
+      [
+       41.4,
+       55.3
+      ]
+     ]
+    },
+    {
+     "name": "Wake",
+     "v": [
+      [
+       35.5,
+       62.1
+      ],
+      [
+       36.2,
+       61.7
+      ],
+      [
+       24.6,
+       69.8
+      ]
+     ]
+    },
+    {
+     "name": "Mecklenburg",
+     "v": [
+      [
+       32.7,
+       65.2
+      ],
+      [
+       32.5,
+       65.2
+      ],
+      [
+       23.1,
+       71.8
+      ]
+     ]
+    },
+    {
+     "name": "Buncombe",
+     "v": [
+      [
+       36.0,
+       61.4
+      ],
+      [
+       36.8,
+       61.5
+      ],
+      [
+       28.1,
+       67.6
+      ]
+     ]
+    },
+    {
+     "name": "Johnston",
+     "v": [
+      [
+       60.8,
+       37.0
+      ],
+      [
+       60.1,
+       38.6
+      ],
+      [
+       47.3,
+       47.2
+      ]
+     ]
+    },
+    {
+     "name": "Robeson",
+     "v": [
+      [
+       58.2,
+       39.7
+      ],
+      [
+       63.4,
+       35.8
+      ],
+      [
+       54.8,
+       41.4
+      ]
+     ]
+    }
+   ],
+   "src": "@earlyvotedata election-night guide (official county results)"
+  },
+  {
+   "st": "GA",
+   "name": "Georgia",
+   "races": [
+    "GA-SEN",
+    "GA-GOV"
+   ],
+   "cols": [
+    "2022 Gov",
+    "2024 Pres",
+    "2022 Sen (Nov)"
+   ],
+   "pres_col": 1,
+   "statewide": [
+    [
+     53.4,
+     45.9
+    ],
+    [
+     50.7,
+     48.5
+    ],
+    [
+     48.5,
+     49.4
+    ]
+   ],
+   "counties": [
+    {
+     "name": "Cobb",
+     "v": [
+      [
+       47.3,
+       51.8
+      ],
+      [
+       42.0,
+       56.9
+      ],
+      [
+       40.5,
+       56.8
+      ]
+     ]
+    },
+    {
+     "name": "Gwinnett",
+     "v": [
+      [
+       44.4,
+       54.8
+      ],
+      [
+       41.1,
+       57.6
+      ],
+      [
+       38.6,
+       58.9
+      ]
+     ]
+    },
+    {
+     "name": "Fayette",
+     "v": [
+      [
+       56.5,
+       42.7
+      ],
+      [
+       51.2,
+       48.0
+      ],
+      [
+       50.3,
+       47.2
+      ]
+     ]
+    },
+    {
+     "name": "Fulton",
+     "v": [
+      [
+       30.5,
+       68.8
+      ],
+      [
+       27.0,
+       71.9
+      ],
+      [
+       24.6,
+       73.5
+      ]
+     ]
+    },
+    {
+     "name": "DeKalb",
+     "v": [
+      [
+       18.3,
+       81.1
+      ],
+      [
+       17.1,
+       81.9
+      ],
+      [
+       14.1,
+       84.3
+      ]
+     ]
+    },
+    {
+     "name": "Cherokee",
+     "v": [
+      [
+       74.2,
+       24.8
+      ],
+      [
+       69.1,
+       30.1
+      ],
+      [
+       67.6,
+       29.2
+      ]
+     ]
+    },
+    {
+     "name": "Forsyth",
+     "v": [
+      [
+       72.3,
+       26.8
+      ],
+      [
+       66.0,
+       32.9
+      ],
+      [
+       64.8,
+       32.3
+      ]
+     ]
+    }
+   ],
+   "src": "@earlyvotedata election-night guide (official county results)"
+  },
+  {
+   "st": "MI",
+   "name": "Michigan",
+   "races": [
+    "MI-SEN",
+    "MI-GOV"
+   ],
+   "cols": [
+    "2022 Gov",
+    "2024 Pres",
+    "2024 Sen"
+   ],
+   "pres_col": 1,
+   "statewide": [
+    [
+     43.9,
+     54.5
+    ],
+    [
+     49.7,
+     48.3
+    ],
+    [
+     48.3,
+     48.6
+    ]
+   ],
+   "counties": [
+    {
+     "name": "Kent",
+     "v": [
+      [
+       44.1,
+       54.3
+      ],
+      [
+       46.4,
+       51.8
+      ],
+      [
+       46.3,
+       50.9
+      ]
+     ]
+    },
+    {
+     "name": "Saginaw",
+     "v": [
+      [
+       45.4,
+       53.0
+      ],
+      [
+       51.0,
+       47.7
+      ],
+      [
+       48.7,
+       48.7
+      ]
+     ]
+    },
+    {
+     "name": "Macomb",
+     "v": [
+      [
+       46.6,
+       51.8
+      ],
+      [
+       55.9,
+       42.2
+      ],
+      [
+       53.3,
+       43.6
+      ]
+     ]
+    },
+    {
+     "name": "Oakland",
+     "v": [
+      [
+       37.8,
+       60.9
+      ],
+      [
+       43.7,
+       54.3
+      ],
+      [
+       42.7,
+       54.8
+      ]
+     ]
+    },
+    {
+     "name": "Wayne",
+     "v": [
+      [
+       28.0,
+       70.9
+      ],
+      [
+       33.7,
+       62.7
+      ],
+      [
+       31.9,
+       63.4
+      ]
+     ]
+    },
+    {
+     "name": "Genesee",
+     "v": [
+      [
+       39.8,
+       58.5
+      ],
+      [
+       47.2,
+       51.4
+      ],
+      [
+       44.7,
+       52.4
+      ]
+     ]
+    },
+    {
+     "name": "Ottawa",
+     "v": [
+      [
+       58.3,
+       40.3
+      ],
+      [
+       59.5,
+       39.0
+      ],
+      [
+       59.7,
+       38.1
+      ]
+     ]
+    }
+   ],
+   "src": "@earlyvotedata election-night guide (official county results)"
+  },
+  {
+   "st": "OH",
+   "name": "Ohio",
+   "races": [
+    "OH-SEN",
+    "OH-GOV"
+   ],
+   "cols": [
+    "2022 Sen",
+    "2024 Pres",
+    "2024 Sen"
+   ],
+   "pres_col": 1,
+   "statewide": [
+    [
+     53.0,
+     46.9
+    ],
+    [
+     55.1,
+     43.9
+    ],
+    [
+     50.1,
+     46.5
+    ]
+   ],
+   "counties": [
+    {
+     "name": "Delaware",
+     "v": [
+      [
+       53.1,
+       46.8
+      ],
+      [
+       52.8,
+       46.2
+      ],
+      [
+       49.4,
+       47.9
+      ]
+     ]
+    },
+    {
+     "name": "Lorain",
+     "v": [
+      [
+       48.7,
+       51.1
+      ],
+      [
+       52.4,
+       46.7
+      ],
+      [
+       45.9,
+       50.8
+      ]
+     ]
+    },
+    {
+     "name": "Mahoning",
+     "v": [
+      [
+       51.6,
+       48.2
+      ],
+      [
+       54.3,
+       44.9
+      ],
+      [
+       48.5,
+       48.3
+      ]
+     ]
+    },
+    {
+     "name": "Franklin",
+     "v": [
+      [
+       33.6,
+       66.1
+      ],
+      [
+       35.2,
+       63.6
+      ],
+      [
+       31.6,
+       65.5
+      ]
+     ]
+    },
+    {
+     "name": "Cuyahoga",
+     "v": [
+      [
+       32.1,
+       67.7
+      ],
+      [
+       33.9,
+       65.3
+      ],
+      [
+       30.0,
+       67.5
+      ]
+     ]
+    },
+    {
+     "name": "Hamilton",
+     "v": [
+      [
+       42.2,
+       57.7
+      ],
+      [
+       42.0,
+       56.9
+      ],
+      [
+       38.9,
+       57.8
+      ]
+     ]
+    },
+    {
+     "name": "Warren",
+     "v": [
+      [
+       64.4,
+       35.4
+      ],
+      [
+       65.3,
+       33.8
+      ],
+      [
+       61.1,
+       35.5
+      ]
+     ]
+    }
+   ],
+   "src": "@earlyvotedata election-night guide (official county results)"
+  },
+  {
+   "st": "NH",
+   "name": "New Hampshire",
+   "races": [
+    "NH-SEN",
+    "NH-GOV"
+   ],
+   "cols": [
+    "2022 Sen",
+    "2024 Pres",
+    "2024 Gov"
+   ],
+   "pres_col": 1,
+   "statewide": [
+    [
+     44.4,
+     53.5
+    ],
+    [
+     47.9,
+     50.7
+    ],
+    [
+     53.6,
+     44.3
+    ]
+   ],
+   "counties": [
+    {
+     "name": "Hillsborough",
+     "v": [
+      [
+       44.6,
+       53.2
+      ],
+      [
+       47.8,
+       50.7
+      ],
+      [
+       54.5,
+       43.5
+      ]
+     ]
+    },
+    {
+     "name": "Rockingham",
+     "v": [
+      [
+       47.4,
+       50.6
+      ],
+      [
+       50.5,
+       48.1
+      ],
+      [
+       56.9,
+       41.2
+      ]
+     ]
+    },
+    {
+     "name": "Merrimack",
+     "v": [
+      [
+       42.3,
+       55.6
+      ],
+      [
+       46.6,
+       51.8
+      ],
+      [
+       52.1,
+       45.8
+      ]
+     ]
+    },
+    {
+     "name": "Strafford",
+     "v": [
+      [
+       39.2,
+       58.7
+      ],
+      [
+       43.2,
+       55.3
+      ],
+      [
+       47.8,
+       49.9
+      ]
+     ]
+    },
+    {
+     "name": "Grafton",
+     "v": [
+      [
+       35.6,
+       62.3
+      ],
+      [
+       39.2,
+       59.0
+      ],
+      [
+       44.3,
+       53.3
+      ]
+     ]
+    },
+    {
+     "name": "Belknap",
+     "v": [
+      [
+       53.9,
+       44.4
+      ],
+      [
+       56.0,
+       42.9
+      ],
+      [
+       61.4,
+       36.7
+      ]
+     ]
+    },
+    {
+     "name": "Coos",
+     "v": [
+      [
+       50.3,
+       47.0
+      ],
+      [
+       56.2,
+       42.5
+      ],
+      [
+       59.6,
+       37.7
+      ]
+     ]
+    }
+   ],
+   "src": "@earlyvotedata election-night guide (official county results)"
+  },
+  {
+   "st": "ME",
+   "name": "Maine",
+   "races": [
+    "ME-SEN",
+    "ME-GOV"
+   ],
+   "cols": [
+    "2022 Gov",
+    "2024 Pres",
+    "2020 Sen"
+   ],
+   "pres_col": 1,
+   "statewide": [
+    [
+     42.4,
+     55.7
+    ],
+    [
+     45.5,
+     52.4
+    ],
+    [
+     51.0,
+     42.4
+    ]
+   ],
+   "counties": [
+    {
+     "name": "Kennebec",
+     "v": [
+      [
+       47.0,
+       51.1
+      ],
+      [
+       50.2,
+       47.5
+      ],
+      [
+       54.9,
+       38.5
+      ]
+     ]
+    },
+    {
+     "name": "Androscoggin",
+     "v": [
+      [
+       49.4,
+       48.7
+      ],
+      [
+       52.0,
+       45.9
+      ],
+      [
+       56.2,
+       37.8
+      ]
+     ]
+    },
+    {
+     "name": "Oxford",
+     "v": [
+      [
+       51.3,
+       46.4
+      ],
+      [
+       55.6,
+       42.7
+      ],
+      [
+       58.5,
+       35.0
+      ]
+     ]
+    },
+    {
+     "name": "Penobscot",
+     "v": [
+      [
+       51.7,
+       46.4
+      ],
+      [
+       54.5,
+       43.6
+      ],
+      [
+       60.0,
+       34.0
+      ]
+     ]
+    },
+    {
+     "name": "Aroostook",
+     "v": [
+      [
+       57.7,
+       40.5
+      ],
+      [
+       62.4,
+       36.2
+      ],
+      [
+       67.5,
+       27.4
+      ]
+     ]
+    },
+    {
+     "name": "Cumberland",
+     "v": [
+      [
+       29.2,
+       69.3
+      ],
+      [
+       31.1,
+       66.4
+      ],
+      [
+       38.5,
+       54.3
+      ]
+     ]
+    },
+    {
+     "name": "York",
+     "v": [
+      [
+       39.9,
+       58.2
+      ],
+      [
+       43.8,
+       54.3
+      ],
+      [
+       49.5,
+       44.6
+      ]
+     ]
+    }
+   ],
+   "src": "@earlyvotedata election-night guide (official county results)"
+  },
+  {
+   "st": "IA",
+   "name": "Iowa",
+   "races": [
+    "IA-SEN",
+    "IA-GOV"
+   ],
+   "cols": [
+    "2022 Sen",
+    "2024 Pres",
+    "2022 Auditor"
+   ],
+   "pres_col": 1,
+   "statewide": [
+    [
+     56.0,
+     43.8
+    ],
+    [
+     55.7,
+     42.5
+    ],
+    [
+     49.8,
+     50.1
+    ]
+   ],
+   "counties": [
+    {
+     "name": "Dallas",
+     "v": [
+      [
+       52.8,
+       47.1
+      ],
+      [
+       51.4,
+       46.7
+      ],
+      [
+       46.6,
+       53.4
+      ]
+     ]
+    },
+    {
+     "name": "Scott",
+     "v": [
+      [
+       51.7,
+       48.1
+      ],
+      [
+       51.0,
+       47.1
+      ],
+      [
+       50.0,
+       49.9
+      ]
+     ]
+    },
+    {
+     "name": "Dubuque",
+     "v": [
+      [
+       53.5,
+       46.4
+      ],
+      [
+       53.5,
+       44.9
+      ],
+      [
+       47.2,
+       52.8
+      ]
+     ]
+    },
+    {
+     "name": "Polk",
+     "v": [
+      [
+       43.6,
+       56.2
+      ],
+      [
+       43.7,
+       54.5
+      ],
+      [
+       36.7,
+       63.1
+      ]
+     ]
+    },
+    {
+     "name": "Linn",
+     "v": [
+      [
+       45.4,
+       54.4
+      ],
+      [
+       44.1,
+       54.0
+      ],
+      [
+       39.1,
+       60.9
+      ]
+     ]
+    },
+    {
+     "name": "Johnson",
+     "v": [
+      [
+       28.6,
+       71.3
+      ],
+      [
+       30.1,
+       67.9
+      ],
+      [
+       25.8,
+       74.1
+      ]
+     ]
+    },
+    {
+     "name": "Sioux",
+     "v": [
+      [
+       87.9,
+       12.0
+      ],
+      [
+       84.5,
+       13.8
+      ],
+      [
+       83.2,
+       16.8
+      ]
+     ]
+    }
+   ],
+   "src": "@earlyvotedata election-night guide (official county results)"
+  },
+  {
+   "st": "KS",
+   "name": "Kansas",
+   "races": [
+    "KS-SEN",
+    "KS-GOV"
+   ],
+   "cols": [
+    "2022 Gov",
+    "2024 Pres",
+    "2022 Sen"
+   ],
+   "pres_col": 1,
+   "statewide": [
+    [
+     47.3,
+     49.5
+    ],
+    [
+     57.2,
+     41.0
+    ],
+    [
+     60.0,
+     37.0
+    ]
+   ],
+   "counties": [
+    {
+     "name": "Johnson",
+     "v": [
+      [
+       38.9,
+       59.0
+      ],
+      [
+       44.9,
+       53.4
+      ],
+      [
+       48.0,
+       49.3
+      ]
+     ]
+    },
+    {
+     "name": "Sedgwick",
+     "v": [
+      [
+       47.0,
+       50.1
+      ],
+      [
+       56.1,
+       42.3
+      ],
+      [
+       59.0,
+       38.2
+      ]
+     ]
+    },
+    {
+     "name": "Shawnee",
+     "v": [
+      [
+       37.7,
+       59.6
+      ],
+      [
+       48.8,
+       49.3
+      ],
+      [
+       54.1,
+       42.7
+      ]
+     ]
+    },
+    {
+     "name": "Douglas",
+     "v": [
+      [
+       22.4,
+       75.5
+      ],
+      [
+       30.2,
+       68.2
+      ],
+      [
+       30.7,
+       66.6
+      ]
+     ]
+    },
+    {
+     "name": "Wyandotte",
+     "v": [
+      [
+       29.2,
+       67.8
+      ],
+      [
+       37.3,
+       61.1
+      ],
+      [
+       36.0,
+       60.6
+      ]
+     ]
+    },
+    {
+     "name": "Riley",
+     "v": [
+      [
+       37.6,
+       59.6
+      ],
+      [
+       47.8,
+       49.6
+      ],
+      [
+       53.8,
+       43.8
+      ]
+     ]
+    },
+    {
+     "name": "Butler",
+     "v": [
+      [
+       58.4,
+       38.1
+      ],
+      [
+       69.6,
+       28.4
+      ],
+      [
+       71.6,
+       25.3
+      ]
+     ]
+    }
+   ],
+   "src": "@earlyvotedata election-night guide (official county results)"
+  },
+  {
+   "st": "AZ",
+   "name": "Arizona",
+   "races": [
+    "AZ-GOV"
+   ],
+   "cols": [
+    "2022 Gov",
+    "2024 Pres",
+    "2024 Sen"
+   ],
+   "pres_col": 1,
+   "statewide": [
+    [
+     49.6,
+     50.3
+    ],
+    [
+     52.2,
+     46.7
+    ],
+    [
+     47.7,
+     50.1
+    ]
+   ],
+   "counties": [
+    {
+     "name": "Maricopa",
+     "v": [
+      [
+       48.8,
+       51.2
+      ],
+      [
+       51.2,
+       47.7
+      ],
+      [
+       46.3,
+       51.5
+      ]
+     ]
+    },
+    {
+     "name": "Pinal",
+     "v": [
+      [
+       58.2,
+       41.7
+      ],
+      [
+       60.6,
+       38.5
+      ],
+      [
+       55.9,
+       41.9
+      ]
+     ]
+    },
+    {
+     "name": "Pima",
+     "v": [
+      [
+       39.4,
+       60.6
+      ],
+      [
+       41.8,
+       57.0
+      ],
+      [
+       38.2,
+       59.1
+      ]
+     ]
+    },
+    {
+     "name": "Yavapai",
+     "v": [
+      [
+       64.0,
+       36.0
+      ],
+      [
+       66.5,
+       32.6
+      ],
+      [
+       63.0,
+       35.2
+      ]
+     ]
+    },
+    {
+     "name": "Mohave",
+     "v": [
+      [
+       75.0,
+       25.0
+      ],
+      [
+       77.6,
+       21.8
+      ],
+      [
+       73.3,
+       24.5
+      ]
+     ]
+    },
+    {
+     "name": "Yuma",
+     "v": [
+      [
+       56.5,
+       43.5
+      ],
+      [
+       59.7,
+       39.3
+      ],
+      [
+       54.0,
+       43.5
+      ]
+     ]
+    },
+    {
+     "name": "Apache",
+     "v": [
+      [
+       33.3,
+       66.7
+      ],
+      [
+       40.0,
+       58.9
+      ],
+      [
+       35.4,
+       62.5
+      ]
+     ]
+    }
+   ],
+   "src": "@earlyvotedata election-night guide (official county results)"
+  }
+ ]
 }

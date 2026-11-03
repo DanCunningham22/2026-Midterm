@@ -2046,6 +2046,7 @@
   // ---------------------------------------------------------------- Election Day turnout (pipeline/content/eday.json)
   // The live feed carries the newest copy (refreshed from main every few minutes on election night) plus how each state
   // entered the live odds; before the feed starts, the copy baked into data.json is shown.
+  const eui = {};
   function renderEday() {
     const box = $('eday'); if (!box) return;
     const E = (LIVE && LIVE.eday && LIVE.eday.states) ? LIVE.eday : (D.eday || {});
@@ -2095,11 +2096,40 @@
         h += '<p class="ed-src">Source: ' + link(st) + '</p></div>';
       }
     });
-    box.innerHTML = h + '</div>';
+    h += '</div>';
+    // counties to watch: past results in each bellwether county against tonight's
+    const WC = (LIVE && LIVE.eday && LIVE.eday.watch_counties) ? LIVE.eday.watch_counties : (D.eday && D.eday.watch_counties) || [];
+    if (WC.length) {
+      const now = (LIVE && LIVE.eday && LIVE.eday.county_now) || {};
+      const cev = (LIVE && LIVE.eday && LIVE.eday.county_ev) || [];
+      const mg = (r, d) => { const m = d - r; return Math.abs(m) < 0.05 ? 'even' : (m > 0 ? 'D+' : 'R+') + Math.abs(m).toFixed(1); };
+      const cls = (r, d) => (d > r ? 'lv-up' : 'lv-dn');
+      if (!eui.wst || !WC.some((x) => x.st === eui.wst)) eui.wst = WC[0].st;
+      const S = WC.find((x) => x.st === eui.wst);
+      const pc = S.pres_col != null ? S.pres_col : 1;
+      h += '<h3 class="ed-wh">Counties to watch</h3><p class="sub">How each bellwether county voted before, and tonight. If your candidate is beating the old margins in these counties, they are doing what they need to; it does not say who leads statewide. The last column is the swing against 2024 president (two-party). Once two or more of a state\'s watch counties are 80% counted, their average swing projects the statewide race in the live odds, unless an official statewide feed or a call already settles it.</p>';
+      h += '<div class="ed-sts" role="tablist">' + WC.map((x) => '<button class="ed-st' + (x.st === S.st ? ' on' : '') + '" data-wst="' + esc(x.st) + '">' + esc(x.st) + '</button>').join('') + '</div>';
+      const races = S.races || [];
+      h += '<div class="ed-wrap"><table class="ed-wt"><thead><tr><th>County</th>' + S.cols.map((c) => '<th>' + esc(c) + '</th>').join('') + races.map((rid) => '<th>Tonight ' + esc(rid.split('-')[1]) + '</th>').join('') + '<th>Swing vs \'24</th></tr></thead><tbody>';
+      const rowOf = (name, v, tn) => {
+        let sw = '';
+        const r0 = races.map((rid) => tn && tn[rid]).find((x) => x);
+        if (r0 && v[pc]) { const a = 100 * (r0.d - r0.r) / (r0.d + r0.r), b = 100 * (v[pc][1] - v[pc][0]) / (v[pc][1] + v[pc][0]); const x = a - b; sw = '<b class="' + (x > 0 ? 'lv-up' : 'lv-dn') + '">' + (x > 0 ? 'D+' : 'R+') + Math.abs(x).toFixed(1) + '</b>'; }
+        return '<tr><th>' + esc(name) + '</th>' + v.map((p) => '<td class="' + cls(p[0], p[1]) + '">' + mg(p[0], p[1]) + '</td>').join('') +
+          races.map((rid) => { const x = tn && tn[rid]; return '<td>' + (x ? '<span class="' + cls(x.r, x.d) + '">' + mg(x.r, x.d) + '</span>' + (x.pct != null ? ' <small>' + Math.round(x.pct) + '%' + (x.src === 'official' ? '*' : '') + '</small>' : '') : '<span class="ed-na">—</span>') + '</td>'; }).join('') +
+          '<td>' + (sw || '<span class="ed-na">—</span>') + '</td></tr>';
+      };
+      h += S.counties.map((c) => rowOf(c.name, c.v, (now[S.st] || {})[c.name])).join('');
+      h += '</tbody><tfoot>' + '<tr><th>Statewide</th>' + S.statewide.map((p) => '<td class="' + cls(p[0], p[1]) + '">' + mg(p[0], p[1]) + '</td>').join('') + races.map(() => '<td></td>').join('') + '<td></td></tr></tfoot></table></div>';
+      const ce = cev.filter((x) => x.st === S.st);
+      if (ce.length) h += '<p class="ed-model">' + ce.map((x) => esc(x.id) + ': ' + x.k + ' watch ' + (x.k === 1 ? 'county' : 'counties') + ' 80%+ counted, average swing ' + (x.swing > 0 ? 'D+' : 'R+') + Math.abs(x.swing).toFixed(1) + ' vs 2024, pointing to ' + (x.margin > 0 ? 'D+' : 'R+') + Math.abs(x.margin).toFixed(1) + ' statewide (±' + x.sd + ')' + (x.used ? ', in the live odds' : x.k < 2 ? ', not used until a second county finishes' : ', shown only: the official count or a call takes precedence')).join('. ') + '.</p>';
+      h += '<p class="ed-src">Margins are the gap between the two parties' shares of all votes cast. The swing compares the first race with results tonight. Benchmarks: ' + esc(S.src) + '. Tonight: official state feed where marked *, otherwise news results pages, entered hourly.</p>';
+    }
+    box.innerHTML = h;
   }
   function wireEday() {
     const box = $('eday'); if (!box) return;
-    box.addEventListener('click', (e) => { const chip = e.target.closest('.rchip'); if (chip) goRace(chip.dataset.race); });
+    box.addEventListener('click', (e) => { const chip = e.target.closest('.rchip'); if (chip) { goRace(chip.dataset.race); return; } const b = e.target.closest('.ed-st'); if (b) { eui.wst = b.dataset.wst; renderEday(); } });
   }
 
   // ---------------------------------------------------------------- phone layout: one screen at a time, bottom tab bar

@@ -33,15 +33,59 @@ Object.entries(callsFile.races || {}).forEach(([id, v]) => {
 });
 const obs = (feeds.obs || []).filter((o) => !calls[o.id]);   // a called race needs no projection
 
+const edayPath = process.argv[6];
+const eday = edayPath ? readJSON(edayPath, null) : null;
+
+// Counties to watch (eday.json watch_counties): tonight's result in each county, from the official NC and FL feeds where
+// they exist and otherwise as entered hourly from news results pages. Where at least two of a state's watch counties are
+// 80%+ counted, their average swing against the 2024 presidential result (two-party margin), added to the 2024 statewide
+// result, projects the race (uniform swing). SD 3 + 7/sqrt(k) points for k finished counties: these are bellwethers, not the
+// whole state. Used only for a race with no call and no projection from an official statewide feed.
+const countyNow = {}, countyEv = [];
+const tp = (r, d) => (r + d > 0 ? 100 * (d - r) / (d + r) : null);
+if (eday && Array.isArray(eday.watch_counties)) {
+  const fc = feeds.counties || {};
+  eday.watch_counties.forEach((S) => {
+    const cn = countyNow[S.st] = {};
+    (S.counties || []).forEach((c) => {
+      const now = {};
+      Object.entries(c.now || {}).forEach(([rid, x]) => { if (x && isFinite(+x.r) && isFinite(+x.d)) now[rid] = { r: +x.r, d: +x.d, pct: isFinite(+x.pct) ? +x.pct : null, src: 'entered' }; });
+      const f = (fc[S.st] || {})[c.name] || {};
+      Object.entries(f).forEach(([rid, t]) => {
+        const tot = (t.d || 0) + (t.r || 0) + (t.o || 0);
+        if (tot > 0) now[rid] = { r: 100 * t.r / tot, d: 100 * t.d / tot, pct: t.ptl ? 100 * t.prt / t.ptl : null, src: 'official' };
+      });
+      if (Object.keys(now).length) cn[c.name] = now;
+    });
+    const pc = S.pres_col != null ? S.pres_col : 1;
+    const sw = S.statewide && S.statewide[pc];
+    const base = sw ? tp(sw[0], sw[1]) : null;
+    (S.races || []).forEach((rid) => {
+      const sws = [];
+      (S.counties || []).forEach((c) => {
+        const x = cn[c.name] && cn[c.name][rid];
+        const v = c.v && c.v[pc];
+        if (!x || !v || x.pct == null || x.pct < 80) return;
+        const m26 = tp(x.r, x.d), m24 = tp(v[0], v[1]);
+        if (m26 != null && m24 != null) sws.push(m26 - m24);
+      });
+      if (!sws.length || base == null) return;
+      const k = sws.length, swing = sws.reduce((a, b) => a + b, 0) / k;
+      const sd = 3 + 7 / Math.sqrt(k);
+      const used = k >= 2 && !calls[rid] && !obs.some((o) => o.id === rid);
+      if (used) obs.push({ id: rid, margin: Math.round((base + swing) * 100) / 100, sd: Math.round(sd * 100) / 100, why: 'watch counties' });
+      countyEv.push({ st: S.st, id: rid, k, swing: Math.round(swing * 10) / 10, margin: Math.round((base + swing) * 10) / 10, sd: Math.round(sd * 10) / 10, used });
+    });
+  });
+}
+
 // Election Day turnout (pipeline/content/eday.json, kept hourly on Nov 3): light evidence until counts arrive.
 // For a state with Election Day check-ins by party registration, the gap among today's voters (D minus R, % of all)
 // is compared with Election Day in a baseline year (2022 preferred, then 2018, then 2024, a presidential year). The
 // difference, times today's expected share of the state's ballots and the registration-to-margin slope from the
 // 2020->2024 early-vote calibration (0.84), shifts the state's statewide race from the forecast's expected margin.
 // SD 10 points (2022 base), 11 (2018), 12 (2024), x1.3 under 200,000 check-ins: weak next to a count, and dropped
-// once the official count for that race is in (it then has its own projection in feeds.obs) or the race is called.
-const edayPath = process.argv[6];
-const eday = edayPath ? readJSON(edayPath, null) : null;
+// once the official count or the watch counties project that race (they then have an entry in obs) or it is called.
 const edayEv = [];
 if (eday && Array.isArray(eday.states)) {
   const mm = m.margins(sc);
@@ -138,7 +182,7 @@ const out = {
   now, timeline: tl,
   calls: { asof: callsFile.asof || null, src: callsFile.src || null, n: Object.keys(calls).length, tally: callsFile.tally || null, control: callsFile.control || null, notes: callsFile.notes || null },
   feeds: { fetched_at: feeds.fetched_at || null, sources: feeds.sources || {}, obs: feeds.obs || [], progress: feeds.progress },
-  eday: eday ? Object.assign({}, eday, { evidence: edayEv }) : null,
+  eday: eday ? Object.assign({}, eday, { evidence: edayEv, county_now: countyNow, county_ev: countyEv }) : null,
   races,
 };
 fs.writeFileSync(outPath, JSON.stringify(out));
