@@ -1,0 +1,20 @@
+name: Probe a page (one-off)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Fetch pages and push them to the probe branch
+        run: |
+          mkdir out && cd out
+          UA='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36'
+          curl -sSL -A "$UA" -H 'Cache-Control: no-cache' -o freshtake_daily.html "https://www.freshtake.vote/2026G/dailydata.php?t=$(date +%s)" -w 'freshtake %{http_code} %{size_download}\n' || true
+          curl -sSL -A "$UA" -o freshtake_index.html "https://www.freshtake.vote/2026G/index.php?t=$(date +%s)" -w 'index %{http_code} %{size_download}\n' || true
+          curl -sSL -A "$UA" -o nvsos.html "https://www.nvsos.gov/vivid/?view=early-voting-turnout" -w 'nvsos %{http_code} %{size_download}\n' || true
+          date -u > fetched_at.txt
+          git init -q && git checkout -q -b probe && git add . && git -c user.name=midterm-map -c user.email=midterm-map@users.noreply.github.com commit -qm "probe $(date -u +%H:%M)"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" probe
