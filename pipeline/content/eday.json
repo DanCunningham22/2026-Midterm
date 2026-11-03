@@ -1904,5 +1904,163 @@
    ],
    "src": "@earlyvotedata election-night guide (official county results)"
   }
- ]
+ ],
+ "house_watch": {
+  "note": "Swing House districts to watch, with where they are and when the main polls close (ET). Districts and candidates from @earlyvotedata's district guide (checked Nov 3); IN-05 added. Earliest closings first.",
+  "close_et": {
+   "IN": "6:00",
+   "KY": "6:00",
+   "VA": "7:00",
+   "GA": "7:00",
+   "FL": "7:00",
+   "NC": "7:30",
+   "OH": "7:30",
+   "PA": "8:00",
+   "MI": "8:00",
+   "TX": "8:00",
+   "ME": "8:00",
+   "NH": "8:00",
+   "NE": "9:00",
+   "WI": "9:00",
+   "MN": "9:00",
+   "IA": "9:00",
+   "AZ": "9:00",
+   "KS": "9:00",
+   "CA": "11:00"
+  },
+  "races": [
+   {
+    "id": "IN-05",
+    "where": "Indianapolis north suburbs: Hamilton County (Carmel, Fishers), Anderson, Muncie, Kokomo"
+   },
+   {
+    "id": "KY-06",
+    "where": "Lexington and central Kentucky"
+   },
+   {
+    "id": "VA-01",
+    "where": "Richmond suburbs, Williamsburg, Northern Neck"
+   },
+   {
+    "id": "VA-02",
+    "where": "Virginia Beach, Eastern Shore"
+   },
+   {
+    "id": "FL-13",
+    "where": "Pinellas County: St. Petersburg, Clearwater"
+   },
+   {
+    "id": "FL-14",
+    "where": "Tampa"
+   },
+   {
+    "id": "FL-22",
+    "where": "South Florida"
+   },
+   {
+    "id": "FL-27",
+    "where": "Miami"
+   },
+   {
+    "id": "NC-01",
+    "where": "Northeast NC: Greenville, Rocky Mount"
+   },
+   {
+    "id": "NC-11",
+    "where": "Western NC: Asheville"
+   },
+   {
+    "id": "OH-07",
+    "where": "Cleveland's southern and western suburbs"
+   },
+   {
+    "id": "OH-09",
+    "where": "Toledo and northwest Ohio"
+   },
+   {
+    "id": "OH-10",
+    "where": "Dayton"
+   },
+   {
+    "id": "PA-07",
+    "where": "Lehigh Valley: Allentown"
+   },
+   {
+    "id": "PA-08",
+    "where": "Scranton, Wilkes-Barre"
+   },
+   {
+    "id": "PA-10",
+    "where": "Harrisburg, York"
+   },
+   {
+    "id": "MI-04",
+    "where": "Southwest Michigan: Kalamazoo"
+   },
+   {
+    "id": "MI-07",
+    "where": "Lansing"
+   },
+   {
+    "id": "MI-10",
+    "where": "Macomb County, north of Detroit"
+   },
+   {
+    "id": "TX-15",
+    "where": "Rio Grande Valley north toward San Antonio"
+   },
+   {
+    "id": "TX-34",
+    "where": "Lower Rio Grande Valley: Brownsville"
+   },
+   {
+    "id": "TX-35",
+    "where": "San Antonio area"
+   },
+   {
+    "id": "NE-02",
+    "where": "Omaha"
+   },
+   {
+    "id": "WI-01",
+    "where": "Southeast Wisconsin: Racine, Kenosha, Janesville"
+   },
+   {
+    "id": "WI-03",
+    "where": "Western Wisconsin: Eau Claire, La Crosse"
+   },
+   {
+    "id": "MN-02",
+    "where": "South Twin Cities suburbs"
+   },
+   {
+    "id": "IA-01",
+    "where": "Southeast Iowa: Davenport, Iowa City"
+   },
+   {
+    "id": "IA-02",
+    "where": "Northeast Iowa: Cedar Rapids, Waterloo"
+   },
+   {
+    "id": "IA-03",
+    "where": "Des Moines and southwest Iowa"
+   },
+   {
+    "id": "AZ-01",
+    "where": "Phoenix, Scottsdale"
+   },
+   {
+    "id": "AZ-06",
+    "where": "Tucson and southeast Arizona"
+   },
+   {
+    "id": "CA-22",
+    "where": "Central Valley: Bakersfield area"
+   },
+   {
+    "id": "CA-48",
+    "where": "Inland San Diego County"
+   }
+  ]
+ }
 }

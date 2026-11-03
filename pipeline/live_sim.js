@@ -167,6 +167,10 @@ const houseCand = data.districts.map((d, i) => ({ d, i, p0: preRace[d.id] }))
   .filter((o) => (o.p0 > 0.1 && o.p0 < 0.9) || calls[o.d.id] && o.p0 > 0.03 && o.p0 < 0.97 || ((feeds.races || {})[o.d.id] && o.p0 > 0.03 && o.p0 < 0.97))
   .sort((a, b) => Math.abs(a.p0 - 0.5) - Math.abs(b.p0 - 0.5)).slice(0, 60);
 houseCand.forEach((o) => add('house', o.d, o.i, r.house.p[o.i]));
+// plus the Election Day tab's House watch list, whatever their odds
+const listed = new Set(races.map((x) => x.id));
+const hw = new Set(((eday && eday.house_watch && eday.house_watch.races) || []).map((x) => x.id));
+data.districts.forEach((d, i) => { if (hw.has(d.id) && !listed.has(d.id)) races.push({ id: d.id, kind: 'house', st: d.st, dn: d.dn, rn: d.rn, dp: d.dp || 'D', pre: preRace[d.id], now: pc(r.house.p[i]), call: calls[d.id] || null, count: null }); });
 
 // timeline: a point when anything moved half a point, or every 10 minutes
 const stamp = new Date().toISOString().slice(0, 19) + 'Z';

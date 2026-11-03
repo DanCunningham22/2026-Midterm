@@ -2125,6 +2125,23 @@
       if (ce.length) h += '<p class="ed-model">' + ce.map((x) => esc(x.id) + ': ' + x.k + ' watch ' + (x.k === 1 ? 'county' : 'counties') + ' 80%+ counted, average swing ' + (x.swing > 0 ? 'D+' : 'R+') + Math.abs(x.swing).toFixed(1) + ' vs 2024, pointing to ' + (x.margin > 0 ? 'D+' : 'R+') + Math.abs(x.margin).toFixed(1) + ' statewide (±' + x.sd + ')' + (x.used ? ', in the live odds' : x.k < 2 ? ', not used until a second county finishes' : ', shown only: the official count or a call takes precedence')).join('. ') + '.</p>';
       h += '<p class="ed-src">Margins are the gap between the two parties\' shares of all votes cast. The swing compares the first race with results tonight. Benchmarks: ' + esc(S.src) + '. Tonight: official state feed where marked *, otherwise news results pages, entered hourly.</p>';
     }
+    // House races to watch: where each one is, when polls close, and its odds before tonight and now
+    const HW = (LIVE && LIVE.eday && LIVE.eday.house_watch) || (D.eday && D.eday.house_watch);
+    if (HW && HW.races && HW.races.length) {
+      const byId = {}; (D.districts || []).forEach((x) => { byId[x.id] = x; });
+      const lr = {}; ((LIVE && LIVE.races) || []).forEach((x) => { lr[x.id] = x; });
+      const pre = (LIVE && LIVE.pre_race) || {};
+      const pct = (p) => p == null ? '—' : Math.round(p * 100) + '%';
+      h += '<h3 class="ed-wh">House races to watch</h3><p class="sub">Swing districts, where they are, and when the main polls close (Eastern). Chances are the Democrat\'s; "Now" moves with calls and counts once the live feed runs. Tap a district to open it on the map.</p>';
+      h += '<div class="ed-wrap"><table class="ed-wt ed-hw"><thead><tr><th>District</th><th>Where</th><th>Democrat</th><th>Republican</th><th>Polls close</th><th>Before</th><th>Now</th></tr></thead><tbody>';
+      h += HW.races.map((r) => {
+        const x = byId[r.id] || {}; const L = lr[r.id];
+        const p0 = pre[r.id] != null ? pre[r.id] : (L ? L.pre : null);
+        const now = L ? (L.call ? (L.call === 'D' ? 'D won' : L.call === 'R' ? 'R won' : L.call + ' won') : pct(L.now)) : '—';
+        const cls = L && L.call ? (L.call === 'D' ? 'lv-up' : 'lv-dn') : '';
+        return '<tr><th><button class="rchip" data-race="' + esc(r.id) + '">' + esc(r.id) + '</button></th><td class="ed-where">' + esc(r.where) + '</td><td>' + esc(x.dn || '') + '</td><td>' + esc(x.rn || '') + '</td><td>' + esc((HW.close_et || {})[r.id.split('-')[0]] || '') + '</td><td>' + pct(p0) + '</td><td class="' + cls + '">' + now + '</td></tr>';
+      }).join('') + '</tbody></table></div><p class="ed-src">Districts and candidates: @earlyvotedata district guide, checked against the app. Poll times are when most of the state closes; some areas close an hour later.</p>';
+    }
     box.innerHTML = h;
   }
   function wireEday() {
