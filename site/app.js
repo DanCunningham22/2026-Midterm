@@ -285,7 +285,7 @@
     if (q.has('livetest')) return 'live-test';
     if (q.has('live')) return 'live';
     const t = Date.now();
-    return t >= Date.parse('2026-11-03T22:00:00Z') && t < Date.parse('2026-11-12T00:00:00Z') ? 'live' : null;
+    return t >= Date.parse('2026-11-03T20:00:00Z') && t < Date.parse('2026-11-12T00:00:00Z') ? 'live' : null;
   }
   function fetchLive(branch) {
     const api = 'https://api.github.com/repos/' + LIVE_REPO + '/contents/live.json?ref=' + branch;
