@@ -73,7 +73,7 @@ h1 { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: c
 .jump { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 14px; font-weight: 600; }
 .jump a { color: var(--ink); text-underline-offset: 3px; }
 body.tabbed .jump { display: none; }
-#early-vote, #watch, #method, #backtest { scroll-margin-top: calc(var(--bar-h, 100px) + 12px); }
+#early-vote, #eday, #watch, #method, #backtest { scroll-margin-top: calc(var(--bar-h, 100px) + 12px); }
 
 /* sticky scenario bar */
 .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bar-bg); backdrop-filter: blur(8px);
@@ -275,6 +275,26 @@ th.n { text-align: right; }
 .key-legend i.poll { background: var(--mark); }
 
 /* early vote */
+.ed-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 14px; }
+.ed-card { border: 1px solid var(--rule); border-radius: 10px; padding: 12px 14px; min-width: 0; }
+.ed-card h3 { margin: 0 0 6px; font-size: 16px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.ed-races { display: inline-flex; gap: 4px; flex-wrap: wrap; }
+.ed-now { font-size: 14px; margin-bottom: 8px; }
+.ed-now b { font-size: 18px; }
+.ed-tab { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ed-tab th { text-align: left; font-weight: 500; padding: 3px 6px 3px 0; white-space: nowrap; }
+.ed-tab td { padding: 3px 0; }
+.ed-tab .ed-v { text-align: right; padding-right: 8px; font-variant-numeric: tabular-nums; white-space: nowrap; width: 1%; }
+.ed-tab td:last-child { width: 45%; }
+.ed-na { color: var(--ink-3); }
+.ed-bar { position: relative; display: block; height: 10px; background: var(--rule); border-radius: 2px; overflow: hidden; }
+.ed-mid { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--ink-3); }
+.ed-fill { position: absolute; top: 0; bottom: 0; }
+.ed-fill.d { background: var(--ld); } .ed-fill.r { background: var(--lr); }
+.ed-lean { font-size: 11px; font-weight: 700; }
+.ed-hist, .ed-model, .ed-pre, .ed-src { font-size: 12.5px; margin: 8px 0 0; color: var(--ink-2); }
+.ed-model { color: var(--ink); }
+.ed-src a { color: var(--ink-2); }
 .ev-head { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 16px; align-items: start; }
 .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 12px 0 4px; }
 .stat { border-top: 3px solid var(--ink); padding-top: 6px; }
@@ -370,7 +390,7 @@ body.tabbed .masthead h1, body.tabbed .masthead .lede { display: none; }
 body.tabbed .masthead { margin-bottom: 8px; }
 body.tabbed .wrap { padding-top: 12px; padding-bottom: calc(var(--dock-h, 150px) + 18px); }
 body.tabbed .grid { margin-top: 12px; }
-body.tabbed #early-vote, body.tabbed #method { margin-top: 12px !important; }
+body.tabbed #early-vote, body.tabbed #eday, body.tabbed #method { margin-top: 12px !important; }
 body.tabbed .bar { padding-block: 6px; }
 body.tabbed .bar-inner { gap: 0; }
 body.tabbed .dock { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 35; background: var(--bar-bg);
@@ -380,7 +400,7 @@ body.tabbed.kbd .dock { display: none; }
 .dock-env .env-label { display: none; }
 .dock-env .env-value { font-size: 27px; min-width: 3.5ch; }
 .dock-env .presets { margin-top: 0; padding-bottom: 4px; }
-.tabbar { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border-top: 1px solid var(--rule-2); }
+.tabbar { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border-top: 1px solid var(--rule-2); }
 .tabbar button { display: grid; justify-items: center; gap: 1px; border: 0; background: none; padding: 6px 0 4px; color: var(--ink-3);
   font-size: 11px; font-weight: 600; cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .tabbar svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
@@ -526,7 +546,7 @@ body.tabbed .banner { bottom: calc(var(--dock-h, 150px) + 10px); }
     <div class="status-row"><p class="eyebrow" id="eyebrow">2026 midterms · loading the latest numbers</p><span id="staleChip" class="chip-warn" hidden></span></div>
     <h1>2026 Midterm Scenario Map</h1>
     <p class="lede" id="lede">Set the national House vote, each group's margin and turnout, and the House, Senate and governor maps redraw. It opens on our forecast, the polls corrected by how they've done in past midterms and checked against real votes, and every number updates itself through the day.</p>
-    <nav class="jump" aria-label="Sections further down"><a href="#backtest">Our forecast vs. the polls</a><a href="#early-vote">Early vote</a><a href="#watch">What to watch: dates, news, Trump and Vance stops</a><a href="#method">How it works</a></nav>
+    <nav class="jump" aria-label="Sections further down"><a href="#backtest">Our forecast vs. the polls</a><a href="#early-vote">Early vote</a><a href="#eday">Election Day turnout</a><a href="#watch">What to watch: dates, news, Trump and Vance stops</a><a href="#method">How it works</a></nav>
   </header>
 
   <section class="bar" aria-label="Scenario">
@@ -662,6 +682,7 @@ body.tabbed .banner { bottom: calc(var(--dock-h, 150px) + 10px); }
 
   <section class="card bt" id="backtest" data-screen="outlook" aria-label="How our forecast is built" style="margin-top:16px"></section>
   <section class="card" id="early-vote" data-screen="early" aria-label="Early vote" style="margin-top:16px"></section>
+  <section class="card" id="eday" data-screen="eday" aria-label="Election Day turnout" style="margin-top:16px"></section>
   <section class="card" id="watch" data-screen="watch" aria-label="What to watch" style="margin-top:16px"></section>
   <section class="card" id="method" data-screen="adjust" aria-label="Method and sources" style="margin-top:16px"></section>
   <footer data-screen="adjust">Probabilities describe this model under the settings shown, not a forecast of record. District data on the 2026 lines derived from ElectIndex's public forecast data; group baselines from Pew Research Center; early vote from UF Election Lab.</footer>
@@ -676,6 +697,7 @@ body.tabbed .banner { bottom: calc(var(--dock-h, 150px) + 10px); }
     <button data-go="races"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6.5h11M9 12h11M9 17.5h11"/><circle cx="4.8" cy="6.5" r="1.3"/><circle cx="4.8" cy="12" r="1.3"/><circle cx="4.8" cy="17.5" r="1.3"/></svg><span>Races</span></button>
     <button data-go="adjust"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2.2"/><circle cx="9" cy="17" r="2.2"/></svg><span>Adjust</span></button>
     <button data-go="early"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5h16V20H4z"/><path d="M8 11.5V4h8v7.5"/><path d="M10 7.5l1.6 1.6L14.4 6"/><path d="M9 15h6"/></svg><span>Early vote</span></button>
+    <button data-go="eday"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="1.5"/><path d="M4 9.5h16M8.5 3v4M15.5 3v4"/><path d="M9 14.5l2 2 4-4"/></svg><span>E-Day</span></button>
     <button data-go="watch"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.6 12S6 5.8 12 5.8 21.4 12 21.4 12 18 18.2 12 18.2 2.6 12 2.6 12z"/><circle cx="12" cy="12" r="2.9"/></svg><span>Watch</span></button>
   </nav>
 </div>

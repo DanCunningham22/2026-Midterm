@@ -684,6 +684,7 @@ def main():
     out['fc_hist'] = prev.get('fc_hist', [])   # daily forecast record, appended to by pipeline/fc_trend.js after the build
     out['sealed'] = load_json(os.path.join(ROOT, 'pipeline', 'content', 'sealed.json'), {'versions': []})
     out['watch'] = clean_watch(load_json(os.path.join(ROOT, 'pipeline', 'content', 'watch.json'), {}))
+    out['eday'] = load_json(os.path.join(ROOT, 'pipeline', 'content', 'eday.json'), {})   # Election Day turnout tab
 
     # campaign money from the FEC (House and Senate; governors are state races). The files change about daily,
     # so they are fetched at most every ~6 hours; a failed fetch keeps the last good figures.

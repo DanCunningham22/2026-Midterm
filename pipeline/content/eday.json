@@ -1,0 +1,57 @@
+{
+  "note": "Election Day turnout, Nov 3 2026. Kept hourly on Election Day by a scheduled task. 'gap' is Democrats minus Republicans as a percent of all ballots cast that day (negative = Republican). Baselines: the same snapshot time in an earlier year where a source gives it (same_time), otherwise that year's full Election Day. Party registration is not a vote: a Republican-registered voter can vote for a Democrat, and the morning electorate skews older. In the live odds this is weak evidence (see pipeline/live_sim.js) and steps aside once a state's count arrives.",
+  "asof": "2026-11-03T15:00:00-05:00",
+  "states": [
+    {
+      "st": "FL", "name": "Florida", "kind": "party", "races": ["FL-GOV", "FL-SEN"], "eday_share": 0.3,
+      "eday": [
+        {"t": "2026-11-03T08:42:00-05:00", "r": 128031, "d": 72361, "o": 62424, "src": "FreshTake.Vote (all ballots logged Nov 3)", "url": "https://www.freshtake.vote/2026G/dailydata.php"}
+      ],
+      "base": {
+        "2024": {"eday_gap": -15, "src": "@OpenSourceZone, quoted by Townhall (a conservative outlet); full Election Day", "url": "https://townhall.com/news/amy-curtis/2026/11/03/fl-republican-turnout-n2685815"},
+        "2022": null,
+        "2018": null
+      },
+      "pre": "Before today: Republicans led the early and mail vote by about 200,000 ballots, R+3.5 (FreshTake.Vote)."
+    },
+    {
+      "st": "NV", "name": "Nevada", "kind": "party", "races": ["NV-GOV"], "eday_share": 0.21,
+      "eday": [
+        {"t": "2026-11-03T13:00:00-05:00", "gap": -8.2, "src": "@OpenSourceZone on X, quoted by Townhall (a conservative outlet); time approximate", "url": "https://townhall.com/news/amy-curtis/2026/11/03/gop-turnout-n2685829"}
+      ],
+      "base": {
+        "2024": {"eday_gap": -0.8, "same_time": true, "src": "@OpenSourceZone, same point of the day in 2024", "url": "https://townhall.com/news/amy-curtis/2026/11/03/gop-turnout-n2685829"},
+        "2022": {"eday_gap": -22.1, "r": 101090, "d": 53368, "o": 59804, "src": "Nevada Independent (full Election Day 2022, 215,517 ballots, 21% of turnout)", "url": "https://thenevadaindependent.com/article/the-early-voting-blog-2026-general"},
+        "2018": null
+      },
+      "pre": "Before today: Democrats led the early and mail vote by about 42,500 of roughly 760,000 ballots; Clark County D+67,500 (Nevada Independent, Nov 2)."
+    },
+    {
+      "st": "AZ", "name": "Arizona: Maricopa County", "kind": "party", "races": ["AZ-GOV"], "use": false,
+      "eday": [
+        {"t": "2026-11-03T10:00:00-05:00", "r": 13831, "d": 7407, "o": 10075, "src": "@OpenSourceZone via Townhall; time approximate", "url": "https://townhall.com/news/amy-curtis/2026/11/03/gop-turnout-n2685829"},
+        {"t": "2026-11-03T11:00:00-05:00", "r": 19861, "d": 10227, "o": 14549, "src": "@OpenSourceZone via Townhall; time approximate", "url": "https://townhall.com/news/amy-curtis/2026/11/03/gop-turnout-n2685829"},
+        {"t": "2026-11-03T12:00:00-05:00", "r": 26348, "d": 13403, "o": 19424, "src": "@OpenSourceZone via Townhall; time approximate", "url": "https://townhall.com/news/amy-curtis/2026/11/03/gop-turnout-n2685829"}
+      ],
+      "base": {"2024": null, "2022": null, "2018": null},
+      "pre": "Shown only: no reliable baseline found yet, so not used in the odds. Election Day in Maricopa is always heavily Republican."
+    },
+    {
+      "st": "TX", "name": "Texas", "kind": "county_pct", "t": "2026-11-03T12:00:00-06:00",
+      "src": "@_fat_ugly_rat_ on X (county Election Day check-ins as a % of the 2024 Election Day total)",
+      "counties": [
+        {"name": "Travis", "lean": "D", "pct": 44.4},
+        {"name": "Bexar", "lean": "D", "pct": 34.4},
+        {"name": "Dallas", "lean": "D", "pct": 30.0},
+        {"name": "Hays", "lean": "D", "pct": 39.0},
+        {"name": "Montgomery", "lean": "R", "pct": 46.0},
+        {"name": "Madison", "lean": "R", "pct": 39.9},
+        {"name": "Ellis", "lean": "R", "pct": 37.0},
+        {"name": "McLennan", "lean": "R", "pct": 36.7},
+        {"name": "Bell", "lean": "R", "pct": 36.4},
+        {"name": "Hockley", "lean": "R", "pct": 33.8}
+      ],
+      "read": "Shown only. At noon, Republican counties were running a little ahead of Democratic ones relative to 2024, except Travis. Without 2022 same-hour figures this is not used in the odds."
+    }
+  ]
+}

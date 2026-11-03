@@ -118,6 +118,9 @@ the night, the implied national House vote, called-seat tallies, and the races s
   model and writes `live.json` to the `live` branch, which the page reads through the GitHub API (raw file as a
   fallback). `?livetest=1` shows a replay of 2024 written to the `live-test` branch.
 
+
+**Election Day turnout tab.** `pipeline/content/eday.json`, refreshed hourly on Election Day, holds Election Day check-ins by party registration (Florida, Nevada, Maricopa County) and county turnout against 2024 (Texas), with 2024, 2022 and 2018 Election Day baselines where a source gives them. In the live odds, a state with a baseline enters as weak evidence: the change in the Election Day party gap against the baseline (a same-time-of-day comparison preferred, then 2022, 2018, 2024), times Election Day's share of the vote and the 0.84 registration-to-margin slope, shifts the state's statewide races from their expected margin with an SD of 10-13 points (about a quarter of the weight of the forecast itself). It steps aside once that race has counted votes or a call.
+
 ## Model in brief
 
 - **House:** each district's 2024 presidential margin on its 2026 lines, moved by the national House vote

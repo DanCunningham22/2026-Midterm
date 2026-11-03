@@ -9,7 +9,7 @@
   let sc = M.clone(M.defaults);
   let R = null;              // last simulation
   const ui = { tab: 'house', cmode: 'chance', sel: null, dim: 'race', query: '', showAll: false, pattern: 'blend', side: 'D', screen: 'map' };
-  const SCREENS = ['map', 'outlook', 'races', 'adjust', 'early', 'watch'];
+  const SCREENS = ['map', 'outlook', 'races', 'adjust', 'early', 'eday', 'watch'];
   try {
     const saved = JSON.parse(localStorage.getItem('msm-ui') || 'null');
     if (saved && saved.tab) { ui.tab = saved.tab; ui.cmode = saved.cmode || 'chance'; ui.dim = saved.dim || 'race'; ui.side = saved.side === 'R' ? 'R' : 'D'; if (SCREENS.indexOf(saved.screen) >= 0) ui.screen = saved.screen; }
@@ -300,7 +300,7 @@
     if (!branch || !box) return;
     const tick = () => {
       if (document.visibilityState === 'hidden') return;
-      fetchLive(branch).then((L) => { liveFails = 0; if (L && L.now) { LIVE = L; renderLive(); } })
+      fetchLive(branch).then((L) => { liveFails = 0; if (L && L.now) { LIVE = L; renderLive(); renderEday(); } })
         .catch(() => { liveFails++; if (LIVE) renderLive(); });
     };
     tick();
@@ -2043,6 +2043,65 @@
     });
   }
 
+  // ---------------------------------------------------------------- Election Day turnout (pipeline/content/eday.json)
+  // The live feed carries the newest copy (refreshed from main every few minutes on election night) plus how each state
+  // entered the live odds; before the feed starts, the copy baked into data.json is shown.
+  function renderEday() {
+    const box = $('eday'); if (!box) return;
+    const E = (LIVE && LIVE.eday && LIVE.eday.states) ? LIVE.eday : (D.eday || {});
+    const ev = (LIVE && LIVE.eday && LIVE.eday.evidence) || null;
+    if (!E.states || !E.states.length) { box.innerHTML = '<h2>Election Day turnout</h2><p class="sub">Nothing reported yet.</p>'; return; }
+    const lean = (g) => g == null || !isFinite(g) ? '—' : (Math.abs(g) < 0.05 ? 'even' : (g > 0 ? 'D+' : 'R+') + Math.abs(g).toFixed(1));
+    const gapOf = (x) => { if (x.gap != null && x.r == null) return +x.gap; const t = (+x.r || 0) + (+x.d || 0) + (+x.o || 0); return t > 0 ? 100 * ((+x.d || 0) - (+x.r || 0)) / t : null; };
+    const tfmt = (t) => { try { return new Date(t).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/New_York' }) + ' ET'; } catch (e) { return ''; } };
+    const link = (o) => o && o.url ? '<a href="' + esc(o.url) + '" target="_blank" rel="noopener">' + esc(o.src || 'source') + '</a>' : esc((o && o.src) || '');
+    const bar = (g) => {   // diverging bar, R left, D right, +-30 points
+      if (g == null || !isFinite(g)) return '<span class="ed-bar"><span class="ed-mid"></span></span>';
+      const w = Math.min(50, Math.abs(g) / 30 * 50);
+      return '<span class="ed-bar"><span class="ed-mid"></span><span class="ed-fill ' + (g > 0 ? 'd' : 'r') + '" style="' + (g > 0 ? 'left:50%' : 'right:50%') + ';width:' + w.toFixed(1) + '%"></span></span>';
+    };
+    let h = '<h2>Election Day turnout</h2><p class="sub">Who is showing up today, by party registration, against Election Day in 2024, 2022 and 2018 where a source gives it. Party registration is not a vote, morning voters skew older, and several figures come from partisan accounts on X, so read this as a tilt, not a result. Updated hourly until polls close' +
+      (E.asof ? '; last ' + (function () { try { return new Date(E.asof).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'America/New_York' }); } catch (e) { return ''; } })() + ', ' + tfmt(E.asof) : '') + '. Once a state starts counting, the count replaces this in the live odds.</p><div class="ed-grid">';
+    E.states.forEach((st) => {
+      if (st.kind === 'party') {
+        const snaps = st.eday || [];
+        const last = snaps[snaps.length - 1];
+        const g = last ? gapOf(last) : null;
+        const n = last ? (+last.r || 0) + (+last.d || 0) + (+last.o || 0) : 0;
+        const rows = [['Today' + (last ? ', ' + tfmt(last.t) : ''), g, last]];
+        ['2024', '2022', '2018'].forEach((y) => { const b = st.base && st.base[y]; rows.push([y + (b && b.same_time ? ', same time of day' : ', full day'), b ? +b.eday_gap : null, b]); });
+        h += '<div class="ed-card"><h3>' + esc(st.name) + (st.races ? ' <span class="ed-races">' + st.races.map((id) => '<button class="rchip" data-race="' + esc(id) + '">' + esc(id) + '</button>').join('') + '</span>' : '') + '</h3>';
+        h += '<div class="ed-now">' + (g == null ? 'No Election Day figures yet' : '<b class="' + (g > 0 ? 'lv-up' : 'lv-dn') + '">' + lean(g) + '</b> among today\'s voters' + (n ? ' · ' + n.toLocaleString() + ' ballots' : '')) + '</div>';
+        h += '<table class="ed-tab"><tbody>' + rows.map(([lab, v, o]) => '<tr' + (v == null ? ' class="ed-na"' : '') + '><th>' + esc(lab) + '</th><td class="ed-v">' + (v == null ? 'not found' : lean(v)) + '</td><td>' + bar(v) + '</td></tr>').join('') + '</tbody></table>';
+        if (snaps.length > 1) h += '<p class="ed-hist">Through the day: ' + snaps.map((x) => tfmt(x.t) + ' ' + lean(gapOf(x))).join(' → ') + '</p>';
+        const mine = ev ? ev.filter((e) => e.st === st.st) : [];
+        if (st.use === false) h += '<p class="ed-model">Not used in the odds.</p>';
+        else if (mine.length) {
+          const e0 = mine[0];
+          h += '<p class="ed-model">In the live odds: today is ' + (e0.gap - e0.base >= 0 ? (e0.gap - e0.base).toFixed(1) + ' points more Democratic' : (e0.base - e0.gap).toFixed(1) + ' points more Republican') + ' than ' + e0.base_year + (e0.same_time ? ' at the same time' : '') +
+            '. With Election Day about ' + Math.round(e0.share * 100) + '% of the vote, that points to a margin shift of ' + (e0.shift > 0 ? 'D+' : 'R+') + Math.abs(e0.shift).toFixed(1) + ', entered as weak evidence' + (mine.some((x) => x.used) ? '' : ' (now set aside: the count or a call has replaced it)') + '.</p>';
+        } else if (g != null) h += '<p class="ed-model">Enters the live odds as weak evidence once the election-night feed starts (6 PM ET)' + ((['2022','2018','2024'].some((y) => st.base && st.base[y])) ? '' : ', if a baseline is found') + '.</p>';
+        if (st.pre) h += '<p class="ed-pre">' + esc(st.pre) + '</p>';
+        const srcs = [last].concat(['2024', '2022', '2018'].map((y) => st.base && st.base[y])).filter((o) => o && o.src);
+        const seen = {}; h += '<p class="ed-src">Sources: ' + srcs.filter((o) => { const k = o.src + o.url; if (seen[k]) return false; seen[k] = 1; return true; }).map(link).join('; ') + '</p></div>';
+      } else if (st.kind === 'county_pct') {
+        const cs = (st.counties || []).slice().sort((a, b) => b.pct - a.pct);
+        const avg = (l) => { const x = cs.filter((c) => c.lean === l); return x.length ? x.reduce((a, c) => a + c.pct, 0) / x.length : null; };
+        const ad = avg('D'), ar = avg('R');
+        h += '<div class="ed-card"><h3>' + esc(st.name) + ' <span class="ed-races"><button class="rchip" data-race="TX-SEN">TX-SEN</button><button class="rchip" data-race="TX-GOV">TX-GOV</button></span></h3>';
+        h += '<div class="ed-now">Election Day check-ins as a share of 2024\'s Election Day' + (st.t ? ', ' + tfmt(st.t) : '') + (ad != null && ar != null ? ': Democratic counties average <b>' + ad.toFixed(1) + '%</b>, Republican counties <b>' + ar.toFixed(1) + '%</b>' : '') + '</div>';
+        h += '<table class="ed-tab ed-cty"><tbody>' + cs.map((c) => '<tr><th>' + esc(c.name) + ' <span class="ed-lean ' + (c.lean === 'D' ? 'lv-up' : 'lv-dn') + '">' + esc(c.lean) + '</span></th><td class="ed-v">' + (+c.pct).toFixed(1) + '%</td><td><span class="ed-bar ed-bar1"><span class="ed-fill ' + (c.lean === 'D' ? 'd' : 'r') + '" style="left:0;width:' + Math.min(100, c.pct).toFixed(1) + '%"></span></span></td></tr>').join('') + '</tbody></table>';
+        if (st.read) h += '<p class="ed-model">' + esc(st.read) + '</p>';
+        h += '<p class="ed-src">Source: ' + link(st) + '</p></div>';
+      }
+    });
+    box.innerHTML = h + '</div>';
+  }
+  function wireEday() {
+    const box = $('eday'); if (!box) return;
+    box.addEventListener('click', (e) => { const chip = e.target.closest('.rchip'); if (chip) goRace(chip.dataset.race); });
+  }
+
   // ---------------------------------------------------------------- phone layout: one screen at a time, bottom tab bar
   const phoneMQ = window.matchMedia('(max-width: 760px)');
   const isTabbed = () => document.body.classList.contains('tabbed');
@@ -2127,6 +2186,8 @@
   render();
   renderWatch();
   wireWatch();
+  renderEday();
+  wireEday();
   initLens();
   showFreshness(D);
   startLive();
