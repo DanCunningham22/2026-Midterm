@@ -58,14 +58,25 @@ if (eday && Array.isArray(eday.states)) {
 }
 // Statewide/district counts entered from news results pages (counts.json): a race 60%+ counted enters at its current
 // two-party margin, SD 2 + 30 x (share not yet counted). Official feeds and calls take precedence.
+// NBC News's AP-fed count for every race (feeds.news, read by pipeline/live.py every two minutes) takes precedence
+// over hand-entered counts. A race 75%+ counted enters at its two-party margin with SD 2 + 40 x (share not yet
+// counted): 12 points at 75%, 6 at 90%, 4 at 95%, wide enough for the late mail or Election Day vote to flip it.
+// NBC's projected winners count as calls where calls.json has none.
 const countsFile = process.argv[7] ? readJSON(process.argv[7], {}) || {} : {};
+const allIds = new Set(data.districts.map((x) => x.id).concat(data.senate.map((x) => x.id), data.gov.map((x) => x.id)));
+const newsRaw = Object.assign({}, countsFile.races || {}, feeds.news || {});
 const newsCount = {};
-Object.entries(countsFile.races || {}).forEach(([id, x]) => {
-  if (!x || !isFinite(+x.d) || !isFinite(+x.r) || !isFinite(+x.in) || +x.d + +x.r <= 0) return;
+const nbcCalls = [];
+Object.entries(newsRaw).forEach(([id, x]) => {
+  if (!allIds.has(id) || !x || !isFinite(+x.d) || !isFinite(+x.r) || !isFinite(+x.in) || +x.d + +x.r <= 0) return;
+  if (x.winner && !calls[id] && /^[DR]$/.test(x.winner)) { calls[id] = x.winner; nbcCalls.push(id); }
   const frac = Math.min(1, +x.in / 100), margin = 100 * (+x.d - +x.r) / (+x.d + +x.r);
-  newsCount[id] = { frac, margin: Math.round(margin * 100) / 100, unit: 'vote', t: x.t || null, src: x.src || null };
-  if (frac >= 0.6 && !calls[id] && !obs.some((o) => o.id === id)) obs.push({ id, margin: newsCount[id].margin, sd: Math.round((2 + 30 * (1 - frac)) * 100) / 100, why: 'reported count' });
+  newsCount[id] = { frac, margin: Math.round(margin * 100) / 100, unit: 'vote', src: (feeds.news || {})[id] ? 'NBC News (AP)' : (x.src || null) };
 });
+Object.entries(newsCount).forEach(([id, c]) => {
+  if (c.frac >= 0.75 && !calls[id] && !obs.some((o) => o.id === id)) obs.push({ id, margin: c.margin, sd: Math.round((2 + 40 * (1 - c.frac)) * 100) / 100, why: 'reported count' });
+});
+for (let k = obs.length - 1; k >= 0; k--) if (calls[obs[k].id]) obs.splice(k, 1);
 const countyNow = {}, countyEv = [];
 const tp = (r, d) => (r + d > 0 ? 100 * (d - r) / (d + r) : null);
 if (eday && Array.isArray(eday.watch_counties)) {
@@ -209,7 +220,7 @@ const out = {
   data_from: data.meta && data.meta.generated,
   pre_from: data.meta && data.meta.generated, pre, pre_race: preRace,
   now, timeline: tl,
-  calls: { asof: callsFile.asof || null, src: callsFile.src || null, n: Object.keys(calls).length, tally: callsFile.tally || null, control: callsFile.control || null, notes: callsFile.notes || null },
+  calls: { asof: callsFile.asof || null, src: callsFile.src || null, n: Object.keys(calls).length, nbc: nbcCalls, tally: callsFile.tally || null, control: callsFile.control || null, notes: callsFile.notes || null },
   feeds: { fetched_at: feeds.fetched_at || null, sources: feeds.sources || {}, obs: feeds.obs || [], progress: feeds.progress },
   eday: eday ? Object.assign({}, eday, { evidence: edayEv, county_now: countyNow, county_ev: countyEv }) : null,
   races,

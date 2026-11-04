@@ -294,6 +294,48 @@ def fetch_turnout():
     raise last
 
 
+# ----------------------------------------------------------------------------- every race: NBC News results feed
+# NBC's results pages read the AP count from these JSON endpoints (refreshed every 15 s). For each race: the Democratic
+# (or, where no Democrat runs, the independent in that slot, e.g. Osborn in NE) and Republican share of all votes, the
+# share of the expected vote counted, and NBC's projected winner.
+NBC_API = 'https://www.nbcnews.com/firecracker/api/v2/national-results/2026-elections/{office}-results'
+
+
+def get_browser(url, timeout=30):
+    req = urllib.request.Request(url + ('&' if '?' in url else '?') + 't=' + str(int(dt.datetime.now().timestamp())), headers=BROWSER_UA)
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        return r.read().decode('utf-8', 'replace')
+
+
+def fetch_nbc():
+    out = {}
+    for office, suf in (('senate', 'SEN'), ('governor', 'GOV')):
+        j = json.loads(get_browser(NBC_API.format(office=office)))
+        for x in (j.get('tableData') or {}).get('states', []):
+            ab = (x.get('stateAbbr') or '').split(' ')[0]
+            dem, rep, ind = x.get('dem') or {}, x.get('rep') or {}, x.get('ind') or {}
+            dslot = dem if dem.get('hasCandidate') and dem.get('lastName') else ind
+            d, r, pin = dslot.get('percentVote') or 0, rep.get('percentVote') or 0, x.get('percentIn') or 0
+            if len(ab) != 2 or d + r <= 0:
+                continue
+            w = 'D' if dslot.get('isWinner') else 'R' if rep.get('isWinner') else None
+            out['%s-%s' % (ab, suf)] = dict(d=d, r=r, **{'in': pin}, winner=w)
+    j = json.loads(get_browser(NBC_API.format(office='house')))
+    for key, v in (j.get('mapData') or {}).items():
+        t = (v or {}).get('tooltip') or {}
+        st = (v or {}).get('stateCode')
+        if not st or len(key) != 4:
+            continue
+        cands = t.get('candidates') or []
+        dc = max((c for c in cands if (c.get('party') or '').lower().startswith('dem')), key=lambda c: c.get('percentVote') or 0, default=None)
+        rc = max((c for c in cands if (c.get('party') or '').lower().startswith('rep')), key=lambda c: c.get('percentVote') or 0, default=None)
+        if not dc or not rc or (dc.get('percentVote') or 0) + (rc.get('percentVote') or 0) <= 0:
+            continue
+        w = 'D' if dc.get('isWinner') else 'R' if rc.get('isWinner') else None
+        out['%s-%02d' % (st, int(key[2:]))] = dict(d=dc.get('percentVote') or 0, r=rc.get('percentVote') or 0, **{'in': t.get('percentIn') or 0}, winner=w)
+    return out
+
+
 def fetch(args):
     out = dict(fetched_at=dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), test=bool(args.test), sources={}, races={}, obs=[], counties={})
     if args.test:
@@ -326,6 +368,13 @@ def fetch(args):
                 out['obs'].append(dict(id=rid, margin=r['margin'], sd=round(1 + 20 * (1 - frac), 2), why='count'))
             out['races'][rid] = r
         out['sources'][name] = dict(ok=True, detail='%d races, %d with votes' % (len(state) - ('PRES' in state), n_in))
+    if not args.test:   # every race's reported count, from NBC News (AP data)
+        try:
+            out['news'] = fetch_nbc()
+            out['sources']['nbc'] = dict(ok=True, detail='%d races with votes' % len(out['news']))
+        except Exception as e:
+            out['news'] = {}
+            out['sources']['nbc'] = dict(ok=False, detail=repr(e)[:300])
     if not args.test:   # Election Day turnout only means something on the real night
         try:
             out['turnout'] = fetch_turnout()
