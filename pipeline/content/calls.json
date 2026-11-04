@@ -1,13 +1,157 @@
 {
  "note": "Election night race calls, maintained hourly by the scheduled task from 7 PM ET Nov 3 until the night is decided. races: {race id: {winner: D | R | I, by: who called it, at: ISO time, url: source}} using the app's ids ('PA-07', 'NC-SEN', 'GA-GOV'; I = Osborn in NE-SEN). Only calls by the AP, or by at least two of ABC, CBS, CNN, Fox, NBC and Decision Desk HQ where the AP's calls could not be read. tally: called seats as a news source reports them. control: chamber control once called.",
- "asof": "2026-11-03T19:20:00-05:00",
- "src": "NBC (via WSLS) and Fox News; AP calls not readable this hour",
+ "asof": "2026-11-03T20:22:00-05:00",
+ "src": "AP, via AP-syndicated stories (panow.com, Scripps) and Fox News results pages crediting AP",
  "races": {
   "VA-SEN": {
    "winner": "D",
-   "by": "NBC, Fox",
+   "by": "AP",
    "at": "2026-11-03T19:00:00-05:00",
-   "url": "https://www.wsls.com/decision-2026/2026/11/04/mark-warner-wins-reelection-to-us-senate-in-virginia-defeating-mizusawa/"
+   "url": "https://panow.com/2026/11/03/democrat-mark-warner-wins-reelection-to-u-s-senate-from-virginia/"
+  },
+  "GA-SEN": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T19:57:00-05:00",
+   "url": "https://www.newschannel5.com/politics/america-votes/ossoff-wins-reelection-in-georgia-delivering-democrats-a-crucial-senate-victory"
+  },
+  "PA-GOV": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T20:01:00-05:00",
+   "url": "https://panow.com/2026/11/03/democrat-josh-shapiro-wins-reelection-for-governor-in-pennsylvania/"
+  },
+  "IL-SEN": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T20:00:00-05:00",
+   "url": "https://www.kwqc.com/2026/11/04/democrat-juliana-stratton-wins-election-us-senate-illinois/"
+  },
+  "IL-GOV": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T20:00:00-05:00",
+   "url": "https://panow.com/2026/11/03/democrat-jb-pritzker-wins-reelection-for-governor-in-illinois/"
+  },
+  "MA-SEN": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T20:01:00-05:00",
+   "url": "https://panow.com/2026/11/03/democrat-edward-markey-wins-reelection-to-u-s-senate-from-massachusetts/"
+  },
+  "MA-GOV": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T20:01:00-05:00",
+   "url": "https://panow.com/2026/11/03/democrat-maura-healey-wins-reelection-for-governor-in-massachusetts/"
+  },
+  "RI-SEN": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T20:01:00-05:00",
+   "url": "https://panow.com/2026/11/03/democrat-john-reed-wins-reelection-to-u-s-senate-from-rhode-island/"
+  },
+  "FL-05": {
+   "winner": "R",
+   "by": "AP",
+   "at": "2026-11-03T19:38:00-05:00",
+   "url": "https://www.foxnews.com/elections/2026/midterm-results/state/florida"
+  },
+  "FL-06": {
+   "winner": "R",
+   "by": "AP",
+   "at": "2026-11-03T20:00:00-05:00",
+   "url": "https://www.foxnews.com/elections/2026/midterm-results/state/florida"
+  },
+  "FL-08": {
+   "winner": "R",
+   "by": "AP",
+   "at": "2026-11-03T20:01:00-05:00",
+   "url": "https://www.foxnews.com/elections/2026/midterm-results/state/florida"
+  },
+  "FL-10": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T19:00:00-05:00",
+   "url": "https://www.foxnews.com/elections/2026/midterm-results/state/florida"
+  },
+  "FL-12": {
+   "winner": "R",
+   "by": "AP",
+   "at": "2026-11-03T19:59:00-05:00",
+   "url": "https://www.foxnews.com/elections/2026/midterm-results/state/florida"
+  },
+  "FL-15": {
+   "winner": "R",
+   "by": "AP",
+   "at": "2026-11-03T20:09:00-05:00",
+   "url": "https://www.foxnews.com/elections/2026/midterm-results/state/florida"
+  },
+  "FL-17": {
+   "winner": "R",
+   "by": "AP",
+   "at": "2026-11-03T19:46:00-05:00",
+   "url": "https://www.foxnews.com/elections/2026/midterm-results/state/florida"
+  },
+  "FL-19": {
+   "winner": "R",
+   "by": "AP",
+   "at": "2026-11-03T19:16:00-05:00",
+   "url": "https://www.foxnews.com/elections/2026/midterm-results/state/florida"
+  },
+  "FL-20": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T19:09:00-05:00",
+   "url": "https://www.foxnews.com/elections/2026/midterm-results/state/florida"
+  },
+  "FL-23": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T19:34:00-05:00",
+   "url": "https://www.foxnews.com/elections/2026/midterm-results/state/florida"
+  },
+  "FL-24": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T19:16:00-05:00",
+   "url": "https://www.foxnews.com/elections/2026/midterm-results/state/florida"
+  },
+  "FL-25": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T20:07:00-05:00",
+   "url": "https://www.foxnews.com/elections/2026/midterm-results/state/florida"
+  },
+  "FL-28": {
+   "winner": "R",
+   "by": "AP",
+   "at": "2026-11-03T19:55:00-05:00",
+   "url": "https://www.foxnews.com/elections/2026/midterm-results/state/florida"
+  },
+  "FL-11": {
+   "winner": "R",
+   "by": "AP",
+   "at": "2026-11-03T20:05:00-05:00",
+   "url": "https://www.foxnews.com/elections/2026/midterm-results/state/florida"
+  },
+  "OH-03": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T19:42:00-05:00",
+   "url": "https://www.foxnews.com/elections/2026/midterm-results/state/ohio"
+  },
+  "OH-13": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T19:48:00-05:00",
+   "url": "https://www.foxnews.com/elections/2026/midterm-results/state/ohio"
+  },
+  "OH-11": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T19:52:00-05:00",
+   "url": "https://www.foxnews.com/elections/2026/midterm-results/state/ohio"
   }
  },
  "tally": {
