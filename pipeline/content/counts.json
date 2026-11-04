@@ -1,14 +1,14 @@
 {
   "note": "Statewide (or district) vote counts on election night, entered from news results pages (AP via NYT, NBC, CNN, Washington Post, Decision Desk HQ) or official state sites, for races without an official feed in pipeline/live.py (NC and FL have one). races: {\"<race id>\": {\"d\": Democratic % of all votes, \"r\": Republican % of all votes, \"in\": % of the expected vote counted, \"t\": ISO time read, \"src\": \"outlet\", \"url\": \"...\"}}. For an independent in a Democrat's slot (NE-SEN Osborn, AK-01 Hill), put that candidate's share in d. In the live odds a race with 60%+ of its expected vote counted is entered at its current two-party margin with SD 2 + 30 x (share not yet counted) points (8 at 80%, 3.5 at 95%), wide enough for late mail or Election Day votes to move it; a call or an official feed takes precedence.",
-  "asof": "2026-11-03T20:30:00-05:00",
+  "asof": "2026-11-03T20:58:00-05:00",
   "races": {
     "GA-SEN": {
-      "d": 71.71,
-      "r": 28.29,
-      "in": 20,
-      "t": "2026-11-03T19:21:00-05:00",
-      "src": "ABC News (live results table, updated 7:21 PM ET): 643,221 vs 253,750 votes",
-      "url": "https://abcnews.com/Politics/live-updates/midterm-elections-live-updates/?id=137782085"
+      "d": 62,
+      "r": 38,
+      "in": 63,
+      "t": "2026-11-03T20:42:00-05:00",
+      "src": "ABC News Senate results map (updated 8:42 PM ET; shares rounded to whole %)",
+      "url": "https://abcnews.com/Elections/2026-us-senate-election-results-live-map/"
     },
     "GA-GOV": {
       "d": 68.04,
@@ -18,12 +18,116 @@
       "url": "https://patch.com/georgia/atlanta/ga-election-2026-live-results-governor-us-senator-among-key-races"
     },
     "OH-SEN": {
+      "d": 56,
+      "r": 40,
+      "in": 37,
+      "t": "2026-11-03T20:42:00-05:00",
+      "src": "ABC News Senate results map (updated 8:42 PM ET; shares rounded to whole %)",
+      "url": "https://abcnews.com/Elections/2026-us-senate-election-results-live-map/"
+    },
+    "NH-SEN": {
+      "d": 59,
+      "r": 39,
+      "in": 25,
+      "t": "2026-11-03T20:42:00-05:00",
+      "src": "ABC News Senate results map (updated 8:42 PM ET; shares rounded to whole %)",
+      "url": "https://abcnews.com/Elections/2026-us-senate-election-results-live-map/"
+    },
+    "SC-SEN": {
+      "d": 52,
+      "r": 46,
+      "in": 53,
+      "t": "2026-11-03T20:42:00-05:00",
+      "src": "ABC News Senate results map (updated 8:42 PM ET; shares rounded to whole %)",
+      "url": "https://abcnews.com/Elections/2026-us-senate-election-results-live-map/"
+    },
+    "DE-SEN": {
       "d": 61,
-      "r": 35,
-      "in": 26,
-      "t": "2026-11-03T20:03:00-05:00",
-      "src": "ABC News (live results table, updated 8:03 PM ET): 770,613 vs 445,847 votes",
-      "url": "https://abcnews.com/Politics/ohio-2026-live-midterm-election-results/story?id=136761684"
+      "r": 39,
+      "in": 39,
+      "t": "2026-11-03T20:42:00-05:00",
+      "src": "ABC News Senate results map (updated 8:42 PM ET; shares rounded to whole %)",
+      "url": "https://abcnews.com/Elections/2026-us-senate-election-results-live-map/"
+    },
+    "IL-SEN": {
+      "d": 69,
+      "r": 30,
+      "in": 6,
+      "t": "2026-11-03T20:42:00-05:00",
+      "src": "ABC News Senate results map (updated 8:42 PM ET; shares rounded to whole %)",
+      "url": "https://abcnews.com/Elections/2026-us-senate-election-results-live-map/"
+    },
+    "MA-SEN": {
+      "d": 79,
+      "r": 14,
+      "in": 2,
+      "t": "2026-11-03T20:42:00-05:00",
+      "src": "ABC News Senate results map (updated 8:42 PM ET; shares rounded to whole %)",
+      "url": "https://abcnews.com/Elections/2026-us-senate-election-results-live-map/"
+    },
+    "NJ-SEN": {
+      "d": 69,
+      "r": 29,
+      "in": 30,
+      "t": "2026-11-03T20:42:00-05:00",
+      "src": "ABC News Senate results map (updated 8:42 PM ET; shares rounded to whole %)",
+      "url": "https://abcnews.com/Elections/2026-us-senate-election-results-live-map/"
+    },
+    "RI-SEN": {
+      "d": 64,
+      "r": 31,
+      "in": 52,
+      "t": "2026-11-03T20:42:00-05:00",
+      "src": "ABC News Senate results map (updated 8:42 PM ET; shares rounded to whole %)",
+      "url": "https://abcnews.com/Elections/2026-us-senate-election-results-live-map/"
+    },
+    "VA-SEN": {
+      "d": 58,
+      "r": 41,
+      "in": 54,
+      "t": "2026-11-03T20:42:00-05:00",
+      "src": "ABC News Senate results map (updated 8:42 PM ET; shares rounded to whole %)",
+      "url": "https://abcnews.com/Elections/2026-us-senate-election-results-live-map/"
+    },
+    "AR-SEN": {
+      "d": 29,
+      "r": 67,
+      "in": 1,
+      "t": "2026-11-03T20:42:00-05:00",
+      "src": "ABC News Senate results map (updated 8:42 PM ET; shares rounded to whole %)",
+      "url": "https://abcnews.com/Elections/2026-us-senate-election-results-live-map/"
+    },
+    "KY-SEN": {
+      "d": 44,
+      "r": 54,
+      "in": 56,
+      "t": "2026-11-03T20:42:00-05:00",
+      "src": "ABC News Senate results map (updated 8:42 PM ET; shares rounded to whole %)",
+      "url": "https://abcnews.com/Elections/2026-us-senate-election-results-live-map/"
+    },
+    "OK-SEN": {
+      "d": 46,
+      "r": 51,
+      "in": 19,
+      "t": "2026-11-03T20:42:00-05:00",
+      "src": "ABC News Senate results map (updated 8:42 PM ET; shares rounded to whole %)",
+      "url": "https://abcnews.com/Elections/2026-us-senate-election-results-live-map/"
+    },
+    "TN-SEN": {
+      "d": 36,
+      "r": 62,
+      "in": 14,
+      "t": "2026-11-03T20:42:00-05:00",
+      "src": "ABC News Senate results map (updated 8:42 PM ET; shares rounded to whole %)",
+      "url": "https://abcnews.com/Elections/2026-us-senate-election-results-live-map/"
+    },
+    "WV-SEN": {
+      "d": 42,
+      "r": 55,
+      "in": 43,
+      "t": "2026-11-03T20:42:00-05:00",
+      "src": "ABC News Senate results map (updated 8:42 PM ET; shares rounded to whole %)",
+      "url": "https://abcnews.com/Elections/2026-us-senate-election-results-live-map/"
     }
   }
 }
