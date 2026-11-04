@@ -1,5 +1,5 @@
 ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	TotalOth	TotalNpa	GrandTotal	CompileDate
-49894	11/03/2026	2026 General	State Totals	Vote-by-Mail Provided (Not Yet Returned)	155,746	184,032	14,311	112,432	466,521	11/03/2026 11:02AM
+49894	11/03/2026	2026 General	State Totals	Vote-by-Mail Provided (Not Yet Returned)	155,811	184,038	14,311	112,436	466,596	11/03/2026  8:09AM
 49894	11/03/2026	2026 General	Alachua	Vote-by-Mail Provided (Not Yet Returned)	1,155	2,974	181	1,121	5,431	11/03/2026  8:09AM
 49894	11/03/2026	2026 General	Baker	Vote-by-Mail Provided (Not Yet Returned)	193	58	6	24	281	11/03/2026  8:09AM
 49894	11/03/2026	2026 General	Bay	Vote-by-Mail Provided (Not Yet Returned)	1,668	914	123	682	3,387	11/03/2026  8:09AM
@@ -13,7 +13,7 @@ ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	T
 49894	11/03/2026	2026 General	Collier	Vote-by-Mail Provided (Not Yet Returned)	5,216	2,540	287	2,318	10,361	11/03/2026  8:09AM
 49894	11/03/2026	2026 General	Columbia	Vote-by-Mail Provided (Not Yet Returned)	341	301	27	142	811	11/03/2026  8:09AM
 49894	11/03/2026	2026 General	DeSoto	Vote-by-Mail Provided (Not Yet Returned)	91	82	4	39	216	11/03/2026  8:09AM
-49894	11/03/2026	2026 General	Dixie	Vote-by-Mail Provided (Not Yet Returned)	160	68	4	27	259	11/03/2026 11:02AM
+49894	11/03/2026	2026 General	Dixie	Vote-by-Mail Provided (Not Yet Returned)	225	74	4	31	334	11/02/2026  8:09AM
 49894	11/03/2026	2026 General	Duval	Vote-by-Mail Provided (Not Yet Returned)	3,630	5,898	381	2,477	12,386	11/03/2026  8:09AM
 49894	11/03/2026	2026 General	Escambia	Vote-by-Mail Provided (Not Yet Returned)	2,525	2,575	208	1,355	6,663	11/03/2026  8:09AM
 49894	11/03/2026	2026 General	Flagler	Vote-by-Mail Provided (Not Yet Returned)	1,062	1,081	83	559	2,785	11/03/2026  8:09AM
