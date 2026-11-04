@@ -1,7 +1,7 @@
 {
  "note": "Election night race calls, maintained hourly by the scheduled task from 7 PM ET Nov 3 until the night is decided. races: {race id: {winner: D | R | I, by: who called it, at: ISO time, url: source}} using the app's ids ('PA-07', 'NC-SEN', 'GA-GOV'; I = Osborn in NE-SEN). Only calls by the AP, or by at least two of ABC, CBS, CNN, Fox, NBC and Decision Desk HQ where the AP's calls could not be read. tally: called seats as a news source reports them. control: chamber control once called.",
- "asof": "2026-11-03T20:22:00-05:00",
- "src": "AP, via AP-syndicated stories (panow.com, Scripps) and Fox News results pages crediting AP",
+ "asof": "2026-11-03T21:30:00-05:00",
+ "src": "AP, via AP-syndicated race-call stories and outlets crediting AP",
  "races": {
   "VA-SEN": {
    "winner": "D",
@@ -152,6 +152,78 @@
    "by": "AP",
    "at": "2026-11-03T19:52:00-05:00",
    "url": "https://www.foxnews.com/elections/2026/midterm-results/state/ohio"
+  },
+  "NC-SEN": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T20:23:00-05:00",
+   "url": "https://www.wbtv.com/2026/11/04/roy-cooper-wins-2026-us-senate-race-north-carolina-ap-projects/"
+  },
+  "FL-SEN": {
+   "winner": "R",
+   "by": "AP",
+   "at": "2026-11-03T20:34:00-05:00",
+   "url": "https://www.wect.com/2026/11/04/republican-ashley-moody-wins-reelection-us-senate-florida/"
+  },
+  "WV-SEN": {
+   "winner": "R",
+   "by": "AP",
+   "at": "2026-11-03T20:52:00-05:00",
+   "url": "https://www.yahoo.com/news/politics/articles/republican-shelley-capito-wins-reelection-015245425.html"
+  },
+  "NH-SEN": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T20:20:00-05:00",
+   "url": "https://ktar.com/national-news/democrat-chris-pappas-wins-election-to-u-s-senate-from-new-hampshire"
+  },
+  "DE-SEN": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T20:00:00-05:00",
+   "url": "https://www.fox29.com/news/chris-coons-wins-reelection-delaware-senate-race-ap-projects"
+  },
+  "NJ-SEN": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T20:00:00-05:00",
+   "url": "https://panow.com/2026/11/03/democrat-cory-booker-wins-reelection-to-u-s-senate-from-new-jersey/"
+  },
+  "NY-GOV": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T21:00:00-05:00",
+   "url": "https://www.yahoo.com/news/politics/articles/democrat-kathy-hochul-wins-reelection-020032699.html"
+  },
+  "CO-GOV": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T21:00:00-05:00",
+   "url": "https://www.durangoherald.com/articles/associated-press/democrat-phil-weiser-wins-election-for-governor-in-colorado"
+  },
+  "CO-SEN": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T21:00:00-05:00",
+   "url": "https://www.durangoherald.com/articles/associated-press/democrat-john-hickenlooper-wins-reelection-to-u-s-senate-from-colorado"
+  },
+  "NM-SEN": {
+   "winner": "D",
+   "by": "AP",
+   "at": "2026-11-03T21:00:00-05:00",
+   "url": "https://gvwire.com/2026/11/03/ap-calls-senate-races-in-colorado-new-mexico-and-wyoming/"
+  },
+  "WY-SEN": {
+   "winner": "R",
+   "by": "AP",
+   "at": "2026-11-03T21:00:00-05:00",
+   "url": "https://gvwire.com/2026/11/03/ap-calls-senate-races-in-colorado-new-mexico-and-wyoming/"
+  },
+  "FL-GOV": {
+   "winner": "R",
+   "by": "AP",
+   "at": "2026-11-03T21:09:00-05:00",
+   "url": "https://www.whro.org/2026-11-03/republican-byron-donalds-wins-governors-race-in-florida"
   }
  },
  "tally": {
