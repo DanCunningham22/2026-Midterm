@@ -1,0 +1,20 @@
+name: Probe a page (one-off)
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Fetch pages and push them to the probe branch
+        run: |
+          mkdir out && cd out
+          UA='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36'
+          for u in "nbc_senate https://www.nbcnews.com/politics/2026-elections/senate-results" "nbc_gov https://www.nbcnews.com/politics/2026-elections/governor-results" "nbc_in05 https://www.nbcnews.com/politics/2026-elections/indiana-us-house-district-5-results" "cnn_ky https://www.cnn.com/elections/2026/results/kentucky" "ky_sos https://vrsws.sos.ky.gov/liveresults/"; do
+            set -- $u; curl -sSL --compressed -A "$UA" -o "$1.html" "$2" -w "$1 %{http_code} %{size_download}\n" || true
+          done | tee codes.txt
+          date -u > fetched_at.txt
+          git init -q && git checkout -q -b probe && git add . && git -c user.name=midterm-map -c user.email=midterm-map@users.noreply.github.com commit -qm "probe $(date -u +%H:%M)"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" probe
