@@ -1,9 +1,24 @@
 {
  "note": "Election night race calls, maintained hourly by the scheduled task from 7 PM ET Nov 3 until the night is decided. races: {race id: {winner: D | R | I, by: who called it, at: ISO time, url: source}} using the app's ids ('PA-07', 'NC-SEN', 'GA-GOV'; I = Osborn in NE-SEN). Only calls by the AP, or by at least two of ABC, CBS, CNN, Fox, NBC and Decision Desk HQ where the AP's calls could not be read. tally: called seats as a news source reports them. control: chamber control once called.",
- "asof": null,
- "src": null,
- "races": {},
- "tally": {"house": null, "senate": null, "gov": null, "src": null},
- "control": {"house": null, "senate": null},
+ "asof": "2026-11-03T19:20:00-05:00",
+ "src": "NBC (via WSLS) and Fox News; AP calls not readable this hour",
+ "races": {
+  "VA-SEN": {
+   "winner": "D",
+   "by": "NBC, Fox",
+   "at": "2026-11-03T19:00:00-05:00",
+   "url": "https://www.wsls.com/decision-2026/2026/11/04/mark-warner-wins-reelection-to-us-senate-in-virginia-defeating-mizusawa/"
+  }
+ },
+ "tally": {
+  "house": null,
+  "senate": null,
+  "gov": null,
+  "src": null
+ },
+ "control": {
+  "house": null,
+  "senate": null
+ },
  "notes": []
 }
