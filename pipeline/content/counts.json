@@ -1,13 +1,14 @@
 {
   "note": "Statewide (or district) vote counts on election night, entered from news results pages (AP via NYT, NBC, CNN, Washington Post, Decision Desk HQ) or official state sites, for races without an official feed in pipeline/live.py (NC and FL have one). races: {\"<race id>\": {\"d\": Democratic % of all votes, \"r\": Republican % of all votes, \"in\": % of the expected vote counted, \"t\": ISO time read, \"src\": \"outlet\", \"url\": \"...\"}}. For an independent in a Democrat's slot (NE-SEN Osborn, AK-01 Hill), put that candidate's share in d. In the live odds a race with 60%+ of its expected vote counted is entered at its current two-party margin with SD 2 + 30 x (share not yet counted) points (8 at 80%, 3.5 at 95%), wide enough for late mail or Election Day votes to move it; a call or an official feed takes precedence.",
-  "asof": "2026-11-03T19:36:00-05:00",
+  "asof": "2026-11-03T20:30:00-05:00",
   "races": {
     "GA-SEN": {
-      "d": 72.63,
-      "r": 27.37,
-      "t": "2026-11-03T19:15:00-05:00",
-      "src": "Patch (AP results), 13 precincts reporting; no expected-vote estimate given",
-      "url": "https://patch.com/georgia/atlanta/ga-election-2026-live-results-governor-us-senator-among-key-races"
+      "d": 71.71,
+      "r": 28.29,
+      "in": 20,
+      "t": "2026-11-03T19:21:00-05:00",
+      "src": "ABC News (live results table, updated 7:21 PM ET): 643,221 vs 253,750 votes",
+      "url": "https://abcnews.com/Politics/live-updates/midterm-elections-live-updates/?id=137782085"
     },
     "GA-GOV": {
       "d": 68.04,
@@ -15,6 +16,14 @@
       "t": "2026-11-03T19:15:00-05:00",
       "src": "Patch (AP results), 13 precincts reporting; no expected-vote estimate given",
       "url": "https://patch.com/georgia/atlanta/ga-election-2026-live-results-governor-us-senator-among-key-races"
+    },
+    "OH-SEN": {
+      "d": 61,
+      "r": 35,
+      "in": 26,
+      "t": "2026-11-03T20:03:00-05:00",
+      "src": "ABC News (live results table, updated 8:03 PM ET): 770,613 vs 445,847 votes",
+      "url": "https://abcnews.com/Politics/ohio-2026-live-midterm-election-results/story?id=136761684"
     }
   }
 }
