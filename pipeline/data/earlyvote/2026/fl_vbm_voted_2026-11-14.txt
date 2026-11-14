@@ -1,5 +1,5 @@
 ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	TotalOth	TotalNpa	GrandTotal	CompileDate
-49894	11/03/2026	2026 General	State Totals	Voted Vote-by-Mail	725,079	885,635	51,816	417,718	2,080,248	11/13/2026  2:01PM
+49894	11/03/2026	2026 General	State Totals	Voted Vote-by-Mail	725,079	885,635	51,816	417,718	2,080,248	11/13/2026  8:04AM
 49894	11/03/2026	2026 General	Alachua	Voted Vote-by-Mail	5,092	14,293	524	3,961	23,870	11/13/2026  8:04AM
 49894	11/03/2026	2026 General	Baker	Voted Vote-by-Mail	735	267	17	77	1,096	11/13/2026  8:04AM
 49894	11/03/2026	2026 General	Bay	Voted Vote-by-Mail	5,847	3,534	279	1,652	11,312	11/13/2026  8:04AM
@@ -32,7 +32,7 @@ ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	T
 49894	11/03/2026	2026 General	Indian River	Voted Vote-by-Mail	10,137	7,954	736	4,048	22,875	11/13/2026  8:04AM
 49894	11/03/2026	2026 General	Jackson	Voted Vote-by-Mail	1,260	1,072	28	125	2,485	11/13/2026  8:04AM
 49894	11/03/2026	2026 General	Jefferson	Voted Vote-by-Mail	276	543	20	83	922	11/13/2026  8:04AM
-49894	11/03/2026	2026 General	Lafayette	Voted Vote-by-Mail	200	60	3	5	268	11/13/2026  2:01PM
+49894	11/03/2026	2026 General	Lafayette	Voted Vote-by-Mail	200	60	3	5	268	11/12/2026  8:04AM
 49894	11/03/2026	2026 General	Lake	Voted Vote-by-Mail	11,678	12,036	721	6,196	30,631	11/13/2026  8:04AM
 49894	11/03/2026	2026 General	Lee	Voted Vote-by-Mail	59,921	37,037	3,400	26,848	127,206	11/13/2026  8:04AM
 49894	11/03/2026	2026 General	Leon	Voted Vote-by-Mail	7,309	18,218	539	4,395	30,461	11/13/2026  8:04AM

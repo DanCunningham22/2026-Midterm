@@ -1,5 +1,5 @@
 ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	TotalOth	TotalNpa	GrandTotal	CompileDate
-49894	11/03/2026	2026 General	State Totals	Vote-by-Mail Provided (Not Yet Returned)	126,247	152,563	11,715	90,815	381,340	11/13/2026  2:01PM
+49894	11/03/2026	2026 General	State Totals	Vote-by-Mail Provided (Not Yet Returned)	126,247	152,563	11,715	90,815	381,340	11/13/2026  8:04AM
 49894	11/03/2026	2026 General	Alachua	Vote-by-Mail Provided (Not Yet Returned)	872	2,281	137	848	4,138	11/13/2026  8:04AM
 49894	11/03/2026	2026 General	Baker	Vote-by-Mail Provided (Not Yet Returned)	151	47	5	18	221	11/13/2026  8:04AM
 49894	11/03/2026	2026 General	Bay	Vote-by-Mail Provided (Not Yet Returned)	1,338	723	105	549	2,715	11/13/2026  8:04AM
@@ -32,7 +32,7 @@ ElectionNumber	ElectionDate	ElectionName	CountyName	StatType	TotalRep	TotalDem	T
 49894	11/03/2026	2026 General	Indian River	Vote-by-Mail Provided (Not Yet Returned)	1,463	1,103	133	621	3,320	11/13/2026  8:04AM
 49894	11/03/2026	2026 General	Jackson	Vote-by-Mail Provided (Not Yet Returned)	162	196	13	35	406	11/13/2026  8:04AM
 49894	11/03/2026	2026 General	Jefferson	Vote-by-Mail Provided (Not Yet Returned)	38	81	2	17	138	11/13/2026  8:04AM
-49894	11/03/2026	2026 General	Lafayette	Vote-by-Mail Provided (Not Yet Returned)	26	9	0	3	38	11/13/2026  2:01PM
+49894	11/03/2026	2026 General	Lafayette	Vote-by-Mail Provided (Not Yet Returned)	26	9	0	3	38	11/12/2026  8:04AM
 49894	11/03/2026	2026 General	Lake	Vote-by-Mail Provided (Not Yet Returned)	1,935	1,949	159	1,155	5,198	11/13/2026  8:04AM
 49894	11/03/2026	2026 General	Lee	Vote-by-Mail Provided (Not Yet Returned)	7,778	5,265	559	4,583	18,185	11/13/2026  8:04AM
 49894	11/03/2026	2026 General	Leon	Vote-by-Mail Provided (Not Yet Returned)	1,407	3,085	141	975	5,608	11/13/2026  8:04AM
